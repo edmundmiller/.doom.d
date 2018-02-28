@@ -1,18 +1,4 @@
-;;; private/hlissner/config.el -*- lexical-binding: t; -*-
-
-(defvar xdg-data (getenv "XDG_DATA_HOME"))
-(defvar xdg-bin (getenv "XDG_BIN_HOME"))
-(defvar xdg-cache (getenv "XDG_CACHE_HOME"))
-(defvar xdg-config (getenv "XDG_CONFIG_HOME"))
-
-(setq +doom-modeline-buffer-file-name-style 'relative-from-project
-      show-trailing-whitespace t
-
-      mu4e-maildir        (expand-file-name "mail" xdg-data)
-      mu4e-attachment-dir (expand-file-name "attachments" mu4e-maildir))
-
-(add-hook! minibuffer-setup (setq-local show-trailing-whitespace nil))
-
+;;; config.el --- description -*- lexical-binding: t; -*-
 
 ;;
 ;; Keybindings
@@ -20,46 +6,42 @@
 
 (map!
  (:leader
-   (:prefix "f"
-     :desc "Find file in dotfiles" :n "t" #'+hlissner/find-in-dotfiles
-     :desc "Browse dotfiles"       :n "T" #'+hlissner/browse-dotfiles)))
-
+   (:prefix "o"
+     :desc "Agenda" :n "a" #'org-agenda)))
 
 ;;
 ;; Modules
 ;;
 
-;; feature/evil
-(after! evil-mc
-  ;; Make evil-mc resume its cursors when I switch to insert mode
-  (add-hook! 'evil-mc-before-cursors-created
-    (add-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors nil t))
-  (add-hook! 'evil-mc-after-cursors-deleted
-    (remove-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors t)))
+;; Edit Server
+(def-package! edit-server
+		:config
+				(edit-server-start))
 
-;; completion/helm
-(after! helm
-  ;; Hide header lines in helm. I don't like them
-  (set-face-attribute 'helm-source-header nil :height 0.1))
+;; Solidity
+(def-package! solidity-mode
+  :mode "\\.sol$"
+  :config
+    (setq solidity-solc-path "/home/emiller/node/lib/node_modules/solc/solcjs")
+    (setq solidity-solium-path "/home/emiller/node/lib/node_modules/solium/bin/solium")
 
-;; lang/org
-(after! org-bullets
-  ;; The standard unicode characters are usually misaligned depending on the
-  ;; font. This bugs me. Personally, markdown #-marks for headlines are more
-  ;; elegant, so we use those.
-  (setq org-bullets-bullet-list '("#")))
+    (setq solidity-flycheck-solc-checker-active t)
+    (setq solidity-flycheck-solium-checker-active t)
 
-;; app/irc
-(after! circe
-  (setq +irc-notifications-watch-strings '("v0" "vnought" "hlissner"))
+    (setq flycheck-solidity-solc-addstd-contracts t)
+    (setq flycheck-solidity-solium-soliumrcfile "~/.soliumrc.json")
 
-  (set! :irc "irc.snoonet.org"
-    `(:tls t
-      :nick "v0"
-      :port 6697
-      :sasl-username ,(+pass-get-user "irc/snoonet.org")
-      :sasl-password ,(+pass-get-secret "irc/snoonet.org")
-      :channels (:after-auth "#ynought"))))
+    (setq solidity-comment-style 'slash))
+
+(def-package! company-solidity
+  :when (featurep! :completion company)
+  :after solidity-mode
+  :config
+  (add-hook 'solidity-mode-hook
+    (lambda ()
+    (set (make-local-variable 'company-backends)
+        (append '((company-solidity company-capf company-dabbrev-code))
+        company-backends)))))
 
 ;; app/email
 (after! mu4e
@@ -82,21 +64,8 @@
       (mu4e-drafts-folder     . "/gmail.com/Drafts")
       (mu4e-trash-folder      . "/gmail.com/Trash")
       (mu4e-refile-folder     . "/gmail.com/All Mail")
-      (smtpmail-smtp-user     . "hlissner")
-      (user-mail-address      . "hlissner@gmail.com")
-      (mu4e-compose-signature . "---\nHenrik")))
-
-  (set! :email "lissner.net"
-    '((mu4e-sent-folder       . "/lissner.net/Sent Mail")
-      (mu4e-drafts-folder     . "/lissner.net/Drafts")
-      (mu4e-trash-folder      . "/lissner.net/Trash")
-      (mu4e-refile-folder     . "/lissner.net/All Mail")
-      (smtpmail-smtp-user     . "henrik@lissner.net")
-      (user-mail-address      . "henrik@lissner.net")
-      (mu4e-compose-signature . "---\nHenrik Lissner"))
-    t)
-
-  ;; an evil-esque keybinding scheme for mu4e
+      (smtpmail-smtp-user     . "edmund")
+      (user-mail-address      . "edmund.a.miller@gmail.com"))) ;; an evil-esque keybinding scheme for mu4e
   (setq mu4e-view-mode-map (make-sparse-keymap)
         ;; mu4e-compose-mode-map (make-sparse-keymap)
         mu4e-headers-mode-map (make-sparse-keymap)
@@ -179,4 +148,7 @@
             :n "m" #'mu4e-view-mark-for-move))
 
         (:map mu4e~update-mail-mode-map
-          :n "q" #'mu4e-interrupt-update-mail)))
+            :n "q" #'mu4e-interrupt-update-mail)))
+
+(provide 'config)
+;;; config.el ends here
