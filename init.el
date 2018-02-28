@@ -1,18 +1,57 @@
-;;; private/hlissner/init.el -*- lexical-binding: t; -*-
+;;; private/emiller/init.el -*- lexical-binding: t; -*-
 
-;; I've swapped these keys on my keyboard
-(setq x-super-keysym 'alt
-      x-alt-keysym   'meta
+;; 
+(setq
+    user-mail-address "Edmund.A.Miller@gmail.com"
+    user-full-name "Edmund Miller"
 
-      user-mail-address "henrik@lissner.net"
-      user-full-name    "Henrik Lissner"
+    ;; Change font
+    doom-font (font-spec :family "Source Code Pro" :size 17))
+    ;; Set Bullets to OG
+    org-bullets-bullet-list '("■" "◆" "▲" "▶")
 
-      doom-font (font-spec :family "Input Mono Narrow" :size 12 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Fira Sans")
-      doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
-      doom-big-font (font-spec :family "Fira Mono" :size 19)
+    org-ellipsis " ▼ ")
 
-      org-ellipsis " ▼ ")
+;; Org Capture Templates
+(setq org-capture-templates
+    '(("a" "Appointment" entry
+    (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
+    "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
+
+    ("n" "Note" entry
+    (file+headline "~/Dropbox/orgfiles/i.org" "Notes")
+    "** %?\n%T")
+
+    ("l" "Link" entry
+    (file+headline "~/Dropbox/orgfiles/links.org" "Links")
+    "* %? %^L %^g \n%T" :prepend t)
+
+    ("t" "To Do Item" entry
+    (file+headline "~/Dropbox/orgfiles/i.org" "Unsorted")
+    "*** TODO %?\n%T" :prepend t)
+
+    ("j" "Lab Entry" entry
+    (file+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
+    "** %? %^g \n\n   Entered on %U\n  %i\n\n")
+
+    ("d" "Lab To Do" entry
+    (file+headline "~/Dropbox/orgfiles/Lab_Notebook.org" "To Do")
+    "** TODO %?\n%T" :prepend t)))
+
+;; Start in Insert
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
+
+;; Bind capture to =C-c c=
+(define-key global-map "\C-cc" 'org-capture)
+
+;; Edit i.org
+(defun emiller/visit-i-org ()
+				(interactive)
+				(find-file "~/Dropbox/orgfiles/i.org"))
+
+		(global-set-key (kbd "C-c i") 'emiller/visit-i-org)
+
+ 
 
 ;;
 (doom! :feature
@@ -26,7 +65,7 @@
        (lookup           ; helps you navigate your code and documentation
         +devdocs         ; ...on devdocs.io online
         +docsets)        ; ...or in Dash docsets locally
-      ;services          ; TODO managing external services & code builders
+       services          ; TODO managing external services & code builders
        snippets          ; my elves. They type so I don't have to
        spellcheck        ; tasing you for misspelling mispelling
        syntax-checker    ; tasing you for every semicolon you forget
@@ -34,7 +73,8 @@
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
-       company           ; the ultimate code completion backend
+       (company           ; the ultimate code completion backend
+        +auto)
        ivy               ; a search engine for love and life
       ;helm              ; the *other* search engine for love and life
       ;ido               ; the other *other* search engine...
@@ -47,7 +87,7 @@
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        nav-flash         ; blink the current line after jumping
        evil-goggles      ; display visual hints when editing in evil
-      ;unicode           ; extended unicode support for various languages
+       unicode           ; extended unicode support for various languages
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
@@ -55,77 +95,83 @@
        :tools
        dired             ; making dired pretty [functional]
        electric-indent   ; smarter, keyword-based electric-indent
-      ;eshell            ; a consistent, cross-platform shell (WIP)
-      ;gist              ; interacting with github gists
+       eshell            ; a consistent, cross-platform shell (WIP)
+       gist              ; interacting with github gists
        imenu             ; an imenu sidebar and searchable code index
-      ;impatient-mode    ; show off code over HTTP
+       impatient-mode    ; show off code over HTTP
       ;macos             ; MacOS-specific commands
-      ;make              ; run make tasks from Emacs
+       make              ; run make tasks from Emacs
        neotree           ; a project drawer, like NERDTree for vim
-      ;password-store    ; password manager for nerds
-      ;pdf               ; pdf enhancements
+       password-store    ; password manager for nerds
+       pdf               ; pdf enhancements
        rotate-text       ; cycle region at point between text candidates
-      ;term              ; terminals in Emacs
+       term              ; terminals in Emacs
       ;tmux              ; an API for interacting with tmux
-      ;upload            ; map local to remote projects via ssh/ftp
+       upload            ; map local to remote projects via ssh/ftp
 
        :lang
-      ;assembly          ; assembly for fun or debugging
+       assembly          ; assembly for fun or debugging
        cc                ; C/C++/Obj-C madness
-       crystal           ; ruby at the speed of c
+      ;crystal           ; ruby at the speed of c
       ;clojure           ; java with a lisp
-       csharp            ; unity, .NET, and mono shenanigans
+      ;csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
-      ;elixir            ; erlang done right
+       elixir            ; erlang done right
       ;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
-      ;ess               ; emacs speaks statistics
+       ess               ; emacs speaks statistics
        go                ; the hipster dialect
        (haskell +intero) ; a language that's lazier than I am
       ;hy                ; readability of scheme w/ speed of python
-      ;(java +meghanada) ; the poster child for carpal tunnel syndrome
+       (java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
-      ;julia             ; a better, faster MATLAB
-      ;latex             ; writing papers in Emacs has never been so fun
-      ;ledger            ; an accounting system in Emacs
+       julia             ; a better, faster MATLAB
+       latex             ; writing papers in Emacs has never been so fun
+       ledger            ; an accounting system in Emacs
        lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
-      ;ocaml             ; an objective camel
+       ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
         +attach          ; custom attachment system
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
         +present         ; Emacs for presentations
-       ;+publish         ; Emacs+Org as a static site generator
-        )
-      ;perl            ; write code no one else can comprehend
-       php             ; make php less awful to work with
-      ;plantuml          ; diagrams for confusing people more
+        +publish)        ; Emacs+Org as a static site generator
+       perl              ; write code no one else can comprehend
+       php               ; perl's insecure younger brother
+       plantuml          ; diagrams for confusing people more
       ;purescript        ; javascript, but functional
-       python          ; beautiful is better than ugly
-       rest            ; Emacs as a REST client
-      ;ruby            ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       rust            ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-      ;scala           ; java, but good
-       sh              ; she sells (ba|z)sh shells on the C xor
+       python            ; beautiful is better than ugly
+       rest              ; Emacs as a REST client
+       ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+      ;scala             ; java, but good
+       sh                ; she sells (ba|z)sh shells on the C xor
       ;swift             ; who asked for emoji variables?
-      ;typescript      ; javascript, but better
-       web             ; the tubes
+       typescript        ; javascript, but better
+       web               ; the tubes
 
-       ;; Applications are opinionated modules that transform Emacs to fulfill a
-       ;; specific purpose. They should be loaded last.
+       ;; Applications are complex and opinionated modules that transform Emacs
+       ;; toward a specific purpose. They may have additional dependencies and
+       ;; should be loaded late.
        :app
-      ;crm               ; TODO org-mode for client relations management
-      ;(email +gmail)    ; emacs as an email client
+      (email +gmail)    ; emacs as an email client
       ;irc               ; how neckbeards socialize
-      ;regex             ; emacs as a regexp IDE
-      ;rss               ; emacs as an RSS reader
-      ;torrents          ; emacs as a torrent client
+      ;(rss +org)        ; emacs as an RSS reader
       ;twitter           ; twitter client https://twitter.com/vnought
-      ;(write            ; emacs as a word processor (latex + org + markdown)
-      ; +wordnut         ; wordnet (wn) search
-      ; +langtool)       ; a proofreader (grammar/style check) for Emacs
+      (write            ; emacs as a word processor (latex + org + markdown)
+       +wordnut         ; wordnet (wn) search
+       +langtool)       ; a proofreader (grammar/style check) for Emacs
 
        :config
-       (default +bindings +snippets +evil-commands))
+       ;; The default module set reasonable defaults for Emacs. It also provides
+       ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
+       ;; and additional ex commands for evil-mode. Use it as a reference for
+       ;; your own modules.
+       (default +bindings +snippets +evil-commands)
+
+       ;; This allows you to store your private module at
+       ;; $XDG_CONFIG_HOME/doom/. Without +xdg it uses ~/.doom.d/. If your
+       ;; config directory doesn't exist, this module does nothing.
+       (private +xdg))
