@@ -1,15 +1,15 @@
 ;;; private/emiller/init.el -*- lexical-binding: t; -*-
 
-;; 
+;;
 (setq
     user-mail-address "Edmund.A.Miller@gmail.com"
     user-full-name "Edmund Miller"
 
     ;; Change font
-    doom-font (font-spec :family "Source Code Pro" :size 17))
+    doom-font (font-spec :family "Source Code Pro" :size 17)
+
     ;; Set Bullets to OG
     org-bullets-bullet-list '("■" "◆" "▲" "▶")
-
     org-ellipsis " ▼ ")
 
 ;; Org Capture Templates
@@ -51,7 +51,6 @@
 
 		(global-set-key (kbd "C-c i") 'emiller/visit-i-org)
 
- 
 
 ;;
 (doom! :feature
