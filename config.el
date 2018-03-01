@@ -21,16 +21,16 @@
 ;; Solidity
 (def-package! solidity-mode
   :mode "\\.sol$"
-  :config
-    (setq solidity-solc-path "/home/emiller/node/lib/node_modules/solc/solcjs")
-    (setq solidity-solium-path "/home/emiller/node/lib/node_modules/solium/bin/solium")
+  :init
+    (setq solidity-solc-path "/home/emiller/node/bin/solcjs")
+    (setq solidity-solium-path "/home/emiller/node/bin/solium")
 
     (setq solidity-flycheck-solc-checker-active t)
     (setq solidity-flycheck-solium-checker-active t)
 
     (setq flycheck-solidity-solc-addstd-contracts t)
-    (setq flycheck-solidity-solium-soliumrcfile "~/.soliumrc.json")
-
+    (setq flycheck-solidity-solium-soliumrcfile "/home/emiller/.soliumrc.json")
+  :config
     (setq solidity-comment-style 'slash))
 
 (def-package! company-solidity
