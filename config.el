@@ -14,6 +14,11 @@
 ;; Modules
 ;;
 
+;; Tramp-term
+;; (def-package! tramp-term
+;;         :config
+;;             (tramp-term))
+
 ;; Edit Server
 (def-package! edit-server
 		:config
