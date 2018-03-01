@@ -7,7 +7,8 @@
 (map!
  (:leader
    (:prefix "o"
-     :desc "Agenda" :n "a" #'org-agenda)))
+     :desc "Agenda" :n "a" #'org-agenda
+     :desc "eShell" :n "e" #'eshell)))
 
 ;;
 ;; Modules
