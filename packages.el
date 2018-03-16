@@ -6,5 +6,10 @@
 
 (package! edit-server)
 
+(package! org-gcal)
+
+(package! exec-path-from-shell)
+
+(package! floobits)
 (provide 'packages)
 ;;; packages.el ends here
