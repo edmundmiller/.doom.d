@@ -10,7 +10,7 @@
 (package! exec-path-from-shell)
 (package! floobits)
 ;; (package! with-editor)
-(package! simple-mpc)
+(package! mpdel)
 
 (provide 'packages)
 ;;; packages.el ends here

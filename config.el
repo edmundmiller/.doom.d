@@ -29,7 +29,11 @@
 ;;
 
 ;; Simple-mpc
-(def-package! simple-mpc)
+(def-package! libmpdel)
+(def-package! mpdel
+  :after libmpdel
+  :config
+  (mpdel-mode))
 ;; Floobits
 (def-package! floobits)
 ;; exec-path-from-shell
