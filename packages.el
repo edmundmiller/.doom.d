@@ -9,6 +9,8 @@
 (package! org-gcal)
 (package! exec-path-from-shell)
 (package! floobits)
+;; (package! with-editor)
+(package! simple-mpc)
 
 (provide 'packages)
 ;;; packages.el ends here

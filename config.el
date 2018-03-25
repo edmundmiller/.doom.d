@@ -28,6 +28,8 @@
 ;; Modules
 ;;
 
+;; Simple-mpc
+(def-package! simple-mpc)
 ;; Floobits
 (def-package! floobits)
 ;; exec-path-from-shell
