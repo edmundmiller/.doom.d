@@ -18,7 +18,9 @@
  (:leader
    (:prefix "o"
      :desc "Agenda" :n "a" #'org-agenda
-     :desc "eShell" :n "e" #'eshell))
+     :desc "eShell" :n "e" #'eshell)
+   (:prefix "p"
+     :desc "Counsel-ag" :n "f" #'counsel-ag))
  ;; (:after org
  ;; (:map org-mode-map
  ;;   :n "M-j" #'org-metadown

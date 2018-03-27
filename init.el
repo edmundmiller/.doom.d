@@ -7,10 +7,17 @@
 
     ;; Change font
     doom-font (font-spec :family "Source Code Pro" :size 17)
+    doom-variable-pitch-font (font-spec :family "Source Code Pro")
+    doom-unicode-font (font-spec :family "Source Code Pro")
+    doom-big-font (font-spec :family "Source Code Pro" :size 21)
 
     ;; Set Bullets to OG
     org-bullets-bullet-list '("■" "◆" "▲" "▶")
     org-ellipsis " ▼ ")
+
+;; Tern
+(setenv "PATH" (concat (getenv "PATH") ":/home/emiller/node/bin/"))
+(setq exec-path (append exec-path '("/home/emiller/node/bin/")))
 
 ;; Set up Org
 (with-eval-after-load 'org
@@ -47,7 +54,7 @@
 
     ("j" "Lab Entry" entry
     (file+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
-    "** %? %^g \n\n   Entered on %U\n  %i\n\n")
+    "** %? %^g \n\nEntered on %U\n  %i\n\n")
 
     ("d" "Lab To Do" entry
     (file+headline "~/Dropbox/orgfiles/Lab_Notebook.org" "To Do")
@@ -83,7 +90,8 @@
         +defaults)       ; default popup rules
       ;debugger          ; FIXME stepping through code, to help you add bugs
        eval              ; run code, run (also, repls)
-       evil              ; come to the dark side, we have cookies
+       (evil              ; come to the dark side, we have cookies
+        +everywhere)
        file-templates    ; auto-snippets for empty files
        (lookup           ; helps you navigate your code and documentation
         +devdocs         ; ...on devdocs.io online
