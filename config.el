@@ -18,9 +18,13 @@
  (:leader
    (:prefix "o"
      :desc "Agenda" :n "a" #'org-agenda
-     :desc "eShell" :n "e" #'eshell)
+     :desc "eShell" :n "e" #'eshell
+     :desc "i.org" :n "o" #'emiller/visit-i-org)
    (:prefix "p"
-     :desc "Counsel-ag" :n "f" #'counsel-ag))
+     :desc "Counsel-ag" :n "f" #'counsel-ag)
+   (:prefix "g"
+     :desc "Git Status" :n "g" #'magit-status
+     :desc "List gists" :n "l" #'+gist:list))
  ;; (:after org
  ;; (:map org-mode-map
  ;;   :n "M-j" #'org-metadown
@@ -38,10 +42,6 @@
   (mpdel-mode))
 ;; Floobits
 (def-package! floobits)
-;; exec-path-from-shell
-(def-package! exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
 
 ;; Edit Server
 (def-package! edit-server
