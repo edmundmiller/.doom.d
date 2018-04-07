@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+*.log
+tmp/
+config.elc
+init.elc
+packages.elc
+
