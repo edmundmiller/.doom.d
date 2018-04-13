@@ -34,6 +34,26 @@
 ;; Modules
 ;;
 
+;; Dired all-the-icons
+;; Shows the wrong faces
+;; (def-package! all-the-icons-dired
+;;   :hook (dired-mode . all-the-icons-dired-mode))
+
+;; Company-box
+(def-package! company-box
+  :hook (company-mode . company-box-mode)
+  :init
+  (setq company-box-icons-elisp
+        (list
+         (concat (all-the-icons-material "functions") " ")
+         (concat (all-the-icons-material "check_circle") " ")
+         (concat (all-the-icons-material "stars") " ")
+         (concat (all-the-icons-material "format_paint") " ")))
+  (setq company-box-icons-unknown (concat (all-the-icons-material "find_in_page") " "))
+  (setq company-box-backends-colors nil)
+  (setq company-box-icons-yasnippet (concat (all-the-icons-material "short_text") " ")))
+;; Docker
+(def-package! docker)
 ;; Simple-mpc
 (def-package! libmpdel)
 (def-package! mpdel
@@ -75,6 +95,12 @@
 
 ;; app/email
 (after! mu4e
+  ;; enable inline images
+  (setq mu4e-view-show-images t)
+  ;; use imagemagick, if available
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
+
   (setq mu4e-bookmarks
         `(("\\\\Inbox" "Inbox" ?i)
           ("\\\\Draft" "Drafts" ?d)
@@ -84,18 +110,15 @@
           ("date:7d..now" "Last 7 days" ?w)
           ("mime:image/*" "Messages with images" ?p)))
 
-  (setq smtpmail-stream-type 'starttls
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587)
-
   (set! :email "gmail.com"
-    '((mu4e-sent-folder       . "/gmail.com/Sent Mail")
-      (mu4e-drafts-folder     . "/gmail.com/Drafts")
-      (mu4e-trash-folder      . "/gmail.com/Trash")
-      (mu4e-refile-folder     . "/gmail.com/All Mail")
-      (smtpmail-smtp-user     . "edmund")
-      (user-mail-address      . "edmund.a.miller@gmail.com"))) ;; an evil-esque keybinding scheme for mu4e
+    '((mu4e-sent-folder       . "/gmail/Sent Mail")
+      (mu4e-drafts-folder     . "/gmail/Drafts")
+      (mu4e-trash-folder      . "/gmail/Trash")
+      (mu4e-refile-folder     . "/gmail/All Mail")
+      (smtpmail-smtp-user     . "edmund.a.miller")
+      (user-mail-address      . "edmund.a.miller@gmail.com")))
+
+  ;; an evil-esque keybinding scheme for mu4e
   (setq mu4e-view-mode-map (make-sparse-keymap)
         ;; mu4e-compose-mode-map (make-sparse-keymap)
         mu4e-headers-mode-map (make-sparse-keymap)
@@ -178,7 +201,105 @@
             :n "m" #'mu4e-view-mark-for-move))
 
         (:map mu4e~update-mail-mode-map
-            :n "q" #'mu4e-interrupt-update-mail)))
+            :n "q" #'mu4e-interrupt-update-mail))
+
+  ;; EMiller Below this line. User Beware
+  (setq mu4e-sent-folder "/home/emiller/.mail/gmail/sent"
+        ;; mu4e-sent-messages-behavior 'delete ;; Unsure how this should be configured
+        mu4e-drafts-folder "/home/emiller/.mail/gmail/drafts"
+        user-mail-address "edmund.a.miller@gmail.com"
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587)
+
+  ;; Now I set a list of
+  (defvar my-mu4e-account-alist
+    '(("Gmail"
+       (mu4e-sent-folder "/home/emiller/.mail/gmail/sent")
+       (mu4e-drafts-folder "/gmail/Drafts")
+       (user-mail-address "edmund.a.miller@gmail.com")
+       (smtpmail-smtp-user "Edmund.a.Miller")
+       (smtpmail-local-domain "gmail.com")
+       (smtpmail-default-smtp-server "smtp.gmail.com")
+       (smtpmail-smtp-server "smtp.gmail.com")
+       (smtpmail-smtp-service 587)
+       )
+      ("oldGmail"
+       (mu4e-sent-folder "/home/emiller/.mail/oldGmail/sent")
+       (mu4e-drafts-folder "/oldGmail/Drafts")
+       (user-mail-address "eman0088@gmail.com")
+       (smtpmail-smtp-user "eman0088")
+       (smtpmail-local-domain "gmail.com")
+       (smtpmail-default-smtp-server "smtp.gmail.com")
+       (smtpmail-smtp-server "smtp.gmail.com")
+       (smtpmail-smtp-service 587)
+       )
+      ("UTD"
+       (mu4e-sent-folder "/home/emiller/.mail/UTD/sent")
+       (mu4e-drafts-folder "/UTD/Drafts")
+       (user-mail-address "eam150030@utdallas.edu")
+       (smtpmail-smtp-user "eam150030@utdallas.edu")
+       (smtpmail-local-domain "office365.com")
+       (smtpmail-default-smtp-server "smtp.office365.com")
+       (smtpmail-smtp-server "smtp.office365.com")
+       (smtpmail-stream-type starttls)
+       (smtpmail-smtp-service 587)
+       )
+      ))
+
+  (defun my-mu4e-set-account ()
+    "Set the account for composing a message.
+   This function is taken from:
+     https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
+    (let* ((account
+            (if mu4e-compose-parent-message
+                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                  (string-match "/\\(.*?\\)/" maildir)
+                  (match-string 1 maildir))
+              (completing-read (format "Compose with account: (%s) "
+                                       (mapconcat #'(lambda (var) (car var))
+                                                  my-mu4e-account-alist "/"))
+                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                               nil t nil nil (caar my-mu4e-account-alist))))
+           (account-vars (cdr (assoc account my-mu4e-account-alist))))
+      (if account-vars
+          (mapc #'(lambda (var)
+                    (set (car var) (cadr var)))
+                account-vars)
+        (error "No email account found"))))
+  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+  ;; Include a bookmark to open all of my inboxes
+(add-to-list 'mu4e-bookmarks
+       (make-mu4e-bookmark
+        :name "All Inboxes"
+        :query "maildir:/Exchange/INBOX OR maildir:/Gmail/INBOX"
+        :key ?i))
+
+;; This allows me to use 'helm' to select mailboxes
+(setq mu4e-completing-read-function 'completing-read)
+;; Why would I want to leave my message open after I've sent it?
+(setq message-kill-buffer-on-exit t)
+;; Don't ask for a 'context' upon opening mu4e
+(setq mu4e-context-policy 'pick-first)
+;; Don't ask to quit... why is this the default?
+(setq mu4e-confirm-quit nil))
+
+;; (def-package! mu4e-alert
+;;   :after mu4e
+;;   :init
+;;   (setq mu4e-alert-interesting-mail-query
+;;     (concat
+;;      "flag:unread maildir:/Exchange/INBOX "
+;;      "OR "
+;;      "flag:unread maildir:/Gmail/INBOX"
+;;      ))
+;;   ;; (mu4e-alert-enable-mode-line-display)
+;;   (defun emiller-refresh-mu4e-alert-mode-line ()
+;;     (interactive)
+;;     (mu4e~proc-kill)
+;;     ;; (mu4e-alert-enable-mode-line-display)
+;;     )
+;;   (run-with-timer 0 60 'emiller-refresh-mu4e-alert-mode-line)
 
 ;; Google Calendar
     (def-package! org-gcal

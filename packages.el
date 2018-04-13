@@ -9,6 +9,10 @@
 (package! org-gcal)
 (package! floobits)
 ;; Experimental
+;; (package! all-the-icons-dired)
+;; (package! mu4e-alert)
+(package! company-box)
+(package! docker)
 (package! libmpdel)
 (package! mpdel)
 
