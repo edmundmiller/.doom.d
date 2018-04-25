@@ -8,10 +8,12 @@
 (package! edit-server)
 (package! org-gcal)
 (package! floobits)
+(package! snakemake-mode)
+(package! company-box)
 ;; Experimental
+;; (package! emms)
 ;; (package! all-the-icons-dired)
 ;; (package! mu4e-alert)
-(package! company-box)
 (package! docker)
 (package! libmpdel)
 (package! mpdel)

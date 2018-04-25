@@ -39,19 +39,18 @@
 ;; (def-package! all-the-icons-dired
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
 
+;; Snakemake
+(def-package! snakemake-mode)
 ;; Company-box
-(def-package! company-box
-  :hook (company-mode . company-box-mode)
-  :init
-  (setq company-box-icons-elisp
-        (list
-         (concat (all-the-icons-material "functions") " ")
-         (concat (all-the-icons-material "check_circle") " ")
-         (concat (all-the-icons-material "stars") " ")
-         (concat (all-the-icons-material "format_paint") " ")))
-  (setq company-box-icons-unknown (concat (all-the-icons-material "find_in_page") " "))
-  (setq company-box-backends-colors nil)
-  (setq company-box-icons-yasnippet (concat (all-the-icons-material "short_text") " ")))
+(setq
+   company-box-backends-colors nil
+   company-box-icons-unknown (all-the-icons-material "find_in_page" :height 0.8 :face 'all-the-icons-purple)
+   company-box-icons-yasnippet (all-the-icons-material "short_text" :height 0.8 :face 'all-the-icons-green)
+   company-box-icons-elisp
+   (list (all-the-icons-material "functions" :height 0.8 :face 'all-the-icons-red)
+         (all-the-icons-material "check_circle" :height 0.8 :face 'all-the-icons-blue)
+         (all-the-icons-material "stars" :height 0.8 :face 'all-the-icons-orange)
+         (all-the-icons-material "format_paint" :height 0.8 :face 'all-the-icons-pink)))
 ;; Docker
 (def-package! docker)
 ;; Simple-mpc
@@ -311,6 +310,35 @@
                                   ("sgv1ng3qi5erm89f227h4hm02s@group.calendar.google.com" .  "~/Dropbox/orgfiles/schedule.org") ;; Org
                                   ))
     )
+
+;; PDF-tools
+(def-package! pdf-tools
+  :preface
+  (setq pdf-view-use-unicode-ligther nil)
+  :config
+  (map! (:map (pdf-view-mode-map)
+          :n doom-leader-key nil))
+  (set! :popup "\\*Outline " '((side . left) (size . 30)) '((quit . t)))
+  (setq-default pdf-view-display-size 'fit-page
+                pdf-view-midnight-colors `(,(doom-color 'fg) . ,(doom-color 'bg)))
+  ;; turn off cua so copy works
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
+
+;; emms
+;; (use-package emms
+;;   :ensure t
+;;   :config
+;;     (require 'emms-setup)
+;;     (require 'emms-player-mpd)
+;;     (emms-all) ; don't change this to values you see on stackoverflow questions if you expect emms to work
+;;     (setq emms-seek-seconds 5)
+;;     (setq emms-player-list '(emms-player-mpd))
+;;     (setq emms-info-functions '(emms-info-mpd))
+;;     (setq emms-player-mpd-server-name "localhost")
+;;     (setq emms-player-mpd-server-port "6601")
+;;     (setq mpc-host "localhost:6601"))
 
 (provide 'config)
 ;;; config.el ends here
