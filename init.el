@@ -6,14 +6,15 @@
     user-full-name "Edmund Miller"
 
     ;; Change font
-    doom-font (font-spec :family "Source Code Pro" :size 17)
-    doom-variable-pitch-font (font-spec :family "Source Code Pro")
-    doom-unicode-font (font-spec :family "Source Code Pro")
+    doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
+    ;; doom-variable-pitch-font (font-spec :family "Source Code Pro")
+    ;; doom-unicode-font (font-spec :family "Source Code Pro")
     doom-big-font (font-spec :family "Source Code Pro" :size 21)
 
     ;; Set Bullets to OG
     org-bullets-bullet-list '("■" "◆" "▲" "▶")
-    org-ellipsis " ▼ ")
+    org-ellipsis " ▼ "
+    org-export-with-toc nil)
 
 ;; Tern
 ;; (setenv "PATH" (concat (getenv "PATH") ":/home/emiller/node/bin/"))
@@ -138,6 +139,7 @@
        neotree           ; a project drawer, like NERDTree for vim
        password-store    ; password manager for nerds
        pdf               ; pdf enhancements
+       reference
        rotate-text       ; cycle region at point between text candidates
        term              ; terminals in Emacs
        tmux              ; an API for interacting with tmux
