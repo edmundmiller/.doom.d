@@ -1,9 +1,5 @@
 ;;; packages.el --- description -*- lexical-binding: t; -*-
 
-(package! solidity-mode)
-(when (featurep! :completion company)
-  (package! company-solidity))
-
 ;; Private
 (package! edit-server)
 (package! org-gcal)

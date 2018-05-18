@@ -67,31 +67,6 @@
 		:config
 				(edit-server-start))
 
-;; Solidity
-(def-package! solidity-mode
-  :mode "\\.sol$"
-  :init
-    (setq solidity-solc-path "/home/emiller/node/bin/solcjs")
-    (setq solidity-solium-path "/home/emiller/node/bin/solium")
-
-    (setq solidity-flycheck-solc-checker-active t)
-    (setq solidity-flycheck-solium-checker-active t)
-
-    (setq flycheck-solidity-solc-addstd-contracts t)
-    (setq flycheck-solidity-solium-soliumrcfile "/home/emiller/.soliumrc.json")
-  :config
-    (setq solidity-comment-style 'slash))
-
-(def-package! company-solidity
-  :when (featurep! :completion company)
-  :after solidity-mode
-  :config
-  (add-hook 'solidity-mode-hook
-    (lambda ()
-    (set (make-local-variable 'company-backends)
-        (append '((company-solidity company-capf company-dabbrev-code))
-        company-backends)))))
-
 ;; app/email
 (after! mu4e
   ;; enable inline images
