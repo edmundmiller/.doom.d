@@ -39,8 +39,6 @@
 ;; (def-package! all-the-icons-dired
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
 
-;; Snakemake
-(def-package! snakemake-mode)
 ;; Company-box
 (setq
    company-box-backends-colors nil

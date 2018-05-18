@@ -1,0 +1,7 @@
+#+TITLE: :lang Snakemake
+
+This module adds support for [[https://snakemake.readthedocs.io/en/stable/][Snakemake]] files, a flavor of make for running bioinformatics pipelines, using [[https://github.com/kyleam/snakemake-mode][snakemake-mode]]. Not mainstream enough for the main doom. Between, emacs, and bioinformatics the center of my venn diagram is tiny.
+
++ Snytax Highlighting
++ Snakemake-popup (~SPC c s~)
++ Snakemake-graph (~SPC c g~)

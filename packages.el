@@ -4,7 +4,6 @@
 (package! edit-server)
 (package! org-gcal)
 (package! floobits)
-(package! snakemake-mode)
 (package! company-box)
 ;; Experimental
 ;; (package! emms)
