@@ -35,6 +35,15 @@
 ;; Modules
 ;;
 
+;; ivy-yasnippet
+(def-package! ivy-yasnippet
+  :commands (ivy-yasnippet)
+  :config
+    (map!
+     (:leader
+       (:prefix "s"
+         :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
+
 ;; Dired all-the-icons
 ;; Shows the wrong faces
 ;; (def-package! all-the-icons-dired
