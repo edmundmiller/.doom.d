@@ -19,7 +19,8 @@
    (:prefix "o"
      :desc "Agenda" :n "a" #'org-agenda
      :desc "eShell" :n "e" #'eshell
-     :desc "i.org" :n "o" #'emiller/visit-i-org)
+     :desc "i.org" :n "o" #'emiller/visit-i-org
+     :desc "APP: Email" :n "m" #'=mail)
    (:prefix "p"
      :desc "Counsel-ag" :n "f" #'counsel-ag)
    (:prefix "g"

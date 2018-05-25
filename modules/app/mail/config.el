@@ -27,10 +27,11 @@
              notmuch-show-mode
              notmuch-message-mode)
 
+  ;; :init
   ;; (map!
   ;;  (:leader
   ;;    (:prefix "o"
-  ;;       (:desc "APP: Email" :nmv "M" #'=mail))))
+  ;;       (:desc "APP: Email" :n "m" #'=mail))))
 
   :config
   (setq notmuch-fcc-dirs nil
@@ -40,7 +41,7 @@
         message-send-mail-function 'message-send-mail-with-sendmail
         notmuch-search-oldest-first nil
         send-mail-function 'sendmail-send-it
-        sendmail-program "/usr/local/bin/msmtp"
+        sendmail-program "/usr/bin/msmtp"
         notmuch-search-result-format '(("date" . "%12s ")
                                        ("count" . "%-7s ")
                                        ("authors" . "%-30s ")

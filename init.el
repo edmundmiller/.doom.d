@@ -198,7 +198,7 @@
        ;; toward a specific purpose. They may have additional dependencies and
        ;; should be loaded late.
        :app
-        email
+        mail
         ;+gmail)    ; emacs as an email client
         ;irc               ; how neckbeards socialize
         ;(rss +org)        ; emacs as an RSS reader
