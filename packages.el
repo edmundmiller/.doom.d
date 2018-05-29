@@ -6,9 +6,10 @@
 (package! floobits)
 (package! company-box)
 (package! ivy-yasnippet)
-;; Experimental
 (package! smtpmail)
 (package! evil-ediff)
+;; Experimental
+(package! org-noter)
 (package! docker)
 (package! libmpdel)
 (package! mpdel)
