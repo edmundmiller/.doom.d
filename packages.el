@@ -7,7 +7,6 @@
 (package! company-box)
 (package! ivy-yasnippet)
 (package! smtpmail)
-(package! evil-ediff)
 ;; Experimental
 (package! org-noter)
 (package! docker)

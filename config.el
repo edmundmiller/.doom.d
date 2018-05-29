@@ -52,9 +52,6 @@
      (:prefix "n"
    :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 
-;; evil-ediff
-(def-package! evil-ediff)
-
 ;; solidity-mode
 (setq solidity-solc-path "~/.node_modules/lib/node_modules/solc/solcjs")
 (setq solidity-solium-path "~/.node_modules/lib/node_modules/solium/bin/solium.js")
