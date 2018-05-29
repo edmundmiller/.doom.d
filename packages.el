@@ -8,6 +8,7 @@
 (package! ivy-yasnippet)
 ;; Experimental
 (package! smtpmail)
+(package! evil-ediff)
 (package! docker)
 (package! libmpdel)
 (package! mpdel)
