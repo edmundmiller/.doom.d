@@ -44,6 +44,9 @@
      (:prefix "n")
    :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))
 
+;; evil-ediff
+(def-package! evil-ediff)
+
 ;; ivy-yasnippet
 (def-package! ivy-yasnippet
   :commands (ivy-yasnippet)
