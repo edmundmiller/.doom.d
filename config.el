@@ -32,7 +32,6 @@
  ;; (:map org-mode-map
  ;;   :n "M-j" #'org-metadown
  ;;   :n "M-k" #'org-metaup))
-)
 ;;
 ;; Modules
 ;;
