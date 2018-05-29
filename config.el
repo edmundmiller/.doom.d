@@ -25,15 +25,24 @@
      :desc "Counsel-ag" :n "f" #'counsel-ag)
    (:prefix "g"
      :desc "Git Status" :n "g" #'magit-status
-     :desc "List gists" :n "l" #'+gist:list))
+     :desc "List gists" :n "l" #'+gist:list)
+   (:prefix "n"
+     :desc "Org-noter" :n "o" #'org-noter)))
  ;; (:after org
  ;; (:map org-mode-map
  ;;   :n "M-j" #'org-metadown
  ;;   :n "M-k" #'org-metaup))
-)
 ;;
 ;; Modules
 ;;
+
+;; org-noter
+(def-package! org-noter
+  :config
+  (map!
+   (:leader
+     (:prefix "n"
+   :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 
 ;; ivy-yasnippet
 (def-package! ivy-yasnippet
