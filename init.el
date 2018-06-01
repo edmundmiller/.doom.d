@@ -104,11 +104,13 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto            ; as-you-type code completion
-        +childframe)     ; a nicer company UI (Emacs 26+ only)
-        (ivy             ; a search engine for love and life
-        +childframe)     ; uses childframes for popups (Emacs 26+ only)
-        ;helm            ; the *other* search engine for love and life
-        ;ido             ; the other *other* search engine...
+        +childframe)
+      ;(helm             ; the *other* search engine for love and life
+      ; +fuzzy)          ; enable fuzzy search backend for helm
+      ;ido               ; the other *other* search engine...
+       (ivy              ; a search engine for love and life
+        +fuzzy           ; enable fuzzy search backend for ivy
+        +childframe)
 
        :ui
        doom              ; what makes DOOM look the way it does
@@ -143,7 +145,7 @@
       ;macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
        magit             ;
-       movetext
+       move-text
        password-store    ; password manager for nerds
        pdf               ; pdf enhancements
        ;reference
@@ -194,7 +196,6 @@
        snakemake         ; make with a bioinformatics twist
        solidity          ; do you need a Blockchain? No.
       ;swift             ; who asked for emoji variables?
-       typescript        ; javascript, but better
        web               ; the tubes
 
        ;; Applications are complex and opinionated modules that transform Emacs
