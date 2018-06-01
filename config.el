@@ -27,7 +27,8 @@
      :desc "Git Status" :n "g" #'magit-status
      :desc "List gists" :n "l" #'+gist:list)
    (:prefix "n"
-     :desc "Org-noter" :n "o" #'org-noter)))
+     :desc "Org-noter" :n "o" #'org-noter)
+  :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: ")))))
  ;; (:after org
  ;; (:map org-mode-map
  ;;   :n "M-j" #'org-metadown
