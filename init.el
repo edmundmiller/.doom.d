@@ -56,11 +56,13 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto            ; as-you-type code completion
-        +childframe)     ; a nicer company UI (Emacs 26+ only)
-        (ivy             ; a search engine for love and life
-        +childframe)     ; uses childframes for popups (Emacs 26+ only)
-        ;helm            ; the *other* search engine for love and life
-        ;ido             ; the other *other* search engine...
+        +childframe)
+      ;(helm             ; the *other* search engine for love and life
+      ; +fuzzy)          ; enable fuzzy search backend for helm
+      ;ido               ; the other *other* search engine...
+       (ivy              ; a search engine for love and life
+        +fuzzy           ; enable fuzzy search backend for ivy
+        +childframe)
 
        :ui
        doom              ; what makes DOOM look the way it does
@@ -68,6 +70,7 @@
        doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
+      ;fci
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        nav-flash         ; blink the current line after jumping
        neotree           ; a project drawer, like NERDTree for vim
@@ -78,7 +81,6 @@
        unicode           ; extended unicode support for various languages
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
-      ;posframe          ; use child frames where possible (Emacs 26+ only)
 
        :emacs
        dired             ; making dired pretty [functional]
@@ -87,6 +89,7 @@
        eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
        term              ; terminals in Emacs
+       music
 
        :tools
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -95,7 +98,7 @@
       ;macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
        magit             ;
-       movetext
+       move-text
        password-store    ; password manager for nerds
        pdf               ; pdf enhancements
        ;reference
@@ -132,13 +135,14 @@
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
-        +present         ; Emacs for presentations
-        +publish)        ; Emacs+Org as a static site generator
+        +ipython
+        +present)        ; Emacs for presentations
        perl              ; write code no one else can comprehend
        php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more
       ;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python           ; beautiful is better than ugly
+        +conda)
        rest              ; Emacs as a REST client
        ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
@@ -147,7 +151,6 @@
        snakemake         ; make with a bioinformatics twist
        solidity          ; do you need a Blockchain? No.
       ;swift             ; who asked for emoji variables?
-       typescript        ; javascript, but better
        web               ; the tubes
 
        ;; Applications are complex and opinionated modules that transform Emacs
@@ -173,3 +176,4 @@
        ;; and additional ex commands for evil-mode. Use it as a reference for
        ;; your own modules.
        (default +bindings +snippets +evil-commands))
+       ;; literate)
