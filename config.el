@@ -92,16 +92,6 @@
 ;; (def-package! all-the-icons-dired
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
 
-;; Company-box
-(setq
-   company-box-backends-colors nil
-   company-box-icons-unknown (all-the-icons-material "find_in_page" :height 0.8 :face 'all-the-icons-purple)
-   company-box-icons-yasnippet (all-the-icons-material "short_text" :height 0.8 :face 'all-the-icons-green)
-   company-box-icons-elisp
-   (list (all-the-icons-material "functions" :height 0.8 :face 'all-the-icons-red)
-         (all-the-icons-material "check_circle" :height 0.8 :face 'all-the-icons-blue)
-         (all-the-icons-material "stars" :height 0.8 :face 'all-the-icons-orange)
-         (all-the-icons-material "format_paint" :height 0.8 :face 'all-the-icons-pink)))
 ;; Docker
 (def-package! docker)
 ;; Simple-mpc
