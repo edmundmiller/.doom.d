@@ -6,4 +6,5 @@ config.elc
 init.elc
 packages.elc
 *.elc
-
+# Literate
+config.el
