@@ -7,8 +7,9 @@
 (package! company-box)
 (package! ivy-yasnippet)
 (package! smtpmail)
-;; Experimental
 (package! org-noter)
+;; Experimental
+(package! org-pomodoro)
 (package! docker)
 (package! libmpdel)
 (package! mpdel)
