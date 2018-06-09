@@ -10,6 +10,28 @@
 
 (add-hook! minibuffer-setup (setq-local show-trailing-whitespace nil))
 
+;; Henrik's Magit split
+(after! magit
+    (setq magit-display-buffer-function #'+magit-display-buffer-fullscreen)
+    (defun +magit-display-buffer-fullscreen (buffer)
+    (display-buffer
+    buffer (cond ((derived-mode-p 'magit-mode)
+                    (when (eq major-mode 'magit-status-mode)
+                    (display-buffer-in-side-window
+                        (current-buffer) '((side . left) (window-width . 0.35))))
+                    '(display-buffer-same-window))
+                    ((bound-and-true-p git-commit-mode)
+                    '(display-buffer-below-selected))
+                    ((buffer-local-value 'git-commit-mode buffer)
+                    '(magit--display-buffer-fullframe))
+                    ((memq (buffer-local-value 'major-mode buffer)
+                        '(magit-process-mode
+                            magit-revision-mode
+                            magit-log-mode
+                            magit-diff-mode
+                            magit-stash-mode))
+                    '(display-buffer-in-side-window))
+                    ('(magit--display-buffer-fullframe))))))
 ;;
 ;; Keybindings
 ;;
