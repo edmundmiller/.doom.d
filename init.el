@@ -9,63 +9,18 @@
     doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
     ;; doom-variable-pitch-font (font-spec :family "Source Code Pro")
     ;; doom-unicode-font (font-spec :family "Source Code Pro")
-    doom-big-font (font-spec :family "Source Code Pro" :size 21)
+    doom-big-font (font-spec :family "Source Code Pro" :size 21))
 
-    ;; Set Bullets to OG
-    org-bullets-bullet-list '("■" "◆" "▲" "▶")
-    org-ellipsis " ▼ "
-    org-export-with-toc nil)
 
 ;; Tern
 ;; (setenv "PATH" (concat (getenv "PATH") ":/home/emiller/node/bin/"))
 ;; (setq exec-path (append exec-path '("/home/emiller/node/bin/")))
 
-;; Set up Org
-(with-eval-after-load 'org
-    (setq org-directory "~/Dropbox/orgfiles")
-        (defun org-file-path (filename)
-        "Return the absolute address of an org file, given its relative name."
-        (concat (file-name-as-directory org-directory) filename))
-        (setq org-index-file (org-file-path "i.org"))
-        (setq org-archive-location
-                (concat (org-file-path "archive.org") "::* From %s"))
-
-    (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
-                                "~/Dropbox/orgfiles/i.org"
-                                "~/Dropbox/orgfiles/Lab_Notebook.org"
-                                "~/Dropbox/orgfiles/Lab_schedule.org"
-                                "~/Dropbox/orgfiles/schedule.org")))
-;; Org Capture Templates
-(setq org-capture-templates
-    '(("a" "Appointment" entry
-    (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
-    "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
-
-    ("n" "Note" entry
-    (file+headline "~/Dropbox/orgfiles/i.org" "Notes")
-    "** %?\n%T")
-
-    ("l" "Link" entry
-    (file+headline "~/Dropbox/orgfiles/links.org" "Links")
-    "* %? %^L %^g \n%T" :prepend t)
-
-    ("t" "To Do Item" entry
-    (file+headline "~/Dropbox/orgfiles/i.org" "Unsorted")
-    "*** TODO %?\n%T" :prepend t)
-
-    ("j" "Lab Entry" entry
-    (file+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
-    "** %? %^g \n\nEntered on %U\n  %i\n\n")
-
-    ("d" "Lab To Do" entry
-    (file+headline "~/Dropbox/orgfiles/Lab_Notebook.org" "To Do")
-    "** TODO %?\n%T" :prepend t)))
-
 ;; Start in Insert
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
 ;; Bind capture to =C-c c=
-(define-key global-map "\C-cc" 'org-capture)
+;; (define-key global-map "\C-cc" 'org-capture)
 
 ;; Fix Flycheck for shellscripts
 (setq flycheck-shellcheck-follow-sources nil)

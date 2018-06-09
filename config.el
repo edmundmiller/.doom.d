@@ -49,7 +49,10 @@
      :desc "Git Status" :n "g" #'magit-status
      :desc "List gists" :n "l" #'+gist:list)
    (:prefix "n"
-     :desc "Org-noter" :n "o" #'org-noter)))
+     :desc "Org-noter" :n "o" #'org-noter)
+   (:prefix "p"
+     :desc "Org-pomodoro" :n "s" #'org-pomodoro)
+  :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: ")))))
  ;; (:after org
  ;; (:map org-mode-map
  ;;   :n "M-j" #'org-metadown
@@ -61,11 +64,64 @@
     (add-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors nil t))
   (add-hook! 'evil-mc-after-cursors-deleted
 (remove-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors t)))
+(after! org
+  (setq org-directory "~/Dropbox/orgfiles")
+
+  (defun org-file-path (filename)
+    "Return the absolute address of an org file, given its relative name."
+    (concat (file-name-as-directory org-directory) filename))
+    (setq org-index-file (org-file-path "i.org"))
+    (setq org-archive-location
+        (concat (org-file-path "archive.org") "::* From %s"))
+
+    (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
+                                "~/Dropbox/orgfiles/i.org"
+                                "~/Dropbox/orgfiles/Lab_Notebook.org"
+                                "~/Dropbox/orgfiles/Lab_schedule.org"
+                                "~/Dropbox/orgfiles/schedule.org"))
+
+    ;; Set Bullets to OG
+    (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+    (setq org-ellipsis " ▼ ")
+    (setq org-export-with-toc nil)
+    ;; Log when things are done
+    (setq org-log-done 'time)
+
+  (setq org-capture-templates
+    '(("a" "Appointment" entry
+       (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
+       "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
+
+      ("n" "Note" entry
+       (file+headline "~/Dropbox/orgfiles/i.org" "Notes")
+       "** %?\n%T")
+
+      ("l" "Link" entry
+       (file+headline "~/Dropbox/orgfiles/links.org" "Links")
+       "* %? %^L %^g \n%T" :prepend t)
+
+      ("t" "To Do Item" entry
+       (file+headline "~/Dropbox/orgfiles/i.org" "Unsorted")
+       "*** TODO %?\n%T" :prepend t)
+
+      ("j" "Lab Entry" entry
+       (file+olp+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
+       "** %? %^g \n\n")
+
+      ("d" "Lab To Do" entry
+       (file+headline "~/Dropbox/orgfiles/Lab_Notebook.org" "To Do")
+       "** TODO %?\n%T" :prepend t)
+
+      ("o" "Work To Do" entry
+       (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
+       "** TODO %?\n%T" :prepend t))))
 
 ;;
 ;; Modules
 ;;
 
+;; org-pomodoro
+(def-package! org-pomodoro)
 ;; org-noter
 (def-package! org-noter
   :config
