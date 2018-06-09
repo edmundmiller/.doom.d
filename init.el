@@ -82,9 +82,6 @@
 
 ;; (global-set-key (kbd "C-c i") 'emiller/visit-i-org)
 
-;; mu4e
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
-
 ;;
 (doom! :feature
       ;debugger          ; FIXME stepping through code, to help you add bugs
