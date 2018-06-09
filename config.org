@@ -4,7 +4,7 @@
 Who are you?
 Who, who, who, who?
 #+BEGIN_SRC emacs-lisp
-(set!
+(setq
     user-mail-address "Edmund.A.Miller@gmail.com"
     user-full-name "Edmund Miller")
 #+END_SRC
@@ -19,7 +19,7 @@ Who, who, who, who?
 #+END_SRC
 Change font
 #+BEGIN_SRC emacs-lisp
-(set! doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
         ;; doom-variable-pitch-font (font-spec :family "Source Code Pro")
         ;; doom-unicode-font (font-spec :family "Source Code Pro")
         doom-big-font (font-spec :family "Source Code Pro" :size 21))
@@ -147,7 +147,7 @@ Start in insert mode in =org-capture=
 ** Shell
 Fix Flycheck for shellscripts
 #+BEGIN_SRC emacs-lisp
-(setq flycheck-shellcheck-follow-sources nil)
+;; (setq flycheck-shellcheck-follow-sources nil)
 #+END_SRC
 * Modules
 ** Dired all-the-icons
@@ -207,8 +207,8 @@ Fix Flycheck for shellscripts
 #+END_SRC
 ** Solidity-mode 
 #+BEGIN_SRC emacs-lisp
-(set! solidity-solc-path "~/.node_modules/lib/node_modules/solc/solcjs")
-(set! solidity-solium-path "~/.node_modules/lib/node_modules/solium/bin/solium.js")
+;; (set! solidity-solc-path "~/.node_modules/lib/node_modules/solc/solcjs")
+;; (set! solidity-solium-path "~/.node_modules/lib/node_modules/solium/bin/solium.js")
 #+END_SRC
 ** Wakatime
 #+BEGIN_SRC emacs-lisp

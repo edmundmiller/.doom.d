@@ -51,11 +51,11 @@
        eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
        term              ; terminals in Emacs
-       music
+      ;music
 
        :tools
        editorconfig      ; let someone else argue about tabs vs spaces
-       ;ein               ; tame Jupyter notebooks with emacs
+      ;ein               ; tame Jupyter notebooks with emacs
        gist              ; interacting with github gists
       ;macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
@@ -63,7 +63,7 @@
        move-text
        password-store    ; password manager for nerds
        pdf               ; pdf enhancements
-       ;reference
+      ;reference
        rgb               ; creating color strings
        rotate-text       ; cycle region at point between text candidates
        tmux              ; an API for interacting with tmux
