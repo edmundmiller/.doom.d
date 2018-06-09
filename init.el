@@ -1,43 +1,5 @@
 ;;; private/emiller/init.el -*- lexical-binding: t; -*-
 
-;;
-(setq
-    user-mail-address "Edmund.A.Miller@gmail.com"
-    user-full-name "Edmund Miller"
-
-    ;; Change font
-    doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
-    ;; doom-variable-pitch-font (font-spec :family "Source Code Pro")
-    ;; doom-unicode-font (font-spec :family "Source Code Pro")
-    doom-big-font (font-spec :family "Source Code Pro" :size 21))
-
-
-;; Tern
-;; (setenv "PATH" (concat (getenv "PATH") ":/home/emiller/node/bin/"))
-;; (setq exec-path (append exec-path '("/home/emiller/node/bin/")))
-
-;; Start in Insert
-(add-hook 'org-capture-mode-hook 'evil-insert-state)
-
-;; Bind capture to =C-c c=
-;; (define-key global-map "\C-cc" 'org-capture)
-
-;; Fix Flycheck for shellscripts
-(setq flycheck-shellcheck-follow-sources nil)
-
-;; Org-Gcal
-;; (run-with-idle-timer 60 t (org-gcal-sync) )
-;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-;; (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) ))
-
-;; Edit i.org
-(defun emiller/visit-i-org ()
-				(interactive)
-				(find-file "~/Dropbox/orgfiles/i.org"))
-
-;; (global-set-key (kbd "C-c i") 'emiller/visit-i-org)
-
-;;
 (doom! :feature
       ;debugger          ; FIXME stepping through code, to help you add bugs
        eval              ; run code, run (also, repls)
@@ -175,5 +137,5 @@
        ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
        ;; and additional ex commands for evil-mode. Use it as a reference for
        ;; your own modules.
-       (default +bindings +snippets +evil-commands))
-       ;; literate)
+       (default +bindings +snippets +evil-commands)
+       literate)

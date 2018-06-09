@@ -1,0 +1,42 @@
+#+TITLE: DOOM Emacs Configuration
+#+AUTHOR: Edmund Miller
+* Basics
+#+BEGIN_SRC emacs-lisp
+(set!
+    user-mail-address "Edmund.A.Miller@gmail.com"
+    user-full-name "Edmund Miller")
+#+END_SRC
+Change font
+#+BEGIN_SRC emacs-lisp
+(set! doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
+        ;; doom-variable-pitch-font (font-spec :family "Source Code Pro")
+        ;; doom-unicode-font (font-spec :family "Source Code Pro")
+        doom-big-font (font-spec :family "Source Code Pro" :size 21))
+#+END_SRC
+* Functions
+Edit i.org
+#+BEGIN_SRC emacs-lisp
+(defun emiller/visit-i-org ()
+				(interactive)
+				(find-file "~/Dropbox/orgfiles/i.org"))
+#+END_SRC
+* Languages
+** Org-mode
+Quickly insert a =emacs-lisp= src block
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'org-structure-template-alist
+             '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+#+END_SRC
+Bind capture to =C-c c=
+#+BEGIN_SRC emacs-lisp
+(define-key global-map "\C-cc" 'org-capture)
+#+END_SRC
+Start in insert mode in =org-capture=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
+#+END_SRC
+** Shell
+Fix Flycheck for shellscripts
+#+BEGIN_SRC emacs-lisp
+(setq flycheck-shellcheck-follow-sources nil)
+#+END_SRC
