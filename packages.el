@@ -2,7 +2,7 @@
 
 ;; Private
 (package! edit-server)
-(package! org-gcal)
+;; (package! org-gcal)
 (package! floobits)
 (package! company-box)
 (package! ivy-yasnippet)
