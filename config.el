@@ -75,8 +75,8 @@
    :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 
 ;; solidity-mode
-(setq solidity-solc-path "~/.node_modules/lib/node_modules/solc/solcjs")
-(setq solidity-solium-path "~/.node_modules/lib/node_modules/solium/bin/solium.js")
+(set! solidity-solc-path "~/.node_modules/lib/node_modules/solc/solcjs")
+(set! solidity-solium-path "~/.node_modules/lib/node_modules/solium/bin/solium.js")
 
 ;; ivy-yasnippet
 (def-package! ivy-yasnippet
