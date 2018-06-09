@@ -103,6 +103,7 @@
        rotate-text       ; cycle region at point between text candidates
        tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp
+       wakatime
 
        :lang
        assembly          ; assembly for fun or debugging

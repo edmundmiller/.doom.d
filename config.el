@@ -116,6 +116,10 @@
 
 ;; org-pomodoro
 (def-package! org-pomodoro)
+
+;; WakaTime
+(setq wakatime-api-key "ef95a313-1eb0-4b87-b170-875f27ac9d25")
+
 ;; org-noter
 (def-package! org-noter
   :config
