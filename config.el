@@ -53,10 +53,6 @@
    (:prefix "p"
      :desc "Org-pomodoro" :n "s" #'org-pomodoro)
   :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: ")))))
- ;; (:after org
- ;; (:map org-mode-map
- ;;   :n "M-j" #'org-metadown
- ;;   :n "M-k" #'org-metaup))
 
 (after! org
   (setq org-directory "~/Dropbox/orgfiles")
