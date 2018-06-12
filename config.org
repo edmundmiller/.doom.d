@@ -164,8 +164,16 @@ Fix Flycheck for shellscripts
 ** Edit-server
 #+BEGIN_SRC emacs-lisp
 (def-package! edit-server
-		:config
-				(edit-server-start))
+    :config
+    (edit-server-start))
+#+END_SRC
+** Exec-path-from-shell
+#+BEGIN_SRC emacs-lisp
+(def-package! exec-path-from-shell
+    :config
+    (when (memq window-system '(mac ns x))
+        (exec-path-from-shell-initialize))
+    (setq exec-path-from-shell-check-startup-files nil))
 #+END_SRC
 ** Ivy-yasnippet
 #+BEGIN_SRC emacs-lisp
