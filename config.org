@@ -51,7 +51,8 @@ Edit i.org
 				(interactive)
 				(find-file "~/Dropbox/orgfiles/i.org"))
 #+END_SRC
-* Magit
+* Languages
+** Magit
 Henrik's Magit split
 #+BEGIN_SRC emacs-lisp
 (after! magit
