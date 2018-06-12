@@ -81,8 +81,9 @@ Henrik's Magit split
 ** Org-mode
 Quickly insert a =emacs-lisp= src block
 #+BEGIN_SRC emacs-lisp
-;; (add-to-list 'org-structure-template-alist
-;;              '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+(after! org
+    (map-put org-structure-template-alist 
+        "el" '("#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC")))
 #+END_SRC
 Bind capture to =C-c c=
 #+BEGIN_SRC emacs-lisp
@@ -111,7 +112,7 @@ Start in insert mode in =org-capture=
 
     ;; Set Bullets to OG
     (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
-    (setq org-ellipsis " ▼ ")
+    (setq org-ellipsis " ▼")
     (setq org-export-with-toc nil)
     ;; Log when things are done
     (setq org-log-done 'time)
@@ -185,11 +186,12 @@ Fix Flycheck for shellscripts
        (:prefix "s"
          :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
 #+END_SRC
-** Org-pomodoro
+** Org
+*** Org-clock-csv
 #+BEGIN_SRC emacs-lisp
-(def-package! org-pomodoro)
+(def-package! org-clock-csv)
 #+END_SRC
-** Org-noter
+*** Org-noter
 #+BEGIN_SRC emacs-lisp
 (def-package! org-noter
   :config
@@ -197,6 +199,10 @@ Fix Flycheck for shellscripts
    (:leader
      (:prefix "n"
    :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
+#+END_SRC
+*** Org-pomodoro
+#+BEGIN_SRC emacs-lisp
+(def-package! org-pomodoro)
 #+END_SRC
 ** PDF-Tools
 #+BEGIN_SRC emacs-lisp
