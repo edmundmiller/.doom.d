@@ -3,11 +3,11 @@
 ;; Private
 (package! edit-server)
 ;; (package! org-gcal)
-(package! floobits)
-(package! company-box)
 (package! ivy-yasnippet)
 (package! smtpmail)
 (package! org-noter)
+(package! org-clock-csv)
+(package! exec-path-from-shell)
 ;; Experimental
 (package! org-pomodoro)
 (package! docker)
