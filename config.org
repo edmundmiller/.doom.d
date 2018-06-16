@@ -225,11 +225,6 @@ Fix Flycheck for shellscripts
             (lambda ()
               (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
 #+END_SRC
-** Solidity-mode 
-#+BEGIN_SRC emacs-lisp
-;; (set! solidity-solc-path "~/.node_modules/lib/node_modules/solc/solcjs")
-;; (set! solidity-solium-path "~/.node_modules/lib/node_modules/solium/bin/solium.js")
-#+END_SRC
 ** Wakatime
 #+BEGIN_SRC emacs-lisp
 (setq wakatime-api-key "ef95a313-1eb0-4b87-b170-875f27ac9d25")
