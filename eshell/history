@@ -1,7 +1,0 @@
-git clone git@github.com:ar1a/dotfiles.git
-ls
-rm -rf dotfiles/
-ls
-cd
-cd src/dotfiles/
-git clone git@github.com:ar1a/dotfiles.git ar1a
