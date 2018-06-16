@@ -30,7 +30,8 @@ Change font
  (:leader
    (:prefix "o"
      :desc "Agenda" :n "a" #'org-agenda
-     :desc "eShell" :n "e" #'+eshell/open-popup
+     :desc "eShell in Popup" :n "e" #'+eshell/open-popup
+     :desc "eShell" :n "E" #'+eshell/open
      :desc "i.org" :n "o" #'emiller/visit-i-org
      :desc "APP: Email" :n "m" #'=mail)
    (:prefix "p"
@@ -52,6 +53,11 @@ Edit i.org
 				(find-file "~/Dropbox/orgfiles/i.org"))
 #+END_SRC
 * Languages
+** eShell
+Get rid of modeline in eshell buffers
+#+BEGIN_SRC emacs-lisp
+(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
+#+END_SRC
 ** Magit
 Henrik's Magit split
 #+BEGIN_SRC emacs-lisp
@@ -77,7 +83,6 @@ Henrik's Magit split
                    '(display-buffer-in-side-window))
                   ('(magit--display-buffer-fullframe))))))
 #+END_SRC
-* Languages
 ** Org-mode
 Quickly insert a =emacs-lisp= src block
 #+BEGIN_SRC emacs-lisp
