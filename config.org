@@ -161,11 +161,6 @@ Start in insert mode in =org-capture=
            (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
            "** TODO %?\n%T" :prepend t))))
 #+END_SRC
-** Shell
-Fix Flycheck for shellscripts
-#+BEGIN_SRC emacs-lisp
-;; (setq flycheck-shellcheck-follow-sources nil)
-#+END_SRC
 * Modules
 ** Dired all-the-icons
 #+BEGIN_SRC emacs-lisp
