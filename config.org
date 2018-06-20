@@ -230,7 +230,7 @@ Test the hash
   :config
   (map! (:map (pdf-view-mode-map)
           :n doom-leader-key nil))
-  (set! :popup "\\*Outline " '((side . left) (size . 30)) '((quit . t)))
+  ;; FIXME (set! :popup "\\*Outline " '((side . left) (size . 30)) '((quit . t)))
   (setq-default pdf-view-display-size 'fit-page
                 pdf-view-midnight-colors `(,(doom-color 'fg) . ,(doom-color 'bg)))
   ;; turn off cua so copy works
