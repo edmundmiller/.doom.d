@@ -229,3 +229,9 @@ Fix Flycheck for shellscripts
 #+BEGIN_SRC emacs-lisp
 (setq wakatime-api-key "ef95a313-1eb0-4b87-b170-875f27ac9d25")
 #+END_SRC
+
+** yasnippet
+#+BEGIN_SRC emacs-lisp
+(after! yasnippet
+  (push "~/.config/doom/snippets" yas-snippet-dirs))
+#+END_SRC
