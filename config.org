@@ -126,8 +126,8 @@ Start in insert mode in =org-capture=
                                "~/Dropbox/orgfiles/schedule.org"))
 
   ;; Set Bullets to OG
-  (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
-  (setq org-ellipsis " ▼")
+  ;; (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+  (setq org-ellipsis " ▼ ")
   (setq org-export-with-toc nil)
   ;; Log when things are done
   (setq org-log-done 'time)
@@ -160,6 +160,14 @@ Start in insert mode in =org-capture=
           ("o" "Work To Do" entry
            (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
            "** TODO %?\n%T" :prepend t))))
+#+END_SRC
+Test the hash
+#+BEGIN_SRC emacs-lisp
+;; (setq flycheck-shellcheck-follow-sources nil)
+(add-hook 'org-mode-hook #'auto-fill-mode)
+;; The standard unicode characters are usually misaligned depending on the font.
+;; This bugs me. Personally, markdown #-marks for headlines are more elegant.
+(setq org-bullets-bullet-list '("#"))
 #+END_SRC
 * Modules
 ** Dired all-the-icons
