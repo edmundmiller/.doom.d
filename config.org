@@ -120,6 +120,7 @@ Start in insert mode in =org-capture=
 
   (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
                                "~/Dropbox/orgfiles/i.org"
+                               "~/Dropbox/orgfiles/o.org"
                                "~/Dropbox/orgfiles/Lab_Notebook.org"
                                "~/Dropbox/orgfiles/Lab_schedule.org"
                                "~/Dropbox/orgfiles/schedule.org"))
