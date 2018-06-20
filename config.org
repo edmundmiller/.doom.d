@@ -216,7 +216,7 @@ Test the hash
   (map!
    (:leader
      (:prefix "n"
-   :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
+       :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 #+END_SRC
 *** Org-pomodoro
 #+BEGIN_SRC emacs-lisp
