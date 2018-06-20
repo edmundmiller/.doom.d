@@ -186,10 +186,10 @@ Fix Flycheck for shellscripts
 (def-package! ivy-yasnippet
   :commands (ivy-yasnippet)
   :config
-    (map!
-     (:leader
-       (:prefix "s"
-         :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
+  (map!
+   (:leader
+     (:prefix "s"
+       :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
 #+END_SRC
 ** Org
 *** Org-clock-csv
