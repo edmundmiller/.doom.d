@@ -109,6 +109,7 @@ Start in insert mode in =org-capture=
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-directory "~/Dropbox/orgfiles")
+  (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/"))
 
   (defun org-file-path (filename)
     "Return the absolute address of an org file, given its relative name."
