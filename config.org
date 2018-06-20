@@ -28,6 +28,9 @@ Change font
 #+BEGIN_SRC emacs-lisp
 (map!
  (:leader
+   (:prefix "n"
+     :desc "Browse mode notes"     :n  "m" #'+emiller/find-notes-for-major-mode
+     :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project)
    (:prefix "o"
      :desc "Agenda" :n "a" #'org-agenda
      :desc "eShell in Popup" :n "e" #'+eshell/open-popup
