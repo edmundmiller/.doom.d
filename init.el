@@ -72,7 +72,7 @@
       ;macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
        magit             ;
-       move-text
+       ;move-text
        password-store    ; password manager for nerds
        pdf               ; pdf enhancements
       ;reference
