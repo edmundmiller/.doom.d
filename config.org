@@ -36,7 +36,8 @@ Change font
      :desc "eShell in Popup" :n "e" #'+eshell/open-popup
      :desc "eShell" :n "E" #'+eshell/open
      :desc "i.org" :n "o" #'emiller/visit-i-org
-     :desc "APP: Email" :n "m" #'=mail)
+     :desc "APP: Email" :n "m" #'=mail
+     :desc "APP: Rss" :n "," #'=rss)
    (:prefix "p"
      :desc "Counsel-ag" :n "f" #'counsel-ag)
    (:prefix "g"
