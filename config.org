@@ -1,0 +1,262 @@
+#+TITLE: DOOM Emacs Configuration
+#+AUTHOR: Edmund Miller
+* Basics
+Who are you?
+Who, who, who, who?
+#+BEGIN_SRC emacs-lisp
+(setq
+ user-mail-address "Edmund.A.Miller@gmail.com"
+ user-full-name "Edmund Miller")
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(defvar xdg-data (getenv "XDG_DATA_HOME"))
+(defvar xdg-config (getenv "XDG_CONFIG_HOME"))
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq +doom-modeline-buffer-file-name-style 'relative-from-project
+      show-trailing-whitespace t)
+(add-hook! minibuffer-setup (setq-local show-trailing-whitespace nil))
+#+END_SRC
+Change font
+#+BEGIN_SRC emacs-lisp
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
+      ;; doom-variable-pitch-font (font-spec :family "Source Code Pro")
+      ;; doom-unicode-font (font-spec :family "Source Code Pro")
+      doom-big-font (font-spec :family "Source Code Pro" :size 21))
+#+END_SRC
+* Keybindings
+#+BEGIN_SRC emacs-lisp
+(map!
+ (:leader
+   (:prefix "n"
+     :desc "Browse mode notes"     :n  "m" #'+emiller/find-notes-for-major-mode
+     :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project)
+   (:prefix "o"
+     :desc "Agenda" :n "a" #'org-agenda
+     :desc "eShell in Popup" :n "e" #'+eshell/open-popup
+     :desc "eShell" :n "E" #'+eshell/open
+     :desc "i.org" :n "o" #'emiller/visit-i-org
+     :desc "APP: Email" :n "m" #'=mail
+     :desc "APP: Rss" :n "," #'=rss)
+   (:prefix "p"
+     :desc "Counsel-ag" :n "f" #'counsel-ag)
+   (:prefix "g"
+     :desc "Git Status" :n "g" #'magit-status
+     :desc "List gists" :n "l" #'+gist:list)
+   (:prefix "n"
+     :desc "Org-noter" :n "o" #'org-noter)
+   (:prefix "p"
+     :desc "Org-pomodoro" :n "s" #'org-pomodoro)
+   :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: ")))))
+#+END_SRC
+* Functions
+Edit i.org
+#+BEGIN_SRC emacs-lisp
+(defun emiller/visit-i-org ()
+				(interactive)
+				(find-file "~/Dropbox/orgfiles/i.org"))
+#+END_SRC
+* Languages
+** Dired
+Get rid of dired message when using a
+#+BEGIN_SRC emacs-lisp
+(put 'dired-find-alternate-file 'disabled nil) 
+#+END_SRC
+** eShell
+Get rid of modeline in eshell buffers
+#+BEGIN_SRC emacs-lisp
+(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
+#+END_SRC
+** Magit
+*** Henrik's Magit split
+#+BEGIN_SRC emacs-lisp
+(after! magit
+  (setq magit-display-buffer-function #'+magit-display-buffer-fullscreen)
+  (defun +magit-display-buffer-fullscreen (buffer)
+    (display-buffer
+     buffer (cond ((derived-mode-p 'magit-mode)
+                   (when (eq major-mode 'magit-status-mode)
+                     (display-buffer-in-side-window
+                      (current-buffer) '((side . left) (window-width . 0.35))))
+                   '(display-buffer-same-window))
+                  ((bound-and-true-p git-commit-mode)
+                   '(display-buffer-below-selected))
+                  ((buffer-local-value 'git-commit-mode buffer)
+                   '(magit--display-buffer-fullframe))
+                  ((memq (buffer-local-value 'major-mode buffer)
+                         '(magit-process-mode
+                           magit-revision-mode
+                           magit-log-mode
+                           magit-diff-mode
+                           magit-stash-mode))
+                   '(display-buffer-in-side-window))
+                  ('(magit--display-buffer-fullframe))))))
+#+END_SRC
+*** Git-gutter-fringe
+#+BEGIN_SRC emacs-lisp
+(defun +version-control|git-gutter-maybe ()
+    (when buffer-file-name
+      (require 'git-gutter-fringe)
+      (git-gutter-mode +1)))
+#+END_SRC
+** Solidity
+#+BEGIN_SRC emacs-lisp
+(setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
+#+END_SRC
+** Org-mode
+Quickly insert a =emacs-lisp= src block
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (map-put org-structure-template-alist 
+           "el" '("#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC")))
+#+END_SRC
+Bind capture to =C-c c=
+#+BEGIN_SRC emacs-lisp
+(define-key global-map "\C-cc" 'org-capture)
+#+END_SRC
+Start in insert mode in =org-capture=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-directory "~/Dropbox/orgfiles")
+  (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/"))
+
+  (defun org-file-path (filename)
+    "Return the absolute address of an org file, given its relative name."
+    (concat (file-name-as-directory org-directory) filename))
+  (setq org-index-file (org-file-path "i.org"))
+  (setq org-archive-location
+        (concat (org-file-path "archive.org") "::* From %s"))
+
+  (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
+                               "~/Dropbox/orgfiles/i.org"
+                               "~/Dropbox/orgfiles/o.org"
+                               "~/Dropbox/orgfiles/Lab_Notebook.org"
+                               "~/Dropbox/orgfiles/Lab_schedule.org"
+                               "~/Dropbox/orgfiles/schedule.org"))
+
+  ;; Set Bullets to OG
+  ;; (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
+  (setq org-ellipsis " ▼ ")
+  (setq org-export-with-toc nil)
+  ;; Log when things are done
+  (setq org-log-done 'time)
+
+  (setq org-capture-templates
+        '(("a" "Appointment" entry
+           (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
+           "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
+
+          ("n" "Note" entry
+           (file+headline "~/Dropbox/orgfiles/i.org" "Notes")
+           "** %?\n%T")
+
+          ("l" "Link" entry
+           (file+headline "~/Dropbox/orgfiles/links.org" "Links")
+           "* %? %^L %^g \n%T" :prepend t)
+
+          ("t" "To Do Item" entry
+           (file+headline "~/Dropbox/orgfiles/i.org" "Unsorted")
+           "*** TODO %?\n%T" :prepend t)
+
+          ("j" "Lab Entry" entry
+           (file+olp+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
+           "** %? %^g \n\n")
+
+          ("d" "Lab To Do" entry
+           (file+headline "~/Dropbox/orgfiles/Lab_Notebook.org" "To Do")
+           "** TODO %?\n%T" :prepend t)
+
+          ("o" "Work To Do" entry
+           (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
+           "** TODO %?\n%T" :prepend t))))
+#+END_SRC
+Test the hash
+#+BEGIN_SRC emacs-lisp
+;; (setq flycheck-shellcheck-follow-sources nil)
+(add-hook 'org-mode-hook #'auto-fill-mode)
+;; The standard unicode characters are usually misaligned depending on the font.
+;; This bugs me. Personally, markdown #-marks for headlines are more elegant.
+(setq org-bullets-bullet-list '("#"))
+#+END_SRC
+* Modules
+** Dired all-the-icons
+#+BEGIN_SRC emacs-lisp
+;; Shows the wrong faces
+;; (def-package! all-the-icons-dired
+;;   :hook (dired-mode . all-the-icons-dired-mode))
+#+END_SRC
+** Docker
+#+BEGIN_SRC emacs-lisp
+(def-package! docker)
+#+END_SRC
+** Edit-server
+#+BEGIN_SRC emacs-lisp
+(def-package! edit-server
+    :config
+    (edit-server-start))
+#+END_SRC
+** Exec-path-from-shell
+#+BEGIN_SRC emacs-lisp
+(def-package! exec-path-from-shell
+    :config
+    (when (memq window-system '(mac ns x))
+        (exec-path-from-shell-initialize))
+    (setq exec-path-from-shell-check-startup-files nil))
+#+END_SRC
+** Ivy-yasnippet
+#+BEGIN_SRC emacs-lisp
+(def-package! ivy-yasnippet
+  :commands (ivy-yasnippet)
+  :config
+  (map!
+   (:leader
+     (:prefix "s"
+       :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
+#+END_SRC
+** Org
+*** Org-clock-csv
+#+BEGIN_SRC emacs-lisp
+(def-package! org-clock-csv)
+#+END_SRC
+*** Org-noter
+#+BEGIN_SRC emacs-lisp
+(def-package! org-noter
+  :config
+  (map!
+   (:leader
+     (:prefix "n"
+       :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
+#+END_SRC
+*** Org-pomodoro
+#+BEGIN_SRC emacs-lisp
+(def-package! org-pomodoro)
+#+END_SRC
+** PDF-Tools
+#+BEGIN_SRC emacs-lisp
+(def-package! pdf-tools
+  :preface
+  (setq pdf-view-use-unicode-ligther nil)
+  :config
+  (map! (:map (pdf-view-mode-map)
+          :n doom-leader-key nil))
+  ;; FIXME (set! :popup "\\*Outline " '((side . left) (size . 30)) '((quit . t)))
+  (setq-default pdf-view-display-size 'fit-page
+                pdf-view-midnight-colors `(,(doom-color 'fg) . ,(doom-color 'bg)))
+  ;; turn off cua so copy works
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
+#+END_SRC
+** Wakatime
+#+BEGIN_SRC emacs-lisp
+(setq wakatime-api-key "ef95a313-1eb0-4b87-b170-875f27ac9d25")
+#+END_SRC
+
+** yasnippet
+#+BEGIN_SRC emacs-lisp
+(after! yasnippet
+  (push "~/.config/doom/snippets" yas-snippet-dirs))
+#+END_SRC

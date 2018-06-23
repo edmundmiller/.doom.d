@@ -2,14 +2,14 @@
 
 ;; Private
 (package! edit-server)
-(package! org-gcal)
-(package! floobits)
-(package! company-box)
+;; (package! org-gcal)
 (package! ivy-yasnippet)
 (package! smtpmail)
-(package! evil-ediff)
-;; Experimental
 (package! org-noter)
+(package! org-clock-csv)
+(package! exec-path-from-shell)
+;; Experimental
+(package! org-pomodoro)
 (package! docker)
 (package! libmpdel)
 (package! mpdel)

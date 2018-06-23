@@ -4,8 +4,8 @@
 (defun =mail ()
   "Activate (or switch to) `notmuch' in its workspace."
   (interactive)
-  (unless (featurep! :feature workspaces)
-    (user-error ":feature workspaces is required, but disabled"))
+  ;; (unless (featurep! :feature workspaces)
+  ;;   (user-error ":feature workspaces is required, but disabled"))
   (+workspace-switch "mail" t)
   (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
                              (doom-visible-windows))))
