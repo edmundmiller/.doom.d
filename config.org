@@ -68,7 +68,7 @@ Get rid of modeline in eshell buffers
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 #+END_SRC
 ** Magit
-Henrik's Magit split
+*** Henrik's Magit split
 #+BEGIN_SRC emacs-lisp
 (after! magit
   (setq magit-display-buffer-function #'+magit-display-buffer-fullscreen)
@@ -91,6 +91,13 @@ Henrik's Magit split
                            magit-stash-mode))
                    '(display-buffer-in-side-window))
                   ('(magit--display-buffer-fullframe))))))
+#+END_SRC
+*** Git-gutter-fringe
+#+BEGIN_SRC emacs-lisp
+(defun +version-control|git-gutter-maybe ()
+    (when buffer-file-name
+      (require 'git-gutter-fringe)
+      (git-gutter-mode +1)))
 #+END_SRC
 ** Org-mode
 Quickly insert a =emacs-lisp= src block
