@@ -99,6 +99,10 @@ Get rid of modeline in eshell buffers
       (require 'git-gutter-fringe)
       (git-gutter-mode +1)))
 #+END_SRC
+** Solidity
+#+BEGIN_SRC emacs-lisp
+(setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
+#+END_SRC
 ** Org-mode
 Quickly insert a =emacs-lisp= src block
 #+BEGIN_SRC emacs-lisp
