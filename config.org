@@ -30,7 +30,9 @@ Change font
  (:leader
    (:prefix "n"
      :desc "Browse mode notes"     :n  "m" #'+emiller/find-notes-for-major-mode
-     :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project)
+     :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project
+     :desc "Org => Trello" :n "u" #'org-trello-sync-buffer
+     :desc "Trello => Org" :n "t" (lambda! (org-trello-sync-buffer t)))
    (:prefix "o"
      :desc "Agenda" :n "a" #'org-agenda
      :desc "eShell in Popup" :n "e" #'+eshell/open-popup
@@ -233,6 +235,10 @@ Test the hash
 *** Org-pomodoro
 #+BEGIN_SRC emacs-lisp
 (def-package! org-pomodoro)
+#+END_SRC
+*** Trello
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables '(org-trello-files '("/home/emiller/Dropbox/orgfiles/e-m.org")))
 #+END_SRC
 ** PDF-Tools
 #+BEGIN_SRC emacs-lisp

@@ -1,0 +1,6 @@
+#+TITLE: :app trello
+* Setup
+Set the files you'd like to open the ~org-tello~ minor mode in your private module
+#+BEGIN_SRC emacs-lisp
+(custom-set-variables '(org-trello-files '("/path/to/file0" "/path/to/file1")))
+#+END_SRC
