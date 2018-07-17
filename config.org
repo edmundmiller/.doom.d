@@ -47,8 +47,6 @@ Change font
      :desc "List gists" :n "l" #'+gist:list)
    (:prefix "n"
      :desc "Org-noter" :n "o" #'org-noter)
-   (:prefix "p"
-     :desc "Org-pomodoro" :n "s" #'org-pomodoro)
    :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: ")))))
 #+END_SRC
 * Functions
@@ -232,9 +230,9 @@ Test the hash
      (:prefix "n"
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 #+END_SRC
-*** Org-pomodoro
+*** Trello
 #+BEGIN_SRC emacs-lisp
-(def-package! org-pomodoro)
+;; (custom-set-variables '(org-trello-files '("/home/emiller/Dropbox/orgfiles/e-m.org")))
 #+END_SRC
 *** Trello
 #+BEGIN_SRC emacs-lisp

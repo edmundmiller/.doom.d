@@ -9,7 +9,6 @@
 (package! org-clock-csv)
 (package! exec-path-from-shell)
 ;; Experimental
-(package! org-pomodoro)
 (package! docker)
 (package! libmpdel)
 (package! mpdel)
