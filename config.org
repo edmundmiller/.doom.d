@@ -277,9 +277,11 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 ;; (custom-set-variables '(org-trello-files '("/home/emiller/Dropbox/orgfiles/e-m.org")))
 #+END_SRC
-*** Trello
+** RSS
+Make it only one week
 #+BEGIN_SRC emacs-lisp
-(custom-set-variables '(org-trello-files '("/home/emiller/Dropbox/orgfiles/e-m.org")))
+;; (after! elfeed
+;;   (setq elfeed-search-filter "@1-week-ago +unread"))
 #+END_SRC
 ** PDF-Tools
 #+BEGIN_SRC emacs-lisp
