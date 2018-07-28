@@ -4,9 +4,8 @@
 Who are you?
 Who, who, who, who?
 #+BEGIN_SRC emacs-lisp
-(setq
- user-mail-address "Edmund.A.Miller@gmail.com"
- user-full-name "Edmund Miller")
+(setq user-mail-address "Edmund.A.Miller@gmail.com"
+      user-full-name "Edmund Miller")
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
@@ -19,10 +18,14 @@ Who, who, who, who?
 #+END_SRC
 Change font
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 17)
-      ;; doom-variable-pitch-font (font-spec :family "Source Code Pro")
-      ;; doom-unicode-font (font-spec :family "Source Code Pro")
-      doom-big-font (font-spec :family "Source Code Pro" :size 21))
+(setq doom-font (font-spec :family "Iosevka" :size 19)
+      doom-variable-pitch-font (font-spec :family "Iosevka")
+      doom-unicode-font (font-spec :family "Iosevka")
+      doom-big-font (font-spec :family "Iosevka" :size 23))
+#+END_SRC
+Change Theme
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-city-lights)
 #+END_SRC
 * Keybindings
 #+BEGIN_SRC emacs-lisp
