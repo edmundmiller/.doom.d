@@ -102,10 +102,6 @@ Get rid of modeline in eshell buffers
       (require 'git-gutter-fringe)
       (git-gutter-mode +1)))
 #+END_SRC
-** Solidity
-#+BEGIN_SRC emacs-lisp
-(setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
-#+END_SRC
 ** Org-mode
 Quickly insert a =emacs-lisp= src block
 #+BEGIN_SRC emacs-lisp
@@ -184,6 +180,14 @@ Test the hash
 ;; This bugs me. Personally, markdown #-marks for headlines are more elegant.
 (setq org-bullets-bullet-list '("#"))
 #+END_SRC
+** Rust
+#+BEGIN_SRC emacs-lisp
+(setq +rust-src-dir "~/src/rust/src/")
+#+END_SRC
+** Solidity
+#+BEGIN_SRC emacs-lisp
+(setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
+#+END_SRC
 * Modules
 ** Dired all-the-icons
 #+BEGIN_SRC emacs-lisp
@@ -200,6 +204,9 @@ Test the hash
 (def-package! edit-server
     :config
     (edit-server-start))
+** Ein
+#+BEGIN_SRC emacs-lisp
+(set! :ein-notebook-dir "~/src/notebooks/")
 #+END_SRC
 ** Exec-path-from-shell
 #+BEGIN_SRC emacs-lisp
@@ -262,11 +269,15 @@ Test the hash
             (lambda ()
               (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
 #+END_SRC
-** Wakatime
+** Pipenv
 #+BEGIN_SRC emacs-lisp
-(setq wakatime-api-key "ef95a313-1eb0-4b87-b170-875f27ac9d25")
+(def-package! pipenv
+  :hook (python-mode . pipenv-mode)
+  :init
+  (setq
+   pipenv-projectile-after-switch-function
+   #'pipenv-projectile-after-switch-extended))
 #+END_SRC
-
 ** yasnippet
 #+BEGIN_SRC emacs-lisp
 (after! yasnippet
