@@ -25,12 +25,6 @@
        (ivy              ; a search engine for love and life
         +fuzzy           ; enable fuzzy search backend for ivy
         +childframe)
-       (lsp
-        +css
-        +java
-        +javascript
-        +go
-        +python)
 
 
 
@@ -70,6 +64,7 @@
        editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
        gist              ; interacting with github gists
+      ;lsp
       ;macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
        magit             ;
