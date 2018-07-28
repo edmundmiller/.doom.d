@@ -229,9 +229,10 @@ Add o/O to add new list item
 #+END_SRC
 ** Edit-server
 #+BEGIN_SRC emacs-lisp
-(def-package! edit-server
-    :config
-    (edit-server-start))
+;; (def-package! edit-server
+;;     :config
+;;     (edit-server-start))
+#+END_SRC
 ** Ein
 #+BEGIN_SRC emacs-lisp
 (set! :ein-notebook-dir "~/src/notebooks/")
