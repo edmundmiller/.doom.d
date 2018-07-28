@@ -14,9 +14,6 @@
 (package! docker)
 (package! libmpdel)
 (package! mpdel)
-;; (package! emms)
-;; (package! all-the-icons-dired)
-;; (package! mu4e-alert)
 
 (provide 'packages)
 ;;; packages.el ends here
