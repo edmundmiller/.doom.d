@@ -5,6 +5,7 @@
 ;; (package! org-gcal)
 (package! ivy-yasnippet)
 (package! smtpmail)
+(package! auto-org-md)
 (package! org-noter)
 (package! org-clock-csv)
 (package! exec-path-from-shell)

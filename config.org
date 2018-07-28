@@ -220,6 +220,11 @@ Test the hash
        :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
 #+END_SRC
 ** Org
+*** Auto-org-md
+#+BEGIN_SRC emacs-lisp
+(after! org-mode
+  (def-package! auto-org-md))
+#+END_SRC
 *** Org-clock-csv
 #+BEGIN_SRC emacs-lisp
 (def-package! org-clock-csv)
