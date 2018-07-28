@@ -87,7 +87,7 @@ Edit i.org
 ** Dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
-(put 'dired-find-alternate-file 'disabled nil) 
+(put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
 ** eShell
 Get rid of modeline in eshell buffers
