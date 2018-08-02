@@ -258,21 +258,36 @@ Add o/O to add new list item
 ** Org
 *** Auto-org-md
 #+BEGIN_SRC emacs-lisp
-(after! org-mode
+(after! org
   (def-package! auto-org-md))
 #+END_SRC
 *** Org-clock-csv
 #+BEGIN_SRC emacs-lisp
-(def-package! org-clock-csv)
+(after! org
+(def-package! org-clock-csv))
 #+END_SRC
 *** Org-noter
 #+BEGIN_SRC emacs-lisp
+(after! org
 (def-package! org-noter
   :config
   (map!
    (:leader
      (:prefix "n"
-       :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
+       :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
+#+END_SRC
+*** Pomodoro
+#+BEGIN_SRC emacs-lisp
+(after! org
+(def-package! org-pomodoro))
+#+END_SRC
+Add keybinding
+#+BEGIN_SRC emacs-lisp
+(map! :after org
+      :map org-mode-map
+      :localleader
+      :n "c p" #'org-pomodoro)
+#+END_SRC
 #+END_SRC
 *** Trello
 #+BEGIN_SRC emacs-lisp
