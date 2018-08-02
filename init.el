@@ -116,13 +116,14 @@
       ;plantuml          ; diagrams for confusing people more
       ;purescript        ; javascript, but functional
        (python           ; beautiful is better than ugly
-        +conda)
+        +conda
+        +ipython)
        rest              ; Emacs as a REST client
        ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
        sh                ; she sells (ba|z)sh shells on the C xor
-       snakemake         ; make with a bioinformatics twist
+      ;snakemake         ; make with a bioinformatics twist
        solidity          ; do you need a Blockchain? No.
       ;swift             ; who asked for emoji variables?
        web               ; the tubes
