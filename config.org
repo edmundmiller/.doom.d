@@ -208,6 +208,11 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'evil-org-special-o/O 'item)
 #+END_SRC
+** Python
+*** Tox
+#+BEGIN_SRC emacs-lisp
+(def-package! tox)
+#+END_SRC
 ** Rust
 #+BEGIN_SRC emacs-lisp
 (setq +rust-src-dir "~/src/rust/src/")
@@ -315,14 +320,7 @@ Make it only one week
             (lambda ()
               (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
 #+END_SRC
-** Pipenv
 #+BEGIN_SRC emacs-lisp
-(def-package! pipenv
-  :hook (python-mode . pipenv-mode)
-  :init
-  (setq
-   pipenv-projectile-after-switch-function
-   #'pipenv-projectile-after-switch-extended))
 #+END_SRC
 ** yasnippet
 #+BEGIN_SRC emacs-lisp

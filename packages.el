@@ -10,6 +10,7 @@
 (package! org-clock-csv)
 (package! exec-path-from-shell)
 ;; Experimental
+(package! tox)
 (package! pipenv)
 (package! docker)
 (package! libmpdel)
