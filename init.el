@@ -18,12 +18,13 @@
        (company          ; the ultimate code completion backend
         +auto)            ; as-you-type code completion
         ;; +childframe)
-      ;(helm             ; the *other* search engine for love and life
-      ; +fuzzy)          ; enable fuzzy search backend for helm
-      ;ido               ; the other *other* search engine...
-       (ivy              ; a search engine for love and life
-        +fuzzy           ; enable fuzzy search backend for ivy
+       (helm             ; the *other* search engine for love and life
+        +fuzzy           ; enable fuzzy search backend for helm
         +childframe)
+      ;ido               ; the other *other* search engine...
+      ;(ivy              ; a search engine for love and life
+      ; +fuzzy           ; enable fuzzy search backend for ivy
+      ; +childframe)
 
 
 
@@ -51,6 +52,8 @@
        window-select     ; visually switch windows
 
        :editor
+       ;(format +onsave) ; automated prettiness
+       multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
 
@@ -72,7 +75,6 @@
       ;macos             ; MacOS-specific commands
        make              ; run make tasks from Emacs
        magit             ;
-       ;move-text
        password-store    ; password manager for nerds
        pdf               ; pdf enhancements
       ;reference
