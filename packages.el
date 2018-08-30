@@ -9,8 +9,11 @@
 (package! org-noter)
 (package! org-clock-csv)
 (package! exec-path-from-shell)
+(package! easy-hugo)
 ;; Experimental
+(package! vyper-mode)
 (package! tox)
+(package! org-pomodoro)
 (package! pipenv)
 (package! docker)
 (package! libmpdel)

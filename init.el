@@ -17,16 +17,14 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto)            ; as-you-type code completion
-        ;; +childframe)
-       (helm             ; the *other* search engine for love and life
-        +fuzzy           ; enable fuzzy search backend for helm
-        +childframe)
+        ;+childframe)
+       ;(helm             ; the *other* search engine for love and life
+       ; +fuzzy           ; enable fuzzy search backend for helm
+       ; +childframe)
       ;ido               ; the other *other* search engine...
-      ;(ivy              ; a search engine for love and life
-      ; +fuzzy           ; enable fuzzy search backend for ivy
-      ; +childframe)
-
-
+       (ivy              ; a search engine for love and life
+        +fuzzy           ; enable fuzzy search backend for ivy
+        +childframe)
 
        :ui
        doom              ; what makes DOOM look the way it does
@@ -52,9 +50,9 @@
        window-select     ; visually switch windows
 
        :editor
-       ;(format +onsave) ; automated prettiness
+       (format +onsave)  ; automated prettiness
        multiple-cursors  ; editing in many places at once
-      ;parinfer          ; turn lisp into python, sort of
+       parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
 
        :emacs
@@ -143,9 +141,9 @@
         +wordnut         ; wordnet (wn) search
         +langtool)       ; a proofreader (grammar/style check) for Emacs
 
-        :collab
-         floobits          ; peer programming for a price
-         impatient-mode    ; show off code over HTTP
+       :collab
+       floobits          ; peer programming for a price
+       impatient-mode    ; show off code over HTTP
 
        :config
        ;; The default module set reasonable defaults for Emacs. It also provides

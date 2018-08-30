@@ -21,15 +21,15 @@ Change font
 (setq doom-font (font-spec :family "Iosevka" :size 19)
       doom-variable-pitch-font (font-spec :family "Iosevka")
       doom-unicode-font (font-spec :family "Iosevka")
-      doom-big-font (font-spec :family "Iosevka" :size 23))
+      doom-big-font (font-spec :family "Iosevka" :size 32))
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-city-lights)
+(setq doom-theme 'doom-tomorrow-night)
 #+END_SRC
 Cleanup Whitespace
 #+BEGIN_SRC emacs-lisp
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+;; (add-hook 'before-save-hook #'delete-trailing-whitespace)
 #+END_SRC
 ** Idle Loading
 Load stuff in the background when idle
@@ -76,12 +76,27 @@ Load stuff in the background when idle
      :desc "Org-noter" :n "o" #'org-noter)
    :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: ")))))
 #+END_SRC
+** Helm
+#+BEGIN_SRC emacs-lisp
+(map! :after helm-files
+      :map helm-find-files-map
+      "<DEL>" #'helm-find-files-up-one-level
+      "C-h" #'helm-find-files-up-one-level
+      "C-l" #'helm-ff-RET)
+#+END_SRC
 * Functions
 Edit i.org
 #+BEGIN_SRC emacs-lisp
 (defun emiller/visit-i-org ()
 				(interactive)
 				(find-file "~/Dropbox/orgfiles/i.org"))
+#+END_SRC
+Ediff the ~init.example.el~ and my ~init.el~
+#+BEGIN_SRC emacs-lisp
+(defun ediff-init-files ()
+  (interactive)
+  (ediff-files (expand-file-name "init.el" doom-private-dir)
+               (expand-file-name "init.example.el" user-emacs-directory)))
 #+END_SRC
 * Languages
 ** Dired
@@ -97,27 +112,27 @@ Get rid of modeline in eshell buffers
 ** Magit
 *** Henrik's Magit split
 #+BEGIN_SRC emacs-lisp
-(after! magit
-  (setq magit-display-buffer-function #'+magit-display-buffer-fullscreen)
-  (defun +magit-display-buffer-fullscreen (buffer)
-    (display-buffer
-     buffer (cond ((derived-mode-p 'magit-mode)
-                   (when (eq major-mode 'magit-status-mode)
-                     (display-buffer-in-side-window
-                      (current-buffer) '((side . left) (window-width . 0.35))))
-                   '(display-buffer-same-window))
-                  ((bound-and-true-p git-commit-mode)
-                   '(display-buffer-below-selected))
-                  ((buffer-local-value 'git-commit-mode buffer)
-                   '(magit--display-buffer-fullframe))
-                  ((memq (buffer-local-value 'major-mode buffer)
-                         '(magit-process-mode
-                           magit-revision-mode
-                           magit-log-mode
-                           magit-diff-mode
-                           magit-stash-mode))
-                   '(display-buffer-in-side-window))
-                  ('(magit--display-buffer-fullframe))))))
+;; (after! magit
+;;   (setq magit-display-buffer-function #'+magit-display-buffer-fullscreen)
+;;   (defun +magit-display-buffer-fullscreen (buffer)
+;;     (display-buffer
+;;      buffer (cond ((derived-mode-p 'magit-mode)
+;;                    (when (eq major-mode 'magit-status-mode)
+;;                      (display-buffer-in-side-window
+;;                       (current-buffer) '((side . left) (window-width . 0.35))))
+;;                    '(display-buffer-same-window))
+;;                   ((bound-and-true-p git-commit-mode)
+;;                    '(display-buffer-below-selected))
+;;                   ((buffer-local-value 'git-commit-mode buffer)
+;;                    '(magit--display-buffer-fullframe))
+;;                   ((memq (buffer-local-value 'major-mode buffer)
+;;                          '(magit-process-mode
+;;                            magit-revision-mode
+;;                            magit-log-mode
+;;                            magit-diff-mode
+;;                            magit-stash-mode))
+;;                    '(display-buffer-in-side-window))
+;;                   ('(magit--display-buffer-fullframe))))))
 #+END_SRC
 *** Git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
@@ -130,7 +145,7 @@ Get rid of modeline in eshell buffers
 Quickly insert a =emacs-lisp= src block
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (map-put org-structure-template-alist 
+  (map-put org-structure-template-alist
            "el" '("#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC")))
 #+END_SRC
 Bind capture to =C-c c=
@@ -144,7 +159,7 @@ Start in insert mode in =org-capture=
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-directory "~/Dropbox/orgfiles")
-  (setq +org-dir (expand-file-name "Dropbox/orgfiles/"))
+  (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/"))
 
   (defun org-file-path (filename)
     "Return the absolute address of an org file, given its relative name."
@@ -232,6 +247,17 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 (def-package! docker)
 #+END_SRC
+** Easy Hugo
+#+BEGIN_SRC emacs-lisp
+(def-package! easy-hugo
+  :init
+  (setq easy-hugo-basedir "~/src/personalProjects/emillerSite/")
+  (setq easy-hugo-url "https:/emiller88.gitlab.io/")
+  (setq easy-hugo-previewtime "300")
+  (setq easy-hugo-default-ext ".org")
+  :bind
+  ("C-c C-e" . easy-hugo))
+#+END_SRC
 ** Edit-server
 #+BEGIN_SRC emacs-lisp
 ;; (def-package! edit-server
@@ -293,6 +319,12 @@ Add keybinding
       :localleader
       :n "c p" #'org-pomodoro)
 #+END_SRC
+Get rid of the fight bell
+#+BEGIN_SRC emacs-lisp
+(after! org-pomodoro
+  (setq org-pomodoro-finished-sound-p nil)
+  (setq org-pomodoro-short-break-sound-p nil)
+  (setq org-pomodoro-long-break-sound-p nil))
 #+END_SRC
 *** Trello
 #+BEGIN_SRC emacs-lisp
@@ -320,7 +352,11 @@ Make it only one week
             (lambda ()
               (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
 #+END_SRC
+** Write
+*** Languagetool
 #+BEGIN_SRC emacs-lisp
+;; (setq langtool-language-tool-jar "~/src/emacsExtras/languagetool-commandline.jar")
+(setq +write-text-scale +2)
 #+END_SRC
 ** yasnippet
 #+BEGIN_SRC emacs-lisp

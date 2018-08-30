@@ -8,4 +8,3 @@
 # --
 :header-args:ipython: :session remote-$3-kernel-$2-ssh.json :pydir /ssh:YOUR_USERNAME@${3:$$(yas-choose-value '( "YOUR_HOST" "hpc8" "hpc9" "hpc10" "hpc11" "hpc12" "hpc13" "hpc14" "hpc15" "gpu8"))}:/YOUR/DIR/$4 :exports both :async t :results raw drawer
 #+END_SRC
-** TODO MPDel
