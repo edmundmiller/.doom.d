@@ -84,6 +84,16 @@ Load stuff in the background when idle
       "C-h" #'helm-find-files-up-one-level
       "C-l" #'helm-ff-RET)
 #+END_SRC
+#+BEGIN_SRC emacs-lisp
+(after! helm
+ (setq +helm-posframe-text-scale -1)
+  (setq +helm-posframe-parameters
+        '((internal-border-width . 6)
+          (width . 0.3)
+          (height . 0.15)
+          (min-width . 60)
+          (min-height . 8))))
+#+END_SRC
 * Functions
 Edit i.org
 #+BEGIN_SRC emacs-lisp
