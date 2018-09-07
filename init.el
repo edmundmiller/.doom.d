@@ -16,15 +16,15 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +auto)            ; as-you-type code completion
+        +auto)           ; as-you-type code completion
         ;+childframe)
-       ;(helm             ; the *other* search engine for love and life
-       ; +fuzzy           ; enable fuzzy search backend for helm
-       ; +childframe)
-      ;ido               ; the other *other* search engine...
-       (ivy              ; a search engine for love and life
-        +fuzzy           ; enable fuzzy search backend for ivy
+       (helm             ; the *other* search engine for love and life
+        +fuzzy           ; enable fuzzy search backend for helm
         +childframe)
+      ;ido               ; the other *other* search engine...
+      ;(ivy              ; a search engine for love and life
+      ; +fuzzy           ; enable fuzzy search backend for ivy
+      ; +childframe)
 
        :ui
        doom              ; what makes DOOM look the way it does
