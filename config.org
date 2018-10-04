@@ -21,11 +21,11 @@ Change font
 (setq doom-font (font-spec :family "Iosevka" :size 21)
       doom-variable-pitch-font (font-spec :family "Iosevka")
       doom-unicode-font (font-spec :family "Iosevka")
-      doom-big-font (font-spec :family "Iosevka" :size 32))
+      doom-big-font (font-spec :family "Iosevka" :size 35))
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-tomorrow-night)
+;; (setq doom-theme 'doom-Iosvkem)
 #+END_SRC
 Cleanup Whitespace
 #+BEGIN_SRC emacs-lisp
@@ -44,12 +44,12 @@ Load stuff in the background when idle
         (run-with-idle-timer 1 nil #'auto-require-packages reqs)))))
 
 (make-thread
-   (lambda ()
-     (run-with-idle-timer 1 nil #'auto-require-packages
-                       '(calendar find-func format-spec org-macs org-compat
-                         org-faces org-entities org-list org-pcomplete org-src
-                         org-footnote org-macro ob org org-clock org-agenda
-                         org-capture with-editor git-commit package magit))))
+ (lambda ()
+   (run-with-idle-timer 1 nil #'auto-require-packages
+                        '(calendar find-func format-spec org-macs org-compat
+                                   org-faces org-entities org-list org-pcomplete org-src
+                                   org-footnote org-macro ob org org-clock org-agenda
+                                   org-capture with-editor git-commit package magit))))
 #+END_SRC
 * Keybindings
 #+BEGIN_SRC emacs-lisp
@@ -91,8 +91,8 @@ Load stuff in the background when idle
 Edit i.org
 #+BEGIN_SRC emacs-lisp
 (defun emiller/visit-i-org ()
-				(interactive)
-				(find-file "~/Dropbox/orgfiles/i.org"))
+  (interactive)
+  (find-file "~/Dropbox/orgfiles/i.org"))
 #+END_SRC
 Ediff the ~init.example.el~ and my ~init.el~
 #+BEGIN_SRC emacs-lisp
@@ -140,9 +140,9 @@ Get rid of modeline in eshell buffers
 *** Git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
 (defun +version-control|git-gutter-maybe ()
-    (when buffer-file-name
-      (require 'git-gutter-fringe)
-      (git-gutter-mode +1)))
+  (when buffer-file-name
+    (require 'git-gutter-fringe)
+    (git-gutter-mode +1)))
 #+END_SRC
 *** GPG signing
 #+BEGIN_SRC emacs-lisp
@@ -169,7 +169,7 @@ Start in insert mode in =org-capture=
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq org-directory "~/Dropbox/orgfiles")
+  ;; (setq org-directory "~/Dropbox/orgfiles")
   (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/"))
 
   (defun org-file-path (filename)
