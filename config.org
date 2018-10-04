@@ -380,6 +380,37 @@ Make it only one week
             (lambda ()
               (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
 #+END_SRC
+** Treemacs
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+;; (after! treemacs-evil
+;;   (set-evil-initial-state! 'treemacs-mode 'motion)
+;;   (map! :map treemacs-mode-map
+;;         :m [escape] #'delete-window
+;;         :m "j"   #'treemacs-next-line
+;;         :m "k"   #'treemacs-previous-line
+;;         :m "M-j" #'treemacs-next-neighbour
+;;         :m "M-k" #'treemacs-previous-neighbour
+;;         :m "M-J" #'treemacs-next-line-other-window
+;;         :m "M-K" #'treemacs-previous-line-other-window
+;;         :m "th"  #'treemacs-toggle-show-dotfiles
+;;         :m "tw"  #'treemacs-toggle-fixed-width
+;;         :m "tv"  #'treemacs-fringe-indicator-mode
+;;         :m "tf"  #'treemacs-follow-mode
+;;         :m "ta"  #'treemacs-filewatch-mode
+;;         :m "tg"  #'treemacs-git-mode
+;;         :m "w"   #'treemacs-set-width
+;;         :m "b"   #'treemacs-add-bookmark
+;;         :m "?"   #'treemacs-helpful-hydra
+;;         :m "RET" #'treemacs-RET-action
+;;         :m "yr"     #'treemacs-copy-project-root
+;;         :m "yy"     #'treemacs-copy-path-at-point
+;;         :m "gr"     #'treemacs-refresh
+;;         :m [down-mouse-1] #'ignore
+;;         :m "h"      #'treemacs-root-up
+;;         :m "l"      #'treemacs-root-down))
+#+END_SRC
 ** Write
 *** Languagetool
 #+BEGIN_SRC emacs-lisp
