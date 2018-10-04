@@ -231,7 +231,12 @@ Start in insert mode in =org-capture=
 
           ("o" "Work To Do" entry
            (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
-           "** TODO %?\n%T" :prepend t))))
+           "** TODO %?\n%T" :prepend t)
+
+          ("w" "Work Journal" entry
+           (file+olp+datetree "~/src/olypsis/daily-journals/Edmund_Miller.org")
+           "%? %^g \n ")
+          )))
 #+END_SRC
 Test the hash
 #+BEGIN_SRC emacs-lisp
