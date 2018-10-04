@@ -238,13 +238,14 @@ Start in insert mode in =org-capture=
            "%? %^g \n ")
           )))
 #+END_SRC
-Test the hash
+Change to hash
 #+BEGIN_SRC emacs-lisp
 ;; (setq flycheck-shellcheck-follow-sources nil)
 (add-hook 'org-mode-hook #'auto-fill-mode)
 ;; The standard unicode characters are usually misaligned depending on the font.
 ;; This bugs me. Personally, markdown #-marks for headlines are more elegant.
-(setq org-bullets-bullet-list '("#"))
+(after! org
+  (setq org-bullets-bullet-list '("#")))
 #+END_SRC
 Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
