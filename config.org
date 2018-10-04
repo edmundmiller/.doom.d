@@ -84,19 +84,8 @@ Load stuff in the background when idle
 #+BEGIN_SRC emacs-lisp
 (map! :after helm-files
       :map helm-find-files-map
-      "<DEL>" #'helm-find-files-up-one-level
       "C-h" #'helm-find-files-up-one-level
       "C-l" #'helm-ff-RET)
-#+END_SRC
-#+BEGIN_SRC emacs-lisp
-(after! helm
- (setq +helm-posframe-text-scale -1)
-  (setq +helm-posframe-parameters
-        '((internal-border-width . 6)
-          (width . 0.3)
-          (height . 0.15)
-          (min-width . 60)
-          (min-height . 8))))
 #+END_SRC
 * Functions
 Edit i.org
@@ -313,6 +302,17 @@ Add o/O to add new list item
    (:leader
      (:prefix "s"
        :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
+#+END_SRC
+** Helm
+#+BEGIN_SRC emacs-lisp
+(after! helm
+ (setq +helm-posframe-text-scale 1)
+  (setq +helm-posframe-parameters
+        '((internal-border-width . 6)
+          (width . 0.3)
+          (height . 0.15)
+          (min-width . 60)
+          (min-height . 8))))
 #+END_SRC
 ** Org
 *** Auto-org-md
