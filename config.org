@@ -273,7 +273,7 @@ Add o/O to add new list item
   (setq easy-hugo-previewtime "300")
   (setq easy-hugo-default-ext ".org")
   :bind
-  ("C-c C-e" . easy-hugo))
+  ("C-c C-h" . easy-hugo))
 #+END_SRC
 ** Edit-server
 #+BEGIN_SRC emacs-lisp
