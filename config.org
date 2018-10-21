@@ -211,8 +211,8 @@ Start in insert mode in =org-capture=
            "*** TODO %?\n%T" :prepend t)
 
           ("j" "Lab Entry" entry
-           (file+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
-           "**** %? %^g \n ")
+           (file+olp+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
+           "* %? %^g \n ")
 
           ("d" "Lab To Do" entry
            (file+headline "~/Dropbox/orgfiles/Lab_Notebook.org" "To Do")
@@ -223,8 +223,8 @@ Start in insert mode in =org-capture=
            "** TODO %?\n%T" :prepend t)
 
           ("w" "Work Journal" entry
-           (file+olp+datetree "~/src/olypsis/daily-journals/Edmund_Miller.org")
-           "%? %^g \n ")
+           (file+olp+datetree "~/src/olypsis/daily-journals/Edmund_Miller.org" )
+           "* Tasks \n- [ ] %? \n* Journal %^g \n ")
           )))
 #+END_SRC
 Change to hash
