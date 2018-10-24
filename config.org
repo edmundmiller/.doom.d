@@ -74,7 +74,7 @@ Load stuff in the background when idle
      :desc "List gists" :n "l" #'+gist:list)
    (:prefix "n"
      :desc "Org-noter" :n "o" #'org-noter)
-   :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: ")))))
+   :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: "))))
  (:after treemacs-evil
    (:map evil-treemacs-state-map
      "C-h" #'evil-window-left
