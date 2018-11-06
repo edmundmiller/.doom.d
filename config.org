@@ -273,7 +273,12 @@ Set org-refile to utilize helm or ivy
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-refile-use-outline-path t)
-  (setq org-outline-path-complete-in-steps nil))
+  (setq org-outline-path-complete-in-steps nil)
+
+  (setq org-refile-targets
+        '((nil :maxlevel . 3)
+          (org-agenda-files :maxlevel . 3)
+          ("~/Dropbox/orgfiles/gtd/someday.org" :level . 1))))
 #+END_SRC
 WIP: Custom org agenda views
 #+BEGIN_SRC emacs-lisp
