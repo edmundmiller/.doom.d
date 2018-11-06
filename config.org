@@ -61,6 +61,7 @@ Load stuff in the background when idle
      :desc "Org => Trello" :n "u" #'org-trello-sync-buffer
      :desc "Trello => Org" :n "t" (lambda! (org-trello-sync-buffer t)))
    (:prefix "o"
+     :desc "Calc" :n "c" #'calc
      :desc "eShell in Popup" :n "e" #'+eshell/open-popup
      :desc "eShell" :n "E" #'+eshell/open
      :desc "i.org" :n "o" #'emiller/visit-i-org
