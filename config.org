@@ -170,13 +170,11 @@ Start in insert mode in =org-capture=
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
 (after! org
-  ;; (setq org-directory "~/Dropbox/orgfiles")
   (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/"))
 
   (defun org-file-path (filename)
     "Return the absolute address of an org file, given its relative name."
     (concat (file-name-as-directory org-directory) filename))
-  (setq org-index-file (org-file-path "i.org"))
   (setq org-archive-location
         (concat (org-file-path "archive.org") "::* From %s"))
 
@@ -185,9 +183,13 @@ Start in insert mode in =org-capture=
                                "~/Dropbox/orgfiles/o.org"
                                "~/Dropbox/orgfiles/Lab_Notebook.org"
                                "~/Dropbox/orgfiles/Lab_schedule.org"
-                               "~/Dropbox/orgfiles/schedule.org"))
+                               "~/Dropbox/orgfiles/schedule.org"
+                               "~/Dropbox/orgfiles/gtd/gtd.org"
+                               "~/Dropbox/orgfiles/gtd/tickler.org"
+                               "~/src/olypsis/daily-journals/Edmund_Miller.org"))
 
-  ;; Set Bullets to OG
+
+  ;; Set Bullets
   ;; (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
   (setq org-ellipsis " ▼ ")
   (setq org-export-with-toc nil)
@@ -199,17 +201,21 @@ Start in insert mode in =org-capture=
            (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
            "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
 
-          ("n" "Note" entry
-           (file+headline "~/Dropbox/orgfiles/i.org" "Notes")
-           "** %?\n%T")
+          ("n" "Personal notes" entry
+           (file+headline +org-capture-notes-file "Inbox")
+           "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
 
           ("l" "Link" entry
            (file+headline "~/Dropbox/orgfiles/links.org" "Links")
            "* %? %^L %^g \n%T" :prepend t)
 
-          ("t" "To Do Item" entry
+          ("t" "Todo [Inbox]" entry
            (file+headline "~/Dropbox/orgfiles/i.org" "Unsorted")
-           "*** TODO %?\n%T" :prepend t)
+           "* [ ] %?\n%i\n%a" :prepend t :kill-buffer t)
+
+          ("T" "Tickler" entry
+           (file+headline "~/Dropbox/orgfiles/GTD/tickler.org" "Tickler")
+           "* %i%? \n %U")
 
           ("j" "Lab Entry" entry
            (file+olp+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
@@ -225,8 +231,47 @@ Start in insert mode in =org-capture=
 
           ("w" "Work Journal" entry
            (file+olp+datetree "~/src/olypsis/daily-journals/Edmund_Miller.org" )
-           "* Tasks \n- [ ] %? \n* Journal %^g \n ")
-          )))
+           "* Tasks \n** [ ] %? \n* Journal %^g \n ")
+
+          ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
+          ;; {todo,notes,changelog}.org file is found in a parent directory.
+          ("p" "Templates for projects")
+          ("pt" "Project todo" entry  ; {project-root}/todo.org
+           (file+headline +org-capture-project-todo-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
+          ("pn" "Project notes" entry  ; {project-root}/notes.org
+           (file+headline +org-capture-project-notes-file "Inbox")
+           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
+          ("pc" "Project changelog" entry  ; {project-root}/changelog.org
+           (file+headline +org-capture-project-notes-file "Unreleased")
+           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)))
+
+  (setq org-refile-use-outline-path t)
+  (setq org-outline-path-complete-in-steps nil))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-agenda-custom-commands
+        '(("o" "Work stuff" tags-todo "@work"
+           ((org-agenda-overriding-header "Work"))))))
+            ;; (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first))))))
+
+  ;; (defun my-org-agenda-skip-all-siblings-but-first ()
+  ;;   "Skip all but the first non-done entry."
+  ;;   (let (should-skip-entry)
+  ;;     (unless (org-current-is-todo)
+  ;;       (setq should-skip-entry t))
+  ;;     (save-excursion
+  ;;       (while (and (not should-skip-entry) (org-goto-sibling t))
+  ;;         (when (org-current-is-todo)
+  ;;           (setq should-skip-entry t))))
+  ;;     (when should-skip-entry
+  ;;       (or (outline-next-heading)
+  ;;           (goto-char (point-max))))))
+
+  ;; (defun org-current-is-todo ()
+  ;;   (string= "TODO" (org-get-todo-state))))
 #+END_SRC
 Change to hash
 #+BEGIN_SRC emacs-lisp
