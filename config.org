@@ -168,16 +168,27 @@ Start in insert mode in =org-capture=
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 #+END_SRC
+Set ~+org-dir~
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/"))
-
+  (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/")))
+#+END_SRC
+Function to return the absolute address of an org file, given its relative name.
+#+BEGIN_SRC emacs-lisp
+(after! org
   (defun org-file-path (filename)
     "Return the absolute address of an org file, given its relative name."
-    (concat (file-name-as-directory org-directory) filename))
+    (concat (file-name-as-directory org-directory) filename)))
+#+END_SRC
+Set one archive file to rule them all
+#+BEGIN_SRC emacs-lisp
+(after! org
   (setq org-archive-location
-        (concat (org-file-path "archive.org") "::* From %s"))
-
+        (concat (org-file-path "archive.org") "::* From %s")))
+#+END_SRC
+Set Files that are pulled into ~org-agenda~
+#+BEGIN_SRC emacs-lisp
+(after! org
   (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
                                "~/Dropbox/orgfiles/i.org"
                                "~/Dropbox/orgfiles/o.org"
@@ -186,16 +197,28 @@ Start in insert mode in =org-capture=
                                "~/Dropbox/orgfiles/schedule.org"
                                "~/Dropbox/orgfiles/gtd/gtd.org"
                                "~/Dropbox/orgfiles/gtd/tickler.org"
-                               "~/src/olypsis/daily-journals/Edmund_Miller.org"))
-
-
-  ;; Set Bullets
+                               "~/src/olypsis/daily-journals/Edmund_Miller.org")))
+#+END_SRC
+Set Custom Icons
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-bullets-bullet-list '("#"))
   ;; (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
-  (setq org-ellipsis " ▼ ")
-  (setq org-export-with-toc nil)
-  ;; Log when things are done
-  (setq org-log-done 'time)
-
+  (setq org-ellipsis " ▼ "))
+#+END_SRC
+Org export settings
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-export-with-toc nil))
+#+END_SRC
+Log time when things get marked as done
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-log-done 'time))
+#+END_SRC
+Org Capture Templates
+#+BEGIN_SRC emacs-lisp
+(after! org
   (setq org-capture-templates
         '(("a" "Appointment" entry
            (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
@@ -244,12 +267,15 @@ Start in insert mode in =org-capture=
            "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
           ("pc" "Project changelog" entry  ; {project-root}/changelog.org
            (file+headline +org-capture-project-notes-file "Unreleased")
-           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)))
-
+           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t))))
+#+END_SRC
+Set org-refile to utilize helm or ivy
+#+BEGIN_SRC emacs-lisp
+(after! org
   (setq org-refile-use-outline-path t)
   (setq org-outline-path-complete-in-steps nil))
 #+END_SRC
-
+WIP: Custom org agenda views
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-agenda-custom-commands
@@ -273,14 +299,8 @@ Start in insert mode in =org-capture=
   ;; (defun org-current-is-todo ()
   ;;   (string= "TODO" (org-get-todo-state))))
 #+END_SRC
-Change to hash
 #+BEGIN_SRC emacs-lisp
-;; (setq flycheck-shellcheck-follow-sources nil)
-(add-hook 'org-mode-hook #'auto-fill-mode)
-;; The standard unicode characters are usually misaligned depending on the font.
-;; This bugs me. Personally, markdown #-marks for headlines are more elegant.
-(after! org
-  (setq org-bullets-bullet-list '("#")))
+;; (add-hook 'org-mode-hook #'auto-fill-mode)
 #+END_SRC
 Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
