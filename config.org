@@ -93,7 +93,7 @@ Edit i.org
 #+BEGIN_SRC emacs-lisp
 (defun emiller/visit-i-org ()
   (interactive)
-  (find-file "~/Dropbox/orgfiles/i.org"))
+  (find-file "~/Dropbox/orgfiles/gtd/i.org"))
 #+END_SRC
 Ediff the ~init.example.el~ and my ~init.el~
 #+BEGIN_SRC emacs-lisp
