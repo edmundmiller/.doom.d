@@ -237,11 +237,11 @@ Org Capture Templates
            "* %? %^L %^g \n%T" :prepend t)
 
           ("t" "Todo [Inbox]" entry
-           (file+headline "~/Dropbox/orgfiles/i.org" "Unsorted")
+           (file+headline "~/Dropbox/orgfiles/gtd/i.org" "Unsorted")
            "* [ ] %?\n%i\n%a" :prepend t :kill-buffer t)
 
           ("T" "Tickler" entry
-           (file+headline "~/Dropbox/orgfiles/GTD/tickler.org" "Tickler")
+           (file+headline "~/Dropbox/orgfiles/gtd/tickler.org" "Tickler")
            "* %i%? \n %U")
 
           ("j" "Lab Entry" entry
