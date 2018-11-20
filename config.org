@@ -153,6 +153,10 @@ Get rid of modeline in eshell buffers
       magit-rebase-arguments '("--autostash" "--gpg-sign=BD387FF7BC10AA9D")
       magit-pull-arguments '("--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D"))
 #+END_SRC
+*** Set editor
+#+BEGIN_SRC emacs-lisp
+(setenv "EDITOR" "emacsclient")
+#+end_SRC
 ** Org-mode
 Quickly insert a =emacs-lisp= src block
 #+BEGIN_SRC emacs-lisp
