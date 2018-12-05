@@ -443,6 +443,10 @@ Make it only one week
 ;; (after! elfeed
 ;;   (setq elfeed-search-filter "@1-week-ago +unread"))
 #+END_SRC
+** package-lint
+#+BEGIN_SRC emacs-lisp
+(def-package! package-lint)
+#+END_SRC
 ** PDF-Tools
 #+BEGIN_SRC emacs-lisp
 (def-package! pdf-tools
