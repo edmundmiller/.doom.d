@@ -332,7 +332,7 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 (setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
 #+END_SRC
-* Modules
+* Packages
 ** Dired all-the-icons
 #+BEGIN_SRC emacs-lisp
 ;; Shows the wrong faces
@@ -381,6 +381,10 @@ Add o/O to add new list item
    (:leader
      (:prefix "s"
        :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
+#+END_SRC
+** Graphviz-dot-mode
+#+BEGIN_SRC emacs-lisp
+(def-package! graphviz-dot-mode)
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp

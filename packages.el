@@ -11,6 +11,7 @@
 (package! exec-path-from-shell)
 (package! easy-hugo)
 (package! package-lint)
+(package! graphviz-dot-mode)
 (package! jest :recipe (:fetcher github :repo "emiller88/emacs-jest" :files ("*")))
 ;; Experimental
 (package! vyper-mode)
