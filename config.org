@@ -55,6 +55,8 @@ Load stuff in the background when idle
 #+BEGIN_SRC emacs-lisp
 (map!
  (:leader
+   (:prefix "i"
+     :desc "Insert date" :n "d" #'insert-todays-date)
    (:prefix "n"
      :desc "Browse mode notes"     :n  "m" #'+emiller/find-notes-for-major-mode
      :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project
@@ -106,7 +108,17 @@ Ediff the ~init.example.el~ and my ~init.el~
   (ediff-files (expand-file-name "init.el" doom-private-dir)
                (expand-file-name "init.example.el" user-emacs-directory)))
 #+END_SRC
-* Languages
+** Insert Date
+Helpful for ~Snakemake~
+#+BEGIN_SRC emacs-lisp
+(defun insert-todays-date (arg)
+  (interactive "P")
+  (insert (if arg
+              (format-time-string "%d-%m-%Y")
+            (format-time-string "%Y-%m-%d"))))
+(global-set-key (kbd "C-c d") 'insert-todays-date)
+#+END_SRC
+* Modules
 ** Dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
