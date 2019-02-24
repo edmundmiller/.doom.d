@@ -90,7 +90,19 @@ Load stuff in the background when idle
  (:after treemacs-evil
    (:map evil-treemacs-state-map
      "C-h" #'evil-window-left
-     "C-l" #'evil-window-right)))
+     "C-l" #'evil-window-right))
+ (:when (featurep! :feature workspaces)
+   :nmvi "M-t" #'+workspace/new
+   :nmvi "M-1" (λ! (+workspace/switch-to 0))
+   :nmvi "M-2" (λ! (+workspace/switch-to 1))
+   :nmvi "M-3" (λ! (+workspace/switch-to 2))
+   :nmvi "M-4" (λ! (+workspace/switch-to 3))
+   :nmvi "M-5" (λ! (+workspace/switch-to 4))
+   :nmvi "M-6" (λ! (+workspace/switch-to 5))
+   :nmvi "M-7" (λ! (+workspace/switch-to 6))
+   :nmvi "M-8" (λ! (+workspace/switch-to 7))
+   :nmvi "M-9" (λ! (+workspace/switch-to 8))
+   ))
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
