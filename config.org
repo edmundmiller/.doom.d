@@ -399,14 +399,6 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 (set! :ein-notebook-dir "~/src/notebooks/")
 #+END_SRC
-** Exec-path-from-shell
-#+BEGIN_SRC emacs-lisp
-(def-package! exec-path-from-shell
-  :config
-  (when (memq window-system '(mac ns x))
-      (exec-path-from-shell-initialize))
-  (setq exec-path-from-shell-check-startup-files nil))
-#+END_SRC
 ** Ivy-yasnippet
 #+BEGIN_SRC emacs-lisp
 (def-package! ivy-yasnippet
