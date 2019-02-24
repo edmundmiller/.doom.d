@@ -518,5 +518,5 @@ Make it only one week
 ** yasnippet
 #+BEGIN_SRC emacs-lisp
 (after! yasnippet
-  (push "~/.config/doom/snippets" yas-snippet-dirs))
+  (push (expand-file-name "snippets/" doom-private-dir) yas-snippet-dirs))
 #+END_SRC
