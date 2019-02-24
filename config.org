@@ -478,22 +478,6 @@ Make it only one week
 #+BEGIN_SRC emacs-lisp
 (def-package! package-lint)
 #+END_SRC
-** PDF-Tools
-#+BEGIN_SRC emacs-lisp
-(def-package! pdf-tools
-  :preface
-  (setq pdf-view-use-unicode-ligther nil)
-  :config
-  (map! (:map (pdf-view-mode-map)
-          :n doom-leader-key nil))
-  ;; FIXME (set! :popup "\\*Outline " '((side . left) (size . 30)) '((quit . t)))
-  (setq-default pdf-view-display-size 'fit-page
-                pdf-view-midnight-colors `(,(doom-color 'fg) . ,(doom-color 'bg)))
-  ;; turn off cua so copy works
-  (add-hook 'pdf-view-mode-hook
-            (lambda ()
-              (set (make-local-variable 'evil-normal-state-cursor) (list nil)))))
-#+END_SRC
 ** Treemacs
 #+BEGIN_SRC emacs-lisp
 #+END_SRC
