@@ -397,7 +397,7 @@ Add o/O to add new list item
 #+END_SRC
 ** Ein
 #+BEGIN_SRC emacs-lisp
-(set! :ein-notebook-dir "~/src/notebooks/")
+;; (set! :ein-notebook-dir "/home/emiller/src/notebooks/")
 #+END_SRC
 ** Ivy-yasnippet
 #+BEGIN_SRC emacs-lisp
