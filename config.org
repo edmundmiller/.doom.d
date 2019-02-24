@@ -27,6 +27,10 @@ Change Theme
 #+BEGIN_SRC emacs-lisp
 (setq doom-theme 'doom-vibrant)
 #+END_SRC
+Change the banner
+#+BEGIN_SRC emacs-lisp
+(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
+#+END_SRC
 Cleanup Whitespace
 #+BEGIN_SRC emacs-lisp
 ;; (add-hook 'before-save-hook #'delete-trailing-whitespace)
