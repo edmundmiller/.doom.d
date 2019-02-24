@@ -83,10 +83,6 @@ Load stuff in the background when idle
    (:prefix "n"
      :desc "Org-noter" :n "o" #'org-noter)
    :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: "))))
- (:map js2-mode-map
-   (:localleader
-     (:prefix "t"
-       :nv "t" #'jest-popup)))
  (:after treemacs-evil
    (:map evil-treemacs-state-map
      "C-h" #'evil-window-left
