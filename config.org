@@ -25,7 +25,7 @@ Change font
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-;; (setq doom-theme 'doom-Iosvkem)
+(setq doom-theme 'doom-vibrant)
 #+END_SRC
 Cleanup Whitespace
 #+BEGIN_SRC emacs-lisp
