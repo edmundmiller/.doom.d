@@ -217,6 +217,7 @@ Set ~+org-dir~
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/")))
+  ;; (setq org-directory "/home/emiller/Dropbox/orgfiles/"))
 #+END_SRC
 Function to return the absolute address of an org file, given its relative name.
 #+BEGIN_SRC emacs-lisp
@@ -270,7 +271,7 @@ Org Capture Templates
            "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
 
           ("n" "Personal notes" entry
-           (file+headline +org-capture-notes-file "Inbox")
+           (file+headline "~/Dropbox/orgfiles/notes.org" "Inbox")
            "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
 
           ("l" "Link" entry
@@ -323,13 +324,13 @@ Set org-refile to utilize helm or ivy
   (setq org-refile-targets
         '((nil :maxlevel . 3)
           (org-agenda-files :maxlevel . 3)
-          ("~/Dropbox/orgfiles/gtd/someday.org" :level . 1))))
+          ("~/Dropbox/orgfiles/gtd/someday.org" :level . 2))))
 #+END_SRC
 WIP: Custom org agenda views
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-agenda-custom-commands
-        '(("o" "Work stuff" tags-todo "@work"
+        '(("o" "Work stuff" tags-todo "work"
            ((org-agenda-overriding-header "Work"))))))
             ;; (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first))))))
 
