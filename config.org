@@ -70,6 +70,7 @@ Load stuff in the background when idle
      :desc "Calc" :n "c" #'calc
      :desc "eShell in Popup" :n "e" #'+eshell/open-popup
      :desc "eShell" :n "E" #'+eshell/open
+     :desc "easy-hugo" :n "g" #'easy-hugo
      :desc "i.org" :n "o" #'emiller/visit-i-org
      :desc "APP: notmuch" :n "m" #'=notmuch
      :desc "APP: rss" :n "," #'=rss
@@ -372,11 +373,12 @@ Add o/O to add new list item
 (def-package! easy-hugo
   :init
   (setq easy-hugo-basedir "~/src/personalProjects/emillerSite/")
-  (setq easy-hugo-url "https:/emiller88.gitlab.io/")
+  (setq easy-hugo-url "https:/emiller88.github.io/")
   (setq easy-hugo-previewtime "300")
   (setq easy-hugo-default-ext ".org")
-  :bind
-  ("C-c C-h" . easy-hugo))
+  (setq easy-hugo-org-header t)
+  (setq easy-hugo-postdir "content/posts")
+  (set-evil-initial-state! 'easy-hugo-mode 'emacs))
 #+END_SRC
 ** Edit-server
 #+BEGIN_SRC emacs-lisp
