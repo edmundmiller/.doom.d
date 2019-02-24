@@ -351,7 +351,7 @@ WIP: Custom org agenda views
 #+END_SRC
 Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'evil-org-special-o/O 'item)
+;; (add-to-list 'evil-org-special-o/O 'item)
 #+END_SRC
 ** Python
 *** Tox
