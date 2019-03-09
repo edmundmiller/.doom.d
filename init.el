@@ -102,7 +102,7 @@
        ;;(java +meghanada)
        (javascript +lsp)
        ;;julia
-       latex
+       (latex +ref)
        ;;ledger
        ;;lua
        markdown
