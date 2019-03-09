@@ -203,11 +203,11 @@ Start in insert mode in =org-capture=
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 #+END_SRC
-Set ~+org-dir~
+Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq +org-dir (expand-file-name "~/Dropbox/orgfiles/")))
-  ;; (setq org-directory "/home/emiller/Dropbox/orgfiles/"))
+  (setq org-directory "/home/emiller/Dropbox/orgfiles/")
+  (setq +org-capture-todo-file "i.org"))
 #+END_SRC
 Function to return the absolute address of an org file, given its relative name.
 #+BEGIN_SRC emacs-lisp
