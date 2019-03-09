@@ -369,10 +369,6 @@ Add o/O to add new list item
 ;; (def-package! all-the-icons-dired
 ;;   :hook (dired-mode . all-the-icons-dired-mode))
 #+END_SRC
-** Docker
-#+BEGIN_SRC emacs-lisp
-(def-package! docker)
-#+END_SRC
 ** Easy Hugo
 #+BEGIN_SRC emacs-lisp
 (def-package! easy-hugo
