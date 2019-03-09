@@ -29,7 +29,7 @@
        modeline
        nav-flash
        ;;neotree
-       treemacs
+       ;;treemacs
        (popup
         +all
         +defaults)

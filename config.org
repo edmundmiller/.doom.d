@@ -73,8 +73,8 @@ Load stuff in the background when idle
      :desc "easy-hugo" :n "g" #'easy-hugo
      :desc "i.org" :n "o" #'emiller/visit-i-org
      :desc "APP: notmuch" :n "m" #'=notmuch
+     :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
      :desc "APP: rss" :n "," #'=rss
-     :desc "Treemacs" :n "h" #'+treemacs/toggle)
    (:prefix "p"
      :desc "Counsel-ag" :n "f" #'counsel-ag)
    (:prefix "g"
@@ -137,36 +137,30 @@ Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
 (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
+** dired-sidebar
+#+BEGIN_SRC emacs-lisp
+(def-package! dired-sidebar
+  )
+#+END_SRC
 ** eShell
 Get rid of modeline in eshell buffers
 #+BEGIN_SRC emacs-lisp
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 #+END_SRC
-** Magit
-*** Henrik's Magit split
+** emms
 #+BEGIN_SRC emacs-lisp
-;; (after! magit
-;;   (setq magit-display-buffer-function #'+magit-display-buffer-fullscreen)
-;;   (defun +magit-display-buffer-fullscreen (buffer)
-;;     (display-buffer
-;;      buffer (cond ((derived-mode-p 'magit-mode)
-;;                    (when (eq major-mode 'magit-status-mode)
-;;                      (display-buffer-in-side-window
-;;                       (current-buffer) '((side . left) (window-width . 0.35))))
-;;                    '(display-buffer-same-window))
-;;                   ((bound-and-true-p git-commit-mode)
-;;                    '(display-buffer-below-selected))
-;;                   ((buffer-local-value 'git-commit-mode buffer)
-;;                    '(magit--display-buffer-fullframe))
-;;                   ((memq (buffer-local-value 'major-mode buffer)
-;;                          '(magit-process-mode
-;;                            magit-revision-mode
-;;                            magit-log-mode
-;;                            magit-diff-mode
-;;                            magit-stash-mode))
-;;                    '(display-buffer-in-side-window))
-;;                   ('(magit--display-buffer-fullframe))))))
+;; (def-package! emms
+;;   :config
+;;  (setq emms-source-file-default-directory "~/Music/"))
 #+END_SRC
+** JavaScript
+#+begin_src emacs-lisp
+(defun i-will-have-what-js-is-having ()
+  (let ((buffer-file-name (concat (file-name-sans-extension buffer-file-name) ".js")))
+    (set-auto-mode)))
+(add-to-list 'auto-mode-alist '("\\.vmjs\\'" . i-will-have-what-js-is-having))
+#+end_src
+** Magit
 *** Git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
 (defun +version-control|git-gutter-maybe ()
