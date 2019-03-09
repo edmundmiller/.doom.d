@@ -16,6 +16,7 @@
 (package! org-pomodoro)
 ;; Experimental
 (package! tox)
+(package! dired-sidebar)
 
 (provide 'packages)
 ;;; packages.el ends here
