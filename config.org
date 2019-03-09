@@ -19,8 +19,8 @@ Who, who, who, who?
 Change font
 #+BEGIN_SRC emacs-lisp
 (setq doom-font (font-spec :family "Iosevka" :size 21)
-      doom-variable-pitch-font (font-spec :family "Iosevka")
-      doom-unicode-font (font-spec :family "Iosevka")
+      doom-variable-pitch-font (font-spec :family "Iosevka" :size 21)
+      doom-unicode-font (font-spec :family "Iosevka" :size 21)
       doom-big-font (font-spec :family "Iosevka" :size 35))
 #+END_SRC
 Change Theme
