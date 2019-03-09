@@ -358,7 +358,9 @@ Add o/O to add new list item
 #+END_SRC
 ** Solidity
 #+BEGIN_SRC emacs-lisp
+(setq solidity-solc-path "/usr/bin/solc")
 (setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
+(setq solidity-flycheck-solc-checker-active t)
 #+END_SRC
 * Packages
 ** Dired all-the-icons
