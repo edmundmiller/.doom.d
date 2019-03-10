@@ -14,6 +14,7 @@
 (package! jest)
 (package! vyper-mode)
 (package! org-pomodoro)
+(package! org-gcal)
 ;; Experimental
 (package! tox)
 (package! dired-sidebar)

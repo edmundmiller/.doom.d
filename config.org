@@ -256,10 +256,8 @@ Org Capture Templates
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-capture-templates
-        '(("a" "Appointment" entry
-           (file  "~/Dropbox/orgfiles/gcal.org" "Appointments")
-           "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
-
+        '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/schedule.org" )
+           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
           ("n" "Personal notes" entry
            (file+headline "~/Dropbox/orgfiles/notes.org" "Inbox")
            "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
@@ -347,6 +345,16 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 ;; (add-to-list 'evil-org-special-o/O 'item)
 #+END_SRC
+*** org-gcal
+#+begin_src emacs-lisp
+(def-package! org-gcal
+  :config
+  (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
+        org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
+        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/Dropbox/orgfiles/schedule.org")))
+  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+  (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) )))
+#+end_src
 ** Python
 *** Tox
 #+BEGIN_SRC emacs-lisp
