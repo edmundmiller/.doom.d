@@ -15,9 +15,10 @@
 (package! vyper-mode)
 (package! org-pomodoro)
 (package! org-gcal)
+(package! dired-sidebar)
 ;; Experimental
 (package! tox)
-(package! dired-sidebar)
+;; (package! emms)
 
 (provide 'packages)
 ;;; packages.el ends here

@@ -25,7 +25,7 @@ Change font
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-opera)
 #+END_SRC
 Change the banner
 #+BEGIN_SRC emacs-lisp
@@ -75,6 +75,8 @@ Load stuff in the background when idle
      :desc "APP: notmuch" :n "m" #'=notmuch
      :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
      :desc "APP: rss" :n "," #'=rss
+     :desc "vterm in Popup" :n "t" #'+vterm/open-popup-in-project
+     :desc "vterm" :n "T" #'+vterm/open)
    (:prefix "p"
      :desc "Counsel-ag" :n "f" #'counsel-ag)
    (:prefix "g"
@@ -239,7 +241,6 @@ Set Custom Icons
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-bullets-bullet-list '("#"))
-  ;; (setq org-bullets-bullet-list '("■" "◆" "▲" "▶"))
   (setq org-ellipsis " ▼ "))
 #+END_SRC
 Org export settings
@@ -268,7 +269,7 @@ Org Capture Templates
 
           ("t" "Todo [Inbox]" entry
            (file+headline "~/Dropbox/orgfiles/gtd/i.org" "Unsorted")
-           "* [ ] %?\n%i\n%a" :prepend t :kill-buffer t)
+           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
 
           ("T" "Tickler" entry
            (file+headline "~/Dropbox/orgfiles/gtd/tickler.org" "Tickler")
@@ -314,33 +315,6 @@ Set org-refile to utilize helm or ivy
           (org-agenda-files :maxlevel . 3)
           ("~/Dropbox/orgfiles/gtd/someday.org" :level . 2))))
 #+END_SRC
-WIP: Custom org agenda views
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-agenda-custom-commands
-        '(("o" "Work stuff" tags-todo "work"
-           ((org-agenda-overriding-header "Work"))))))
-            ;; (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first))))))
-
-  ;; (defun my-org-agenda-skip-all-siblings-but-first ()
-  ;;   "Skip all but the first non-done entry."
-  ;;   (let (should-skip-entry)
-  ;;     (unless (org-current-is-todo)
-  ;;       (setq should-skip-entry t))
-  ;;     (save-excursion
-  ;;       (while (and (not should-skip-entry) (org-goto-sibling t))
-  ;;         (when (org-current-is-todo)
-  ;;           (setq should-skip-entry t))))
-  ;;     (when should-skip-entry
-  ;;       (or (outline-next-heading)
-  ;;           (goto-char (point-max))))))
-
-  ;; (defun org-current-is-todo ()
-  ;;   (string= "TODO" (org-get-todo-state))))
-#+END_SRC
-#+BEGIN_SRC emacs-lisp
-;; (add-hook 'org-mode-hook #'auto-fill-mode)
-#+END_SRC
 Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 ;; (add-to-list 'evil-org-special-o/O 'item)
@@ -352,7 +326,7 @@ Add o/O to add new list item
   (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
         org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
         org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/Dropbox/orgfiles/schedule.org")))
-  (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+  ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
   (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) )))
 #+end_src
 ** Python

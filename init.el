@@ -26,6 +26,7 @@
        evil-goggles
        ;;fci
        hl-todo
+       ;;indent-guides
        modeline
        nav-flash
        ;;neotree
@@ -78,12 +79,12 @@
        ;;terraform
        tmux
        upload
-       wakatime
+       ;; wakatime
        vterm
 
        :lang
        ;;assembly
-       (cc +irony +rtags)
+       (cc +lsp +rtags)
        clojure
        common-lisp
        ;;coq
@@ -123,7 +124,7 @@
         +conda
         +lsp)
        ;;qt
-       ;;racket
+       racket
        ;;rest
        ;;ruby
        (rust +lsp)
