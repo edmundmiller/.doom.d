@@ -191,12 +191,6 @@ Get rid of modeline in eshell buffers
       :n "d" #'+notmuch/search-delete)
 #+END_SRC
 ** Org-mode
-Quickly insert a =emacs-lisp= src block
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (map-put org-structure-template-alist
-           "el" '("#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC")))
-#+END_SRC
 Bind capture to =C-c c=
 #+BEGIN_SRC emacs-lisp
 (define-key global-map "\C-cc" 'org-capture)
@@ -398,6 +392,86 @@ Add o/O to add new list item
           (min-width . 60)
           (min-height . 8))))
 #+END_SRC
+** hydra-posframe
+#+BEGIN_SRC emacs-lisp
+(def-package! hydra-posframe
+  :after hydra
+  :hook (after-init . hydra-posframe-enable))
+#+END_SRC
+Hydra for org src blocks
+
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-org-template (:color blue :hint nil)
+  "
+
+  ^((CODE))^            ^((CODE))^        ^((DRAW))^        ^((BLOCK))^  ^
+  ---------------------------------------------------------------------
+  %s(all-the-icons-fileicon \"emacs\") ^^^_e_lisp           ^%s(all-the-icons-alltheicon \"python\") ^^^^_p_ython       ^%s(all-the-icons-fileicon \"tex\") ^^^^^^^^_L_atex         %s(all-the-icons-octicon \"code\") _s_rc  ^
+  %s(all-the-icons-fileicon \"emacs\") ^^^elisp-_t_angled   ^%s(all-the-icons-fileicon \"R\") ^^^^^^^^^^^_R_            ^%s(all-the-icons-fileicon \"graphviz\") ^^^_d_ot           %s(all-the-icons-faicon \"sticky-note-o\") _n_ote
+  %s(all-the-icons-octicon \"terminal\") ^_z_sh             ^%s(all-the-icons-alltheicon \"rust\") ^^^^^^_r_ust          %s(all-the-icons-fileicon \"test-python\") i_P_ython       %s(all-the-icons-octicon \"info\") _i_nfo
+  %s(all-the-icons-fileicon \"terminal\") _b_ash            ^%s(all-the-icons-fileicon \"go\") ^^^^^^^^^^_g_o
+  %s(all-the-icons-fileicon \"solidity\") s_o_lidity         %s(all-the-icons-alltheicon \"javascript\") _j_avascript
+
+"
+  ;; CODE
+  ("e" (hot-expand "<s" "emacs-lisp"))
+  ("t" (hot-expand "<s" "emacs-lisp" ":tangle yes"))
+  ("z" (hot-expand "<s" "zsh" ":results output :exports both :shebang \"#!/usr/bin/env zsh\"\n"))
+  ("b" (hot-expand "<s" "bash" ":results output :exports both :shebang \"#!/usr/bin/env bash\"\n"))
+  ("o" (hot-expand "<s" "solidity"))
+  ;; CODE
+  ("p" (hot-expand "<s" "python"))
+  ("R" (hot-expand "<s" "R"))
+  ("r" (hot-expand "<s" "rust"))
+  ("g" (hot-expand "<s" "go"))
+  ("j" (hot-expand "<s" "javascript"))
+  ;; DRAW
+  ("L" (hot-expand "<L"))
+  ("d" (hot-expand "<s" "dot :file CHANGE.png"))
+  ("P" (hot-expand "<s" "iPython"))
+  ;; BLOCK
+  ("s" (hot-expand "<s"))
+  ("n" (hot-expand "<not"))
+  ("i" (hot-expand "<i"))
+  ("<" self-insert-command "ins")
+  ("q" nil "quit"))
+
+(require 'org-tempo) ; Required from org 9 onwards for old template expansion
+;; Reset the org-template expnsion system, this is need after upgrading to org 9 for some reason
+(setq org-structure-template-alist (eval (car (get 'org-structure-template-alist 'standard-value))))
+(defun hot-expand (str &optional mod header)
+  "Expand org template.
+
+STR is a structure template string recognised by org like <s. MOD is a
+string with additional parameters to add the begin line of the
+structure element. HEADER string includes more parameters that are
+prepended to the element after the #+HEADER: tag."
+  (let (text)
+    (when (region-active-p)
+      (setq text (buffer-substring (region-beginning) (region-end)))
+      (delete-region (region-beginning) (region-end))
+      (deactivate-mark))
+    (when header (insert "#+HEADER: " header) (forward-line))
+    (insert str)
+    (org-tempo-complete-tag)
+    (when mod (insert mod) (forward-line))
+    (when text (insert text))))
+
+(define-key org-mode-map "<"
+  (lambda () (interactive)
+    (if (or (region-active-p) (looking-back "^"))
+        (hydra-org-template/body)
+      (self-insert-command 1))))
+
+(eval-after-load "org"
+  '(cl-pushnew
+    '("not" . "note")
+    org-structure-template-alist))
+#+END_SRC
+
+#+RESULTS:
+: ((not . note) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
+
 ** Org
 *** Auto-org-md
 #+BEGIN_SRC emacs-lisp

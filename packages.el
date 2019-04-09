@@ -19,6 +19,7 @@
 ;; Experimental
 (package! tox)
 ;; (package! emms)
+(package! hydra-posframe :recipe (:fetcher github :repo "ladicle/hydra-posframe" :files ("*")))
 
 (provide 'packages)
 ;;; packages.el ends here
