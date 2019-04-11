@@ -273,9 +273,9 @@ Org Capture Templates
            (file+olp+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
            "* %? %^g \n ")
 
-          ("d" "Lab To Do" entry
-           (file+headline "~/Dropbox/orgfiles/Lab_Notebook.org" "To Do")
-           "** TODO %?\n%T" :prepend t)
+          ;; ("d" "Lab To Do" entry
+          ;;  (file+headline "~/Dropbox/orgfiles/GTD.org" "To Do")
+          ;;  "** TODO %?\n%T" :prepend t)
 
           ("o" "Work To Do" entry
            (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
@@ -313,6 +313,52 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 ;; (add-to-list 'evil-org-special-o/O 'item)
 #+END_SRC
+*** org-agenda-custom
+#+BEGIN_SRC emacs-lisp
+(def-package! org-super-agenda
+  ;; :commands (org-super-agenda-mode)
+  :after org
+  :init (advice-add #'org-super-agenda-mode :around #'doom*shut-up)
+  :config
+  (setq org-super-agenda-groups
+        '((:name "Log\n"
+                 :log t)  ; Automatically named "Log"
+          (:name "Schedule\n"
+                 :time-grid t)
+          (:name "Today\n"
+                 :scheduled today)
+          (:name "Due today\n"
+                 :deadline today)
+          (:name "Overdue\n"
+                 :deadline past)
+          (:name "Due soon\n"
+                 :deadline future)
+          (:name "Waiting\n"
+                 :todo "WAIT"
+                 :order 98)
+          (:name "Scheduled earlier\n"
+                 :scheduled past))))
+#+END_SRC
+#+begin_src emacs-lisp
+(setq org-agenda-custom-commands
+      '(("g" . "GTD contexts")
+        ("ga" "All TODO" alltodo nil
+         ((org-agenda-sorting-strategy '(tag-up priority-up))))
+
+        ("gl" "Lab" tags-todo "lab"
+         ((org-agenda-sorting-strategy '(priority-up))
+          ;; (org-agenda-prefix-format "[ ] %T: ")
+          (org-agenda-compact-blocks t)))
+
+        ("gw" "Work" tags-todo "@work"
+         ((org-agenda-sorting-strategy '(priority-up))))
+        ;; (org-agenda-compact-blocks t)))
+
+        ("gs" "Study Time" tags-todo "@study"
+         ((org-agenda-sorting-strategy '(priority-up))))
+
+        ("ge" "Emacs Time" tags-todo "@emacs")))
+#+end_src
 *** org-gcal
 #+begin_src emacs-lisp
 (def-package! org-gcal
@@ -323,6 +369,10 @@ Add o/O to add new list item
   ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
   (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) )))
 #+end_src
+*** org-kanban
+#+BEGIN_SRC emacs-lisp
+(def-package! org-kanban)
+#+END_SRC
 ** Python
 *** Tox
 #+BEGIN_SRC emacs-lisp

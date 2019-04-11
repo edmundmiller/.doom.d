@@ -2,7 +2,6 @@
 
 ;; Private
 (package! edit-server)
-;; (package! org-gcal)
 (package! ivy-yasnippet)
 (package! smtpmail)
 (package! auto-org-md)
@@ -17,8 +16,10 @@
 (package! org-gcal)
 (package! dired-sidebar)
 ;; Experimental
+(package! org-kanban)
+(package! org-super-agenda)
 (package! tox)
-;; (package! emms)
+(package! emms)
 (package! hydra-posframe :recipe (:fetcher github :repo "ladicle/hydra-posframe" :files ("*")))
 
 (provide 'packages)

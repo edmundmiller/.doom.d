@@ -15,7 +15,8 @@
         +auto)
        ;;helm
        ;;ido
-       ivy
+       (ivy
+        +childframe)
 
        :ui
        ;;deft
@@ -44,7 +45,7 @@
        :editor
        fold
        (format +onsave)
-       ;;lispy
+       lispy
        multiple-cursors
        ;;parinfer
        rotate-text
