@@ -1,156 +1,159 @@
 ;;; private/emiller/init.el -*- lexical-binding: t; -*-
 
-(doom! :feature
-       ;;debugger
-       eval
-       (evil +everywhere)
-       file-templates
-       (lookup
-        +docsets)
-       snippets
-       workspaces
+(doom!
 
-       :completion
-       (company
-        +auto)
-       ;;helm
-       ;;ido
-       (ivy
-        +childframe)
+ :completion
+ (company
+  +auto)
+ ;;helm
+ ;;ido
+ (ivy
+  +childframe)
 
-       :ui
-       ;;deft
-       doom
-       doom-dashboard
-       ;;doom-modeline
-       doom-quit
-       evil-goggles
-       ;;fci
-       hl-todo
-       ;;indent-guides
-       modeline
-       nav-flash
-       ;;neotree
-       ;;treemacs
-       (popup
-        +all
-        +defaults)
-       ;;pretty-code
-       ;;tabbar
-       ;;unicode
-       vc-gutter
-       vi-tilde-fringe
-       window-select
+ :ui
+ ;;deft
+ doom
+ doom-dashboard
+ ;;doom-modeline
+ doom-quit
+ ;;fill-column
+ hl-todo
+ ;;indent-guides
+ modeline
+ nav-flash
+ ;;neotree
+ ophints
+ (popup
+  +all
+  +defaults)
+ ;;pretty-code
+ ;;tabbar
+ ;;unicode
+ vc-gutter
+ vi-tilde-fringe
+ window-select
+ workspaces
 
-       :editor
-       fold
-       (format +onsave)
-       lispy
-       multiple-cursors
-       ;;parinfer
-       rotate-text
+ :editor
+ (evil +everywhere)
+ file-templates
+ fold
+ (format +onsave)
+ lispy
+ multiple-cursors
+ ;;parinfer
+ rotate-text
+ snippets
 
-       :emacs
-       (dired
-        ;;+ranger
-        +icons
-        )
-       electric
-       eshell
-       imenu
-       ;;term
-       vc
+ :emacs
+ (dired
+  ;;+ranger
+  +icons
+  )
+ electric
+ eshell
+ imenu
+ ;;term
+ vc
 
-       :tools
-       ;;ansible
-       docker
-       editorconfig
-       ein
-       flycheck
-       flyspell
-       gist
-       lsp
-       ;;macos
-       magit
-       make
-       password-store
-       pdf
-       ;;prodigy
-       rgb
-       ;;terraform
-       tmux
-       upload
-       ;; wakatime
-       vterm
+ :tools
+ ;;ansible
+ docker
+ editorconfig
+ ein
+ eval
+ flycheck
+ flyspell
+ gist
+ (lookup
+  +docsets)
+ lsp
+ ;;macos
+ magit
+ make
+ password-store
+ pdf
+ ;;prodigy
+ reference
+ rgb
+ ;;terraform
+ tmux
+ upload
+ ;; wakatime
+ vterm
 
-       :lang
-       ;;assembly
-       (cc +lsp +rtags)
-       clojure
-       common-lisp
-       ;;coq
-       ;;crystal
-       ;;csharp
-       data
-       ;;erlang
-       ;;elixir
-       ;;elm
-       emacs-lisp
-       ess
-       go
-       (haskell +lsp)
-       ;;hy
-       ;;idris
-       ;;(java +meghanada)
-       (javascript +lsp)
-       ;;julia
-       (latex +ref)
-       ;;ledger
-       ;;lua
-       markdown
-       ;;nim
-       nix
-       ;;ocaml
-       (org
-        +attach
-        +babel
-        +capture
-        +export
-        +present)
-       perl
-       ;;php
-       ;;plantuml
-       ;;purescript
-       (python
-        +conda
-        +lsp)
-       ;;qt
-       racket
-       ;;rest
-       ;;ruby
-       (rust +lsp)
-       ;;scala
-       (sh +fish)
-       solidity
-       snakemake
-       ;;swift
-       web
-       ;;vala
+ :lang
+ ;;assembly
+ (cc +lsp)
+ clojure
+ common-lisp
+ ;;coq
+ ;;crystal
+ ;;csharp
+ data
+ ;;erlang
+ ;;elixir
+ ;;elm
+ emacs-lisp
+ ess
+ go
+ (haskell +lsp)
+ ;;hy
+ ;;idris
+ ;;(java +meghanada)
+ (javascript +lsp)
+ ;;julia
+ (latex +ref)
+ ;;ledger
+ ;;lua
+ markdown
+ ;;nim
+ nix
+ ;;ocaml
+ (org
+  +attach
+  +babel
+  +capture
+  +export
+  +present)
+ perl
+ ;;php
+ ;;plantuml
+ ;;purescript
+ (python
+  +conda
+  ;; +lsp
+  )
+ ;;qt
+ racket
+ rest
+ ;;ruby
+ (rust +lsp)
+ ;;scala
+ (sh +fish)
+ solidity
+ snakemake
+ ;;swift
+ web
+ ;;vala
 
-       :app
-       ;;(email +gmail)
-       ;;irc
-       notmuch
-       (rss +org)
-       ;;twitter
-       (write
-       +wordnut
-       +langtool)
+ :email
+ ;;(email +gmail)
+ notmuch
+ ;; (wanderlust +gmail)                    ; WIP
 
-       :collab
-       floobits
-       impatient-mode
+ :app
+ ;;irc
+ (rss +org)
+ ;;twitter
+ (write
+  +wordnut
+  +langtool)
 
-       :config
-       (default +bindings +snippets +smartparnes)
-       literate)
+ :collab
+ floobits
+ impatient-mode
+
+ :config
+ (default +bindings +snippets +smartparnes)
+ literate)

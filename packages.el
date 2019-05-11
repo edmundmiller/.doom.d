@@ -16,7 +16,7 @@
 (package! org-gcal)
 (package! dired-sidebar)
 ;; Experimental
-(package! org-kanban)
+(package! reformatter)
 (package! org-super-agenda)
 (package! tox)
 (package! emms)

@@ -25,7 +25,7 @@ Change font
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-opera)
+;; (setq doom-theme 'doom-molokai)
 #+END_SRC
 Change the banner
 #+BEGIN_SRC emacs-lisp
@@ -59,6 +59,9 @@ Load stuff in the background when idle
 #+BEGIN_SRC emacs-lisp
 (map!
  (:leader
+   (:prefix "f"
+     :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
+     :desc "Browse dotfiles" :n "O" #'+emiller/browse-dotfiles)
    (:prefix "i"
      :desc "Insert date" :n "d" #'insert-todays-date)
    (:prefix "n"
@@ -134,6 +137,10 @@ Helpful for ~Snakemake~
 (global-set-key (kbd "C-c d") 'insert-todays-date)
 #+END_SRC
 * Modules
+** cc
+#+begin_src emacs-lisp
+(setq ccls-executable "/home/emiller/src/emacs/ccls/Release/ccls")
+#+end_src
 ** Dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
@@ -183,14 +190,20 @@ Get rid of modeline in eshell buffers
 (setenv "EDITOR" "emacsclient")
 #+end_SRC
 ** Notmuch
+Add delete, which adds the ~trash~ tag
+Counsel notmuch
 #+BEGIN_SRC emacs-lisp
 (map! :after notmuch
       :map notmuch-tree-mode-map
       :n "d" #'+notmuch/tree-delete
       :map notmuch-search-mode-map
-      :n "d" #'+notmuch/search-delete)
+      :n "d" #'+notmuch/search-delete
+      (:leader
+        (:prefix "/"
+          :desc "Browse mode notes" :n "m" #'counsel-notmuch)))
 #+END_SRC
 ** Org-mode
+*** Misc
 Bind capture to =C-c c=
 #+BEGIN_SRC emacs-lisp
 (define-key global-map "\C-cc" 'org-capture)
@@ -221,11 +234,9 @@ Set one archive file to rule them all
 Set Files that are pulled into ~org-agenda~
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq org-agenda-files (list "~/Dropbox/orgfiles/gcal.org"
-                               "~/Dropbox/orgfiles/i.org"
+  (setq org-agenda-files (list "~/Dropbox/orgfiles/i.org"
                                "~/Dropbox/orgfiles/o.org"
                                "~/Dropbox/orgfiles/Lab_Notebook.org"
-                               "~/Dropbox/orgfiles/Lab_schedule.org"
                                "~/Dropbox/orgfiles/schedule.org"
                                "~/Dropbox/orgfiles/gtd/gtd.org"
                                "~/Dropbox/orgfiles/gtd/tickler.org"
@@ -306,8 +317,10 @@ Set org-refile to utilize helm or ivy
 
   (setq org-refile-targets
         '((nil :maxlevel . 3)
-          (org-agenda-files :maxlevel . 3)
-          ("~/Dropbox/orgfiles/gtd/someday.org" :level . 2))))
+          ("~/Dropbox/orgfiles/i.org" :maxlevel . 4)
+          ("~/Dropbox/orgfiles/gtd/gtd.org" :maxlevel . 4)
+          ("~/Dropbox/orgfiles/gtd/someday.org" :maxlevel . 3)
+          ("~/Dropbox/orgfiles/gtd/tickler.org" :maxlevel . 4))))
 #+END_SRC
 Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
@@ -340,24 +353,31 @@ Add o/O to add new list item
                  :scheduled past))))
 #+END_SRC
 #+begin_src emacs-lisp
-(setq org-agenda-custom-commands
-      '(("g" . "GTD contexts")
-        ("ga" "All TODO" alltodo nil
-         ((org-agenda-sorting-strategy '(tag-up priority-up))))
+(after! org
+  (setq org-agenda-custom-commands
+        '(("c" "Simple agenda view"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (agenda "" nil)
+            (alltodo "")))
+          ("g" . "GTD contexts")
+          ("ga" "All TODO" alltodo nil
+           ((org-agenda-sorting-strategy '(tag-up priority-up))))
 
-        ("gl" "Lab" tags-todo "lab"
-         ((org-agenda-sorting-strategy '(priority-up))
-          ;; (org-agenda-prefix-format "[ ] %T: ")
-          (org-agenda-compact-blocks t)))
+          ("gl" "Lab" tags-todo "lab"
+           ((org-agenda-sorting-strategy '(priority-up))
+            ;; (org-agenda-prefix-format "[ ] %T: ")
+            (org-agenda-compact-blocks t)))
 
-        ("gw" "Work" tags-todo "@work"
-         ((org-agenda-sorting-strategy '(priority-up))))
-        ;; (org-agenda-compact-blocks t)))
+          ("gw" "Work" tags-todo "@work"
+           ((org-agenda-sorting-strategy '(priority-up))))
+          ;; (org-agenda-compact-blocks t)))
 
-        ("gs" "Study Time" tags-todo "@study"
-         ((org-agenda-sorting-strategy '(priority-up))))
+          ("gs" "Study Time" tags-todo "@study"
+           ((org-agenda-sorting-strategy '(priority-up))))
 
-        ("ge" "Emacs Time" tags-todo "@emacs")))
+          ("ge" "Emacs Time" tags-todo "@emacs"))))
 #+end_src
 *** org-gcal
 #+begin_src emacs-lisp
@@ -378,6 +398,23 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 (def-package! tox)
 #+END_SRC
+*** lsp-python-ms
+#+begin_src emacs-lisp
+;; (def-package! lsp-python-ms
+;;   :ensure nil
+;;   :hook (python-mode . lsp)
+;;   :config
+;; (setq lsp-python-ms-dir
+;;         (expand-file-name "~/src/emacs/python-language-server/output/bin/Release/")))
+#+end_src
+** Reference
+#+begin_src emacs-lisp
+(setq reftex-default-bibliography '("~/Dropbox/orgfiles/reference/Bibliography.bib"))
+(setq bibtex-completion-bibliography "~/Dropbox/orgfiles/reference/Bibliography.bib" ;the major bibtex file
+      bibtex-completion-library-path "~/Dropbox/orgfiles/reference/pdf/" ;the directory to store pdfs
+      bibtex-completion-notes-path "~/Dropbox/orgfiles/ref-notes.org" ;the note file for reference notes
+      )
+#+end_src
 ** Rust
 #+BEGIN_SRC emacs-lisp
 (setq +rust-src-dir "~/src/rust/src/")
@@ -419,14 +456,19 @@ Add o/O to add new list item
 #+END_SRC
 ** Ivy-yasnippet
 #+BEGIN_SRC emacs-lisp
+(after! ivy
 (def-package! ivy-yasnippet
   :commands (ivy-yasnippet)
   :config
   (map!
    (:leader
      (:prefix "s"
-       :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet))))
+       :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet)))))
 #+END_SRC
+** Ivy Icons
+#+begin_src emacs-lisp
+(setq +ivy-buffer-icons t)
+#+end_src
 ** Graphviz-dot-mode
 #+BEGIN_SRC emacs-lisp
 (def-package! graphviz-dot-mode)
@@ -449,10 +491,9 @@ Add o/O to add new list item
   :hook (after-init . hydra-posframe-enable))
 #+END_SRC
 Hydra for org src blocks
-
 #+BEGIN_SRC emacs-lisp
-(defhydra hydra-org-template (:color blue :hint nil)
-  "
+  (defhydra hydra-org-template (:color blue :hint nil)
+    "
 
   ^((CODE))^            ^((CODE))^        ^((DRAW))^        ^((BLOCK))^  ^
   ---------------------------------------------------------------------
@@ -463,65 +504,67 @@ Hydra for org src blocks
   %s(all-the-icons-fileicon \"solidity\") s_o_lidity         %s(all-the-icons-alltheicon \"javascript\") _j_avascript
 
 "
-  ;; CODE
-  ("e" (hot-expand "<s" "emacs-lisp"))
-  ("t" (hot-expand "<s" "emacs-lisp" ":tangle yes"))
-  ("z" (hot-expand "<s" "zsh" ":results output :exports both :shebang \"#!/usr/bin/env zsh\"\n"))
-  ("b" (hot-expand "<s" "bash" ":results output :exports both :shebang \"#!/usr/bin/env bash\"\n"))
-  ("o" (hot-expand "<s" "solidity"))
-  ;; CODE
-  ("p" (hot-expand "<s" "python"))
-  ("R" (hot-expand "<s" "R"))
-  ("r" (hot-expand "<s" "rust"))
-  ("g" (hot-expand "<s" "go"))
-  ("j" (hot-expand "<s" "javascript"))
-  ;; DRAW
-  ("L" (hot-expand "<L"))
-  ("d" (hot-expand "<s" "dot :file CHANGE.png"))
-  ("P" (hot-expand "<s" "iPython"))
-  ;; BLOCK
-  ("s" (hot-expand "<s"))
-  ("n" (hot-expand "<not"))
-  ("i" (hot-expand "<i"))
-  ("<" self-insert-command "ins")
-  ("q" nil "quit"))
+    ;; CODE
+    ("e" (hot-expand "<s" "emacs-lisp"))
+    ("t" (hot-expand "<s" "emacs-lisp" ":tangle yes"))
+    ("z" (hot-expand "<s" "zsh" ":results output :exports both :shebang \"#!/usr/bin/env zsh\"\n"))
+    ("b" (hot-expand "<s" "bash" ":results output :exports both :shebang \"#!/usr/bin/env bash\"\n"))
+    ("o" (hot-expand "<s" "solidity"))
+    ;; CODE
+    ("p" (hot-expand "<s" "python"))
+    ("R" (hot-expand "<s" "R"))
+    ("r" (hot-expand "<s" "rust"))
+    ("g" (hot-expand "<s" "go"))
+    ("j" (hot-expand "<s" "javascript"))
+    ;; DRAW
+    ("L" (hot-expand "<L"))
+    ("d" (hot-expand "<s" "dot :file CHANGE.png"))
+    ("P" (hot-expand "<s" "iPython"))
+    ;; BLOCK
+    ("s" (hot-expand "<s"))
+    ("n" (hot-expand "<not"))
+    ("i" (hot-expand "<i"))
+    ("<" self-insert-command "ins")
+    ("q" nil "quit"))
 
-(require 'org-tempo) ; Required from org 9 onwards for old template expansion
-;; Reset the org-template expnsion system, this is need after upgrading to org 9 for some reason
-(setq org-structure-template-alist (eval (car (get 'org-structure-template-alist 'standard-value))))
-(defun hot-expand (str &optional mod header)
-  "Expand org template.
+  (require 'org-tempo)  ; Required from org 9 onwards for old template expansion
+  ;; Reset the org-template expnsion system, this is need after upgrading to org 9 for some reason
+  (setq org-structure-template-alist (eval (car (get 'org-structure-template-alist 'standard-value))))
+  (defun hot-expand (str &optional mod header)
+    "Expand org template.
 
 STR is a structure template string recognised by org like <s. MOD is a
 string with additional parameters to add the begin line of the
 structure element. HEADER string includes more parameters that are
 prepended to the element after the #+HEADER: tag."
-  (let (text)
-    (when (region-active-p)
-      (setq text (buffer-substring (region-beginning) (region-end)))
-      (delete-region (region-beginning) (region-end))
-      (deactivate-mark))
-    (when header (insert "#+HEADER: " header) (forward-line))
-    (insert str)
-    (org-tempo-complete-tag)
-    (when mod (insert mod) (forward-line))
-    (when text (insert text))))
+    (let (text)
+      (when (region-active-p)
+        (setq text (buffer-substring (region-beginning) (region-end)))
+        (delete-region (region-beginning) (region-end))
+        (deactivate-mark))
+      (when header (insert "#+HEADER: " header) (forward-line))
+      (insert str)
+      (org-tempo-complete-tag)
+      (when mod (insert mod) (forward-line))
+      (when text (insert text))))
 
-(define-key org-mode-map "<"
-  (lambda () (interactive)
-    (if (or (region-active-p) (looking-back "^"))
-        (hydra-org-template/body)
-      (self-insert-command 1))))
+  (define-key org-mode-map "<"
+    (lambda () (interactive)
+      (if (or (region-active-p) (looking-back "^"))
+          (hydra-org-template/body)
+        (self-insert-command 1))))
 
-(eval-after-load "org"
-  '(cl-pushnew
-    '("not" . "note")
-    org-structure-template-alist))
+  (eval-after-load "org"
+    '(cl-pushnew
+      '("not" . "note")
+      org-structure-template-alist))
 #+END_SRC
-
-#+RESULTS:
-: ((not . note) (a . export ascii) (c . center) (C . comment) (e . example) (E . export) (h . export html) (l . export latex) (q . quote) (s . src) (v . verse))
-
+** mastodon
+#+BEGIN_SRC emacs-lisp
+(def-package! mastodon
+  :config
+  (setq mastodon-instance-url "https://mastodon.social"))
+#+END_SRC
 ** Org
 *** Auto-org-md
 #+BEGIN_SRC emacs-lisp
@@ -572,6 +615,16 @@ Make it only one week
 ;; (after! elfeed
 ;;   (setq elfeed-search-filter "@1-week-ago +unread"))
 #+END_SRC
+** Reformatter
+#+begin_src emacs-lisp
+(def-package! reformatter
+  :config
+  (defconst Rscript-command "Rscript")
+  (reformatter-define styler
+    :program Rscript-command
+    :args (list "--vanilla" "-e" (format "styler::style_file(%S)" buffer-file-name))
+    :lighter " styler"))
+#+end_src
 ** package-lint
 #+BEGIN_SRC emacs-lisp
 (def-package! package-lint)
