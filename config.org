@@ -80,6 +80,8 @@ Load stuff in the background when idle
      :desc "APP: rss" :n "," #'=rss
      :desc "vterm in Popup" :n "t" #'+vterm/open-popup-in-project
      :desc "vterm" :n "T" #'+vterm/open)
+   (:prefix "/"
+     :desc "Search project" :n "/" #'+default/search-project)
    (:prefix "p"
      :desc "Counsel-ag" :n "f" #'counsel-ag)
    (:prefix "g"
