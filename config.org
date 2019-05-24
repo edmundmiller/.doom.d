@@ -391,10 +391,6 @@ Add o/O to add new list item
   ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
   (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) )))
 #+end_src
-*** org-kanban
-#+BEGIN_SRC emacs-lisp
-(def-package! org-kanban)
-#+END_SRC
 ** Python
 *** Tox
 #+BEGIN_SRC emacs-lisp
@@ -561,12 +557,6 @@ prepended to the element after the #+HEADER: tag."
       '("not" . "note")
       org-structure-template-alist))
 #+END_SRC
-** mastodon
-#+BEGIN_SRC emacs-lisp
-(def-package! mastodon
-  :config
-  (setq mastodon-instance-url "https://mastodon.social"))
-#+END_SRC
 ** Org
 *** Auto-org-md
 #+BEGIN_SRC emacs-lisp
@@ -633,37 +623,6 @@ out")
 ** package-lint
 #+BEGIN_SRC emacs-lisp
 (def-package! package-lint)
-#+END_SRC
-** Treemacs
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
-#+BEGIN_SRC emacs-lisp
-;; (after! treemacs-evil
-;;   (set-evil-initial-state! 'treemacs-mode 'motion)
-;;   (map! :map treemacs-mode-map
-;;         :m [escape] #'delete-window
-;;         :m "j"   #'treemacs-next-line
-;;         :m "k"   #'treemacs-previous-line
-;;         :m "M-j" #'treemacs-next-neighbour
-;;         :m "M-k" #'treemacs-previous-neighbour
-;;         :m "M-J" #'treemacs-next-line-other-window
-;;         :m "M-K" #'treemacs-previous-line-other-window
-;;         :m "th"  #'treemacs-toggle-show-dotfiles
-;;         :m "tw"  #'treemacs-toggle-fixed-width
-;;         :m "tv"  #'treemacs-fringe-indicator-mode
-;;         :m "tf"  #'treemacs-follow-mode
-;;         :m "ta"  #'treemacs-filewatch-mode
-;;         :m "tg"  #'treemacs-git-mode
-;;         :m "w"   #'treemacs-set-width
-;;         :m "b"   #'treemacs-add-bookmark
-;;         :m "?"   #'treemacs-helpful-hydra
-;;         :m "RET" #'treemacs-RET-action
-;;         :m "yr"     #'treemacs-copy-project-root
-;;         :m "yy"     #'treemacs-copy-path-at-point
-;;         :m "gr"     #'treemacs-refresh
-;;         :m [down-mouse-1] #'ignore
-;;         :m "h"      #'treemacs-root-up
-;;         :m "l"      #'treemacs-root-down))
 #+END_SRC
 ** Write
 *** Languagetool
