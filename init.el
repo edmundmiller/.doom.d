@@ -7,8 +7,7 @@
   +auto)
  ;;helm
  ;;ido
- (ivy
-  +childframe)
+ ivy
 
  :ui
  ;;deft
@@ -51,10 +50,12 @@
   +icons
   )
  electric
- eshell
- imenu
- ;;term
  vc
+
+ :term
+ eshell
+ ;;term
+ vterm
 
  :tools
  ;;ansible
@@ -71,7 +72,7 @@
  ;;macos
  magit
  make
- password-store
+ pass
  pdf
  ;;prodigy
  reference
@@ -80,7 +81,6 @@
  tmux
  upload
  ;; wakatime
- vterm
 
  :lang
  ;;assembly
