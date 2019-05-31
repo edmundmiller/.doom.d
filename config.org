@@ -25,7 +25,7 @@ Change font
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-;; (setq doom-theme 'doom-molokai)
+(setq doom-theme 'doom-gruvbox)
 #+END_SRC
 Change the banner
 #+BEGIN_SRC emacs-lisp
