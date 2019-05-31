@@ -7,6 +7,7 @@ default: &default-steps
     - run: apt-get update && apt-get install make
     - run: emacs --version
     - run: git clone https://github.com/Emiller88/doom-emacs-private.git ~/.config/doom
+    - run: rm -rf ~/.emacs.d
     - run: git clone https://github.com/Emiller88/doom-emacs.git ~/.emacs.d
     - run: cd ~/.emacs.d && YES=1 ./bin/doom install
     - run: emacs
