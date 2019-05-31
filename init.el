@@ -47,7 +47,7 @@
  :emacs
  (dired
   ;;+ranger
-  +icons
+  ;; +icons
   )
  electric
  vc
