@@ -9,8 +9,10 @@ default: &default-steps
     - run: git clone https://github.com/Emiller88/doom-emacs-private.git ~/.config/doom
     - run: rm -rf ~/.emacs.d
     - run: git clone https://github.com/Emiller88/doom-emacs.git ~/.emacs.d
-    - run: cd ~/.emacs.d && YES=1 ./bin/doom install
-    - run: emacs
+    - run: cd ~/.emacs.d && YES=1 ./bin/doom -y -i install
+    - run: bin/doom version
+    - bin/doom -d test
+    # - bin/doom -y compile
 
 jobs:
   test-emacs-25:
