@@ -405,6 +405,14 @@ Add o/O to add new list item
 ;; (setq lsp-python-ms-dir
 ;;         (expand-file-name "~/src/emacs/python-language-server/output/bin/Release/")))
 #+end_src
+*** ein
+#+BEGIN_SRC emacs-lisp
+(set! :ein-notebook-dir "/home/emiller/src/ml/")
+
+(map! :map ein:notebook-mode-map
+      :localleader
+      "," #'+ein-hydra/body)
+#+END_SRC
 ** Reference
 #+begin_src emacs-lisp
 (setq reftex-default-bibliography '("~/Dropbox/orgfiles/reference/Bibliography.bib"))
@@ -447,10 +455,6 @@ Add o/O to add new list item
 ;; (def-package! edit-server
 ;;     :config
 ;;     (edit-server-start))
-#+END_SRC
-** Ein
-#+BEGIN_SRC emacs-lisp
-;; (set! :ein-notebook-dir "/home/emiller/src/notebooks/")
 #+END_SRC
 ** Ivy-yasnippet
 #+BEGIN_SRC emacs-lisp
