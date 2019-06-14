@@ -109,10 +109,34 @@ Load stuff in the background when idle
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
-(map! :after helm-files
-      :map helm-find-files-map
-      "C-h" #'helm-find-files-up-one-level
-      "C-l" #'helm-ff-RET)
+;; (map! :after helm-files
+;;       :map helm-find-files-map
+;;       ;; "C-h" #'helm-find-files-up-one-level
+;;       ;; "C-l" #'helm-ff-RET)
+;;       ("<C-backspace>" #'helm-find-files-up-one-level))
+
+;; (map! :after helm
+;;       :map helm-map
+;;       ([tab] #'helm-execute-if-single-persistent-action)
+;;       ("C-i" #'helm-execute-persistent-action))
+
+;; ;;;###autoload
+;; (defun double-flash-mode-line ()
+;;   "Flash the modeline"
+;;  (let ((flash-sec (/ 1.0 20)))
+;;    (invert-face 'mode-line)
+;;    (run-with-timer flash-sec nil #'invert-face 'mode-line)
+;;    (run-with-timer (* 2 flash-sec) nil #'invert-face 'mode-line)
+;;    (run-with-timer (* 3 flash-sec) nil #'invert-face 'mode-line)))
+
+;; ;;;###autoload
+;; (defun helm-execute-if-single-persistent-action (&optional attr split-onewindow)
+;;  "Execute persistent action if the candidate list is less than 2"
+;;  (interactive)
+;;  (with-helm-alive-p
+;;    (if (> (helm-get-candidate-number) 2)
+;;        (double-flash-mode-line)
+;;      (helm-execute-persistent-action))))
 #+END_SRC
 * Functions
 Edit i.org
