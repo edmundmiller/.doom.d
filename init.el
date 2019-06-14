@@ -122,6 +122,7 @@
  ;;purescript
  (python
   +conda
+  +pyenv
   ;; +lsp
   )
  ;;qt
