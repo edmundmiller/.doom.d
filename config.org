@@ -215,6 +215,10 @@ Get rid of modeline in eshell buffers
 #+BEGIN_SRC emacs-lisp
 (setenv "EDITOR" "emacsclient")
 #+end_SRC
+*** GitHub Reviews
+#+BEGIN_SRC emacs-lisp
+(def-package! github-review)
+#+END_SRC
 ** Notmuch
 Add delete, which adds the ~trash~ tag
 Counsel notmuch
