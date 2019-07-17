@@ -75,7 +75,7 @@ Load stuff in the background when idle
      :desc "eShell" :n "E" #'+eshell/open
      :desc "easy-hugo" :n "g" #'easy-hugo
      :desc "i.org" :n "o" #'emiller/visit-i-org
-     :desc "APP: notmuch" :n "m" #'=notmuch
+     :desc "APP: mu4e" :n "m" #'=mu4e
      :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
      :desc "APP: rss" :n "," #'=rss
      :desc "vterm in Popup" :n "t" #'+vterm/open-popup-in-project
@@ -218,6 +218,38 @@ Get rid of modeline in eshell buffers
 *** GitHub Reviews
 #+BEGIN_SRC emacs-lisp
 (def-package! github-review)
+#+END_SRC
+** mu4e
+#+BEGIN_SRC emacs-lisp
+;; Each path is relative to `+mu4e-mu4e-mail-path', which is ~/.mail by default
+(after! mu4e-maildirs-extension
+  (set-email-account! "Gmail"
+                      '((mu4e-sent-folder       . "/Gmail/[Gmail]/Sent Mail")
+                        (mu4e-drafts-folder     . "/Gmail/[Gmail]/Drafts")
+                        (mu4e-trash-folder      . "/Gmail/[Gmail]/Trash")
+                        (mu4e-refile-folder     . "/Gmail/[Gmail]/Archive")
+                        (smtpmail-smtp-user     . "edmund.a.miller@gmail.com")
+                        (user-mail-address      . "edmund.a.miller@gmail.com")
+                        (mu4e-compose-signature . "---\nEdmund Miller"))
+                      t)
+
+  (set-email-account! "Eman"
+                      '((mu4e-sent-folder       . "/Eman/[Gmail]/Sent Mail")
+                        (mu4e-drafts-folder     . "/Eman/[Gmail]/Drafts")
+                        (mu4e-trash-folder      . "/Eman/[Gmail]/Trash")
+                        (mu4e-refile-folder     . "/Eman/[Gmail]/Archive")
+                        (user-mail-address      . "eman0088@gmail.com")
+                        (mu4e-compose-signature . "---\nEdmund Miller"))
+                      t)
+
+  (set-email-account! "UTD"
+                      '((mu4e-sent-folder       . "/UTD/Sent Items")
+                        (mu4e-drafts-folder     . "/UTD/Drafts")
+                        (mu4e-trash-folder      . "/UTD/Deleted Items")
+                        (mu4e-refile-folder     . "/UTD/Archive")
+                        (user-mail-address      . "Edmund.Miller@utdallas.edu")
+                        (mu4e-compose-signature . "---\nEdmund Miller"))
+                      t))
 #+END_SRC
 ** Notmuch
 Add delete, which adds the ~trash~ tag
