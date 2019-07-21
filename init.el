@@ -10,7 +10,7 @@
  ivy
 
  :ui
- ;;deft
+ deft
  doom
  doom-dashboard
  ;;doom-modeline
@@ -59,6 +59,8 @@
 
  :tools
  ;;ansible
+ debugger                    ; FIXME stepping through code, to help you add bugs
+ direnv
  docker
  editorconfig
  ein
@@ -77,7 +79,7 @@
  ;;prodigy
  reference
  rgb
- ;;terraform
+ terraform
  tmux
  upload
  ;; wakatime
@@ -122,7 +124,7 @@
  ;;purescript
  (python
   +conda
-  +pyenv
+  ;; +pyenv
   ;; +lsp
   )
  ;;qt
@@ -139,8 +141,8 @@
  ;;vala
 
  :email
- ;;(email +gmail)
- notmuch
+ (mu4e);;  +gmail)       ; WIP
+ ;; notmuch
  ;; (wanderlust +gmail)                    ; WIP
 
  :app
