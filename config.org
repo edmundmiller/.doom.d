@@ -71,17 +71,13 @@ Load stuff in the background when idle
      :desc "Trello => Org" :n "t" (lambda! (org-trello-sync-buffer t)))
    (:prefix "o"
      :desc "Calc" :n "c" #'calc
-     :desc "eShell in Popup" :n "e" #'+eshell/open-popup
-     :desc "eShell" :n "E" #'+eshell/open
      :desc "easy-hugo" :n "g" #'easy-hugo
      :desc "i.org" :n "o" #'emiller/visit-i-org
      :desc "APP: mu4e" :n "m" #'=mu4e
      :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
-     :desc "APP: rss" :n "," #'=rss
-     :desc "vterm in Popup" :n "t" #'+vterm/open-popup-in-project
-     :desc "vterm" :n "T" #'+vterm/open)
-   (:prefix "/"
-     :desc "Search project" :n "/" #'+default/search-project)
+     :desc "emms" :n "s" #'emms
+     :desc "proced" :n "p" #'proced
+     :desc "APP: rss" :n "," #'=rss)
    (:prefix "p"
      :desc "Counsel-ag" :n "f" #'counsel-ag)
    (:prefix "g"
