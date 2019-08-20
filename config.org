@@ -180,8 +180,74 @@ Get rid of dired message when using a
 #+END_SRC
 ** eShell
 Get rid of modeline in eshell buffers
+** elfeed
 #+BEGIN_SRC emacs-lisp
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
+(after! elfeed-search
+  ;; face for starred articles
+  ;; (defface elfeed-search-starred-title-face
+  ;;   '((t :foreground "#f77"))
+  ;;   "Marks a starred Elfeed entry.")
+
+  ;; (push '(starred elfeed-search-starred-title-face) elfeed-search-face-alist)
+  ;;shortcut to jump to starred bookmark
+  ;; (defun emiller/elfeed-show-starred ()
+  ;;   (interactive)
+  ;;   (bookmark-jump "elfeed-starred"))
+
+  (defalias 'elfeed-toggle-star
+    (elfeed-expose #'elfeed-search-toggle-all 'star)))
+#+END_SRC
+Keybindings
+#+BEGIN_SRC emacs-lisp
+(after! elfeed-search
+  (map! :map elfeed-search-mode-map
+        :localleader
+        :n "s" #'elfeed-toggle-star
+        :n "h" #'mz/make-and-run-elfeed-hydra))
+        ;; :n "S" #'emiller/elfeed-show-starred))
+#+END_SRC
+*** hydra
+#+BEGIN_SRC emacs-lisp
+(after! elfeed-search
+  (defun z/hasCap (s) ""
+         (let ((case-fold-search nil))
+           (string-match-p "[[:upper:]]" s)))
+
+  (defun z/get-hydra-option-key (s)
+    "returns single upper case letter (converted to lower) or first"
+    (interactive)
+    (let ( (loc (z/hasCap s)))
+      (if loc
+          (downcase (substring s loc (+ loc 1)))
+        (substring s 0 1))))
+
+  (defun mz/make-elfeed-cats (tags)
+    "Returns a list of lists. Each one is line for the hydra configuratio in the form
+(c function hint)"
+         (interactive)
+         (mapcar (lambda (tag)
+                   (let* (
+                          (tagstring (symbol-name tag))
+                          (c (z/get-hydra-option-key tagstring))
+                          )
+                     (list c (append '(elfeed-search-set-filter) (list (format "@6-months-ago +%s" tagstring) ))tagstring  )))
+                 tags))
+  (defmacro mz/make-elfeed-hydra ()
+    `(defhydra mz/hydra-elfeed ()
+       "filter"
+       ,@(mz/make-elfeed-cats (elfeed-db-get-all-tags))
+       ("*" (elfeed-search-set-filter "@6-months-ago +star") "Starred")
+       ("M" elfeed-toggle-star "Mark")
+       ("A" (elfeed-search-set-filter "@6-months-ago") "All")
+       ("T" (elfeed-search-set-filter "@1-day-ago") "Today")
+       ("q" nil "quit" :color blue)))
+
+  (defun mz/make-and-run-elfeed-hydra ()
+    ""
+    (interactive)
+    (mz/make-elfeed-hydra)
+    (mz/hydra-elfeed/body)))
 #+END_SRC
 ** emms
 #+BEGIN_SRC emacs-lisp
