@@ -163,6 +163,11 @@ Helpful for ~Snakemake~
 #+begin_src emacs-lisp
 (setq ccls-executable "/home/emiller/src/emacs/ccls/Release/ccls")
 #+end_src
+** deft
+#+begin_src emacs-lisp
+(after! deft
+  (setq deft-directory "~/Dropbox/orgfiles/notes"))
+#+end_src
 ** Dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
