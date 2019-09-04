@@ -139,6 +139,14 @@ Helpful for ~Snakemake~
 #+begin_src emacs-lisp
 (setq ccls-executable "/home/emiller/src/emacs/ccls/Release/ccls")
 #+end_src
+** Clojure
+#+BEGIN_SRC emacs-lisp
+(after! cider
+  (set-popup-rules!
+    '(("^\\*cider-error*" :ignore t)
+      ("^\\*cider-repl" :quit nil)
+      ("^\\*cider-repl-history" :vslot 2 :ttl nil))))
+#+END_SRC
 ** deft
 #+begin_src emacs-lisp
 (after! deft
