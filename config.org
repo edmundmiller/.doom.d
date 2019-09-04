@@ -66,10 +66,6 @@ Cleanup Whitespace
    (:prefix "n"
      :desc "Org-noter" :n "o" #'org-noter)
    :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: "))))
- (:after treemacs-evil
-   (:map evil-treemacs-state-map
-     "C-h" #'evil-window-left
-     "C-l" #'evil-window-right))
  (:when (featurep! :feature workspaces)
    :nmvi "M-t" #'+workspace/new
    :nmvi "M-1" (λ! (+workspace/switch-to 0))
