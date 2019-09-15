@@ -52,6 +52,7 @@ Cleanup Whitespace
    (:prefix "o"
      :desc "Calc" :n "c" #'calc
      :desc "easy-hugo" :n "g" #'easy-hugo
+     :desc "APP: IRC" :n "i" #'=irc
      :desc "i.org" :n "o" #'emiller/visit-i-org
      :desc "APP: mu4e" :n "m" #'=mu4e
      :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
@@ -245,6 +246,17 @@ Keybindings
   (setq emms-player-mpd-server-name "localhost")
   (setq emms-player-mpd-server-port "6600"))
 #+END_SRC
+** irc
+#+begin_src emacs-lisp
+(after! circe
+  (set-irc-server! "chat.freenode.net"
+                   `(:tls t
+                          :port 6697
+                          :nick "emiller88"
+                          :sasl-username ,(+pass-get-user "irc/freenode.net")
+                          :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
+                          :channels ("#emacs" "#emacs-circe" "#nixos" "#nixos-emacs"))))
+#+end_src
 ** JavaScript
 #+begin_src emacs-lisp
 (defun i-will-have-what-js-is-having ()
