@@ -11,7 +11,6 @@
 (package! graphviz-dot-mode)
 (package! jest)
 (package! vyper-mode)
-(package! org-pomodoro)
 (package! org-gcal)
 (package! dired-sidebar)
 ;; Experimental

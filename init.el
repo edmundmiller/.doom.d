@@ -113,11 +113,11 @@
  nix
  ;;ocaml
  (org
-  +attach
-  +babel
-  +capture
-  +export
-  +present)
+  +dragndrop                            ; file drag & drop support
+  +ipython                              ; ipython support for babel
+  +pandoc                               ; pandoc integration into org's exporter
+  +pomodoro
+  +present)                             ; using Emacs for presentations
  perl
  ;;php
  ;;plantuml

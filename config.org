@@ -711,34 +711,9 @@ prepended to the element after the #+HEADER: tag."
      (:prefix "n"
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
 #+END_SRC
-*** Pomodoro
-#+BEGIN_SRC emacs-lisp
-(after! org
-(use-package! org-pomodoro))
-#+END_SRC
-Add keybinding
-#+BEGIN_SRC emacs-lisp
-(map! :after org
-      :map org-mode-map
-      :localleader
-      :n "c p" #'org-pomodoro)
-#+END_SRC
-Get rid of the fight bell
-#+BEGIN_SRC emacs-lisp
-(after! org-pomodoro
-  (setq org-pomodoro-finished-sound-p nil)
-  (setq org-pomodoro-short-break-sound-p nil)
-  (setq org-pomodoro-long-break-sound-p nil))
-#+END_SRC
 *** Trello
 #+BEGIN_SRC emacs-lisp
 ;; (custom-set-variables '(org-trello-files '("/home/emiller/Dropbox/orgfiles/e-m.org")))
-#+END_SRC
-** RSS
-Make it only one week
-#+BEGIN_SRC emacs-lisp
-;; (after! elfeed
-;;   (setq elfeed-search-filter "@1-week-ago +unread"))
 #+END_SRC
 ** Reformatter
 #+begin_src emacs-lisp
