@@ -123,7 +123,8 @@ Get rid of dired message when using a
 #+END_SRC
 ** dired-sidebar
 #+BEGIN_SRC emacs-lisp
-(use-package! dired-sidebar)
+(after! dired
+    (use-package! dired-sidebar))
 #+END_SRC
 ** elfeed
 #+BEGIN_SRC emacs-lisp
@@ -201,11 +202,12 @@ Get rid of modeline in eshell buffers
 #+END_SRC
 *** GPG signing
 #+BEGIN_SRC emacs-lisp
-(setq magit-repository-directories '(("~/src" . 2))
-      magit-save-repository-buffers nil
-      magit-commit-arguments '("--gpg-sign=BD387FF7BC10AA9D")
-      magit-rebase-arguments '("--autostash" "--gpg-sign=BD387FF7BC10AA9D")
-      magit-pull-arguments '("--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D"))
+(after! magit
+  (setq magit-repository-directories '(("~/src" . 3))
+        magit-save-repository-buffers nil
+        magit-commit-arguments '("--gpg-sign=BD387FF7BC10AA9D")
+        magit-rebase-arguments '("--autostash" "--gpg-sign=BD387FF7BC10AA9D")
+        magit-pull-arguments '("--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")))
 #+END_SRC
 *** Set editor
 #+BEGIN_SRC emacs-lisp
@@ -213,8 +215,8 @@ Get rid of modeline in eshell buffers
 #+end_SRC
 *** GitHub Reviews
 #+BEGIN_SRC emacs-lisp
-(use-package! github-review)
-#+END_SRC
+(after! magit
+    (use-package! github-review))
 #+END_SRC
 ** Notmuch
 Add delete, which adds the ~trash~ tag
