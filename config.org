@@ -46,15 +46,13 @@ Cleanup Whitespace
      :desc "Insert date" :n "d" #'insert-todays-date)
    (:prefix "n"
      :desc "Browse mode notes"     :n  "m" #'+emiller/find-notes-for-major-mode
-     :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project
-     :desc "Org => Trello" :n "u" #'org-trello-sync-buffer
-     :desc "Trello => Org" :n "t" (lambda! (org-trello-sync-buffer t)))
+     :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project)
    (:prefix "o"
      :desc "Calc" :n "c" #'calc
      :desc "easy-hugo" :n "g" #'easy-hugo
      :desc "APP: IRC" :n "i" #'=irc
      :desc "i.org" :n "o" #'emiller/visit-i-org
-     :desc "APP: mu4e" :n "m" #'=mu4e
+     :desc "APP: notmuch" :n "m" #'=notmuch
      :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
      :desc "emms" :n "s" #'emms
      :desc "proced" :n "p" #'proced
@@ -77,8 +75,13 @@ Cleanup Whitespace
    :nmvi "M-6" (λ! (+workspace/switch-to 5))
    :nmvi "M-7" (λ! (+workspace/switch-to 6))
    :nmvi "M-8" (λ! (+workspace/switch-to 7))
-   :nmvi "M-9" (λ! (+workspace/switch-to 8))
-   ))
+   :nmvi "M-9" (λ! (+workspace/switch-to 8)))
+ (:map vterm-mode-map
+   ;; Easier window movement
+   :i "C-h" #'evil-window-left
+   :i "C-j" #'evil-window-down
+   :i "C-k" #'evil-window-up
+   :i "C-l" #'evil-window-right))
 #+END_SRC
 ** Helm
 #+BEGIN_SRC emacs-lisp
