@@ -194,6 +194,13 @@ Other Channels
     (set-auto-mode)))
 (add-to-list 'auto-mode-alist '("\\.vmjs\\'" . i-will-have-what-js-is-having))
 #+end_src
+** lsp
+#+BEGIN_SRC emacs-lisp
+(after! lsp
+  (setq lsp-ui-sideline-show-code-actions nil
+        lsp-ui-sideline-show-diagnostics nil
+        lsp-signature-render-all nil))
+#+END_SRC
 ** Magit
 *** Git-gutter-fringe
 #+BEGIN_SRC emacs-lisp
