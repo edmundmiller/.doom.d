@@ -205,7 +205,9 @@ Set max width
   (setq emms-player-list '(emms-player-mpd))
   (setq emms-info-functions '(emms-info-mpd))
   (setq emms-player-mpd-server-name "localhost")
-  (setq emms-player-mpd-server-port "6600"))
+  (setq emms-player-mpd-server-port "6600")
+  (setq emms-source-file-default-directory "~/Music/"))
+#+END_SRC
 #+END_SRC
 ** irc
 #+begin_src emacs-lisp
