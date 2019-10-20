@@ -37,14 +37,14 @@ config. This is so others can find them and I don't have to hunt too hard.
 ** org
 Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
-;; (add-to-list 'evil-org-special-o/O 'item)
+(add-to-list 'evil-org-special-o/O 'item)
 #+END_SRC
 *** ein
 #+BEGIN_SRC emacs-lisp
-;; (after! ein
-;;   (setq :ein-notebook-dir "/home/emiller/src/fg/")
+(after! ein
+  (setq :ein-notebook-dir "/home/emiller/src/fg/")
 
-;;   (map! :map ein:notebook-mode-map
-;;         :localleader
-;;         "," #'+ein-hydra/body))
+  (map! :map ein:notebook-mode-map
+        :localleader
+        "," #'+ein-hydra/body))
 #+END_SRC
