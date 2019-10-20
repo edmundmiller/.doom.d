@@ -17,6 +17,7 @@
  doom-quit
  ;;fill-column
  hl-todo
+ hydra
  ;;indent-guides
  modeline
  nav-flash
@@ -25,7 +26,7 @@
  (popup
   +all
   +defaults)
- ;;pretty-code
+ (pretty-code +iosevka)
  ;;tabbar
  ;;unicode
  vc-gutter
@@ -38,17 +39,14 @@
  file-templates
  fold
  (format +onsave)
- lispy
+ ;; lispy
  multiple-cursors
- ;;parinfer
+ parinfer
  rotate-text
  snippets
 
  :emacs
- (dired
-  ;;+ranger
-  ;; +icons
-  )
+ dired
  electric
  vc
 
@@ -63,7 +61,7 @@
  direnv
  docker
  editorconfig
- ein
+ ;; ein
  eval
  flycheck
  flyspell
@@ -77,7 +75,6 @@
  pass
  pdf
  ;;prodigy
- reference
  rgb
  terraform
  tmux
@@ -88,7 +85,7 @@
  ;;assembly
  (cc +lsp)
  clojure
- common-lisp
+ ;; common-lisp
  ;;coq
  ;;crystal
  ;;csharp
@@ -98,11 +95,11 @@
  ;;elm
  emacs-lisp
  ess
- go
- (haskell +lsp)
+ ;; go
+ ;; (haskell +lsp)
  ;;hy
  ;;idris
- ;;(java +meghanada)
+ ;; (java +lsp)
  (javascript +lsp)
  ;;julia
  (latex +ref)
@@ -123,17 +120,17 @@
  ;;plantuml
  ;;purescript
  (python
-  +conda
+  ;; +conda
   ;; +pyenv
   ;; +lsp
   )
  ;;qt
- racket
+ ;;racket
  rest
  ;;ruby
  (rust +lsp)
  ;;scala
- (sh +fish)
+ sh
  solidity
  snakemake
  ;;swift
@@ -141,22 +138,27 @@
  ;;vala
 
  :email
- (mu4e);;  +gmail)       ; WIP
- ;; notmuch
+ ;; (mu4e +gmail)       ; WIP
+ notmuch
  ;; (wanderlust +gmail)                    ; WIP
 
  :app
- ;;irc
+ irc
  (rss +org)
  ;;twitter
- (write
-  +wordnut
-  +langtool)
-
- :collab
- floobits
- impatient-mode
+ ;; (write            ; emacs for writers (fiction, notes, papers, etc.)
+ ;;  +wordnut         ; wordnet (wn) search
+ ;;  +langtool)       ; a proofreader (grammar/style check) for Emacs
 
  :config
- (default +bindings +snippets +smartparnes)
+ (default +bindings +smartparnes)
  literate)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   '((ssh-deploy-async-with-threads . 1)
+     (ssh-deploy-on-explicity-save . t)
+     (ssh-deploy-async . 1))))
