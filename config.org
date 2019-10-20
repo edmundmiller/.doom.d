@@ -11,11 +11,6 @@ Who, who, who, who?
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
 (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
 #+END_SRC
-#+BEGIN_SRC emacs-lisp
-(setq +doom-modeline-buffer-file-name-style 'relative-from-project
-      show-trailing-whitespace t)
-(add-hook! minibuffer-setup (setq-local show-trailing-whitespace nil))
-#+END_SRC
 Change font
 #+BEGIN_SRC emacs-lisp
 (setq doom-font (font-spec :family "Iosevka" :size 17)
@@ -83,37 +78,6 @@ Cleanup Whitespace
    :i "C-k" #'evil-window-up
    :i "C-l" #'evil-window-right))
 #+END_SRC
-** Helm
-#+BEGIN_SRC emacs-lisp
-;; (map! :after helm-files
-;;       :map helm-find-files-map
-;;       ;; "C-h" #'helm-find-files-up-one-level
-;;       ;; "C-l" #'helm-ff-RET)
-;;       ("<C-backspace>" #'helm-find-files-up-one-level))
-
-;; (map! :after helm
-;;       :map helm-map
-;;       ([tab] #'helm-execute-if-single-persistent-action)
-;;       ("C-i" #'helm-execute-persistent-action))
-
-;; ;;;###autoload
-;; (defun double-flash-mode-line ()
-;;   "Flash the modeline"
-;;  (let ((flash-sec (/ 1.0 20)))
-;;    (invert-face 'mode-line)
-;;    (run-with-timer flash-sec nil #'invert-face 'mode-line)
-;;    (run-with-timer (* 2 flash-sec) nil #'invert-face 'mode-line)
-;;    (run-with-timer (* 3 flash-sec) nil #'invert-face 'mode-line)))
-
-;; ;;;###autoload
-;; (defun helm-execute-if-single-persistent-action (&optional attr split-onewindow)
-;;  "Execute persistent action if the candidate list is less than 2"
-;;  (interactive)
-;;  (with-helm-alive-p
-;;    (if (> (helm-get-candidate-number) 2)
-;;        (double-flash-mode-line)
-;;      (helm-execute-persistent-action))))
-#+END_SRC
 * Functions
 Edit i.org
 #+BEGIN_SRC emacs-lisp
@@ -139,10 +103,6 @@ Helpful for ~Snakemake~
 (global-set-key (kbd "C-c d") 'insert-todays-date)
 #+END_SRC
 * Modules
-** cc
-#+begin_src emacs-lisp
-(setq ccls-executable "/home/emiller/src/emacs/ccls/Release/ccls")
-#+end_src
 ** Clojure
 #+BEGIN_SRC emacs-lisp
 (after! cider
@@ -165,11 +125,8 @@ Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
 (use-package! dired-sidebar)
 #+END_SRC
-** eShell
-Get rid of modeline in eshell buffers
 ** elfeed
 #+BEGIN_SRC emacs-lisp
-(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 (after! elfeed-search
   ;; face for starred articles
   ;; (defface elfeed-search-starred-title-face
@@ -211,6 +168,10 @@ Set max width
   (setq emms-player-mpd-server-port "6600")
   (setq emms-source-file-default-directory "~/Music/"))
 #+END_SRC
+** eShell
+Get rid of modeline in eshell buffers
+#+BEGIN_SRC emacs-lisp
+(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 #+END_SRC
 ** irc
 #+begin_src emacs-lisp
@@ -254,37 +215,6 @@ Set max width
 #+BEGIN_SRC emacs-lisp
 (use-package! github-review)
 #+END_SRC
-** mu4e
-#+BEGIN_SRC emacs-lisp
-(after! mu4e-maildirs-extension
-  (setq message-send-mail-function 'sendmail-send-it)
-  (set-email-account! "Eman"
-                      '((mu4e-sent-folder       . "/Eman/[Gmail]/Sent Mail")
-                        (mu4e-drafts-folder     . "/Eman/[Gmail]/Drafts")
-                        (mu4e-trash-folder      . "/Eman/[Gmail]/Trash")
-                        (mu4e-refile-folder     . "/Eman/[Gmail]/All Mail")
-                        (user-mail-address      . "eman0088@gmail.com")
-                        (mu4e-compose-signature . "---\nEdmund Miller"))
-                      t)
-
-  (set-email-account! "UTD"
-                      '((mu4e-sent-folder       . "/UTD/Sent Items")
-                        (mu4e-drafts-folder     . "/UTD/Drafts")
-                        (mu4e-trash-folder      . "/UTD/Deleted Items")
-                        (mu4e-refile-folder     . "/UTD/Archive")
-                        (user-mail-address      . "Edmund.Miller@utdallas.edu")
-                        (mu4e-compose-signature . "---\nEdmund Miller"))
-                      t)
-
-  (set-email-account! "Gmail"
-                      '((mu4e-sent-folder       . "/Gmail/[Gmail]/Sent Mail")
-                        (mu4e-drafts-folder     . "/Gmail/[Gmail]/Drafts")
-                        (mu4e-trash-folder      . "/Gmail/[Gmail]/Trash")
-                        (mu4e-refile-folder     . "/Gmail/[Gmail]/All Mail")
-                        (smtpmail-smtp-user     . "edmund.a.miller@gmail.com")
-                        (user-mail-address      . "edmund.a.miller@gmail.com")
-                        (mu4e-compose-signature . "---\nEdmund Miller"))
-                      t))
 #+END_SRC
 ** Notmuch
 Add delete, which adds the ~trash~ tag
@@ -301,10 +231,6 @@ Counsel notmuch
 #+END_SRC
 ** Org-mode
 *** Misc
-Bind capture to =C-c c=
-#+BEGIN_SRC emacs-lisp
-(define-key global-map "\C-cc" 'org-capture)
-#+END_SRC
 Start in insert mode in =org-capture=
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
@@ -333,7 +259,6 @@ Set Files that are pulled into ~org-agenda~
 (after! org
   (setq org-agenda-files (list "~/Dropbox/orgfiles/i.org"
                                "~/Dropbox/orgfiles/o.org"
-                               "~/Dropbox/orgfiles/Lab_Notebook.org"
                                "~/Dropbox/orgfiles/schedule.org"
                                "~/Dropbox/orgfiles/gtd/gtd.org"
                                "~/Dropbox/orgfiles/gtd/tickler.org"
@@ -381,10 +306,6 @@ Org Capture Templates
            (file+olp+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
            "* %? %^g \n ")
 
-          ;; ("d" "Lab To Do" entry
-          ;;  (file+headline "~/Dropbox/orgfiles/GTD.org" "To Do")
-          ;;  "** TODO %?\n%T" :prepend t)
-
           ("o" "Work To Do" entry
            (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
            "** TODO %?\n%T" :prepend t)
@@ -419,37 +340,8 @@ Set org-refile to utilize helm or ivy
           ("~/Dropbox/orgfiles/gtd/someday.org" :maxlevel . 3)
           ("~/Dropbox/orgfiles/gtd/tickler.org" :maxlevel . 4))))
 #+END_SRC
-Add o/O to add new list item
-#+BEGIN_SRC emacs-lisp
-;; (add-to-list 'evil-org-special-o/O 'item)
-#+END_SRC
 *** org-agenda-custom
 #+BEGIN_SRC emacs-lisp
-(def-package! org-super-agenda
-  ;; :commands (org-super-agenda-mode)
-  :after org
-  :init (advice-add #'org-super-agenda-mode :around #'doom*shut-up)
-  :config
-  (setq org-super-agenda-groups
-        '((:name "Log\n"
-                 :log t)  ; Automatically named "Log"
-          (:name "Schedule\n"
-                 :time-grid t)
-          (:name "Today\n"
-                 :scheduled today)
-          (:name "Due today\n"
-                 :deadline today)
-          (:name "Overdue\n"
-                 :deadline past)
-          (:name "Due soon\n"
-                 :deadline future)
-          (:name "Waiting\n"
-                 :todo "WAIT"
-                 :order 98)
-          (:name "Scheduled earlier\n"
-                 :scheduled past))))
-#+END_SRC
-#+begin_src emacs-lisp
 (after! org
   (setq org-agenda-custom-commands
         '(("c" "Simple agenda view"
@@ -491,23 +383,6 @@ Add o/O to add new list item
 #+BEGIN_SRC emacs-lisp
 (use-package! tox)
 #+END_SRC
-*** lsp-python-ms
-#+begin_src emacs-lisp
-;; (use-package! lsp-python-ms
-;;   :ensure nil
-;;   :hook (python-mode . lsp)
-;;   :config
-;; (setq lsp-python-ms-dir
-;;         (expand-file-name "~/src/emacs/python-language-server/output/bin/Release/")))
-#+end_src
-*** ein
-#+BEGIN_SRC emacs-lisp
-(set! :ein-notebook-dir "/home/emiller/src/ml/")
-
-(map! :map ein:notebook-mode-map
-      :localleader
-      "," #'+ein-hydra/body)
-#+END_SRC
 ** Reference
 #+begin_src emacs-lisp
 (setq reftex-default-bibliography '("~/Dropbox/orgfiles/reference/Bibliography.bib"))
@@ -527,12 +402,6 @@ Add o/O to add new list item
 (setq solidity-flycheck-solc-checker-active t)
 #+END_SRC
 * Packages
-** Dired all-the-icons
-#+BEGIN_SRC emacs-lisp
-;; Shows the wrong faces
-;; (use-package! all-the-icons-dired
-;;   :hook (dired-mode . all-the-icons-dired-mode))
-#+END_SRC
 ** Easy Hugo
 #+BEGIN_SRC emacs-lisp
 (use-package! easy-hugo
@@ -544,12 +413,6 @@ Add o/O to add new list item
   (setq easy-hugo-org-header t)
   (setq easy-hugo-postdir "content/posts")
   (set-evil-initial-state! 'easy-hugo-mode 'emacs))
-#+END_SRC
-** Edit-server
-#+BEGIN_SRC emacs-lisp
-;; (use-package! edit-server
-;;     :config
-;;     (edit-server-start))
 #+END_SRC
 ** Ivy-yasnippet
 #+BEGIN_SRC emacs-lisp
@@ -581,81 +444,6 @@ Add o/O to add new list item
           (min-width . 60)
           (min-height . 8))))
 #+END_SRC
-** hydra-posframe
-#+BEGIN_SRC emacs-lisp
-(def-package! hydra-posframe
-  :after hydra
-  :hook (after-init . hydra-posframe-enable))
-#+END_SRC
-Hydra for org src blocks
-#+BEGIN_SRC emacs-lisp
-  (defhydra hydra-org-template (:color blue :hint nil)
-    "
-
-  ^((CODE))^            ^((CODE))^        ^((DRAW))^        ^((BLOCK))^  ^
-  ---------------------------------------------------------------------
-  %s(all-the-icons-fileicon \"emacs\") ^^^_e_lisp           ^%s(all-the-icons-alltheicon \"python\") ^^^^_p_ython       ^%s(all-the-icons-fileicon \"tex\") ^^^^^^^^_L_atex         %s(all-the-icons-octicon \"code\") _s_rc  ^
-  %s(all-the-icons-fileicon \"emacs\") ^^^elisp-_t_angled   ^%s(all-the-icons-fileicon \"R\") ^^^^^^^^^^^_R_            ^%s(all-the-icons-fileicon \"graphviz\") ^^^_d_ot           %s(all-the-icons-faicon \"sticky-note-o\") _n_ote
-  %s(all-the-icons-octicon \"terminal\") ^_z_sh             ^%s(all-the-icons-alltheicon \"rust\") ^^^^^^_r_ust          %s(all-the-icons-fileicon \"test-python\") i_P_ython       %s(all-the-icons-octicon \"info\") _i_nfo
-  %s(all-the-icons-fileicon \"terminal\") _b_ash            ^%s(all-the-icons-fileicon \"go\") ^^^^^^^^^^_g_o
-  %s(all-the-icons-fileicon \"solidity\") s_o_lidity         %s(all-the-icons-alltheicon \"javascript\") _j_avascript
-
-"
-    ;; CODE
-    ("e" (hot-expand "<s" "emacs-lisp"))
-    ("t" (hot-expand "<s" "emacs-lisp" ":tangle yes"))
-    ("z" (hot-expand "<s" "zsh" ":results output :exports both :shebang \"#!/usr/bin/env zsh\"\n"))
-    ("b" (hot-expand "<s" "bash" ":results output :exports both :shebang \"#!/usr/bin/env bash\"\n"))
-    ("o" (hot-expand "<s" "solidity"))
-    ;; CODE
-    ("p" (hot-expand "<s" "python"))
-    ("R" (hot-expand "<s" "R"))
-    ("r" (hot-expand "<s" "rust"))
-    ("g" (hot-expand "<s" "go"))
-    ("j" (hot-expand "<s" "javascript"))
-    ;; DRAW
-    ("L" (hot-expand "<L"))
-    ("d" (hot-expand "<s" "dot :file CHANGE.png"))
-    ("P" (hot-expand "<s" "iPython"))
-    ;; BLOCK
-    ("s" (hot-expand "<s"))
-    ("n" (hot-expand "<not"))
-    ("i" (hot-expand "<i"))
-    ("<" self-insert-command "ins")
-    ("q" nil "quit"))
-
-  (require 'org-tempo)  ; Required from org 9 onwards for old template expansion
-  ;; Reset the org-template expnsion system, this is need after upgrading to org 9 for some reason
-  (setq org-structure-template-alist (eval (car (get 'org-structure-template-alist 'standard-value))))
-  (defun hot-expand (str &optional mod header)
-    "Expand org template.
-
-STR is a structure template string recognised by org like <s. MOD is a
-string with additional parameters to add the begin line of the
-structure element. HEADER string includes more parameters that are
-prepended to the element after the #+HEADER: tag."
-    (let (text)
-      (when (region-active-p)
-        (setq text (buffer-substring (region-beginning) (region-end)))
-        (delete-region (region-beginning) (region-end))
-        (deactivate-mark))
-      (when header (insert "#+HEADER: " header) (forward-line))
-      (insert str)
-      (org-tempo-complete-tag)
-      (when mod (insert mod) (forward-line))
-      (when text (insert text))))
-
-  (define-key org-mode-map "<"
-    (lambda () (interactive)
-      (if (or (region-active-p) (looking-back "^"))
-          (hydra-org-template/body)
-        (self-insert-command 1))))
-
-  (eval-after-load "org"
-    '(cl-pushnew
-      '("not" . "note")
-      org-structure-template-alist))
-#+END_SRC
 ** Org
 *** Auto-org-md
 #+BEGIN_SRC emacs-lisp
@@ -676,10 +464,6 @@ prepended to the element after the #+HEADER: tag."
    (:leader
      (:prefix "n"
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
-#+END_SRC
-*** Trello
-#+BEGIN_SRC emacs-lisp
-;; (custom-set-variables '(org-trello-files '("/home/emiller/Dropbox/orgfiles/e-m.org")))
 #+END_SRC
 ** Reformatter
 #+begin_src emacs-lisp
