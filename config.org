@@ -115,7 +115,7 @@ Helpful for ~Snakemake~
 #+BEGIN_SRC emacs-lisp
 (after! deft
   (setq deft-directory "~/Dropbox/orgfiles/notes"))
-#+end_src
+#+END_SRC
 ** Dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
@@ -184,7 +184,7 @@ Get rid of modeline in eshell buffers
                           :sasl-username ,(+pass-get-user "irc/freenode.net")
                           :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
                           :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#home-manager" "#nixos" "#nixos-emacs" "##rust" "#python"))))
-#+end_src
+#+END_SRC
 Other Channels
 - #haskell
 ** JavaScript
@@ -193,7 +193,7 @@ Other Channels
   (let ((buffer-file-name (concat (file-name-sans-extension buffer-file-name) ".js")))
     (set-auto-mode)))
 (add-to-list 'auto-mode-alist '("\\.vmjs\\'" . i-will-have-what-js-is-having))
-#+end_src
+#+END_SRC
 ** lsp
 #+BEGIN_SRC emacs-lisp
 (after! lsp
@@ -221,7 +221,7 @@ Other Channels
 *** Set editor
 #+BEGIN_SRC emacs-lisp
 (setenv "EDITOR" "emacsclient")
-#+end_SRC
+#+END_SRC
 *** GitHub Reviews
 #+BEGIN_SRC emacs-lisp
 (after! magit
@@ -394,7 +394,7 @@ Set org-refile to utilize helm or ivy
   (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
         org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
         org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/Dropbox/orgfiles/schedule.org"))))
-#+end_src
+#+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
 (setq +pretty-code-enabled-modes '(emacs-lisp-mode))
@@ -411,7 +411,7 @@ Set org-refile to utilize helm or ivy
       bibtex-completion-library-path "~/Dropbox/orgfiles/reference/pdf/" ;the directory to store pdfs
       bibtex-completion-notes-path "~/Dropbox/orgfiles/ref-notes.org" ;the note file for reference notes
       )
-#+end_src
+#+END_SRC
 ** Rust
 #+BEGIN_SRC emacs-lisp
 (setq +rust-src-dir "~/src/rust/src/")
@@ -449,7 +449,7 @@ Set org-refile to utilize helm or ivy
 ** Ivy Icons
 #+BEGIN_SRC emacs-lisp
 (setq +ivy-buffer-icons t)
-#+end_src
+#+END_SRC
 ** Graphviz-dot-mode
 #+BEGIN_SRC emacs-lisp
 (use-package! graphviz-dot-mode)
@@ -498,7 +498,7 @@ out <- styler::style_text(readLines(con))
 close(con)
 out")
     :lighter " styler"))
-#+end_src
+#+END_SRC
 ** package-lint
 #+BEGIN_SRC emacs-lisp
 ;; (use-package! package-lint)
