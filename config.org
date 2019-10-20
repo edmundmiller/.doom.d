@@ -376,9 +376,7 @@ Set org-refile to utilize helm or ivy
   :config
   (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
         org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
-        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/Dropbox/orgfiles/schedule.org")))
-  ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-  (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync) )))
+        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/Dropbox/orgfiles/schedule.org"))))
 #+end_src
 ** Python
 *** Tox
