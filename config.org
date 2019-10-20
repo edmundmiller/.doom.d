@@ -183,8 +183,10 @@ Get rid of modeline in eshell buffers
                           :nick "emiller88"
                           :sasl-username ,(+pass-get-user "irc/freenode.net")
                           :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
-                          :channels ("#emacs" "#emacs-circe" "#nixos" "#nixos-emacs"))))
+                          :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#home-manager" "#nixos" "#nixos-emacs" "##rust" "#python"))))
 #+end_src
+Other Channels
+- #haskell
 ** JavaScript
 #+begin_src emacs-lisp
 (defun i-will-have-what-js-is-having ()
