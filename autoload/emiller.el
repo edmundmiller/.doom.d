@@ -22,7 +22,7 @@
 (defun +emiller/find-notes-for-major-mode ()
   "TODO"
   (interactive)
-  (let ((default-directory (expand-file-name "code/" +org-dir)))
+  (let ((default-directory (expand-file-name "code/" org-directory)))
     (if arg
         (call-interactively #'find-file)
       (find-file
@@ -32,7 +32,7 @@
 (defun +emiller/find-notes-for-project ()
   "TODO"
   (interactive)
-  (let ((default-directory (expand-file-name "projects/" +org-dir)))
+  (let ((default-directory (expand-file-name "projects/" org-directory)))
     (if arg
         (call-interactively #'find-file)
       (find-file
