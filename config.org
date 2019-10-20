@@ -730,7 +730,7 @@ out")
 #+end_src
 ** package-lint
 #+BEGIN_SRC emacs-lisp
-(use-package! package-lint)
+;; (use-package! package-lint)
 #+END_SRC
 ** Write
 *** Languagetool
