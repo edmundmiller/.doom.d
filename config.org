@@ -112,7 +112,7 @@ Helpful for ~Snakemake~
       ("^\\*cider-repl-history" :vslot 2 :ttl nil))))
 #+END_SRC
 ** deft
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (after! deft
   (setq deft-directory "~/Dropbox/orgfiles/notes"))
 #+end_src
@@ -175,7 +175,7 @@ Get rid of modeline in eshell buffers
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 #+END_SRC
 ** irc
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (after! circe
   (set-irc-server! "chat.freenode.net"
                    `(:tls t
@@ -188,7 +188,7 @@ Get rid of modeline in eshell buffers
 Other Channels
 - #haskell
 ** JavaScript
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (defun i-will-have-what-js-is-having ()
   (let ((buffer-file-name (concat (file-name-sans-extension buffer-file-name) ".js")))
     (set-auto-mode)))
@@ -386,9 +386,9 @@ Set org-refile to utilize helm or ivy
            ((org-agenda-sorting-strategy '(priority-up))))
 
           ("ge" "Emacs Time" tags-todo "@emacs"))))
-#+end_src
+#+END_SRC
 *** org-gcal
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (use-package! org-gcal
   :config
   (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
@@ -405,7 +405,7 @@ Set org-refile to utilize helm or ivy
 (use-package! tox)
 #+END_SRC
 ** Reference
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (setq reftex-default-bibliography '("~/Dropbox/orgfiles/reference/Bibliography.bib"))
 (setq bibtex-completion-bibliography "~/Dropbox/orgfiles/reference/Bibliography.bib" ;the major bibtex file
       bibtex-completion-library-path "~/Dropbox/orgfiles/reference/pdf/" ;the directory to store pdfs
@@ -447,7 +447,7 @@ Set org-refile to utilize helm or ivy
        :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet)))))
 #+END_SRC
 ** Ivy Icons
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (setq +ivy-buffer-icons t)
 #+end_src
 ** Graphviz-dot-mode
@@ -487,7 +487,7 @@ Set org-refile to utilize helm or ivy
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
 #+END_SRC
 ** Reformatter
-#+begin_src emacs-lisp
+#+BEGIN_SRC emacs-lisp
 (use-package! reformatter
   :config
   (defconst Rscript-command "Rscript")
