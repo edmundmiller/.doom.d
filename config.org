@@ -305,7 +305,7 @@ Org Capture Templates
            "* %i%? \n %U")
 
           ("j" "Lab Entry" entry
-           (file+olp+datetree "~/Dropbox/orgfiles/Lab_Notebook.org" "Lab Journal")
+           (file+olp+datetree "~/Dropbox/orgfiles/notes/Lab_Notebook.org" "Lab Journal")
            "* %? %^g \n ")
 
           ("o" "Work To Do" entry
