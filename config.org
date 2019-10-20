@@ -378,6 +378,10 @@ Set org-refile to utilize helm or ivy
         org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
         org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/Dropbox/orgfiles/schedule.org"))))
 #+end_src
+** pretty-code
+#+BEGIN_SRC emacs-lisp
+(setq +pretty-code-enabled-modes '(emacs-lisp-mode))
+#+END_SRC
 ** Python
 *** Tox
 #+BEGIN_SRC emacs-lisp
