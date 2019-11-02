@@ -257,7 +257,7 @@ Start in insert mode in =org-capture=
 Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
 (setq org-directory "/home/emiller/Dropbox/orgfiles/"
-      +org-capture-todo-file "i.org")
+      +org-capture-todo-file "gtd/i.org")
 #+END_SRC
 Function to return the absolute address of an org file, given its relative name.
 #+BEGIN_SRC emacs-lisp
@@ -275,12 +275,11 @@ Set one archive file to rule them all
 Set Files that are pulled into ~org-agenda~
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq org-agenda-files (list "~/Dropbox/orgfiles/i.org"
+  (setq org-agenda-files (list "~/Dropbox/orgfiles/gtd/i.org"
                                "~/Dropbox/orgfiles/o.org"
                                "~/Dropbox/orgfiles/schedule.org"
                                "~/Dropbox/orgfiles/gtd/gtd.org"
-                               "~/Dropbox/orgfiles/gtd/tickler.org"
-                               "~/src/olypsis/daily-journals/Edmund_Miller.org")))
+                               "~/Dropbox/orgfiles/gtd/tickler.org")))
 #+END_SRC
 Set Custom Icons
 #+BEGIN_SRC emacs-lisp
