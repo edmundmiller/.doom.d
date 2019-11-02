@@ -256,9 +256,8 @@ Start in insert mode in =org-capture=
 #+END_SRC
 Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-directory "/home/emiller/Dropbox/orgfiles/")
-  (setq +org-capture-todo-file "i.org"))
+(setq org-directory "/home/emiller/Dropbox/orgfiles/"
+      +org-capture-todo-file "i.org")
 #+END_SRC
 Function to return the absolute address of an org file, given its relative name.
 #+BEGIN_SRC emacs-lisp
@@ -303,48 +302,13 @@ Org Capture Templates
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-capture-templates
-        '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/schedule.org" )
-           "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-          ("n" "Personal notes" entry
-           (file+headline "~/Dropbox/orgfiles/notes.org" "Inbox")
-           "* %u %?\n%i\n%a" :prepend t :kill-buffer t)
-
-          ("l" "Link" entry
-           (file+headline "~/Dropbox/orgfiles/links.org" "Links")
-           "* %? %^L %^g \n%T" :prepend t)
-
-          ("t" "Todo [Inbox]" entry
-           (file+headline "~/Dropbox/orgfiles/gtd/i.org" "Unsorted")
-           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
-
-          ("T" "Tickler" entry
-           (file+headline "~/Dropbox/orgfiles/gtd/tickler.org" "Tickler")
-           "* %i%? \n %U")
-
-          ("j" "Lab Entry" entry
-           (file+olp+datetree "~/Dropbox/orgfiles/notes/Lab_Notebook.org" "Lab Journal")
-           "* %? %^g \n ")
-
-          ("o" "Work To Do" entry
-           (file+headline "~/Dropbox/orgfiles/o.org" "Unsorted")
-           "** TODO %?\n%T" :prepend t)
-
-          ("w" "Work Journal" entry
-           (file+olp+datetree "~/src/olypsis/daily-journals/Edmund_Miller.org" )
-           "* Tasks \n** [ ] %? \n* Journal %^g \n ")
-
-          ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
-          ;; {todo,notes,changelog}.org file is found in a parent directory.
-          ("p" "Templates for projects")
-          ("pt" "Project todo" entry  ; {project-root}/todo.org
-           (file+headline +org-capture-project-todo-file "Inbox")
-           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
-          ("pn" "Project notes" entry  ; {project-root}/notes.org
-           (file+headline +org-capture-project-notes-file "Inbox")
-           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t)
-          ("pc" "Project changelog" entry  ; {project-root}/changelog.org
-           (file+headline +org-capture-project-notes-file "Unreleased")
-           "* TODO %?\n%i\n%a" :prepend t :kill-buffer t))))
+        (append
+         '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/schedule.org" )
+            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+           ("l" "Lab Entry" entry
+            (file+olp+datetree "~/Dropbox/orgfiles/notes/Lab_Notebook.org" "Lab Journal")
+            "* %? %^g \n "))
+         org-capture-templates)))
 #+END_SRC
 Set org-refile to utilize helm or ivy
 #+BEGIN_SRC emacs-lisp
