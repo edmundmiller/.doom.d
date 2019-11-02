@@ -3,8 +3,7 @@
 (doom!
 
  :completion
- (company
-  +auto)
+ company
  ;;helm
  ;;ido
  ivy
