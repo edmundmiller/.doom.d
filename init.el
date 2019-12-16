@@ -18,7 +18,7 @@
  hl-todo
  hydra
  ;;indent-guides
- modeline
+ (modeline +light)
  nav-flash
  ;;neotree
  ophints
@@ -45,7 +45,7 @@
  snippets
 
  :emacs
- dired
+ (dired +icons)
  electric
  vc
 
@@ -93,7 +93,7 @@
  ;;elixir
  ;;elm
  emacs-lisp
- ess
+ (ess +lsp)
  ;; go
  ;; (haskell +lsp)
  ;;hy
@@ -145,9 +145,9 @@
  irc
  (rss +org)
  ;;twitter
- ;; (write            ; emacs for writers (fiction, notes, papers, etc.)
- ;;  +wordnut         ; wordnet (wn) search
- ;;  +langtool)       ; a proofreader (grammar/style check) for Emacs
+ (write            ; emacs for writers (fiction, notes, papers, etc.)
+  +wordnut         ; wordnet (wn) search
+  +langtool)       ; a proofreader (grammar/style check) for Emacs
 
  :config
  (default +bindings +smartparnes)
