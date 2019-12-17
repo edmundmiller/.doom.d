@@ -148,7 +148,8 @@ Keybindings
 (after! elfeed-search
   (map! :map elfeed-search-mode-map
         :localleader
-        :n "s" #'elfeed-toggle-star))
+        :n "s" #'elfeed-toggle-star
+        :n "r" #'elfeed-update))
 #+END_SRC
 Set max width
 #+BEGIN_SRC emacs-lisp
