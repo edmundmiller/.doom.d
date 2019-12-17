@@ -83,7 +83,7 @@ Edit i.org
 #+BEGIN_SRC emacs-lisp
 (defun emiller/visit-i-org ()
   (interactive)
-  (find-file "~/Dropbox/orgfiles/gtd/i.org"))
+  (find-file "~/sync/orgfiles/gtd/i.org"))
 #+END_SRC
 Ediff the ~init.example.el~ and my ~init.el~
 #+BEGIN_SRC emacs-lisp
@@ -114,7 +114,7 @@ Helpful for ~Snakemake~
 ** deft
 #+BEGIN_SRC emacs-lisp
 (after! deft
-  (setq deft-directory "~/Dropbox/orgfiles/notes"))
+  (setq deft-directory "~/sync/orgfiles/notes"))
 #+END_SRC
 ** Dired
 Get rid of dired message when using a
@@ -274,7 +274,7 @@ Start in insert mode in =org-capture=
 #+END_SRC
 Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "/home/emiller/Dropbox/orgfiles/"
+(setq org-directory "/home/emiller/sync/orgfiles/"
       +org-capture-todo-file "gtd/i.org")
 #+END_SRC
 Function to return the absolute address of an org file, given its relative name.
@@ -293,11 +293,11 @@ Set one archive file to rule them all
 Set Files that are pulled into ~org-agenda~
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq org-agenda-files (list "~/Dropbox/orgfiles/gtd/i.org"
-                               "~/Dropbox/orgfiles/o.org"
-                               "~/Dropbox/orgfiles/schedule.org"
-                               "~/Dropbox/orgfiles/gtd/gtd.org"
-                               "~/Dropbox/orgfiles/gtd/tickler.org")))
+  (setq org-agenda-files (list "~/sync/orgfiles/gtd/i.org"
+                               "~/sync/orgfiles/o.org"
+                               "~/sync/orgfiles/schedule.org"
+                               "~/sync/orgfiles/gtd/gtd.org"
+                               "~/sync/orgfiles/gtd/tickler.org")))
 #+END_SRC
 Set Custom Icons
 #+BEGIN_SRC emacs-lisp
@@ -320,10 +320,10 @@ Org Capture Templates
 (after! org
   (setq org-capture-templates
         (append
-         '(("a" "Appointment" entry (file  "~/Dropbox/orgfiles/schedule.org" )
+         '(("a" "Appointment" entry (file  "~/sync/orgfiles/schedule.org" )
             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
            ("l" "Lab Entry" entry
-            (file+olp+datetree "~/Dropbox/orgfiles/notes/Lab_Notebook.org" "Lab Journal")
+            (file+olp+datetree "~/sync/orgfiles/notes/Lab_Notebook.org" "Lab Journal")
             "* %? %^g \n "))
          org-capture-templates)))
 #+END_SRC
@@ -335,10 +335,10 @@ Set org-refile to utilize helm or ivy
 
   (setq org-refile-targets
         '((nil :maxlevel . 3)
-          ("~/Dropbox/orgfiles/i.org" :maxlevel . 4)
-          ("~/Dropbox/orgfiles/gtd/gtd.org" :maxlevel . 4)
-          ("~/Dropbox/orgfiles/gtd/someday.org" :maxlevel . 3)
-          ("~/Dropbox/orgfiles/gtd/tickler.org" :maxlevel . 4))))
+          ("~/sync/orgfiles/i.org" :maxlevel . 4)
+          ("~/sync/orgfiles/gtd/gtd.org" :maxlevel . 4)
+          ("~/sync/orgfiles/gtd/someday.org" :maxlevel . 3)
+          ("~/sync/orgfiles/gtd/tickler.org" :maxlevel . 4))))
 #+END_SRC
 *** org-agenda-custom
 #+BEGIN_SRC emacs-lisp
@@ -374,7 +374,7 @@ Set org-refile to utilize helm or ivy
   :config
   (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
         org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
-        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/Dropbox/orgfiles/schedule.org"))))
+        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/orgfiles/schedule.org"))))
 #+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
@@ -387,10 +387,10 @@ Set org-refile to utilize helm or ivy
 #+END_SRC
 ** Reference
 #+BEGIN_SRC emacs-lisp
-(setq reftex-default-bibliography '("~/Dropbox/orgfiles/reference/Bibliography.bib"))
-(setq bibtex-completion-bibliography "~/Dropbox/orgfiles/reference/Bibliography.bib" ;the major bibtex file
-      bibtex-completion-library-path "~/Dropbox/orgfiles/reference/pdf/" ;the directory to store pdfs
-      bibtex-completion-notes-path "~/Dropbox/orgfiles/ref-notes.org" ;the note file for reference notes
+(setq reftex-default-bibliography '("~/sync/orgfiles/reference/Bibliography.bib"))
+(setq bibtex-completion-bibliography "~/sync/orgfiles/reference/Bibliography.bib" ;the major bibtex file
+      bibtex-completion-library-path "~/sync/orgfiles/reference/pdf/" ;the directory to store pdfs
+      bibtex-completion-notes-path "~/sync/orgfiles/ref-notes.org" ;the note file for reference notes
       )
 #+END_SRC
 ** Rust
@@ -400,7 +400,7 @@ Set org-refile to utilize helm or ivy
 ** Solidity
 #+BEGIN_SRC emacs-lisp
 ;; (setq solidity-solc-path "/usr/bin/solc")
-(setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
+(setq flycheck-solidity-solium-soliumrcfile "/home/emiller/sync/.soliumrc.json")
 (setq solidity-flycheck-solc-checker-active t)
 #+END_SRC
 * Packages

@@ -16,7 +16,7 @@
 (defun +emiller/visit-i-org ()
   "Edit i.org"
   (interactive)
-  (find-file "~/Dropbox/orgfiles/i.org"))
+  (find-file "~/sync/orgfiles/i.org"))
 
 ;;;###autoload
 (defun +emiller/find-notes-for-major-mode ()
