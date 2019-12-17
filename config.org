@@ -398,7 +398,7 @@ Set org-refile to utilize helm or ivy
 #+END_SRC
 ** Solidity
 #+BEGIN_SRC emacs-lisp
-(setq solidity-solc-path "/usr/bin/solc")
+;; (setq solidity-solc-path "/usr/bin/solc")
 (setq flycheck-solidity-solium-soliumrcfile "/home/emiller/Dropbox/.soliumrc.json")
 (setq solidity-flycheck-solc-checker-active t)
 #+END_SRC
