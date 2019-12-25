@@ -24,7 +24,7 @@ Change Theme
 #+END_SRC
 Change the banner
 #+BEGIN_SRC emacs-lisp
-(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
+(setq +doom-dashboard-banner-file (expand-file-name "narf.png" doom-private-dir))
 #+END_SRC
 Cleanup Whitespace
 #+BEGIN_SRC emacs-lisp
