@@ -48,3 +48,16 @@ Add o/O to add new list item
         :localleader
         "," #'+ein-hydra/body))
 #+END_SRC
+** Reformatter
+#+BEGIN_SRC emacs-lisp
+(use-package! reformatter
+  :config
+  (defconst Rscript-command "Rscript")
+  (reformatter-define styler
+    :program Rscript-command
+    :args (list "--vanilla" "-e" "con <- file(\"stdin\")
+out <- styler::style_text(readLines(con))
+close(con)
+out")
+    :lighter " styler"))
+#+END_SRC

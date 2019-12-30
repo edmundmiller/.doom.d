@@ -195,23 +195,6 @@ Other Channels
     (set-auto-mode)))
 (add-to-list 'auto-mode-alist '("\\.vmjs\\'" . i-will-have-what-js-is-having))
 #+END_SRC
-** Jupyter
-#+BEGIN_SRC emacs-lisp
-(use-package! jupyter
-  :after org
-  :init
-  ;; use overlays in jupyter-scratch to show evaluation results
-  (setq jupyter-eval-use-overlays t)
-  :config
-  (after! ob-async
-    (add-to-list 'ob-async-no-async-languages-alist "jupyter-python"))
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     ;; (julia . t)
-     (python . t)
-     (jupyter . t))))
-#+END_SRC
 ** lsp
 #+BEGIN_SRC emacs-lisp
 (after! lsp
@@ -240,26 +223,6 @@ Other Channels
 #+BEGIN_SRC emacs-lisp
 (setenv "EDITOR" "emacsclient")
 #+END_SRC
-*** GitHub Reviews
-#+BEGIN_SRC emacs-lisp
-(after! magit
-    (use-package! github-review))
-#+END_SRC
-** Notmuch
-Add delete, which adds the ~trash~ tag
-Counsel notmuch
-Fix quitting notmuch to remove the workspace
-#+BEGIN_SRC emacs-lisp
-(map! :after notmuch
-      :map notmuch-tree-mode-map
-      :n "d" #'+notmuch/tree-delete
-      :n "q" #'+notmuch/quit
-      :map notmuch-search-mode-map
-      :n "d" #'+notmuch/search-delete
-      :n "q" #'+notmuch/quit
-      (:leader
-        (:prefix "/"
-          :desc "Browse mode notes" :n "m" #'counsel-notmuch)))
 
 (after! notmuch
   (setq +notmuch-sync-backend 'mbsync
@@ -466,19 +429,6 @@ Set org-refile to utilize helm or ivy
    (:leader
      (:prefix "n"
        :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
-#+END_SRC
-** Reformatter
-#+BEGIN_SRC emacs-lisp
-(use-package! reformatter
-  :config
-  (defconst Rscript-command "Rscript")
-  (reformatter-define styler
-    :program Rscript-command
-    :args (list "--vanilla" "-e" "con <- file(\"stdin\")
-out <- styler::style_text(readLines(con))
-close(con)
-out")
-    :lighter " styler"))
 #+END_SRC
 ** package-lint
 #+BEGIN_SRC emacs-lisp

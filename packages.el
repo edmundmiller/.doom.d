@@ -17,12 +17,7 @@
 (package! reformatter)
 (package! tox)
 (package! emms)
-(package! github-review)
 
-;; org-jupyter
-(package! jupyter)
-(package! websocket)
-(package! zmq)
 
 (provide 'packages)
 ;;; packages.el ends here
