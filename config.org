@@ -434,6 +434,10 @@ Set org-refile to utilize helm or ivy
 #+BEGIN_SRC emacs-lisp
 ;; (use-package! package-lint)
 #+END_SRC
+** speed-type
+#+BEGIN_SRC emacs-lisp
+(use-package! speed-type)
+#+END_SRC
 ** Write
 *** Languagetool
 #+BEGIN_SRC emacs-lisp

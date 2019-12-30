@@ -18,6 +18,7 @@
 (package! tox)
 (package! emms)
 
+(package! speed-type)
 
 (provide 'packages)
 ;;; packages.el ends here
