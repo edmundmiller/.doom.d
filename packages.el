@@ -14,7 +14,6 @@
 (package! org-gcal)
 (package! dired-sidebar)
 ;; Experimental
-(package! reformatter)
 (package! tox)
 (package! emms)
 

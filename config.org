@@ -224,6 +224,21 @@ Other Channels
 (setenv "EDITOR" "emacsclient")
 #+END_SRC
 
+** Notmuch
+Add delete, which adds the ~trash~ tag
+Counsel notmuch
+Fix quitting notmuch to remove the workspace
+#+BEGIN_SRC emacs-lisp
+(map! :after notmuch
+      :map notmuch-tree-mode-map
+      :n "d" #'+notmuch/tree-delete
+      :n "q" #'+notmuch/quit
+      :map notmuch-search-mode-map
+      :n "d" #'+notmuch/search-delete
+      :n "q" #'+notmuch/quit
+      (:leader
+        (:prefix "/"
+          :desc "Browse mode notes" :n "m" #'counsel-notmuch)))
 (after! notmuch
   (setq +notmuch-sync-backend 'mbsync
         notmuch-always-prompt-for-sender t
