@@ -46,7 +46,7 @@ Cleanup Whitespace
      :desc "Calc" :n "c" #'calc
      :desc "easy-hugo" :n "g" #'easy-hugo
      :desc "APP: IRC" :n "i" #'=irc
-     :desc "i.org" :n "o" #'emiller/visit-i-org
+     :desc "todo.org" :n "o" #'+emiller/visit-todo-org
      :desc "APP: notmuch" :n "m" #'=notmuch
      :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
      :desc "emms" :n "s" #'emms
@@ -79,12 +79,6 @@ Cleanup Whitespace
    :i "C-l" #'evil-window-right))
 #+END_SRC
 * Functions
-Edit i.org
-#+BEGIN_SRC emacs-lisp
-(defun emiller/visit-i-org ()
-  (interactive)
-  (find-file "~/sync/orgfiles/gtd/i.org"))
-#+END_SRC
 Ediff the ~init.example.el~ and my ~init.el~
 #+BEGIN_SRC emacs-lisp
 (defun ediff-init-files ()

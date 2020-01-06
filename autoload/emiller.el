@@ -13,10 +13,11 @@
   (doom-project-browse (expand-file-name "~/.dotfiles")))
 
 ;;;###autoload
-(defun +emiller/visit-i-org ()
-  "Edit i.org"
+(defun +emiller/visit-todo-org ()
+  "Edit todo.org"
   (interactive)
-  (find-file "~/sync/org/todo.org"))
+  (find-file
+    (expand-file-name +org-capture-todo-file org-directory)))
 
 ;;;###autoload
 (defun +emiller/find-notes-for-major-mode ()
