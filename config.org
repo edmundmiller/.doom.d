@@ -246,35 +246,10 @@ Start in insert mode in =org-capture=
 #+END_SRC
 Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "/home/emiller/sync/org/")
-#+END_SRC
-Function to return the absolute address of an org file, given its relative name.
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (defun org-file-path (filename)
-    "Return the absolute address of an org file, given its relative name."
-    (concat (file-name-as-directory org-directory) filename)))
-#+END_SRC
-Set one archive file to rule them all
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-archive-location
-        (concat (org-file-path "archive.org") "::* From %s")))
-#+END_SRC
-Set Files that are pulled into ~org-agenda~
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-agenda-files (list "~/sync/org/gtd/i.org"
-                               "~/sync/org/o.org"
-                               "~/sync/org/schedule.org"
-                               "~/sync/org/gtd/gtd.org"
-                               "~/sync/org/gtd/tickler.org")))
-#+END_SRC
-Set Custom Icons
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-bullets-bullet-list '("#"))
-  (setq org-ellipsis " ▼ "))
+(setq org-directory "/home/emiller/sync/org/"
+      org-archive-location (concat org-directory "archive/%s::")
+      org-ellipsis " ▼ "
+      org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
 #+END_SRC
 Org export settings
 #+BEGIN_SRC emacs-lisp
