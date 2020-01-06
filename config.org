@@ -304,19 +304,6 @@ Org Capture Templates
             "* %? %^g \n "))
          org-capture-templates)))
 #+END_SRC
-Set org-refile to utilize helm or ivy
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-refile-use-outline-path t)
-  (setq org-outline-path-complete-in-steps nil)
-
-  (setq org-refile-targets
-        '((nil :maxlevel . 3)
-          ("~/sync/orgfiles/i.org" :maxlevel . 4)
-          ("~/sync/orgfiles/gtd/gtd.org" :maxlevel . 4)
-          ("~/sync/orgfiles/gtd/someday.org" :maxlevel . 3)
-          ("~/sync/orgfiles/gtd/tickler.org" :maxlevel . 4))))
-#+END_SRC
 *** org-agenda-custom
 #+BEGIN_SRC emacs-lisp
 (after! org
