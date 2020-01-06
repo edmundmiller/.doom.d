@@ -18,23 +18,3 @@
   (interactive)
   (find-file
     (expand-file-name +org-capture-todo-file org-directory)))
-
-;;;###autoload
-(defun +emiller/find-notes-for-major-mode ()
-  "TODO"
-  (interactive)
-  (let ((default-directory (expand-file-name "code/" org-directory)))
-    (if arg
-        (call-interactively #'find-file)
-      (find-file
-       (expand-file-name (concat (string-remove-suffix "-mode" (symbol-name major-mode)) ".org"))))))
-
-;;;###autoload
-(defun +emiller/find-notes-for-project ()
-  "TODO"
-  (interactive)
-  (let ((default-directory (expand-file-name "projects/" org-directory)))
-    (if arg
-        (call-interactively #'find-file)
-      (find-file
-       (expand-file-name (concat (doom-project-name 'nocache) ".org"))))))
