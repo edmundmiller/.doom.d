@@ -108,7 +108,7 @@ Helpful for ~Snakemake~
 ** deft
 #+BEGIN_SRC emacs-lisp
 (after! deft
-  (setq deft-directory "~/sync/orgfiles/notes"))
+  (setq deft-directory "~/sync/org/notes"))
 #+END_SRC
 ** Dired
 Get rid of dired message when using a
@@ -266,10 +266,11 @@ Org Capture Templates
 (after! org
   (setq org-capture-templates
         (append
-         '(("a" "Appointment" entry (file  "~/sync/orgfiles/schedule.org" )
+         ;; TODO generalize these with org-directory
+         '(("a" "Appointment" entry (file  "~/sync/org/schedule.org" )
             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
            ("l" "Lab Entry" entry
-            (file+olp+datetree "~/sync/orgfiles/notes/Lab_Notebook.org" "Lab Journal")
+            (file+olp+datetree "~/sync/org/notes/Lab_Notebook.org" "Lab Journal")
             "* %? %^g \n "))
          org-capture-templates)))
 #+END_SRC
@@ -307,7 +308,8 @@ Org Capture Templates
   :config
   (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
         org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
-        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/orgfiles/schedule.org"))))
+        ;; TODO Generalize
+        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/org/schedule.org"))))
 #+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
@@ -320,10 +322,11 @@ Org Capture Templates
 #+END_SRC
 ** Reference
 #+BEGIN_SRC emacs-lisp
-(setq reftex-default-bibliography '("~/sync/orgfiles/reference/Bibliography.bib"))
-(setq bibtex-completion-bibliography "~/sync/orgfiles/reference/Bibliography.bib" ;the major bibtex file
-      bibtex-completion-library-path "~/sync/orgfiles/reference/pdf/" ;the directory to store pdfs
-      bibtex-completion-notes-path "~/sync/orgfiles/ref-notes.org" ;the note file for reference notes
+;; TODO Generalize
+(setq reftex-default-bibliography '("~/sync/org/reference/Bibliography.bib"))
+(setq bibtex-completion-bibliography "~/sync/org/reference/Bibliography.bib" ;the major bibtex file
+      bibtex-completion-library-path "~/sync/org/reference/pdf/" ;the directory to store pdfs
+      bibtex-completion-notes-path "~/sync/org/ref-notes.org" ;the note file for reference notes
       )
 #+END_SRC
 ** Rust
