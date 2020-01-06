@@ -252,8 +252,7 @@ Start in insert mode in =org-capture=
 #+END_SRC
 Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
-(setq org-directory "/home/emiller/sync/orgfiles/"
-      +org-capture-todo-file "gtd/i.org")
+(setq org-directory "/home/emiller/sync/org/")
 #+END_SRC
 Function to return the absolute address of an org file, given its relative name.
 #+BEGIN_SRC emacs-lisp
@@ -271,11 +270,11 @@ Set one archive file to rule them all
 Set Files that are pulled into ~org-agenda~
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq org-agenda-files (list "~/sync/orgfiles/gtd/i.org"
-                               "~/sync/orgfiles/o.org"
-                               "~/sync/orgfiles/schedule.org"
-                               "~/sync/orgfiles/gtd/gtd.org"
-                               "~/sync/orgfiles/gtd/tickler.org")))
+  (setq org-agenda-files (list "~/sync/org/gtd/i.org"
+                               "~/sync/org/o.org"
+                               "~/sync/org/schedule.org"
+                               "~/sync/org/gtd/gtd.org"
+                               "~/sync/org/gtd/tickler.org")))
 #+END_SRC
 Set Custom Icons
 #+BEGIN_SRC emacs-lisp
