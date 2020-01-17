@@ -270,14 +270,13 @@ Org Capture Templates
     (setq org-capture-templates
           (append
            (doct '(("Appointment" :keys "a"
-                    :function (expand-file-name "schedule.org" org-directory)
-                    ;; :file "/home/emiller/sync/org/schedule.org"
+                    :file "/home/emiller/sync/org/schedule.org"
                     :template ("* %?"
                                "%^T"
                                ":PROPERTIES:"
                                ":END:"))
                    ("Lab Entry" :keys "l"
-                    :function (expand-file-name "Lab_Notebook.org" deft-directory)
+                    :file "/home/emiller/sync/org/notes/Lab_Notebook.org"
                     :olp ("Lab Journal")
                     :+datetree t
                     :template ("* %?"
