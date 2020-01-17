@@ -108,7 +108,8 @@ Helpful for ~Snakemake~
 ** deft
 #+BEGIN_SRC emacs-lisp
 (after! deft
-  (setq deft-directory "~/sync/org/notes"))
+  (setq deft-directory "~/sync/org/notes"
+        deft-recursive t))
 #+END_SRC
 ** Dired
 Get rid of dired message when using a
