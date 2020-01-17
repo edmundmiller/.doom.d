@@ -13,6 +13,7 @@
 (package! vyper-mode)
 (package! org-gcal)
 (package! dired-sidebar)
+(package! doct :recipe (:host github :repo "progfolio/doct"))
 ;; Experimental
 (package! tox)
 (package! emms)
