@@ -1,7 +1,7 @@
 ;;; private/emiller/init.el -*- lexical-binding: t; -*-
 
 (doom! :completion
-       company
+       (company +childframe)
        ;;helm
        ;;ido
        ivy
