@@ -23,13 +23,14 @@
        (popup
         +all
         +defaults)
-       (pretty-code +iosevka)
+       ;;(pretty-code +iosevka)
        ;;tabbar
        ;;unicode
        vc-gutter
        vi-tilde-fringe
        window-select
        workspaces
+       zen
 
        :editor
        (evil +everywhere)
@@ -67,7 +68,8 @@
        eval
        gist
        (lookup
-        +docsets)
+         +docsets
+         +dictionary)
        lsp
        ;;macos
        magit
@@ -112,6 +114,7 @@
        (org
         +dragndrop                            ; file drag & drop support
         +hugo
+        +journal
         +jupyter                              ; ipython support for babel
         +pandoc                               ; pandoc integration into org's exporter
         +pomodoro)
@@ -120,10 +123,7 @@
        ;;php
        ;;plantuml
        ;;purescript
-       (python)
-       ;; +conda
-       ;; +pyenv
-       ;; +lsp
+       (python +lsp)
 
        ;;qt
        ;;racket
