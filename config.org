@@ -105,12 +105,6 @@ Helpful for ~Snakemake~
       ("^\\*cider-repl" :quit nil)
       ("^\\*cider-repl-history" :vslot 2 :ttl nil))))
 #+END_SRC
-** deft
-#+BEGIN_SRC emacs-lisp
-(after! deft
-  (setq deft-directory "~/sync/org/notes"
-        deft-recursive t))
-#+END_SRC
 ** Dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
@@ -284,6 +278,14 @@ Org Capture Templates
                                ""))))
            org-capture-templates))))
 #+END_SRC
+*** deft
+#+BEGIN_SRC emacs-lisp
+(after! deft
+  (setq deft-directory "~/sync/org/notes"
+        deft-recursive t
+        +org-capture-journal-file "notes/journal.org"))
+#+END_SRC
+*** org-agenda-custom
 #+BEGIN_SRC emacs-lisp
 (after! org
   (setq org-agenda-custom-commands
