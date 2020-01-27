@@ -259,24 +259,15 @@ Log time when things get marked as done
 Org Capture Templates
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (use-package! doct
-    :config
-    (setq org-capture-templates
-          (append
-           (doct '(("Appointment" :keys "a"
-                    :file "~/sync/org/schedule.org"
-                    :template ("* %?"
-                               "%^T"
-                               ":PROPERTIES:"
-                               ":END:"))
-                   ("Lab Entry" :keys "l"
-                    :file "~/sync/org/notes/Lab_Notebook.org"
-                    :olp ("Lab Journal")
-                    :+datetree t
-                    :template ("* %?"
-                               "%^g"
-                               ""))))
-           org-capture-templates))))
+  (setq org-capture-templates
+        (append
+         ;; TODO generalize these with org-directory
+         '(("a" "Appointment" entry (file  "~/sync/org/schedule.org" )
+            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+           ("l" "Lab Entry" entry
+            (file+olp+datetree "~/sync/org/notes/Lab_Notebook.org" "Lab Journal")
+            "* %? %^g \n "))
+         org-capture-templates)))
 #+END_SRC
 *** deft
 #+BEGIN_SRC emacs-lisp
