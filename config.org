@@ -243,6 +243,7 @@ Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
 (setq org-directory "/home/emiller/sync/org/"
       org-archive-location (concat org-directory "archive/%s::")
+      +org-capture-journal-file "notes/journal.org"
       org-ellipsis " ▼ "
       org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
 #+END_SRC
@@ -273,8 +274,7 @@ Org Capture Templates
 #+BEGIN_SRC emacs-lisp
 (after! deft
   (setq deft-directory "~/sync/org/notes"
-        deft-recursive t
-        +org-capture-journal-file "notes/journal.org"))
+        deft-recursive t))
 #+END_SRC
 *** org-agenda-custom
 #+BEGIN_SRC emacs-lisp
