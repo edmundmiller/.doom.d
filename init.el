@@ -98,7 +98,7 @@
        emacs-lisp
        (ess +lsp)
        ;; go
-       ;; (haskell +lsp)
+       (haskell +dante)
        ;;hy
        ;;idris
        ;; (java +lsp)
@@ -123,7 +123,7 @@
        ;;php
        ;;plantuml
        ;;purescript
-       (python +lsp)
+       python
 
        ;;qt
        ;;racket
