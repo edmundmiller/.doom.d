@@ -465,7 +465,7 @@ Log time when things get marked as done
 #+END_SRC
 ** Rust
 #+BEGIN_SRC emacs-lisp
-(setq +rust-src-dir "~/src/rust/src/")
+(setq lsp-rust-server 'rust-analyzer)
 #+END_SRC
 ** Solidity
 #+BEGIN_SRC emacs-lisp
