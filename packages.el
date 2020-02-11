@@ -7,6 +7,7 @@
 (package! org-noter)
 (package! org-clock-csv)
 (package! easy-hugo)
+(package! pretty-hydra)
 ;; (package! package-lint)
 (package! graphviz-dot-mode)
 (package! jest)
