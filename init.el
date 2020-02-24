@@ -94,7 +94,7 @@
        data
        ;;erlang
        ;;elixir
-       ;;elm
+       (elm +lsp)
        emacs-lisp
        (ess +lsp)
        ;; go
