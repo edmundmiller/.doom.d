@@ -236,12 +236,6 @@ Log time when things get marked as done
            "* %U %?\n%i\n%a"))
          org-capture-templates)))
 #+END_SRC
-*** deft
-#+BEGIN_SRC emacs-lisp
-(after! deft
-  (setq deft-directory "~/sync/org/deft"
-        deft-recursive t))
-#+END_SRC
 *** org-agenda-custom
 #+BEGIN_SRC emacs-lisp
 (after! org
@@ -270,7 +264,24 @@ Log time when things get marked as done
 
           ("ge" "Emacs Time" tags-todo "@emacs"))))
 #+END_SRC
-*** org-gcal
+*** ~Packages~
+**** Auto-org-md
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! auto-org-md))
+#+END_SRC
+**** deft
+#+BEGIN_SRC emacs-lisp
+(after! deft
+  (setq deft-directory "~/sync/org/deft"
+        deft-recursive t))
+#+END_SRC
+**** Org-clock-csv
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! org-clock-csv))
+#+END_SRC
+**** org-gcal
 #+BEGIN_SRC emacs-lisp
 (use-package! org-gcal
   :config
@@ -279,17 +290,7 @@ Log time when things get marked as done
         ;; TODO Generalize
         org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/org/schedule.org"))))
 #+END_SRC
-*** Auto-org-md
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! auto-org-md))
-#+END_SRC
-*** Org-clock-csv
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! org-clock-csv))
-#+END_SRC
-*** Org-noter
+**** Org-noter
 #+BEGIN_SRC emacs-lisp
 (after! org
   (use-package! org-noter
