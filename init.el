@@ -117,8 +117,8 @@
         +journal
         +jupyter                              ; ipython support for babel
         +pandoc                               ; pandoc integration into org's exporter
-        +pomodoro)
-       ;; +present)                             ; using Emacs for presentations
+        +pomodoro
+        +present)                             ; using Emacs for presentations
        perl
        ;;php
        ;;plantuml
