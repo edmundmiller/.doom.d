@@ -279,20 +279,6 @@ Tries to intelligently handle components based on their prefix:
    ""
    (("tn" "+news"))))
 #+END_SRC
-** emms
-#+BEGIN_SRC emacs-lisp
-(use-package! emms
-  :config
-  (require 'emms-setup)
-  (require 'emms-player-mpd)
-  (emms-all) ; don't change this to values you see on stackoverflow questions if you expect emms to work
-  (setq emms-seek-seconds 5)
-  (setq emms-player-list '(emms-player-mpd))
-  (setq emms-info-functions '(emms-info-mpd))
-  (setq emms-player-mpd-server-name "localhost")
-  (setq emms-player-mpd-server-port "6600")
-  (setq emms-source-file-default-directory "~/Music/"))
-#+END_SRC
 ** eShell
 Get rid of modeline in eshell buffers
 #+BEGIN_SRC emacs-lisp
@@ -476,47 +462,9 @@ Log time when things get marked as done
 (setq solidity-flycheck-solc-checker-active t)
 #+END_SRC
 * Packages
-** Easy Hugo
-#+BEGIN_SRC emacs-lisp
-(use-package! easy-hugo
-  :init
-  (setq easy-hugo-basedir "~/src/personalProjects/emillerSite/")
-  (setq easy-hugo-url "https:/emiller88.github.io/")
-  (setq easy-hugo-previewtime "300")
-  (setq easy-hugo-default-ext ".org")
-  (setq easy-hugo-org-header t)
-  (setq easy-hugo-postdir "content/posts")
-  (set-evil-initial-state! 'easy-hugo-mode 'emacs))
-#+END_SRC
-** Ivy-yasnippet
-#+BEGIN_SRC emacs-lisp
-(after! ivy
-(use-package! ivy-yasnippet
-  :commands (ivy-yasnippet)
-  :config
-  (map!
-   (:leader
-     (:prefix "s"
-       :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet)))))
-#+END_SRC
-** Ivy Icons
-#+BEGIN_SRC emacs-lisp
-(setq +ivy-buffer-icons t)
-#+END_SRC
 ** Graphviz-dot-mode
 #+BEGIN_SRC emacs-lisp
 (use-package! graphviz-dot-mode)
-#+END_SRC
-** Helm
-#+BEGIN_SRC emacs-lisp
-(after! helm
- (setq +helm-posframe-text-scale 1)
-  (setq +helm-posframe-parameters
-        '((internal-border-width . 6)
-          (width . 0.3)
-          (height . 0.15)
-          (min-width . 60)
-          (min-height . 8))))
 #+END_SRC
 ** Org
 *** Auto-org-md
@@ -547,12 +495,6 @@ Log time when things get marked as done
 ** speed-type
 #+BEGIN_SRC emacs-lisp
 (use-package! speed-type)
-#+END_SRC
-** Write
-*** Languagetool
-#+BEGIN_SRC emacs-lisp
-;; (setq langtool-language-tool-jar "~/src/emacsExtras/languagetool-commandline.jar")
-(setq +write-text-scale +2)
 #+END_SRC
 ** yasnippet
 #+BEGIN_SRC emacs-lisp
