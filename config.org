@@ -80,6 +80,7 @@ Cleanup Whitespace
 #+END_SRC
 * Functions
 Ediff the ~init.example.el~ and my ~init.el~
+** Compare init files
 #+BEGIN_SRC emacs-lisp
 (defun ediff-init-files ()
   (interactive)
