@@ -284,6 +284,10 @@ Get rid of modeline in eshell buffers
 #+BEGIN_SRC emacs-lisp
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 #+END_SRC
+** Graphviz-dot-mode
+#+BEGIN_SRC emacs-lisp
+(use-package! graphviz-dot-mode)
+#+END_SRC
 ** irc
 #+BEGIN_SRC emacs-lisp
 (after! circe
@@ -433,6 +437,31 @@ Log time when things get marked as done
         ;; TODO Generalize
         org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/org/schedule.org"))))
 #+END_SRC
+*** Auto-org-md
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! auto-org-md))
+#+END_SRC
+*** Org-clock-csv
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! org-clock-csv))
+#+END_SRC
+*** Org-noter
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! org-noter
+    :config
+    (setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
+    (map!
+     (:leader
+       (:prefix "n"
+         :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
+#+END_SRC
+** package-lint
+#+BEGIN_SRC emacs-lisp
+;; (use-package! package-lint)
+#+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
 (setq +pretty-code-enabled-modes '(emacs-lisp-mode))
@@ -461,38 +490,8 @@ Log time when things get marked as done
 (setq flycheck-solidity-solium-soliumrcfile "/home/emiller/sync/.soliumrc.json")
 (setq solidity-flycheck-solc-checker-active t)
 #+END_SRC
-* Packages
-** Graphviz-dot-mode
-#+BEGIN_SRC emacs-lisp
-(use-package! graphviz-dot-mode)
-#+END_SRC
-** Org
-*** Auto-org-md
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! auto-org-md))
-#+END_SRC
-*** Org-clock-csv
-#+BEGIN_SRC emacs-lisp
-(after! org
-(use-package! org-clock-csv))
-#+END_SRC
-*** Org-noter
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! org-noter
-    :config
-    (setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
-    (map!
-     (:leader
-       (:prefix "n"
-         :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
-#+END_SRC
-** package-lint
-#+BEGIN_SRC emacs-lisp
-;; (use-package! package-lint)
-#+END_SRC
 ** speed-type
+
 #+BEGIN_SRC emacs-lisp
 (use-package! speed-type)
 #+END_SRC
