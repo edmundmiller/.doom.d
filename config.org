@@ -121,6 +121,7 @@ Get rid of dired message when using a
 (after! elfeed-search
   (map! :map elfeed-search-mode-map
         :localleader
+        :n "m" #'my/elfeed-search-view-hydra/body
         :n "s" #'elfeed-toggle-star
         :n "r" #'elfeed-update))
 #+END_SRC
