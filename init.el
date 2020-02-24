@@ -78,16 +78,16 @@
        pdf
        ;;prodigy
        rgb
-       terraform
+       ;;terraform
        tmux
        upload
        ;; wakatime
 
        :lang
        ;;assembly
-       (cc +lsp)
+       ;;(cc +lsp)
        clojure
-       ;; common-lisp
+       ;;common-lisp
        ;;coq
        ;;crystal
        ;;csharp
@@ -101,7 +101,7 @@
        (haskell +dante)
        ;;hy
        ;;idris
-       ;; (java +lsp)
+       ;;(java +lsp)
        (javascript +lsp)
        ;;julia
        (latex +ref)
@@ -119,7 +119,7 @@
         +pandoc                               ; pandoc integration into org's exporter
         +pomodoro
         +present)                             ; using Emacs for presentations
-       perl
+       ;;perl
        ;;php
        ;;plantuml
        ;;purescript
