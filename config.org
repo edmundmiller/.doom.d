@@ -98,7 +98,7 @@ Helpful for ~Snakemake~
 (global-set-key (kbd "C-c d") 'insert-todays-date)
 #+END_SRC
 * Modules
-** Clojure
+** clojure
 #+BEGIN_SRC emacs-lisp
 (after! cider
   (set-popup-rules!
@@ -106,17 +106,219 @@ Helpful for ~Snakemake~
       ("^\\*cider-repl" :quit nil)
       ("^\\*cider-repl-history" :vslot 2 :ttl nil))))
 #+END_SRC
-** Dired
+** dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
 (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
-** dired-sidebar
+*** dired-sidebar
 #+BEGIN_SRC emacs-lisp
 (after! dired
-    (use-package! dired-sidebar))
+  (use-package! dired-sidebar))
 #+END_SRC
-** elfeed
+** elisp
+*** package-lint
+#+BEGIN_SRC emacs-lisp
+;; (use-package! package-lint)
+#+END_SRC
+** eshell
+Get rid of modeline in eshell buffers
+#+BEGIN_SRC emacs-lisp
+(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
+#+END_SRC
+** graphviz-dot-mode
+#+BEGIN_SRC emacs-lisp
+(use-package! graphviz-dot-mode)
+#+END_SRC
+** irc
+#+BEGIN_SRC emacs-lisp
+(after! circe
+  (set-irc-server! "chat.freenode.net"
+                   `(:tls t
+                          :port 6697
+                          :nick "emiller88"
+                          :sasl-username ,(+pass-get-user "irc/freenode.net")
+                          :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
+                          :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#home-manager" "#nixos" "#nixos-emacs" "#sway" "##rust" "#python" "#pine64"))))
+#+END_SRC
+Other Channels
+- #haskell
+** javascript
+#+BEGIN_SRC emacs-lisp
+(defun i-will-have-what-js-is-having ()
+  (let ((buffer-file-name (concat (file-name-sans-extension buffer-file-name) ".js")))
+    (set-auto-mode)))
+(add-to-list 'auto-mode-alist '("\\.vmjs\\'" . i-will-have-what-js-is-having))
+#+END_SRC
+** lsp
+#+BEGIN_SRC emacs-lisp
+(after! lsp
+  (setq lsp-ui-sideline-show-code-actions nil
+        lsp-ui-sideline-show-diagnostics nil
+        lsp-signature-render-all nil))
+#+END_SRC
+** magit
+*** Git-gutter-fringe
+#+BEGIN_SRC emacs-lisp
+(defun +version-control|git-gutter-maybe ()
+  (when buffer-file-name
+    (require 'git-gutter-fringe)
+    (git-gutter-mode +1)))
+#+END_SRC
+*** GPG signing
+#+BEGIN_SRC emacs-lisp
+(after! magit
+  (setq magit-repository-directories '(("~/src" . 3))
+        magit-save-repository-buffers nil
+        magit-commit-arguments '("--gpg-sign=BD387FF7BC10AA9D")
+        magit-rebase-arguments '("--autostash" "--gpg-sign=BD387FF7BC10AA9D")
+        magit-pull-arguments '("--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")))
+#+END_SRC
+*** Set editor
+#+BEGIN_SRC emacs-lisp
+(setenv "EDITOR" "emacsclient")
+#+END_SRC
+
+** notmuch
+Add delete, which adds the ~trash~ tag
+Counsel notmuch
+Fix quitting notmuch to remove the workspace
+#+BEGIN_SRC emacs-lisp
+(map! :after notmuch
+      :map notmuch-tree-mode-map
+      :n "d" #'+notmuch/tree-delete
+      :n "q" #'+notmuch/quit
+      :map notmuch-search-mode-map
+      :n "d" #'+notmuch/search-delete
+      :n "q" #'+notmuch/quit
+      (:leader
+        (:prefix "/"
+          :desc "Browse mode notes" :n "m" #'counsel-notmuch)))
+(after! notmuch
+  (setq +notmuch-sync-backend 'mbsync
+        notmuch-always-prompt-for-sender t
+        send-mail-function 'sendmail-send-it))
+#+END_SRC
+** org
+*** Misc
+Start in insert mode in =org-capture=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
+#+END_SRC
+Set ~+org-vars~
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "/home/emiller/sync/org/"
+      org-archive-location (concat org-directory "archive/%s::")
+      +org-capture-journal-file "deft/journal.org"
+      org-ellipsis " ▼ "
+      org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
+#+END_SRC
+Org export settings
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-export-with-toc nil))
+#+END_SRC
+Log time when things get marked as done
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-log-done 'time))
+#+END_SRC
+*** Org Capture Templates
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-capture-templates
+        (append
+         ;; TODO generalize these with org-directory
+         '(("a" "Appointment" entry (file  "~/sync/org/schedule.org" )
+            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+           ("l" "Lab Entry" entry
+            (file+olp+datetree "~/sync/org/deft/lab/notebook.org")
+           "* %U %?\n%i\n%a"))
+         org-capture-templates)))
+#+END_SRC
+*** deft
+#+BEGIN_SRC emacs-lisp
+(after! deft
+  (setq deft-directory "~/sync/org/deft"
+        deft-recursive t))
+#+END_SRC
+*** org-agenda-custom
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (setq org-agenda-custom-commands
+        '(("c" "Simple agenda view"
+           ((tags "PRIORITY=\"A\""
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                   (org-agenda-overriding-header "High-priority unfinished tasks:")))
+            (agenda "" nil)
+            (alltodo "")))
+          ("g" . "GTD contexts")
+          ("ga" "All TODO" alltodo nil
+           ((org-agenda-sorting-strategy '(tag-up priority-up))))
+
+          ("gl" "Lab" tags-todo "lab"
+           ((org-agenda-sorting-strategy '(priority-up))
+            ;; (org-agenda-prefix-format "[ ] %T: ")
+            (org-agenda-compact-blocks t)))
+
+          ("gw" "Work" tags-todo "@work"
+           ((org-agenda-sorting-strategy '(priority-up))))
+          ;; (org-agenda-compact-blocks t)))
+
+          ("gs" "Study Time" tags-todo "@study"
+           ((org-agenda-sorting-strategy '(priority-up))))
+
+          ("ge" "Emacs Time" tags-todo "@emacs"))))
+#+END_SRC
+*** org-gcal
+#+BEGIN_SRC emacs-lisp
+(use-package! org-gcal
+  :config
+  (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
+        org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
+        ;; TODO Generalize
+        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/org/schedule.org"))))
+#+END_SRC
+*** Auto-org-md
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! auto-org-md))
+#+END_SRC
+*** Org-clock-csv
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! org-clock-csv))
+#+END_SRC
+*** Org-noter
+#+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! org-noter
+    :config
+    (setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
+    (map!
+     (:leader
+       (:prefix "n"
+         :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
+#+END_SRC
+** pretty-code
+#+BEGIN_SRC emacs-lisp
+(setq +pretty-code-enabled-modes '(emacs-lisp-mode))
+#+END_SRC
+** python
+*** Tox
+#+BEGIN_SRC emacs-lisp
+(use-package! tox)
+#+END_SRC
+** reference
+#+BEGIN_SRC emacs-lisp
+;; TODO Generalize
+(setq reftex-default-bibliography '("~/sync/org/reference/Bibliography.bib"))
+(setq bibtex-completion-bibliography "~/sync/org/reference/Bibliography.bib" ;the major bibtex file
+      bibtex-completion-library-path "~/sync/org/reference/pdf/" ;the directory to store pdfs
+      bibtex-completion-notes-path "~/sync/org/ref-notes.org" ;the note file for reference notes
+      )
+#+END_SRC
+** rss
 *** Keybindings
 #+BEGIN_SRC emacs-lisp
 (after! elfeed-search
@@ -279,212 +481,16 @@ Tries to intelligently handle components based on their prefix:
    ""
    (("tn" "+news"))))
 #+END_SRC
-** eShell
-Get rid of modeline in eshell buffers
-#+BEGIN_SRC emacs-lisp
-(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
-#+END_SRC
-** Graphviz-dot-mode
-#+BEGIN_SRC emacs-lisp
-(use-package! graphviz-dot-mode)
-#+END_SRC
-** irc
-#+BEGIN_SRC emacs-lisp
-(after! circe
-  (set-irc-server! "chat.freenode.net"
-                   `(:tls t
-                          :port 6697
-                          :nick "emiller88"
-                          :sasl-username ,(+pass-get-user "irc/freenode.net")
-                          :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
-                          :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#home-manager" "#nixos" "#nixos-emacs" "#sway" "##rust" "#python" "#pine64"))))
-#+END_SRC
-Other Channels
-- #haskell
-** JavaScript
-#+BEGIN_SRC emacs-lisp
-(defun i-will-have-what-js-is-having ()
-  (let ((buffer-file-name (concat (file-name-sans-extension buffer-file-name) ".js")))
-    (set-auto-mode)))
-(add-to-list 'auto-mode-alist '("\\.vmjs\\'" . i-will-have-what-js-is-having))
-#+END_SRC
-** lsp
-#+BEGIN_SRC emacs-lisp
-(after! lsp
-  (setq lsp-ui-sideline-show-code-actions nil
-        lsp-ui-sideline-show-diagnostics nil
-        lsp-signature-render-all nil))
-#+END_SRC
-** Magit
-*** Git-gutter-fringe
-#+BEGIN_SRC emacs-lisp
-(defun +version-control|git-gutter-maybe ()
-  (when buffer-file-name
-    (require 'git-gutter-fringe)
-    (git-gutter-mode +1)))
-#+END_SRC
-*** GPG signing
-#+BEGIN_SRC emacs-lisp
-(after! magit
-  (setq magit-repository-directories '(("~/src" . 3))
-        magit-save-repository-buffers nil
-        magit-commit-arguments '("--gpg-sign=BD387FF7BC10AA9D")
-        magit-rebase-arguments '("--autostash" "--gpg-sign=BD387FF7BC10AA9D")
-        magit-pull-arguments '("--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")))
-#+END_SRC
-*** Set editor
-#+BEGIN_SRC emacs-lisp
-(setenv "EDITOR" "emacsclient")
-#+END_SRC
-
-** Notmuch
-Add delete, which adds the ~trash~ tag
-Counsel notmuch
-Fix quitting notmuch to remove the workspace
-#+BEGIN_SRC emacs-lisp
-(map! :after notmuch
-      :map notmuch-tree-mode-map
-      :n "d" #'+notmuch/tree-delete
-      :n "q" #'+notmuch/quit
-      :map notmuch-search-mode-map
-      :n "d" #'+notmuch/search-delete
-      :n "q" #'+notmuch/quit
-      (:leader
-        (:prefix "/"
-          :desc "Browse mode notes" :n "m" #'counsel-notmuch)))
-(after! notmuch
-  (setq +notmuch-sync-backend 'mbsync
-        notmuch-always-prompt-for-sender t
-        send-mail-function 'sendmail-send-it))
-#+END_SRC
-** Org-mode
-*** Misc
-Start in insert mode in =org-capture=
-#+BEGIN_SRC emacs-lisp
-(add-hook 'org-capture-mode-hook 'evil-insert-state)
-#+END_SRC
-Set ~+org-vars~
-#+BEGIN_SRC emacs-lisp
-(setq org-directory "/home/emiller/sync/org/"
-      org-archive-location (concat org-directory "archive/%s::")
-      +org-capture-journal-file "deft/journal.org"
-      org-ellipsis " ▼ "
-      org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
-#+END_SRC
-Org export settings
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-export-with-toc nil))
-#+END_SRC
-Log time when things get marked as done
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-log-done 'time))
-#+END_SRC
-*** Org Capture Templates
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-capture-templates
-        (append
-         ;; TODO generalize these with org-directory
-         '(("a" "Appointment" entry (file  "~/sync/org/schedule.org" )
-            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-           ("l" "Lab Entry" entry
-            (file+olp+datetree "~/sync/org/deft/lab/notebook.org")
-           "* %U %?\n%i\n%a"))
-         org-capture-templates)))
-#+END_SRC
-*** deft
-#+BEGIN_SRC emacs-lisp
-(after! deft
-  (setq deft-directory "~/sync/org/deft"
-        deft-recursive t))
-#+END_SRC
-*** org-agenda-custom
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (setq org-agenda-custom-commands
-        '(("c" "Simple agenda view"
-           ((tags "PRIORITY=\"A\""
-                  ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                   (org-agenda-overriding-header "High-priority unfinished tasks:")))
-            (agenda "" nil)
-            (alltodo "")))
-          ("g" . "GTD contexts")
-          ("ga" "All TODO" alltodo nil
-           ((org-agenda-sorting-strategy '(tag-up priority-up))))
-
-          ("gl" "Lab" tags-todo "lab"
-           ((org-agenda-sorting-strategy '(priority-up))
-            ;; (org-agenda-prefix-format "[ ] %T: ")
-            (org-agenda-compact-blocks t)))
-
-          ("gw" "Work" tags-todo "@work"
-           ((org-agenda-sorting-strategy '(priority-up))))
-          ;; (org-agenda-compact-blocks t)))
-
-          ("gs" "Study Time" tags-todo "@study"
-           ((org-agenda-sorting-strategy '(priority-up))))
-
-          ("ge" "Emacs Time" tags-todo "@emacs"))))
-#+END_SRC
-*** org-gcal
-#+BEGIN_SRC emacs-lisp
-(use-package! org-gcal
-  :config
-  (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
-        org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
-        ;; TODO Generalize
-        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/org/schedule.org"))))
-#+END_SRC
-*** Auto-org-md
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! auto-org-md))
-#+END_SRC
-*** Org-clock-csv
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! org-clock-csv))
-#+END_SRC
-*** Org-noter
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! org-noter
-    :config
-    (setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
-    (map!
-     (:leader
-       (:prefix "n"
-         :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
-#+END_SRC
-** package-lint
-#+BEGIN_SRC emacs-lisp
-;; (use-package! package-lint)
-#+END_SRC
-** pretty-code
-#+BEGIN_SRC emacs-lisp
-(setq +pretty-code-enabled-modes '(emacs-lisp-mode))
-#+END_SRC
-** Python
-*** Tox
-#+BEGIN_SRC emacs-lisp
-(use-package! tox)
-#+END_SRC
-** Reference
-#+BEGIN_SRC emacs-lisp
-;; TODO Generalize
-(setq reftex-default-bibliography '("~/sync/org/reference/Bibliography.bib"))
-(setq bibtex-completion-bibliography "~/sync/org/reference/Bibliography.bib" ;the major bibtex file
-      bibtex-completion-library-path "~/sync/org/reference/pdf/" ;the directory to store pdfs
-      bibtex-completion-notes-path "~/sync/org/ref-notes.org" ;the note file for reference notes
-      )
-#+END_SRC
-** Rust
+** rust
 #+BEGIN_SRC emacs-lisp
 (setq rustic-lsp-server 'rust-analyzer)
 #+END_SRC
-** Solidity
+** snippet
+#+BEGIN_SRC emacs-lisp
+(after! yasnippet
+  (push (expand-file-name "snippets/" doom-private-dir) yas-snippet-dirs))
+#+END_SRC
+** solidity
 #+BEGIN_SRC emacs-lisp
 ;; (setq solidity-solc-path "/usr/bin/solc")
 (setq flycheck-solidity-solium-soliumrcfile "/home/emiller/sync/.soliumrc.json")
@@ -494,9 +500,4 @@ Log time when things get marked as done
 
 #+BEGIN_SRC emacs-lisp
 (use-package! speed-type)
-#+END_SRC
-** yasnippet
-#+BEGIN_SRC emacs-lisp
-(after! yasnippet
-  (push (expand-file-name "snippets/" doom-private-dir) yas-snippet-dirs))
 #+END_SRC
