@@ -301,7 +301,21 @@ Log time when things get marked as done
        (:prefix "n"
          :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
 #+END_SRC
+**** org-ref
 #+BEGIN_SRC emacs-lisp
+(after! org
+  (use-package! org-ref
+    :config
+    (setq reftex-default-bibliography '("~/sync/reference/references.bib"))
+
+    ;; see org-ref for use of these variables
+    (setq org-ref-bibliography-notes "~/sync/reference/ref-notes.org"
+          org-ref-default-bibliography '("~/sync/reference/references.bib")
+          org-ref-pdf-directory "~/sync/reference/pdf/")))
+  ;; (map! :map evil-org-mode
+  ;;       (:localleader
+  ;;         (:prefix "["
+  ;;           :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
 #+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
@@ -310,10 +324,10 @@ Log time when things get marked as done
 ** reference
 #+BEGIN_SRC emacs-lisp
 ;; TODO Generalize
-(setq reftex-default-bibliography '("~/sync/org/reference/Bibliography.bib"))
-(setq bibtex-completion-bibliography "~/sync/org/reference/Bibliography.bib" ;the major bibtex file
-      bibtex-completion-library-path "~/sync/org/reference/pdf/" ;the directory to store pdfs
-      bibtex-completion-notes-path "~/sync/org/ref-notes.org" ;the note file for reference notes
+(setq reftex-default-bibliography '("~/sync/reference/references.bib")
+      bibtex-completion-bibliography "~/sync/reference/references.bib" ;the major bibtex file
+      bibtex-completion-library-path "~/sync/reference/pdf/" ;the directory to store pdfs
+      bibtex-completion-notes-path "~/sync/reference/ref-notes.org" ;the note file for reference notes
       )
 #+END_SRC
 ** rss

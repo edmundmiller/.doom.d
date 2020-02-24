@@ -14,6 +14,7 @@
 (package! org-gcal)
 (package! dired-sidebar)
 ;; Experimental
+(package! org-ref)
 
 (package! speed-type)
 
