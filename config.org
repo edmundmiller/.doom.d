@@ -301,14 +301,11 @@ Log time when things get marked as done
        (:prefix "n"
          :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
 #+END_SRC
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
 (setq +pretty-code-enabled-modes '(emacs-lisp-mode))
-#+END_SRC
-** python
-*** Tox
-#+BEGIN_SRC emacs-lisp
-(use-package! tox)
 #+END_SRC
 ** reference
 #+BEGIN_SRC emacs-lisp
