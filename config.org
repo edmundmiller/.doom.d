@@ -179,6 +179,10 @@ Other Channels
 (setenv "EDITOR" "emacsclient")
 #+END_SRC
 
+** nextflow
+#+BEGIN_SRC emacs-lisp
+(use-package! nextflow-mode)
+#+END_SRC
 ** notmuch
 Add delete, which adds the ~trash~ tag
 Counsel notmuch

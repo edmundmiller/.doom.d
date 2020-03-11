@@ -101,7 +101,7 @@
        (haskell +dante)
        ;;hy
        ;;idris
-       ;;(java +lsp)
+       (java +lsp)
        (javascript +lsp)
        ;;julia
        (latex +ref)
