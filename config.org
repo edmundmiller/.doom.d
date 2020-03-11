@@ -513,3 +513,7 @@ Tries to intelligently handle components based on their prefix:
 #+BEGIN_SRC emacs-lisp
 (use-package! speed-type)
 #+END_SRC
+** vue
+#+BEGIN_SRC emacs-lisp
+(add-hook 'web-mode-local-vars-hook #'lsp!)
+#+END_SRC
