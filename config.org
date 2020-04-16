@@ -215,7 +215,7 @@ Set ~+org-vars~
       org-archive-location (concat org-directory "archive/%s::")
       +org-capture-journal-file "deft/journal.org"
       org-ellipsis " ▼ "
-      org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
+      org-superstar-headline-bullets-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
 #+END_SRC
 Org export settings
 #+BEGIN_SRC emacs-lisp
