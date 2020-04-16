@@ -15,7 +15,6 @@
 (package! dired-sidebar)
 ;; Experimental
 (package! nextflow-mode :recipe (:host github :repo "emiller88/nextflow-mode"))
-(package! org-ref)
 
 (package! speed-type)
 

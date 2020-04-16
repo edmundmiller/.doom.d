@@ -305,22 +305,6 @@ Log time when things get marked as done
        (:prefix "n"
          :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
 #+END_SRC
-**** org-ref
-#+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! org-ref
-    :config
-    (setq reftex-default-bibliography '("~/sync/reference/references.bib"))
-
-    ;; see org-ref for use of these variables
-    (setq org-ref-bibliography-notes "~/sync/reference/ref-notes.org"
-          org-ref-default-bibliography '("~/sync/reference/references.bib")
-          org-ref-pdf-directory "~/sync/reference/pdf/")))
-  ;; (map! :map evil-org-mode
-  ;;       (:localleader
-  ;;         (:prefix "["
-  ;;           :desc "Org-noter-insert" :n "i" #'org-noter-insert-note))))
-#+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
 (setq +pretty-code-enabled-modes '(emacs-lisp-mode))
