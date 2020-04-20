@@ -129,6 +129,7 @@
         +dragndrop
         +journal
         +jupyter
+        +noter
         +pandoc
         +pomodoro
         +present

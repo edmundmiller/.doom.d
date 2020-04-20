@@ -4,7 +4,6 @@
 (package! edit-server)
 (package! ivy-yasnippet)
 (package! auto-org-md)
-(package! org-noter)
 (package! org-clock-csv)
 ;; (package! package-lint)
 (package! pretty-hydra)

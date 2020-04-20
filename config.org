@@ -57,8 +57,6 @@ Cleanup Whitespace
    (:prefix "g"
      :desc "Git Status" :n "g" #'magit-status
      :desc "List gists" :n "l" #'+gist:list)
-   (:prefix "n"
-     :desc "Org-noter" :n "o" #'org-noter)
    :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: "))))
  (:when (featurep! :feature workspaces)
    :nmvi "M-t" #'+workspace/new
@@ -296,14 +294,7 @@ Log time when things get marked as done
 #+END_SRC
 **** Org-noter
 #+BEGIN_SRC emacs-lisp
-(after! org
-  (use-package! org-noter
-    :config
-    (setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
-    (map!
-     (:leader
-       (:prefix "n"
-         :desc "Org-noter-insert" :n "i" #'org-noter-insert-note)))))
+(setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
 #+END_SRC
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
