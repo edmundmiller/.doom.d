@@ -148,6 +148,10 @@ Other Channels
     (set-auto-mode)))
 (add-to-list 'auto-mode-alist '("\\.vmjs\\'" . i-will-have-what-js-is-having))
 #+END_SRC
+** ledger
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.\\(h?ledger\\|journal\\|j\\)$" . ledger-mode))
+#+END_SRC
 ** lsp
 #+BEGIN_SRC emacs-lisp
 (after! lsp
