@@ -46,7 +46,7 @@ Cleanup Whitespace
      :desc "Calc" :n "c" #'calc
      :desc "easy-hugo" :n "g" #'easy-hugo
      :desc "APP: IRC" :n "i" #'=irc
-     :desc "APP: notmuch" :n "m" #'=notmuch
+     :desc "APP: notmuch" :n "m" #'=mu4e
      :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
      :desc "todo.org" :n "o" #'+emiller/visit-todo-org
      :desc "projects" :n "p" #'+emiller/visit-projects-org
@@ -180,30 +180,44 @@ Other Channels
 #+BEGIN_SRC emacs-lisp
 (setenv "EDITOR" "emacsclient")
 #+END_SRC
+** mu4e
+
+#+BEGIN_SRC emacs-lisp
+;; Each path is relative to `+mu4e-mu4e-mail-path', which is ~/.mail by default
+;; (after! mu4e-maildirs-extension
+  (set-email-account! "Gmail"
+                      '((mu4e-sent-folder       . "/Gmail/[Gmail]/Sent Mail")
+                        (mu4e-drafts-folder     . "/Gmail/[Gmail]/Drafts")
+                        (mu4e-trash-folder      . "/Gmail/[Gmail]/Trash")
+                        (mu4e-refile-folder     . "/Gmail/[Gmail]/Archive")
+                        (smtpmail-smtp-user     . "edmund.a.miller@gmail.com")
+                        (user-mail-address      . "edmund.a.miller@gmail.com")
+                        (mu4e-compose-signature . "---\nEdmund Miller"))
+                      t)
+
+  (set-email-account! "Eman"
+                      '((mu4e-sent-folder       . "/Eman/[Gmail]/Sent Mail")
+                        (mu4e-drafts-folder     . "/Eman/[Gmail]/Drafts")
+                        (mu4e-trash-folder      . "/Eman/[Gmail]/Trash")
+                        (mu4e-refile-folder     . "/Eman/[Gmail]/Archive")
+                        (user-mail-address      . "eman0088@gmail.com")
+                        (mu4e-compose-signature . "---\nEdmund Miller"))
+                      t)
+
+  (set-email-account! "UTD"
+                      '((mu4e-sent-folder       . "/UTD/Sent Items")
+                        (mu4e-drafts-folder     . "/UTD/Drafts")
+                        (mu4e-trash-folder      . "/UTD/Deleted Items")
+                        (mu4e-refile-folder     . "/UTD/Archive")
+                        (user-mail-address      . "Edmund.Miller@utdallas.edu")
+                        (mu4e-compose-signature . "---\nEdmund Miller"))
+                      t)
+;; )
+#+END_SRC
 
 ** nextflow
 #+BEGIN_SRC emacs-lisp
 (use-package! nextflow-mode)
-#+END_SRC
-** notmuch
-Add delete, which adds the ~trash~ tag
-Counsel notmuch
-Fix quitting notmuch to remove the workspace
-#+BEGIN_SRC emacs-lisp
-(map! :after notmuch
-      :map notmuch-tree-mode-map
-      :n "d" #'+notmuch/tree-delete
-      :n "q" #'+notmuch/quit
-      :map notmuch-search-mode-map
-      :n "d" #'+notmuch/search-delete
-      :n "q" #'+notmuch/quit
-      (:leader
-        (:prefix "/"
-          :desc "Browse mode notes" :n "m" #'counsel-notmuch)))
-(after! notmuch
-  (setq +notmuch-sync-backend 'mbsync
-        notmuch-always-prompt-for-sender t
-        send-mail-function 'sendmail-send-it))
 #+END_SRC
 ** org
 *** Misc
