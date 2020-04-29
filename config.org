@@ -215,7 +215,6 @@ Set ~+org-vars~
 #+BEGIN_SRC emacs-lisp
 (setq org-directory "/home/emiller/sync/org/"
       org-archive-location (concat org-directory "archive/%s::")
-      +org-capture-journal-file "deft/journal.org"
       org-ellipsis " ▼ "
       org-superstar-headline-bullets-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
 #+END_SRC
