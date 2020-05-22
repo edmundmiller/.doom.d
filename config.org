@@ -114,6 +114,10 @@ Get rid of dired message when using a
 (after! dired
   (use-package! dired-sidebar))
 #+END_SRC
+** direnv
+#+BEGIN_SRC emacs-lisp
+(setq direnv-always-show-summary nil)
+#+END_SRC
 ** elisp
 *** package-lint
 #+BEGIN_SRC emacs-lisp
