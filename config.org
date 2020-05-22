@@ -234,7 +234,7 @@ Set ~+org-vars~
 (setq org-directory "/home/emiller/sync/org/"
       org-archive-location (concat org-directory "archive/%s::")
       org-ellipsis " ▼ "
-      org-superstar-headline-bullets-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
+      org-superstar-headline-bullets-list '("#"))
 #+END_SRC
 Org export settings
 #+BEGIN_SRC emacs-lisp
