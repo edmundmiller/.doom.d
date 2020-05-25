@@ -51,27 +51,7 @@ Cleanup Whitespace
    :desc "todo.org" :n "o" #'+emiller/visit-todo-org
    :desc "projects" :n "p" #'+emiller/visit-projects-org
    :desc "emms" :n "s" #'emms
-   :desc "APP: rss" :n "," #'=rss)
-  (:prefix "p"
-   :desc "Counsel-ag" :n "f" #'counsel-ag)
-  :desc "New workspace" :n "N" (lambda! () (+workspace/new (read-string "Enter workspace name: "))))
- (:when (featurep! :feature workspaces)
-  :nmvi "M-t" #'+workspace/new
-  :nmvi "M-1" (λ! (+workspace/switch-to 0))
-  :nmvi "M-2" (λ! (+workspace/switch-to 1))
-  :nmvi "M-3" (λ! (+workspace/switch-to 2))
-  :nmvi "M-4" (λ! (+workspace/switch-to 3))
-  :nmvi "M-5" (λ! (+workspace/switch-to 4))
-  :nmvi "M-6" (λ! (+workspace/switch-to 5))
-  :nmvi "M-7" (λ! (+workspace/switch-to 6))
-  :nmvi "M-8" (λ! (+workspace/switch-to 7))
-  :nmvi "M-9" (λ! (+workspace/switch-to 8)))
- (:map vterm-mode-map
-  ;; Easier window movement
-  :i "C-h" #'evil-window-left
-  :i "C-j" #'evil-window-down
-  :i "C-k" #'evil-window-up
-  :i "C-l" #'evil-window-right))
+   :desc "APP: rss" :n "," #'=rss)))
 #+END_SRC
 * Functions
 Ediff the ~init.example.el~ and my ~init.el~
