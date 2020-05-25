@@ -17,6 +17,5 @@
 
 (package! speed-type)
 
-(package! git-auto-commit-mode)
 (provide 'packages)
 ;;; packages.el ends here
