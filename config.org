@@ -310,6 +310,11 @@ Log time when things get marked as done
 #+BEGIN_SRC emacs-lisp
 (setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
 #+END_SRC
+**** org-roam
+**** journal
+#+BEGIN_SRC emacs-lisp
+(setq org-journal-dir "/home/emiller/sync/org/roam/journal/")
+#+END_SRC
 ** python
 #+BEGIN_SRC emacs-lisp
 (after! lsp-python-ms
