@@ -30,6 +30,15 @@ Cleanup Whitespace
 #+BEGIN_SRC emacs-lisp
 ;; (add-hook 'before-save-hook #'delete-trailing-whitespace)
 #+END_SRC
+#+begin_quote
+Line numbers are pretty slow all around. The performance boost of
+disabling them outweighs the utility of always keeping them on.
+#+end_quote
+#+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type nil)
+;; Prevents some cases of Emacs flickering
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+#+END_SRC
 * Keybindings
 #+BEGIN_SRC emacs-lisp
 (map!
