@@ -497,11 +497,6 @@ Tries to intelligently handle components based on their prefix:
 #+BEGIN_SRC emacs-lisp
 (setq rustic-lsp-server 'rust-analyzer)
 #+END_SRC
-** snippet
-#+BEGIN_SRC emacs-lisp
-(after! yasnippet
-  (push (expand-file-name "snippets/" doom-private-dir) yas-snippet-dirs))
-#+END_SRC
 ** solidity
 #+BEGIN_SRC emacs-lisp
 ;; (setq solidity-solc-path "/usr/bin/solc")
