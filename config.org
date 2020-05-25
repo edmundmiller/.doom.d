@@ -312,6 +312,11 @@ Log time when things get marked as done
 ** pretty-code
 #+BEGIN_SRC emacs-lisp
 (setq +pretty-code-enabled-modes '(emacs-lisp-mode))
+** python
+#+BEGIN_SRC emacs-lisp
+(after! lsp-python-ms
+  (setq lsp-python-ms-executable (executable-find "python-language-server"))
+  (set-lsp-priority! 'mspyls 1))
 #+END_SRC
 ** reference
 #+BEGIN_SRC emacs-lisp
