@@ -168,9 +168,9 @@ Other Channels
   (setq magit-repository-directories '(("~/src" . 3))
         magit-save-repository-buffers nil
         magit-inhibit-save-previous-winconf t
-        magit-commit-arguments '("--gpg-sign=BD387FF7BC10AA9D")
-        magit-rebase-arguments '("--autostash" "--gpg-sign=BD387FF7BC10AA9D")
-        magit-pull-arguments '("--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")))
+        transient-values '((magit-commit "--gpg-sign=BD387FF7BC10AA9D")
+                           (magit-rebase "--autosquash" "--gpg-sign=BD387FF7BC10AA9D")
+                           (magit-pull "--rebase" "--gpg-sign=BD387FF7BC10AA9D")))
 #+END_SRC
 *** Set editor
 #+BEGIN_SRC emacs-lisp
