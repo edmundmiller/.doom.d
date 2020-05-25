@@ -81,6 +81,11 @@ Helpful for ~Snakemake~
       ("^\\*cider-repl" :quit nil)
       ("^\\*cider-repl-history" :vslot 2 :ttl nil))))
 #+END_SRC
+** company
+This is no longer the default
+#+BEGIN_SRC emacs-lisp
+(setq company-idle-delay nil)
+#+END_SRC
 ** dired
 Get rid of dired message when using a
 #+BEGIN_SRC emacs-lisp
