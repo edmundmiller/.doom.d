@@ -158,6 +158,7 @@ Other Channels
 (after! magit
   (setq magit-repository-directories '(("~/src" . 3))
         magit-save-repository-buffers nil
+        magit-inhibit-save-previous-winconf t
         magit-commit-arguments '("--gpg-sign=BD387FF7BC10AA9D")
         magit-rebase-arguments '("--autostash" "--gpg-sign=BD387FF7BC10AA9D")
         magit-pull-arguments '("--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")))
