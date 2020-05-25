@@ -14,6 +14,8 @@
 (package! dired-sidebar)
 ;; Experimental
 (package! nextflow-mode :recipe (:host github :repo "emiller88/nextflow-mode"))
+(package! mu4e-conversation)
+(package! mu4e-patch :recipe (:host github :repo "seanfarley/mu4e-patch"))
 
 (package! speed-type)
 
