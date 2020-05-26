@@ -164,13 +164,12 @@ Other Channels
 #+END_SRC
 *** GPG signing
 #+BEGIN_SRC emacs-lisp
-(after! magit
-  (setq magit-repository-directories '(("~/src" . 3))
-        magit-save-repository-buffers nil
-        magit-inhibit-save-previous-winconf t
-        transient-values '((magit-commit "--gpg-sign=BD387FF7BC10AA9D")
-                           (magit-rebase "--autosquash" "--gpg-sign=BD387FF7BC10AA9D")
-                           (magit-pull "--rebase" "--gpg-sign=BD387FF7BC10AA9D")))
+(setq magit-repository-directories '(("~/src" . 3))
+      magit-save-repository-buffers nil
+      magit-inhibit-save-previous-winconf t
+      transient-values '((magit-commit "--gpg-sign=BD387FF7BC10AA9D")
+                         (magit-rebase "--autosquash" "--gpg-sign=BD387FF7BC10AA9D")
+                         (magit-pull "--rebase" "--gpg-sign=BD387FF7BC10AA9D")))
 #+END_SRC
 *** Set editor
 #+BEGIN_SRC emacs-lisp
