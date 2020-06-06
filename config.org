@@ -321,7 +321,8 @@ Log time when things get marked as done
 **** org-roam
 **** journal
 #+BEGIN_SRC emacs-lisp
-(setq org-journal-dir "/home/emiller/sync/org/roam/journal/")
+(setq org-journal-dir "/home/emiller/sync/org/roam/journal/"
+      org-journal-encrypt-journal t)
 #+END_SRC
 ** python
 #+BEGIN_SRC emacs-lisp
