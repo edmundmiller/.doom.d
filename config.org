@@ -20,7 +20,7 @@ Change font
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-;; (setq doom-theme 'doom-acario-light)
+(setq doom-theme 'doom-dracula)
 #+END_SRC
 Change the banner
 #+BEGIN_SRC emacs-lisp
