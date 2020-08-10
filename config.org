@@ -18,7 +18,7 @@ Change font
 #+END_SRC
 Change Theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-flatwhite)
 #+END_SRC
 Change the banner
 #+BEGIN_SRC emacs-lisp
