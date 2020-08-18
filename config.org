@@ -80,6 +80,12 @@ Helpful for ~Snakemake~
 (global-set-key (kbd "C-c d") 'insert-todays-date)
 #+END_SRC
 * Modules
+** biblio
+#+BEGIN_SRC emacs-lisp
+(setq! +biblio-pdf-library-dir "~/sync/papers"
+       +biblio-default-bibliography-files '("~/sync/reference/bibliography.bib")
+       +biblio-notes-path "~/sync/org/roam/bib/")
+#+END_SRC
 ** clojure
 #+BEGIN_SRC emacs-lisp
 (after! cider
@@ -335,9 +341,50 @@ Log time when things get marked as done
 #+END_SRC
 **** Org-noter
 #+BEGIN_SRC emacs-lisp
-(setq org-noter-notes-search-path '("~/sync/org/deft/noter"))
+(after! org-noter
+  (setq org-noter-always-create-frame t
+        org-noter-separate-notes-from-heading t
+        org-noter-default-heading-title "Page $p$"
+        org-noter-auto-save-last-location t
+        org-noter-notes-search-path '("~/sync/org/roam/noter")
+        org-noter-separate-notes-from-heading t
+        org-noter-doc-property-in-notes t))
 #+END_SRC
 **** org-roam
+#+BEGIN_SRC emacs-lisp
+(after! org-roam
+  (setq org-roam-capture-templates
+        '(("l" "lit" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "lit/${slug}"
+           :head "#+setupfile:./hugo_setup.org
+,#+hugo_slug: ${slug}
+,#+title: ${title}\n"
+           :unnarrowed t)
+          ("c" "concept" plain (function org-roam--capture-get-point)
+           "%?"
+           :file-name "concepts/${slug}"
+           :head "#+setupfile:./hugo_setup.org
+,#+hugo_slug: ${slug}
+,#+title: ${title}\n"
+           :unnarrowed t)
+          ("p" "private" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "private/${slug}"
+           :head "#+title: ${title}\n"
+           :unnarrowed t)))
+  (setq org-roam-capture-ref-templates
+        '(("r" "ref" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "lit/${slug}"
+           :head "#+setupfile:./hugo_setup.org
+,#+roam_key: ${ref}
+,#+hugo_slug: ${slug}
+,#+roam_tags: website
+,#+title: ${title}
+- source :: ${ref}"
+           :unnarrowed t))))
+#+END_SRC
 **** journal
 #+BEGIN_SRC emacs-lisp
 (setq org-journal-dir "/home/emiller/sync/org/roam/journal/"
@@ -353,11 +400,11 @@ Log time when things get marked as done
 ** reference
 #+BEGIN_SRC emacs-lisp
 ;; TODO Generalize
-(setq reftex-default-bibliography '("~/sync/reference/references.bib")
-      bibtex-completion-bibliography "~/sync/reference/references.bib" ;the major bibtex file
-      bibtex-completion-library-path "~/sync/reference/pdf/" ;the directory to store pdfs
-      bibtex-completion-notes-path "~/sync/reference/ref-notes.org" ;the note file for reference notes
-      )
+;; (setq reftex-default-bibliography '("~/sync/reference/references.bib")
+;;       bibtex-completion-bibliography "~/sync/reference/references.bib" ;the major bibtex file
+;;       bibtex-completion-library-path "~/sync/reference/pdf/" ;the directory to store pdfs
+;;       bibtex-completion-notes-path "~/sync/reference/ref-notes.org" ;the note file for reference notes
+;;       )
 #+END_SRC
 ** rss
 *** Keybindings
