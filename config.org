@@ -229,6 +229,11 @@ colorize patch-based emails
 (use-package! nextflow-mode)
 #+END_SRC
 ** org
+*** faces
+I like to cross things off my todo list
+#+BEGIN_SRC emacs-lisp
+(custom-set-faces! '(org-headline-done :strike-through t))
+#+END_SRC
 *** Misc
 Start in insert mode in =org-capture=
 #+BEGIN_SRC emacs-lisp
