@@ -17,14 +17,14 @@
   "Edit todo.org"
   (interactive)
   (find-file
-    (expand-file-name +org-capture-todo-file org-directory)))
+   (expand-file-name +org-capture-todo-file org-directory)))
 
 ;;;###autoload
 (defun +emiller/visit-projects-org ()
   "Edit todo.org"
   (interactive)
   (find-file
-    (expand-file-name +org-capture-projects-file org-directory)))
+   (expand-file-name +org-capture-projects-file org-directory)))
 
 ;;;###autoload
 (defun ediff-init-files ()
