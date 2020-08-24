@@ -1,6 +1,7 @@
 ;;; packages.el --- description -*- lexical-binding: t; -*-
 
 ;; Private
+(package! org-roam-server)
 (package! edit-server)
 (package! ivy-yasnippet)
 (package! auto-org-md)
