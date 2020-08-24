@@ -39,3 +39,9 @@
               (format-time-string "%d-%m-%Y")
             (format-time-string "%Y-%m-%d"))))
 (global-set-key (kbd "C-c d") 'insert-todays-date)
+
+;;;###autoload
+(defun +emiller/org-archive-done-tasks ()
+  "Archive all done tasks."
+  (interactive)
+  (org-map-entries 'org-archive-subtree "/DONE" 'file))
