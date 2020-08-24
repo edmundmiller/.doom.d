@@ -10,7 +10,6 @@
 (package! graphviz-dot-mode)
 (package! jest)
 (package! vyper-mode)
-(package! org-gcal)
 (package! dired-sidebar)
 ;; Experimental
 (package! nextflow-mode :recipe (:host github :repo "emiller88/nextflow-mode"))
