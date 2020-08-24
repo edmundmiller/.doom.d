@@ -153,9 +153,10 @@
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
 
 ;; +journal
-(setq org-journal-dir (concat org-roam-directory "journal/")
-      org-journal-encrypt-journal t
-      org-journal-file-format "%Y%m%d.org")
+(after! org
+  (setq org-journal-dir (concat org-roam-directory "journal/")
+        org-journal-encrypt-journal t
+        org-journal-file-format "%Y%m%d.org"))
 
 ;; +noter
 (after! org-noter
