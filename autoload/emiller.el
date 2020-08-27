@@ -67,8 +67,3 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
         (setq count (1+ count))
         (replace-match (downcase (match-string-no-properties 1)) :fixedcase nil nil 1))
       (message "Lower-cased %d matches" count))))
-
-(dolist (f (org-roam--list-all-files))
-  (with-current-buffer (find-file f)
-    (modi/lower-case-org-keywords)
-    (save-buffer)))
