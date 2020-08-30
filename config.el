@@ -133,6 +133,8 @@
       org-superstar-headline-bullets-list '("#")
       org-export-with-toc nil
       org-log-done 'time
+      ;; Fix org-id on SPC-l-s
+      org-id-link-to-org-use-id 'use-existing
       org-deadline-warning-days 5)
 
 (after! org
