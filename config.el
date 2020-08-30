@@ -174,6 +174,8 @@
 
 ;; +roam
 (after! org-roam
+  (setq org-roam-tag-sources '(prop all-directories)
+        org-roam-buffer-width 0.25)
   (setq org-roam-capture-templates
         '(("l" "lit" plain (function org-roam--capture-get-point)
            "%?"
