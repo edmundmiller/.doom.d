@@ -132,7 +132,8 @@
       org-ellipsis " ▼ "
       org-superstar-headline-bullets-list '("#")
       org-export-with-toc nil
-      org-log-done 'time)
+      org-log-done 'time
+      org-deadline-warning-days 5)
 
 (after! org
   (setq org-capture-templates
