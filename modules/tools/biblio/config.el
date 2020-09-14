@@ -83,7 +83,7 @@ In case of directory the path must end with a slash."
   ;; Although the name is helm-bibtex, it is actually a bibtex-completion function
   ;; it is the legacy naming of the project helm-bibtex that causes confusion.
   (setq org-ref-open-pdf-function 'org-ref-get-pdf-filename-helm-bibtex)
-  ;; org-roam-bibtex will define handlers for note taking so not needed to use the
+  ;; orb will define handlers for note taking so not needed to use the
   ;; ones set for bibtex-completion
   (unless (featurep! :lang org +roam)
     ;; Allow org-ref to use the same template mechanism as {helm,ivy}-bibtex for
@@ -98,22 +98,19 @@ In case of directory the path must end with a slash."
   :preface
   ;; if the user has not set a template mechanism set a reasonable one of them
   ;; The package already tests for nil itself so we define a dummy tester
-  (defvar org-roam-bibtex-preformat-keywords nil)
-  (defvar org-roam-bibtex-templates nil)
+  (defvar orb-preformat-keywords
+    '("=key=" "title" "url" "file" "author-or-editor" "keywords"))
+  (defvar orb-templates nil)
   :hook (org-roam-mode . org-roam-bibtex-mode)
   :config
-  (unless org-roam-bibtex-preformat-keywords
-    (setq org-roam-bibtex-preformat-keywords
-          '("=key=" "title" "url" "file" "author-or-editor" "keywords")))
-  (unless org-roam-bibtex-templates
-    (setq org-roam-bibtex-templates
+  (unless orb-templates
+    (setq orb-templates
           '(("r" "ref" plain (function org-roam-capture--get-point)
              ""
              :file-name "${slug}"
-             :head "#+TITLE: ${=key=}: ${title}\n#+ROAM_KEY: ${ref}
+             :head "#+title: ${=key=}: ${title}\n#+roam_key: ${ref}\n#+roam_tags:
 
-- tags ::
 - keywords :: ${keywords}
 
-\n* ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :URL: ${url}\n  :AUTHOR: ${author-or-editor}\n  :NOTER_DOCUMENT: %(org-roam-bibtex-process-file-field \"${=key=}\")\n  :NOTER_PAGE: \n  :END:\n\n"
+\n* ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :URL: ${url}\n  :AUTHOR: ${author-or-editor}\n  :NOTER_DOCUMENT: %(orb-process-file-field \"${=key=}\")\n  :NOTER_PAGE: \n  :END:\n\n"
              :unnarrowed t)))))
