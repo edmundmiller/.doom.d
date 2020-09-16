@@ -1,6 +1,11 @@
 ;;; packages.el --- description -*- lexical-binding: t; -*-
 
 ;; Private
+(package! tao-theme)
+(package! color-identifiers-mode)
+
+(unpin! doom-themes)
+
 (package! org-roam-server)
 (package! edit-server)
 (package! ivy-yasnippet)

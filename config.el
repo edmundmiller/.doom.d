@@ -4,7 +4,7 @@
       user-full-name "Edmund Miller"
 
       doom-scratch-initial-major-mode 'lisp-interaction-mode
-      doom-theme 'doom-flatwhite
+      ;; doom-theme 'doom-one
       treemacs-width 32
 
       ;; Line numbers are pretty slow all around. The performance boost of
@@ -21,6 +21,19 @@
 
       ;; More common use-case
       evil-ex-substitute-global t)
+
+(use-package! tao-theme
+  :init
+  (setq tao-theme-sepia-depth 3.38
+        tao-theme-sepia-saturation 0.98)
+  :config
+  (load-theme 'tao-yang t)
+  (custom-set-faces!
+    '(default :background "#f7f3ee" :foreground "#605a52")
+    '(+org-todo-active :background "#67665F" :foreground "#FFFFF5")))
+
+(use-package! color-identifiers-mode
+  :hook prog-mode)
 
 ;;
 ;;; UI
