@@ -279,6 +279,7 @@
 ;; Each path is relative to `+mu4e-mu4e-mail-path', which is ~/.mail by default
 (after! mu4e
   (setq shr-use-colors nil)
+  (load! "teco-mu4e.el")
   (set-email-account! "Gmail"
                       '((mu4e-sent-folder       . "/Gmail/[Gmail]/Sent Mail")
                         (mu4e-drafts-folder     . "/Gmail/[Gmail]/Drafts")
