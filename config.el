@@ -162,6 +162,27 @@
          org-capture-templates)))
 
 
+
+;; To make `org-latex-preview` work
+(after! org
+  (setq org-latex-default-packages-alist
+        '(("AUTO" "inputenc" t)
+          ("pdflatex")
+          ("T1" "fontenc" t)
+          ("pdflatex")
+          ("" "graphicx" t)
+          ("" "grffile" nil)
+          ("" "longtable" nil)
+          ("" "wrapfig" nil)
+          ("" "rotating" nil)
+          ("normalem" "ulem" t)
+          ("" "amsmath" t)
+          ("" "textcomp" t)
+          ("" "amssymb" t)
+          ("" "capt-of" nil)
+          ("" "hyperref" nil))))
+
+
 ;; I like to cross things off my todo list
 (custom-set-faces! '(org-headline-done :strike-through t))
 
