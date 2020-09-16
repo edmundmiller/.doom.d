@@ -150,6 +150,8 @@
       org-id-link-to-org-use-id 'use-existing
       org-deadline-warning-days 5)
 
+(defvar org-contacts-files '("~/sync/org/contacts.org"))
+
 (after! org
   (setq org-capture-templates
         (append
