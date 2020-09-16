@@ -155,10 +155,10 @@
         (append
          ;; TODO generalize these with org-directory
          '(("a" "Appointment" entry (file  "~/sync/org/schedule.org")
-            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n"
-            ("l" "Lab Entry" entry
-             (file+olp+datetree "~/sync/org/roam/lab/notebook.org")
-             "* %U %?\n%i\n%a")))
+            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
+           ("l" "Lab Entry" entry
+            (file+olp+datetree "~/sync/org/roam/lab/notebook.org")
+            "* %U %?\n%i\n%a"))
          org-capture-templates)))
 
 
