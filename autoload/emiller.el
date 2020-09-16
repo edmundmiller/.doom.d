@@ -68,3 +68,20 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
         (setq count (1+ count))
         (replace-match (downcase (match-string-no-properties 1)) :fixedcase nil nil 1))
       (message "Lower-cased %d matches" count))))
+
+;;;###autoload
+(defun elfeed-v-mpv (url)
+  "Watch a video from URL in MPV"
+  (async-shell-command (format "mpv '%s'" url)))
+
+;;;###autoload
+(defun elfeed-view-mpv (&optional use-generic-p)
+  "Youtube-feed link"
+  (interactive "P")
+  (let ((entries (elfeed-search-selected)))
+    (cl-loop for entry in entries
+       do (elfeed-untag entry 'unread)
+       when (elfeed-entry-link entry)
+       do (elfeed-v-mpv it))
+    (mapc #'elfeed-search-update-entry entries)
+    (unless (use-region-p) (forward-line))))

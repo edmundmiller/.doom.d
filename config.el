@@ -310,6 +310,7 @@
         :localleader
         :n "m" #'my/elfeed-search-view-hydra/body
         :n "s" #'elfeed-toggle-star
+        :n "v" #'elfeed-view-mpv
         :n "r" #'elfeed-update))
 ;; Set max width
 (after! elfeed
