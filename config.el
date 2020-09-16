@@ -68,8 +68,8 @@
   (:prefix "i"
    :desc "Insert date" :n "d" #'insert-todays-date)
   (:prefix "n"
-   :desc "Browse mode notes"     :n  "m" #'+emiller/find-notes-for-major-mode
-   :desc "Browse project notes" :n "p" #'+emiller/find-notes-for-project)
+   (:prefix "j"
+    :desc "New Date Entry" :n "n" #'org-journal-new-date-entry))
   (:prefix "o"
    :desc "Calc" :n "c" #'calc
    :desc "easy-hugo" :n "g" #'easy-hugo
