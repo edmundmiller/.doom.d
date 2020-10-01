@@ -194,10 +194,10 @@
 ;; To make `org-latex-preview` work
 (after! org
   (setq org-latex-default-packages-alist
-        '(("AUTO" "inputenc" t)
-          ("pdflatex")
-          ("T1" "fontenc" t)
-          ("pdflatex")
+        '(("AUTO" "inputenc" t
+           ("pdflatex"))
+          ("T1" "fontenc" t
+           ("pdflatex"))
           ("" "graphicx" t)
           ("" "grffile" nil)
           ("" "longtable" nil)
