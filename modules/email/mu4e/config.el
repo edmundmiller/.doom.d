@@ -3,6 +3,9 @@
 (defvar +mu4e-backend 'mbsync
   "Which backend to use. Can either be offlineimap, mbsync or nil (manual).")
 
+(defvar +mu4e-personal-addresses 'nil
+  "Alternative to mu4e-personal-addresses that can be set for each account (mu4e context).")
+
 
 ;;
 ;;; Packages
@@ -57,17 +60,17 @@
         mu4e-headers-thread-connection-prefix '("│" . "│ ")
         ;; remove 'lists' column
         mu4e-headers-fields
-        '((:account . 12)
+        '((:account-stripe . 1)
           (:human-date . 8)
           (:flags . 6) ; 3 icon flags
-          (:from . 25)
+          (:from-or-to . 25)
           (:subject)))
 
   ;; set mail user agent
   (setq mail-user-agent 'mu4e-user-agent
         message-mail-user-agent 'mu4e-user-agent)
 
-  ;; Make reply colouring consistant, and striped for readability
+  ;; Make reply coloring consistant, and striped for readability
   (custom-set-faces!
     '(gnus-cite-2 :foreground nil :inherit gnus-cite-10)
     '(gnus-cite-3 :foreground nil :inherit gnus-cite-7)
@@ -78,51 +81,62 @@
 
   ;; Set the icons only when a graphical frame has been created
   (if (display-graphic-p)
-      (mu4e~initialise-icons)
+      (+mu4e-initialise-icons)
     ;; When it's the server, wait till the first graphical frame
-    (add-hook! 'server-after-make-frame-hook
-      (defun mu4e~initialise-icons-hook ()
-        (when (display-graphic-p)
-          (mu4e~initialise-icons)
-          (remove-hook #'mu4e~initialise-icons-hook)))))
+    (add-hook
+     'server-after-make-frame-hook
+     (defun +mu4e-initialise-icons-hook ()
+       (when (display-graphic-p)
+         (+mu4e-initialise-icons)
+         (remove-hook 'server-after-make-frame-hook
+                      #'+mu4e-initialise-icons-hook)))))
 
   (plist-put (cdr (assoc :flags mu4e-header-info)) :shortname " Flags") ; default=Flgs
   (add-to-list 'mu4e-bookmarks
                '(:name "Flagged messages" :query "flag:flagged" :key ?f) t)
 
-  (defun mu4e-header-colourise (str)
-    (let* ((str-sum (apply #'+ (mapcar (lambda (c) (% c 3)) str)))
-           (colour (nth (% str-sum (length mu4e-header-colourised-faces))
-                        mu4e-header-colourised-faces)))
-      (put-text-property 0 (length str) 'face colour str)
-      str))
+  (setq +mu4e-header-colorized-faces
+        '(all-the-icons-green
+          all-the-icons-lblue
+          all-the-icons-purple-alt
+          all-the-icons-blue-alt
+          all-the-icons-purple
+          all-the-icons-yellow))
 
-  (defvar mu4e-header-colourised-faces
-    '(all-the-icons-lblue
-      all-the-icons-purple
-      all-the-icons-blue-alt
-      all-the-icons-green
-      all-the-icons-maroon
-      all-the-icons-yellow
-      all-the-icons-orange))
-
-  ;; Add a column to display what email account the email belongs to.
+  ;; Add a column to display what email account the email belongs to,
+  ;; and an account color stripe column
+  (defvar +mu4e-header--maildir-colors nil)
   (setq mu4e-header-info-custom
         '((:account .
-           (:name "account"
-            :shortname "account"
+           (:name "Account"
+            :shortname "Account"
             :help "which account this email belongs to"
             :function
             (lambda (msg)
-              (let ((maildir
-                     (mu4e-message-field msg :maildir)))
-                (mu4e-header-colourise
-                 (replace-regexp-in-string
-                  "^gmail"
-                  (propertize "g" 'face 'bold-italic)
-                  (format "%s"
-                          (substring maildir 1
-                                     (string-match-p "/" maildir 1)))))))))
+              (+mu4e-colorize-str
+               (replace-regexp-in-string
+                "^gmail"
+                (propertize "g" 'face 'bold-italic)
+                (format "%s"
+                        (substring maildir 1
+                                   (string-match-p "/" maildir 1))))
+               '+mu4e-header--maildir-colors
+               (replace-regexp-in-string
+                "\\`/\\([^/]+\\)/.*\\'" "\\1"
+                (mu4e-message-field msg :maildir))))))
+          (:account-stripe .
+           (:name "Account"
+            :shortname "▐"
+            :help "Which account this email belongs to"
+            :function
+            (lambda (msg)
+              (let ((account
+                     (replace-regexp-in-string
+                      "\\`/?\\([^/]+\\)/.*\\'" "\\1"
+                      (mu4e-message-field msg :maildir))))
+                (propertize
+                 (+mu4e-colorize-str "▌" '+mu4e-header--maildir-colors account)
+                 'help-echo account)))))
           (:recipnum .
            (:name "Number of recipients"
             :shortname " ⭷"
@@ -148,22 +162,26 @@
   ;; actually show you all the information you want to see
   ;; so if the header view is entered from a narrow frame,
   ;; it's probably worth trying to expand it
-  (defvar mu4e-min-header-frame-width 120
+  (defvar +mu4e-min-header-frame-width 120
     "Minimum reasonable with for the header view.")
   (defun mu4e-widen-frame-maybe ()
-    "Expand the frame with if it's less than `mu4e-min-header-frame-width'."
-    (when (< (frame-width) mu4e-min-header-frame-width)
-      (set-frame-width (selected-frame) mu4e-min-header-frame-width)))
+    "Expand the frame with if it's less than `+mu4e-min-header-frame-width'."
+    (when (< (frame-width) +mu4e-min-header-frame-width)
+      (set-frame-width (selected-frame) +mu4e-min-header-frame-width)))
   (add-hook 'mu4e-headers-mode-hook #'mu4e-widen-frame-maybe)
 
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
+  (when (fboundp 'make-xwidget)
+    (push '("view with xwidgets" . mu4e-action-view-with-xwidget)
+          mu4e-view-actions))
+
   (map! :map mu4e-main-mode-map
         :ne "h" #'+workspace/other)
 
   (map! :map mu4e-headers-mode-map
-        :e "l" #'mu4e-msg-to-agenda)
+        :vne "l" #'mu4e/refile-msg-to-agenda)
 
   (map! :localleader
         :map mu4e-compose-mode-map
@@ -180,46 +198,54 @@
           :v "*" #'mu4e-headers-mark-for-something
           :v "!" #'mu4e-headers-mark-for-read
           :v "?" #'mu4e-headers-mark-for-unread
-          :v "u" #'mu4e-headers-mark-for-unmark
-          :vn "l" #'mu4e-msg-to-agenda))
+          :v "u" #'mu4e-headers-mark-for-unmark))
 
-  (add-hook 'mu4e-compose-pre-hook '+mu4e-set-account)
+  (add-hook 'mu4e-compose-pre-hook '+mu4e-set-from-address-h)
 
-  (advice-add #'mu4e~main-action-str :override #'mu4e~main-action-prettier-str)
+  (advice-add #'mu4e~main-action-str :override #'+mu4e~main-action-str-prettier-a)
   (when (featurep! :editor evil)
-    ;; As mu4e~main-action-prettier-str replaces [k]ey with key q]uit should become quit
-    (setq evil-collection-mu4e-end-region-misc "quit")))
+    ;; As +mu4e~main-action-str-prettier replaces [k]ey with key q]uit should become quit
+    (setq evil-collection-mu4e-end-region-misc "quit"))
+
+  ;; process lock control
+  (when IS-WINDOWS
+    (setq
+     +mu4e-lock-file (expand-file-name "~/AppData/Local/Temp/mu4e_lock")
+     +mu4e-lock-request-file (expand-file-name "~/AppData/Local/Temp/mu4e_lock_request")))
+
+  (add-hook 'kill-emacs-hook #'+mu4e-lock-file-delete-maybe)
+  (advice-add 'mu4e~start :around #'+mu4e-lock-start)
+  (advice-add 'mu4e-quit :after #'+mu4e-lock-file-delete-maybe))
 
 (use-package! org-msg
   :after mu4e
-  :when (featurep! :lang org)
+  :when (featurep! +org)
   :config
-  (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t tex:dvipng"
+  (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil tex:dvipng"
         org-msg-startup "hidestars indent inlineimages"
-        org-msg-greeting-fmt "\nHi %s,\n\n"
         org-msg-greeting-name-limit 3
         org-msg-text-plain-alternative t)
 
-  (defvar org-msg-currently-exporting nil
+  (defvar +org-msg-currently-exporting nil
     "Helper variable to indicate whether org-msg is currently exporting the org buffer to HTML.
 Usefull for affecting HTML export config.")
-  (defadvice! org-msg--now-exporting (&rest _)
+  (defadvice! +org-msg--now-exporting (&rest _)
     :before #'org-msg-org-to-xml
-    (setq org-msg-currently-exporting t))
-  (defadvice! org-msg--not-exporting (&rest _)
+    (setq +org-msg-currently-exporting t))
+  (defadvice! +org-msg--not-exporting (&rest _)
     :after #'org-msg-org-to-xml
-    (setq org-msg-currently-exporting nil))
+    (setq +org-msg-currently-exporting nil))
 
-  (advice-add #'org-html-latex-fragment    :override #'org-html-latex-fragment-scaled)
-  (advice-add #'org-html-latex-environment :override #'org-html-latex-environment-scaled)
+  (advice-add #'org-html-latex-fragment    :override #'+org-html-latex-fragment-scaled-a)
+  (advice-add #'org-html-latex-environment :override #'+org-html-latex-environment-scaled-a)
 
-  (defvar mu4e-compose--org-msg-toggle-next t ; t to initialise org-msg
+  (defvar +mu4e-compose-org-msg-toggle-next t ; t to initialise org-msg
     "Whether to toggle ")
   (defun mu4e-compose-org-msg-handle-toggle (toggle-p)
-    (when (xor toggle-p mu4e-compose--org-msg-toggle-next)
+    (when (xor toggle-p +mu4e-compose-org-msg-toggle-next)
       (org-msg-mode (if org-msg-mode -1 1))
-      (setq mu4e-compose--org-msg-toggle-next
-            (not mu4e-compose--org-msg-toggle-next))))
+      (setq +mu4e-compose-org-msg-toggle-next
+            (not +mu4e-compose-org-msg-toggle-next))))
 
   (defadvice! mu4e-maybe-toggle-org-msg (orig-fn toggle-p)
     :around #'mu4e-compose-new
@@ -292,7 +318,8 @@ Must be set before org-msg is loaded to take effect.")
                       (background-color . ,(doom-color 'bg))
                       (margin . "4px 0px 8px 0px")
                       (padding . "8px 12px")
-                      (width . "95%")
+                      (width . "max-content")
+                      (min-width . "80ch")
                       (border-radius . "5px")
                       (font-weight . "500")
                       ,monospace-font))
@@ -333,9 +360,9 @@ Must be set before org-msg is loaded to take effect.")
                      ,color (font-size . "18pt")))
             (h1 nil ((margin-top . "20px") (margin-bottom . "0px")
                      ,color (font-size . "24pt")))
-            (p nil ((text-decoration . "none") (line-height . "11pt")
+            (p nil ((text-decoration . "none") (line-height . "1.4")
                     (margin-top . "10px") (margin-bottom . "0px")
-                    ,font-size (max-width . "100ch")))
+                    ,font-size (max-width . "90ch")))
             (b nil ((font-weight . "500") (color . ,theme-color)))
             (div nil (,@font (line-height . "12pt")))))))
 
@@ -345,10 +372,18 @@ Must be set before org-msg is loaded to take effect.")
 
 (when (featurep! +gmail)
   (after! mu4e
+    (defvar +mu4e-gmail-addresses nil
+      "A list of email addresses which, despite not:
+- having '@gmail.com' in them, or
+- being in a maildir where the name includes 'gmail'
+
+Should be treated as a gmail address.")
+
     ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
     (setq mu4e-sent-messages-behavior
-          (lambda ()
-            (if (string-match-p "@gmail.com\\'" (message-sendmail-envelope-from))
+          (lambda () ;; TODO make use +mu4e-msg-gmail-p
+            (if (or (string-match-p "@gmail.com\\'" (message-sendmail-envelope-from))
+                    (member (message-sendmail-envelope-from) +mu4e-gmail-addresses))
                 'delete 'sent))
 
           ;; don't need to run cleanup after indexing for gmail
@@ -360,13 +395,15 @@ Must be set before org-msg is loaded to take effect.")
 
     (defun +mu4e-msg-gmail-p (msg)
       (or
-       (string-match-p "gmail"
+       (string-match-p "@gmail.com"
                        (cond
                         ((member (mu4e-message-field msg :to)
-                                 (plist-get mu4e~server-props :personal-addresses))
+                                 (append (mu4e-personal-addresses)
+                                         +mu4e-gmail-addresses))
                          (mu4e-message-field msg :to))
                         ((member (mu4e-message-field msg :from)
-                                 (plist-get mu4e~server-props :personal-addresses))
+                                 (append (mu4e-personal-addresses)
+                                         +mu4e-gmail-addresses))
                          (mu4e-message-field msg :from))
                         (t "")))
        (string-match-p "gmail" (mu4e-message-field msg :maildir))))
@@ -443,7 +480,7 @@ Must be set before org-msg is loaded to take effect.")
     (mu4e-alert-set-default-style 'libnotify)
 
     (setq mu4e-alert-email-notification-types '(subjects))
-    (defun mu4e-alert-grouped-mail-notification-formatter-with-bell (mail-group all-mails)
+    (defun +mu4e-alert-grouped-mail-notification-formatter-with-bell (mail-group all-mails)
       "Default function to format MAIL-GROUP for notification.
 ALL-MAILS are the all the unread emails"
       (shell-command "paplay /usr/share/sounds/freedesktop/stereo/message.oga")
@@ -482,6 +519,6 @@ ALL-MAILS are the all the unread emails"
                (subject (plist-get new-mail :subject))
                (sender (caar (plist-get new-mail :from))))
           (list :title sender :body subject))))
-    (setq mu4e-alert-grouped-mail-notification-formatter #'mu4e-alert-grouped-mail-notification-formatter-with-bell))
+    (setq mu4e-alert-grouped-mail-notification-formatter #'+mu4e-alert-grouped-mail-notification-formatter-with-bell))
 
   (mu4e-alert-enable-mode-line-display))

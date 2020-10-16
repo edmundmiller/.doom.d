@@ -15,6 +15,7 @@ OPTIONAL:
  + `mu4e-trash-folder'
  + `mu4e-refile-folder'
  + `mu4e-compose-signature'
+ + `+mu4e-personal-addresses'
 
 DEFAULT-P is a boolean. If non-nil, it marks that email account as the
 default/fallback account."
@@ -42,9 +43,8 @@ default/fallback account."
       context)))
 
 
-
 (defvar +mu4e-workspace-name "*mu4e*"
-  "TODO")
+  "Name of the workspace created by `=mu4e', dedicated to mu4e.")
 (defvar +mu4e--old-wconf nil)
 
 (add-hook 'mu4e-main-mode-hook #'+mu4e-init-h)
@@ -58,9 +58,10 @@ default/fallback account."
       ;; delete current workspace if empty
       ;; this is useful when mu4e is in the daemon
       ;; as otherwise you can accumulate empty workspaces
-      (unless (+workspace-buffer-list)
-        (+workspace-delete (+workspace-current-name)))
-    (+workspace-switch +mu4e-workspace-name t)
+      (progn
+        (unless (+workspace-buffer-list)
+          (+workspace-delete (+workspace-current-name)))
+        (+workspace-switch +mu4e-workspace-name t))
     (setq +mu4e--old-wconf (current-window-configuration))
     (delete-other-windows)
     (switch-to-buffer (doom-fallback-buffer)))
@@ -79,7 +80,7 @@ default/fallback account."
 ;; Icons need a bit of work
 ;; Spacing needs to be determined and adjucted
 ;;;###autoload
-(defun +get-string-width (str)
+(defun +mu4e--get-string-width (str)
   "Return the width in pixels of a string in the current
 window's default font. If the font is mono-spaced, this
 will also be the width of all other printable characters."
@@ -93,48 +94,82 @@ will also be the width of all other printable characters."
       (car (window-text-pixel-size)))))
 
 ;;;###autoload
-(cl-defun mu4e~normalised-icon (name &key set colour height v-adjust)
+(cl-defun +mu4e-normalised-icon (name &key set color height v-adjust)
   "Convert :icon declaration to icon"
   (let* ((icon-set (intern (concat "all-the-icons-" (or set "faicon"))))
          (v-adjust (or v-adjust 0.02))
          (height (or height 0.8))
-         (icon (if colour
-                   (apply icon-set `(,name :face ,(intern (concat "all-the-icons-" colour)) :height ,height :v-adjust ,v-adjust))
+         (icon (if color
+                   (apply icon-set `(,name :face ,(intern (concat "all-the-icons-" color)) :height ,height :v-adjust ,v-adjust))
                  (apply icon-set `(,name  :height ,height :v-adjust ,v-adjust))))
-         (icon-width (+get-string-width icon))
-         (space-width (+get-string-width " "))
+         (icon-width (+mu4e--get-string-width icon))
+         (space-width (+mu4e--get-string-width " "))
          (space-factor (- 2 (/ (float icon-width) space-width))))
     (concat (propertize " " 'display `(space . (:width ,space-factor))) icon)))
 
 ;; Set up all the fancy icons
 ;;;###autoload
-(defun mu4e~initialise-icons ()
+(defun +mu4e-initialise-icons ()
   (setq mu4e-use-fancy-chars t
-        mu4e-headers-draft-mark      (cons "D" (mu4e~normalised-icon "pencil"))
-        mu4e-headers-flagged-mark    (cons "F" (mu4e~normalised-icon "flag"))
-        mu4e-headers-new-mark        (cons "N" (mu4e~normalised-icon "sync" :set "material" :height 0.8 :v-adjust -0.10))
-        mu4e-headers-passed-mark     (cons "P" (mu4e~normalised-icon "arrow-right"))
-        mu4e-headers-replied-mark    (cons "R" (mu4e~normalised-icon "arrow-right"))
-        mu4e-headers-seen-mark       (cons "S" "") ;(mu4e~normalised-icon "eye" :height 0.6 :v-adjust 0.07 :colour "dsilver"))
-        mu4e-headers-trashed-mark    (cons "T" (mu4e~normalised-icon "trash"))
-        mu4e-headers-attach-mark     (cons "a" (mu4e~normalised-icon "file-text-o" :colour "silver"))
-        mu4e-headers-encrypted-mark  (cons "x" (mu4e~normalised-icon "lock"))
-        mu4e-headers-signed-mark     (cons "s" (mu4e~normalised-icon "certificate" :height 0.7 :colour "dpurple"))
-        mu4e-headers-unread-mark     (cons "u" (mu4e~normalised-icon "eye-slash" :v-adjust 0.05))))
+        mu4e-headers-draft-mark      (cons "D" (+mu4e-normalised-icon "pencil"))
+        mu4e-headers-flagged-mark    (cons "F" (+mu4e-normalised-icon "flag"))
+        mu4e-headers-new-mark        (cons "N" (+mu4e-normalised-icon "sync" :set "material" :height 0.8 :v-adjust -0.10))
+        mu4e-headers-passed-mark     (cons "P" (+mu4e-normalised-icon "arrow-right"))
+        mu4e-headers-replied-mark    (cons "R" (+mu4e-normalised-icon "arrow-right"))
+        mu4e-headers-seen-mark       (cons "S" "") ;(+mu4e-normalised-icon "eye" :height 0.6 :v-adjust 0.07 :color "dsilver"))
+        mu4e-headers-trashed-mark    (cons "T" (+mu4e-normalised-icon "trash"))
+        mu4e-headers-attach-mark     (cons "a" (+mu4e-normalised-icon "file-text-o" :color "silver"))
+        mu4e-headers-encrypted-mark  (cons "x" (+mu4e-normalised-icon "lock"))
+        mu4e-headers-signed-mark     (cons "s" (+mu4e-normalised-icon "certificate" :height 0.7 :color "dpurple"))
+        mu4e-headers-unread-mark     (cons "u" (+mu4e-normalised-icon "eye-slash" :v-adjust 0.05))))
 
 ;;;###autoload
-(defun mu4e~header-colourise (str)
+(defun +mu4e-colorize-str (str &optional unique herring)
+  "Apply a face from `+mu4e-header-colorized-faces' to STR.
+If HERRING is set, it will be used to determine the face instead of STR.
+Will try to make unique when non-nil UNIQUE,
+a quoted symbol for a alist of current strings and faces provided."
+  (unless herring
+    (setq herring str))
+  (put-text-property
+   0 (length str)
+   'face
+   (if (not unique)
+       (+mu4e--str-color-face herring str)
+     (let ((unique-alist (eval unique)))
+       (unless (assoc herring unique-alist)
+         (if (> (length unique-alist) (length +mu4e-header-colorized-faces))
+             (push (cons herring (+mu4e--str-color-face herring)) unique-alist)
+           (let ((offset 0) color color?)
+             (while (not color)
+               (setq color? (+mu4e--str-color-face herring offset))
+               (if (not (rassoc color? unique-alist))
+                   (setq color color?)
+                 (setq offset (1+ offset))
+                 (when (> offset (length +mu4e-header-colorized-faces))
+                   (message "Warning: +mu4e-colorize-str was called with non-unique-alist UNIQUE-alist alist.")
+                   (setq color (+mu4e--str-color-face herring)))))
+             (push (cons herring color) unique-alist)))
+         (set unique unique-alist))
+       (cdr (assoc herring unique-alist))))
+   str)
+  str)
+
+;;;###autoload
+(defun +mu4e--str-color-face (str &optional offset)
+  "Select a face from `+mu4e-header-colorized-faces' based on
+STR and any integer OFFSET."
   (let* ((str-sum (apply #'+ (mapcar (lambda (c) (% c 3)) str)))
-         (colour (nth (% str-sum (length mu4e-header-colourised-faces))
-                      mu4e-header-colourised-faces)))
-    (put-text-property 0 (length str) 'face colour str)
-    str))
+         (color (nth (% (+ str-sum (if offset offset 0))
+                        (length +mu4e-header-colorized-faces))
+                     +mu4e-header-colorized-faces)))
+    color))
 
 ;; Adding emails to the agenda
 ;; Perfect for when you see an email you want to reply to
 ;; later, but don't want to forget about
 ;;;###autoload
-(defun mu4e-msg-to-agenda (arg)
+(defun +mu4e/refile-msg-to-agenda (arg)
   "Refile a message and add a entry in the agenda file with a
 deadline.  Default deadline is today.  With one prefix, deadline
 is tomorrow.  With two prefixes, select the deadline."
@@ -192,49 +227,6 @@ is tomorrow.  With two prefixes, select the deadline."
                      ((= arg 4) "tomorrow")
                      (t         "later"))))))
 
-;;;###autoload
-(defun +mu4e-set-account ()
-  "Set the account for composing a message. If a 'To' header is present,
-and correspands to an email account, this account will be selected.
-Otherwise, the user is prompted for the account they wish to use."
-  (unless (and mu4e-compose-parent-message
-               (let ((to (cdr (car (mu4e-message-field mu4e-compose-parent-message :to))))
-                     (from (cdr (car (mu4e-message-field mu4e-compose-parent-message :from)))))
-                 (if (member to (plist-get mu4e~server-props :personal-addresses))
-                     (setq user-mail-address to)
-                   (if (member from (plist-get mu4e~server-props :personal-addresses))
-                       (setq user-mail-address from)
-                     nil))))
-    (ivy-read "Account: " (plist-get mu4e~server-props :personal-addresses) :action (lambda (candidate) (setq user-mail-address candidate)))))
-
-;;;###autoload
-(defun mu4e~main-action-prettier-str (str &optional func-or-shortcut)
-  "Highlight the first occurrence of [.] in STR.
-If FUNC-OR-SHORTCUT is non-nil and if it is a function, call it
-when STR is clicked (using RET or mouse-2); if FUNC-OR-SHORTCUT is
-a string, execute the corresponding keyboard action when it is
-clicked."
-  :override #'mu4e~main-action-str
-  (let ((newstr
-         (replace-regexp-in-string
-          "\\[\\(..?\\)\\]"
-          (lambda(m)
-            (format "%s"
-                    (propertize (match-string 1 m) 'face '(mode-line-emphasis bold))))
-          (replace-regexp-in-string "\t\\*" "\t⚫" str)))
-        (map (make-sparse-keymap))
-        (func (if (functionp func-or-shortcut)
-                  func-or-shortcut
-                (if (stringp func-or-shortcut)
-                    (lambda()(interactive)
-                      (execute-kbd-macro func-or-shortcut))))))
-    (define-key map [mouse-2] func)
-    (define-key map (kbd "RET") func)
-    (put-text-property 0 (length newstr) 'keymap map newstr)
-    (put-text-property (string-match "[A-Za-z].+$" newstr)
-                       (- (length newstr) 1) 'mouse-face 'highlight newstr)
-    newstr))
-
 ;;
 ;; Hooks
 
@@ -251,95 +243,26 @@ clicked."
     (set-window-configuration +mu4e--old-wconf)
     (setq +mu4e--old-wconf nil))))
 
-;; org-msg hooks
-
 ;;;###autoload
-(defun +org-msg-img-scale-css (img-uri)
-  "For a given IMG-URI, use imagemagik to find its width."
-  (if org-msg-currently-exporting
-      (list :width
-            (format "%.1fpx"
-                    (/ (string-to-number
-                        (shell-command-to-string
-                         ;; TODO change to use 'file'
-                         (format "identify -format %%w %s"
-                                 (substring img-uri 7)))) ; 7=(length "file://")
-                       (plist-get org-format-latex-options :scale))))
-    (list :style (format "transform: scale(%.3f)"
-                         (/ 1.0 (plist-get org-format-latex-options :scale))))))
-
-(defun org-html-latex-fragment-scaled (latex-fragment _contents info)
-  "Transcode a LATEX-FRAGMENT object from Org to HTML.
-CONTENTS is nil.  INFO is a plist holding contextual information.
-
-This differs from `org-html-latex-fragment' in that it uses the LaTeX fragment
-as a meaningful alt value, applies a class to indicate what sort of fragment it is
-(latex-fragment-inline or latex-fragment-block), and (on Linux) scales the image to
-account for the value of :scale in `org-format-latex-options'."
-  (let ((latex-frag (org-element-property :value latex-fragment))
-        (processing-type (plist-get info :with-latex)))
-    (cond
-     ((memq processing-type '(t mathjax))
-      (org-html-format-latex latex-frag 'mathjax info))
-     ((memq processing-type '(t html))
-      (org-html-format-latex latex-frag 'html info))
-     ((assq processing-type org-preview-latex-process-alist)
-      (let ((formula-link
-             (org-html-format-latex latex-frag processing-type info)))
-        (when (and formula-link (string-match "file:\\([^]]*\\)" formula-link))
-          (let ((source (org-export-file-uri (match-string 1 formula-link)))
-                (attributes (list :alt latex-frag
-                                  :class (concat "latex-fragment-"
-                                                 (if (equal "\\(" (substring latex-frag 0 2))
-                                                     "inline" "block")))))
-            (when (and (memq processing-type '(dvipng convert))
-                       (not IS-WINDOWS) ; relies on posix path
-                       (executable-find "identify"))
-              (apply #'plist-put attributes (+org-msg-img-scale-css source)))
-            (org-html--format-image source attributes info)))))
-     (t latex-frag))))
-
-(defun org-html-latex-environment-scaled (latex-environment _contents info)
-  "Transcode a LATEX-ENVIRONMENT element from Org to HTML.
-CONTENTS is nil.  INFO is a plist holding contextual information.
-
-This differs from `org-html-latex-environment' in that (on Linux) it
-scales the image to account for the value of :scale in `org-format-latex-options'."
-  (let ((processing-type (plist-get info :with-latex))
-        (latex-frag (org-remove-indentation
-                     (org-element-property :value latex-environment)))
-        (attributes (org-export-read-attribute :attr_html latex-environment))
-        (label (and (org-element-property :name latex-environment)
-                    (org-export-get-reference latex-environment info)))
-        (caption (and (org-html--latex-environment-numbered-p latex-environment)
-                      (number-to-string
-                       (org-export-get-ordinal
-                        latex-environment info nil
-                        (lambda (l _)
-                          (and (org-html--math-environment-p l)
-                               (org-html--latex-environment-numbered-p l))))))))
-    (plist-put attributes :class "latex-environment")
-    (cond
-     ((memq processing-type '(t mathjax))
-      (org-html-format-latex
-       (if (org-string-nw-p label)
-           (replace-regexp-in-string "\\`.*"
-                                     (format "\\&\n\\\\label{%s}" label)
-                                     latex-frag)
-         latex-frag)
-       'mathjax info))
-     ((assq processing-type org-preview-latex-process-alist)
-      (let ((formula-link
-             (org-html-format-latex
-              (org-html--unlabel-latex-environment latex-frag)
-              processing-type info)))
-        (when (and formula-link (string-match "file:\\([^]]*\\)" formula-link))
-          (let ((source (org-export-file-uri (match-string 1 formula-link))))
-            (when (and (memq processing-type '(dvipng convert))
-                       (not IS-WINDOWS) ; relies on posix path
-                       (executable-find "identify"))
-              (apply #'plist-put attributes (+org-msg-img-scale-css source)))
-            (org-html--wrap-latex-environment
-             (org-html--format-image source attributes info)
-             info caption label)))))
-     (t (org-html--wrap-latex-environment latex-frag info caption label)))))
+(defun +mu4e-set-from-address-h ()
+  "Set the account for composing a message. If a 'To' header is present,
+and correspands to an email address, this address will be selected.
+Otherwise, the user is prompted for the address they wish to use. Possible
+selections come from the mu database or a list of email addresses associated
+with the current context."
+  (unless (and mu4e-compose-parent-message
+               (let ((to (cdr (car (mu4e-message-field mu4e-compose-parent-message :to))))
+                     (from (cdr (car (mu4e-message-field mu4e-compose-parent-message :from)))))
+                 (if (member to (mu4e-personal-addresses))
+                     (setq user-mail-address to)
+                   (if (member from (mu4e-personal-addresses))
+                       (setq user-mail-address from)
+                     nil))))
+    (setq user-mail-address
+          (completing-read
+           "From: "
+           (if-let ((context-addresses
+                     (when mu4e~context-current
+                       (alist-get '+mu4e-personal-addresses (mu4e-context-vars mu4e~context-current)))))
+               context-addresses
+             (mu4e-personal-addresses))))))
