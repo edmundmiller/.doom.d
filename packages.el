@@ -18,7 +18,7 @@
 (package! vyper-mode)
 (package! dired-sidebar)
 ;; Experimental
-(package! nextflow-mode :recipe (:local-repo "~/src/emacs/nextflow-mode"))
+(package! nextflow-mode :recipe (:local-repo "~/src/emacs/nextflow-mode" :no-byte-compile t))
 (package! mu4e-conversation)
 (package! mu4e-patch :recipe (:host github :repo "seanfarley/mu4e-patch"))
 
