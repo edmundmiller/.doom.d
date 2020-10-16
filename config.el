@@ -230,7 +230,7 @@
         org-noter-separate-notes-from-heading t
         org-noter-default-heading-title "Page $p$"
         org-noter-auto-save-last-location t
-        org-noter-notes-search-path '("~/sync/org/roam/noter")
+        org-noter-notes-search-path '("~/sync/org/roam/lit/")
         org-noter-separate-notes-from-heading t
         org-noter-doc-property-in-notes t))
 
