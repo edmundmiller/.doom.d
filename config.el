@@ -284,6 +284,11 @@
         org-roam-server-network-label-truncate-length 60
         org-roam-server-network-label-wrap-length 20))
 
+(after! org
+  (setq org-beamer-theme "[progressbar=foot]metropolis"
+        org-beamer-frame-level 2))
+
+
 ;;; :lang python
 (after! lsp-python-ms
   (setq lsp-python-ms-executable (executable-find "python-language-server"))
