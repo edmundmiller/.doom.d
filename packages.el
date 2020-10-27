@@ -8,15 +8,9 @@
 
 (package! org-roam-server :pin "1dc94e102d60e53bb9929b1cdc55d4d8c2b0d64f")
 (package! edit-server)
-(package! ivy-yasnippet)
-(package! auto-org-md)
-(package! org-clock-csv)
 ;; (package! package-lint)
-(package! pretty-hydra)
 (package! graphviz-dot-mode)
 (package! jest)
-(package! vyper-mode)
-(package! dired-sidebar)
 ;; Experimental
 (package! nextflow-mode :recipe (:local-repo "~/src/emacs/nextflow-mode" :no-byte-compile t))
 (package! org-roam-sbl-show-broken-links :recipe (:host github :repo "twitchy-ears/org-roam-sbl-show-broken-links" :branch "main"))

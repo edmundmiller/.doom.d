@@ -386,10 +386,7 @@
 
 (use-package! graphviz-dot-mode)
 (use-package! jest)
-(use-package! org-clock-csv)
 (use-package! nextflow-mode)
-(after! org
-  (use-package! org-clock-csv))
 
 ;;
 ;;; Custom Variables
