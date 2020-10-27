@@ -269,6 +269,9 @@
 - source :: ${ref}"
            :unnarrowed t))))
 
+(use-package! org-roam-sbl-show-broken-links
+  :after org-roam)
+
 (use-package! org-roam-server
   :after org-roam
   :config
@@ -278,6 +281,7 @@
         org-roam-server-export-inline-images t
         org-roam-server-serve-files nil
         org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+        org-roam-server-default-exclude-filters (json-encode (list (list (cons 'id "journal") (cons 'parent "tags"))))
         org-roam-server-network-poll t
         org-roam-server-network-arrows nil
         org-roam-server-network-label-truncate t
