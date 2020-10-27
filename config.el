@@ -166,15 +166,19 @@
 (add-to-list 'auto-mode-alist '("\\.\\(h?ledger\\|journal\\|j\\)$" . ledger-mode))
 
 ;;; :lang org
-(setq org-directory "/home/emiller/sync/org/"
+(setq org-directory "~/sync/org/"
       org-archive-location (concat org-directory "archive/%s::")
-      org-ellipsis " ▼ "
-      org-superstar-headline-bullets-list '("#")
+      org-roam-directory (concat org-directory "roam/")
+      org-startup-folded 'overview
+      org-ellipsis " [...] "
       org-export-with-toc nil
       org-log-done 'time
       ;; Fix org-id on SPC-l-s
-      org-id-link-to-org-use-id 'use-existing
+      ;; org-id-link-to-org-use-id 'use-existing
       org-deadline-warning-days 5)
+
+(after! org-roam
+      (setq org-roam-db-location (concat org-roam-directory ".org-roam.db")))
 
 (defvar org-contacts-files '("~/sync/org/contacts.org"))
 
