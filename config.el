@@ -246,16 +246,12 @@
         '(("l" "lit" plain (function org-roam--capture-get-point)
            "%?"
            :file-name "lit/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-#+hugo_slug: ${slug}
-#+title: ${title}\n"
+           :head "#+title: ${title}\n"
            :unnarrowed t)
           ("c" "concept" plain (function org-roam--capture-get-point)
            "%?"
            :file-name "concepts/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-#+hugo_slug: ${slug}
-#+title: ${title}\n"
+           :head "#+title: ${title}\n"
            :unnarrowed t)
           ("p" "private" plain (function org-roam-capture--get-point)
            "%?"
@@ -266,9 +262,7 @@
         '(("r" "ref" plain (function org-roam-capture--get-point)
            "%?"
            :file-name "lit/${slug}"
-           :head "#+setupfile:./hugo_setup.org
-#+roam_key: ${ref}
-#+hugo_slug: ${slug}
+           :head "#+roam_key: ${ref}
 #+roam_tags: website
 #+title: ${title}
 
