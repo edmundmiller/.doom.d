@@ -6,7 +6,7 @@
 
 (unpin! doom-themes)
 
-(package! org-roam-server)
+(package! org-roam-server :pin "1dc94e102d60e53bb9929b1cdc55d4d8c2b0d64f")
 (package! edit-server)
 (package! ivy-yasnippet)
 (package! auto-org-md)
