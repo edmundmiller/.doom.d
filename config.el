@@ -132,7 +132,10 @@
 
 ;;; :tools biblio
 (setq! +biblio-pdf-library-dir "~/sync/papers"
-       +biblio-default-bibliography-files '("~/sync/reference/bibliography.bib" "~/sync/reference/molecular_biology.bib" "~/sync/reference/molecular_biology_project.bib")
+       +biblio-default-bibliography-files '("~/sync/reference/bibliography.bib"
+                                            "~/sync/reference/molecular_biology.bib"
+                                            "~/sync/reference/molecular_biology_project.bib"
+                                            "~/sync/reference/books.bib")
        +biblio-notes-path "~/sync/org/roam/bib/")
 
 ;;; :tools direnv
