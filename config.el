@@ -221,7 +221,9 @@
 
 
 ;; I like to cross things off my todo list
-(custom-set-faces! '(org-headline-done :strike-through t))
+(custom-set-faces! '(org-headline-done :strike-through t)
+  '(org-roam-link :foreground "blue")
+  '(org-roam-link-invalid :foreground "red"))
 
 ;; Start in insert mode in org-capture
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
