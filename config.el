@@ -183,7 +183,7 @@
       org-deadline-warning-days 5)
 
 (after! org-roam
-      (setq org-roam-db-location (concat org-roam-directory ".org-roam.db")))
+  (setq org-roam-db-location (concat org-roam-directory ".org-roam.db")))
 
 (defvar org-contacts-files '("~/sync/org/contacts.org"))
 
