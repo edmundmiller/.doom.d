@@ -193,9 +193,11 @@
          ;; TODO generalize these with org-directory
          '(("a" "Appointment" entry (file  "~/sync/org/schedule.org")
             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-           ("l" "Lab Entry" entry
-            (file+olp+datetree "~/sync/org/roam/lab/notebook.org")
-            "* %U %?\n%i\n%a"))
+           ("e" "Lab Entry" entry
+            (file+olp+datetree "~/sync/org/roam/lab/2020.org")
+            "* %U %?\n%i\n%a")
+           ("l" "Link" entry (file+headline "~/sync/org/links.org" "Links")
+            "* %a %^g\n %?\n %i" :immediate-finish t))
          org-capture-templates)))
 
 
