@@ -30,7 +30,10 @@
   (load-theme 'tao-yang t)
   (custom-set-faces!
     '(default :background "#f7f3ee" :foreground "#605a52")
-    '(+org-todo-active :background "#67665F" :foreground "#FFFFF5")))
+    '(+workspace-tab-selected-face :background "#67665F" :foreground "#FFFFF5")
+    '(+org-todo-active :background "#67665F" :foreground "#FFFFF5")
+    '(org-roam-link :foreground "blue")
+    '(org-roam-link-invalid :foreground "red")))
 
 (use-package! color-identifiers-mode
   :hook prog-mode)
@@ -223,9 +226,7 @@
 
 
 ;; I like to cross things off my todo list
-(custom-set-faces! '(org-headline-done :strike-through t)
-  '(org-roam-link :foreground "blue")
-  '(org-roam-link-invalid :foreground "red"))
+(custom-set-faces! '(org-headline-done :strike-through t))
 
 ;; Start in insert mode in org-capture
 (add-hook 'org-capture-mode-hook 'evil-insert-state)
