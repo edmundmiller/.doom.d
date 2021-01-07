@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: write.csv
+# key: wcsv
+# --
+write.csv(x = $1, file = "$2", row.names = ${3:FALSE})
+$0

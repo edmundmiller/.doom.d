@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: read.csv
+# key: rcsv
+# --
+$0 <- read.csv(file = "$1", header = ${2:TRUE}, stringsAsFactors = ${3:FALSE})

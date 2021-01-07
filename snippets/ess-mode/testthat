@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: test_that
+# key: test
+# binding: direct-keybinding
+# expand-env: ((yas-indent-line 'fixed))
+# --
+test_that("$1", {
+		expect_${2:equal}($0)
+  }
+)

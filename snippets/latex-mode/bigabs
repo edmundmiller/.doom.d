@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Abs value
+# key: s|
+# --
+\left| $0 \right|

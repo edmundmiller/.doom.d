@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: convert factor to numbers
+# key: ftn
+# binding: direct-keybinding
+# --
+$0 <- as.numeric(levels($1))[$1]

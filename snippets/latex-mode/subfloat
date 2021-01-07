@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name : subfloat
+# key: sfl
+# contributor : geoffrey thompson <gzthompson@gmail.com>
+# --
+\subfloat[${1:caption}][$1]\{${2:\includegraphics[width=${3:0.5\textwidth}]\{${4:input.png}\}}
+\label\{${5:label}\}\}% $0

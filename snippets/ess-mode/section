@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: section-header
+# key: br
+# --
+# $1 ${1:$(make-string (- 77 (string-width yas-text)) ?-)}
+
+$0

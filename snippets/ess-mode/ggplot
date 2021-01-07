@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ggplot(data, aes)
+# key: ggp
+# binding: direct-keybinding
+# expand-env: ((yas-indent-line 'fixed))
+# --
+${1:name} <- ggplot(${2:data}, mapping = aes(x = $3, y = $0)) +
+NULL

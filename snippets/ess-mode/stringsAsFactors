@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: stringsAsFactors = FALSE
+# key: saf
+# binding: direct-keybinding
+# --
+stringsAsFactors = FALSE$0

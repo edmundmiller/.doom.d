@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: grDevice
+# key: dev
+# contributor: jrnold <jeffrey.arnold@gmail.com>
+# --
+${1:$$(yas/choose-value '("pdf" "postscript" "pictex" "png" "jpeg" "bmp" "tiff" "xfig" "bitmap" "X11" "cairo_pdf" "quartz"))}($2)
+`yas/selected-text`$0
+dev.off()

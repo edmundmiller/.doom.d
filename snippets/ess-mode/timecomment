@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: inserttime
+# key: ts
+# contributor: gzt <gzthompson@gmail.com>
+# --
+#### `(current-time-string)` ########

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: library(. . .)
+# key: lib
+# binding: direct-keybinding
+# contributor: gzt <gzthompson@gmail.com>
+# expand-env: ((yas-indent-line 'fixed))
+# --
+library($0)

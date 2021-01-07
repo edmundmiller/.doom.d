@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: expect_error
+# key: exer
+# binding: direct-keybinding
+# expand-env: ((yas-indent-line 'fixed))
+# --
+expect_error($0)

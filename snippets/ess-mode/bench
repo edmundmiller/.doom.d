@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: benchmark
+# key: bm
+# --
+bench <- microbenchmark::microbenchmark(
+		times = ${1:100},
+		${2:one} = ${3},
+		${4:two} = ${5}
+		)
+plot(bench)
+$0

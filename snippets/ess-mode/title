@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: rtitle
+# key: hdr
+# binding: direct-keybinding
+# --
+######${1:$(make-string (string-width yas-text) ?\#)}######
+####  $1  ####
+######${1:$(make-string (string-width yas-text) ?\#)}######
+
+$0

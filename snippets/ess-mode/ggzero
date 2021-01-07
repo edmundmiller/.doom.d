@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ggzero
+# key: gg0
+# binding: direct-keybinding
+# expand-env: ((yas-indent-line 'fixed))
+# --
+scale_x_continuous(expand = c(0, 0)) + scale_y_continuous(expand = c(0, 0)) +
+$0

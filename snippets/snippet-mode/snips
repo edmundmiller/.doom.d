@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name : snip
+# key: snip
+# contributor : Andy Choens andy.choens@gmail.com
+# --
+# -*- mode: snippet -*-
+# name : $1
+# key: $1
+# contributor : geoffrey thompson <gzthompson@gmail.com>
+# --
+$0

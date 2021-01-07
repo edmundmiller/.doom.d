@@ -1,0 +1,16 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: tryCatch
+# key: tryc
+# binding: direct-keybinding
+# --
+${1:variable} <- tryCatch({
+		${2}
+	}, warning = function(w) {
+		message(sprintf("Warning in %s: %s", deparse(w[["call"]]), w[["message"]]))
+		${3}
+	}, error = function(e) {
+		message(sprintf("Error in %s: %s", deparse(e[["call"]]), e[["message"]]))
+		${4}
+	}, finally = {
+		${5}
+	})

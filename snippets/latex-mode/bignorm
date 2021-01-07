@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Big Norm
+# key: s||
+# --
+\left\| $0 \right\|
