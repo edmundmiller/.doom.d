@@ -132,6 +132,9 @@
 ;; Don't need the menu; I know them all by heart
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 
+;;; :checks grammar
+(after! langtool
+  (setq langtool-bin "languagetool-commandline"))
 
 ;;; :tools biblio
 (setq! +biblio-pdf-library-dir "~/sync/papers"
