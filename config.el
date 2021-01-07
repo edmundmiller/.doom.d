@@ -265,6 +265,7 @@
            "%?"
            :file-name "concepts/${slug}"
            :head "#+title: ${title}\n"
+           ;; :head "#+title: ${title}\n#+date_created: %T\n#+date_updated: %T\n\n"
            :unnarrowed t)
           ("p" "private" plain (function org-roam-capture--get-point)
            "%?"
@@ -278,6 +279,8 @@
            :head "#+roam_key: ${ref}
 #+roam_tags: website
 #+title: ${title}
+#+date_created: %T
+#+date_updated: %T
 
 - source :: ${ref}"
            :unnarrowed t))))
