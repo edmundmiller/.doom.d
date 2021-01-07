@@ -403,6 +403,7 @@
 (use-package! graphviz-dot-mode)
 (use-package! jest)
 (use-package! nextflow-mode)
+(use-package! org-chef)
 
 ;;
 ;;; Custom Variables

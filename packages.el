@@ -16,6 +16,7 @@
 (package! org-roam-sbl-show-broken-links :recipe (:host github :repo "twitchy-ears/org-roam-sbl-show-broken-links" :branch "main"))
 (package! mu4e-conversation)
 (package! mu4e-patch :recipe (:host github :repo "seanfarley/mu4e-patch"))
+(package! org-chef)
 
 (package! speed-type)
 
