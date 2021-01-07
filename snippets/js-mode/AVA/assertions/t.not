@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.not
+# key: t.not
+# condition: t
+# --
+t.not(${1:value}, ${2:expected}${3:, '${4:message}'});

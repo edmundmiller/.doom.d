@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Import AVA
+# key: import-ava
+# condition: t
+# --
+import test from 'ava';

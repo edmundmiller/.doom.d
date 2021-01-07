@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.notThrows
+# key: t.notThrows
+# condition: t
+# --
+t.notThrows(${1:function}${2:, '${3:message}'});

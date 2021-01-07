@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.throwsAsync
+# key: t.throwsAsync
+# condition: t
+# --
+t.throwsAsync(${1:promise|function}${2:, ${3:expected}${4:, '${5:message}'}});

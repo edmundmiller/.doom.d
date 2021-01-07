@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Solidity require
+# key: require
+# --
+require (${1:msg.value > 0});

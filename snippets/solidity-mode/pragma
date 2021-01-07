@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Solidity pragma
+# key: pragma
+# --
+pragma solidity ${1:^0.5.3;}

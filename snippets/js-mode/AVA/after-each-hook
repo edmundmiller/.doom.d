@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: After each hook
+# key: after-each-hook
+# condition: t
+# --
+test.afterEach(t => {
+        $1
+});

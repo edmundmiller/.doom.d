@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Test
+# key: test
+# condition: t
+# --
+test(${1:title}${1/.+/', /}t => {
+	$2
+});

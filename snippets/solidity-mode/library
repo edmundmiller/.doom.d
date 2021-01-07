@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Solidity Library
+# key: library
+# --
+/**
+ * The ${1} library ${2:does this and that...}
+ */
+library ${1:libName} {
+$0  
+}

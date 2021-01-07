@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Solidity Mapping
+# key: mapping
+# --
+mapping(${1:address} => ${2:uint}) ${3:$$(yas-choose-value '("public" "private"))} ${4:name};
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.truthy
+# key: t.truthy
+# condition: t
+# --
+t.truthy(${1:value}${2:, '${3:message}'});

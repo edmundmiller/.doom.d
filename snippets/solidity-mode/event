@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Solidity Event
+# key: event
+# --
+event ${1:name}(${2:address value});
+$0

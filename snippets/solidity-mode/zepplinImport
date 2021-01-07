@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Solidity OpenZeppelin Import
+# key: zep
+# --
+import "../node_modules/zeppelin-solidity/${1:file}.sol";
+$0

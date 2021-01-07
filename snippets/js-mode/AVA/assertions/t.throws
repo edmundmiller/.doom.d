@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.throws
+# key: t.throws
+# condition: t
+# --
+t.throws(${1:function}${2:, ${3:expected}${4:, '${5:message}'}});

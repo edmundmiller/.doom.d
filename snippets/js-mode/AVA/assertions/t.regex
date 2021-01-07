@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.regex
+# key: t.regex
+# condition: t
+# --
+t.regex(${1:contents}, ${2:regex}${3:, '${4:message}'});

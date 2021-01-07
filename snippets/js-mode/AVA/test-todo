@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Test - Todo
+# key: test-todo
+# --
+test.todo('${1:title}');

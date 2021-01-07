@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Test - Serial
+# key: test-serial
+# condition: t
+# --
+test.serial(${1:title}${1/.+/', /}t => {
+	$2
+});

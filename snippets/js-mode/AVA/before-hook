@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Before hook
+# key: before-hook
+# condition: t
+# --
+test.before(t => {
+	$1
+});

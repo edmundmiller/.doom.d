@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.notRegex
+# key: t.notRegex
+# condition: t
+# --
+t.notRegex(${1:contents}, ${2:regex}${3:, '${4:message}'});

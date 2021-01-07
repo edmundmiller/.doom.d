@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Snakemake Rule
+# key: rule
+# --
+rule ${1:Name}:
+    input:
+        \"${2:Input File}\",
+    output:
+        \"${3:Output File}\"
+    log:
+        \"logs/${4:Name}.log\"
+    threads: ${5:4}
+    shell:
+        \"${0:Command}\"

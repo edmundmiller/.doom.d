@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Snakemake Expand
+# key: expand
+# --
+expand(\"${1:File Wildcard}\",unit=${0:Array})

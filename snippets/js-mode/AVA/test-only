@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Test - Only
+# key: test-only
+# condition: t
+# --
+test.only(${1:title}${1/.+/', /}t => {
+	$2
+});

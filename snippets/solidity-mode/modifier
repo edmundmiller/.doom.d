@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Solidity modifier
+# key: modifier
+# --
+modifier ${1:name}(${2:uint _time}) { 
+	require (${3:now >= _time}); 
+	_; 
+}
+$0

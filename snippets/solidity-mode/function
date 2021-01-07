@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Solidity Function
+# key: function
+# --
+function ${1:name}($2) ${3:$$(yas-choose-value '("private" "public" "external" "internal"))} {
+    `(!%!)`$0
+}

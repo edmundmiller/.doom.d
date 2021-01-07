@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.snapshot
+# key: t.snapshot
+# condition: t
+# --
+t.snapshot(${1:expected}${2:, '${3:message}'});

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: React file
+# key: react!
+# --
+import React, { Component } from 'react'
+
+export default class $1 extends Component {
+  render() {
+    return (
+      $0
+    )
+  }
+}

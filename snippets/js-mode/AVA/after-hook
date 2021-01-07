@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: After hook
+# key: after-hook
+# condition: t
+# --
+test.after(t => {
+	$1
+});

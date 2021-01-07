@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.notDeepEqual
+# key: t.notDeepEqual
+# condition: t
+# --
+t.notDeepEqual(${1:value}, ${2:expected}${3:, '${4:message}'});

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.is
+# key: t.is
+# condition: t
+# --
+t.is(${1:value}, ${2:expected}${3:, '${4:message}'});

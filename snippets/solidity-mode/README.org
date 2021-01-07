@@ -1,0 +1,4 @@
+#+TITLE: Solidity Emacs Snippets
+* Solidity Emacs Snippets
+This is a port of [[https://github.com/chevdor/EthereumSoliditySnippets/][EthereumSoliditySnippets]] which were written for Sublime
+

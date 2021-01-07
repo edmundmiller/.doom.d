@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Test - Skip
+# key: test-skip
+# condition: t
+# --
+test.skip(${1:title}${1/.+/', /}t => {
+	$2
+});

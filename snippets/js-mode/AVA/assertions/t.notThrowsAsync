@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.notThrowsAsync
+# key: t.notThrowsAsync
+# condition: t
+# --
+t.notThrowsAsync(${1:promise|function}${2:, '${3:message}'});

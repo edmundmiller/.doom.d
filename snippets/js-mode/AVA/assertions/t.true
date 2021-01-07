@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.true
+# key: t.true
+# condition: t
+# --
+t.true(${1:value}${2:, '${3:message}'});

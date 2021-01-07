@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.deepEqual
+# key: t.deepEqual
+# condition: t
+# --
+t.deepEqual(${1:value}, ${2:expected}${3:, '${4:message}'});

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Solidity import
+# key: import
+# --
+import "./${1:file}.sol";
+$0

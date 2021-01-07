@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: t.fail
+# key: t.fail
+# condition: t             
+# --
+t.fail(${1:'${2:message}'});

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Solidity interface
+# key: interface
+# --
+interface ${1:interfaceName} {
+	function ${2} (${3});	
+}
+$0

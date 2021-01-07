@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Before each hook
+# key: before-each-hook
+# condition: t
+# --
+test.beforeEach(t => {
+	$1
+});

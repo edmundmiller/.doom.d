@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Test - Async
+# key: test-async
+# condition: t
+# --
+test(${1:title}${1/.+/', /}async t => {
+	$2
+});
