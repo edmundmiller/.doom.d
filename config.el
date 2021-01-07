@@ -309,12 +309,6 @@
         org-beamer-frame-level 2))
 
 
-;;; :lang python
-(after! lsp-python-ms
-  (setq lsp-python-ms-executable (executable-find "python-language-server"))
-  (set-lsp-priority! 'mspyls 1))
-(set-eglot-client! 'python-mode (list (executable-find "python-language-server")))
-
 ;;; :lang rust
 (setq rustic-lsp-server 'rust-analyzer)
 
