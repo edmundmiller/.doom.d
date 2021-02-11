@@ -398,6 +398,8 @@
 (use-package! jest)
 (use-package! nextflow-mode)
 (use-package! org-chef)
+(use-package! ox-awesomecv
+  :init (require 'ox-awesomecv))
 
 ;;
 ;;; Custom Variables
