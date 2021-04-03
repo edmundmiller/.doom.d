@@ -400,6 +400,10 @@
 (use-package! org-chef)
 (use-package! ox-awesomecv
   :init (require 'ox-awesomecv))
+(use-package! bibtex-actions
+  :after embark
+  :config
+  (setf (alist-get 'bibtex embark-keymap-alist) 'bibtex-actions-map))
 
 ;;
 ;;; Custom Variables
