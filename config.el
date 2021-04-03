@@ -191,14 +191,15 @@
 (use-package! org-roam
   :init
   (map! :leader
-        :prefix "n"
-        :desc "org-roam" "l" #'org-roam-buffer-toggle
-        :desc "org-roam-node-insert" "i" #'org-roam-node-insert
-        :desc "org-roam-node-find" "f" #'org-roam-node-find
-        :desc "org-roam-ref-find" "r" #'org-roam-ref-find
-        :desc "org-roam-show-graph" "g" #'org-roam-show-graph
-        :desc "org-roam-capture" "c" #'org-roam-capture
-        :desc "org-roam-dailies-capture-today" "j" #'org-roam-dailies-capture-today)
+        (:prefix "n"
+         (:prefix ("r" . "roam")
+          :desc "org-roam" "l" #'org-roam-buffer-toggle
+          :desc "org-roam-node-insert" "i" #'org-roam-node-insert
+          :desc "org-roam-node-find" "f" #'org-roam-node-find
+          :desc "org-roam-ref-find" "r" #'org-roam-ref-find
+          :desc "org-roam-show-graph" "g" #'org-roam-show-graph
+          :desc "org-roam-capture" "c" #'org-roam-capture
+          :desc "org-roam-dailies-capture-today" "j" #'org-roam-dailies-capture-today)))
   (setq org-roam-db-gc-threshold most-positive-fixnum
         org-id-link-to-org-use-id t)
   (add-to-list 'display-buffer-alist
