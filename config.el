@@ -188,8 +188,75 @@
       ;; org-id-link-to-org-use-id 'use-existing
       org-deadline-warning-days 5)
 
-(after! org-roam
-  (set-company-backend! 'org-mode 'company-capf 'company-org-roam))
+(use-package! org-roam
+  :init
+  (map! :leader
+        :prefix "n"
+        :desc "org-roam" "l" #'org-roam-buffer-toggle
+        :desc "org-roam-node-insert" "i" #'org-roam-node-insert
+        :desc "org-roam-node-find" "f" #'org-roam-node-find
+        :desc "org-roam-ref-find" "r" #'org-roam-ref-find
+        :desc "org-roam-show-graph" "g" #'org-roam-show-graph
+        :desc "org-roam-capture" "c" #'org-roam-capture
+        :desc "org-roam-dailies-capture-today" "j" #'org-roam-dailies-capture-today)
+  (setq org-roam-db-gc-threshold most-positive-fixnum
+        org-id-link-to-org-use-id t)
+  (add-to-list 'display-buffer-alist
+               '(("\\*org-roam\\*"
+                  (display-buffer-in-direction)
+                  (direction . right)
+                  (window-width . 0.33)
+                  (window-height . fit-window-to-buffer))))
+  :config
+  (setq org-roam-mode-sections
+        (list #'org-roam-backlinks-insert-section
+              #'org-roam-reflinks-insert-section))
+  ;; #'org-roam-unlinked-references-insert-section
+
+  (org-roam-setup)
+  (setq org-roam-capture-templates
+        '(("d" "default" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "${slug}"
+           :head "#+title: ${title}\n"
+           :immediate-finish t
+           :unnarrowed t)
+          ("p" "private" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "private/${slug}"
+           :head "#+title: ${title}\n"
+           :immediate-finish t
+           :unnarrowed t)))
+  (setq org-roam-capture-ref-templates
+        '(("r" "ref" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "${slug}"
+           :head "#+roam_key: ${ref}
+#+roam_tags: website
+#+title: ${title}
+- source :: ${ref}"
+           :unnarrowed t)))
+  (add-to-list 'org-capture-templates `("c" "org-protocol-capture" entry (file+olp ,(expand-file-name "reading_and_writing_inbox.org" org-roam-directory) "The List")
+                                        "* TO-READ [[%:link][%:description]] %^g"
+                                        :immediate-finish t))
+  (add-to-list 'org-agenda-custom-commands `("r" "Reading"
+                                             ((todo "WRITING"
+                                                    ((org-agenda-overriding-header "Writing")
+                                                     (org-agenda-files '(,(expand-file-name "reading_and_writing_inbox.org" org-roam-directory)))))
+                                              (todo "READING"
+                                                    ((org-agenda-overriding-header "Reading")
+                                                     (org-agenda-files '(,(expand-file-name "reading_and_writing_inbox.org" org-roam-directory)))))
+                                              (todo "TO-READ"
+                                                    ((org-agenda-overriding-header "To Read")
+                                                     (org-agenda-files '(,(expand-file-name "reading_and_writing_inbox.org" org-roam-directory))))))))
+  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry
+           #'org-roam-capture--get-point
+           "* %?"
+           :file-name "daily/%<%Y-%m-%d>"
+           :head "#+title: %<%Y-%m-%d>\n\n")))
+  (set-company-backend! 'org-mode '(company-capf)))
 
 (defvar org-contacts-files '("~/sync/org/contacts.org"))
 
@@ -250,59 +317,6 @@
         org-noter-notes-search-path '("~/sync/org/roam/lit/")
         org-noter-separate-notes-from-heading t
         org-noter-doc-property-in-notes t))
-
-;; +roam
-(after! org-roam
-  (setq org-roam-tag-sources '(prop all-directories)
-        org-roam-buffer-width 0.25)
-  (setq org-roam-capture-templates
-        '(("l" "lit" plain (function org-roam--capture-get-point)
-           "%?"
-           :file-name "lit/${slug}"
-           :head "#+title: ${title}\n"
-           :unnarrowed t)
-          ("c" "concept" plain (function org-roam--capture-get-point)
-           "%?"
-           :file-name "concepts/${slug}"
-           :head "#+title: ${title}\n"
-           ;; :head "#+title: ${title}\n#+date_created: %T\n#+date_updated: %T\n\n"
-           :unnarrowed t)
-          ("p" "private" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "private/${slug}"
-           :head "#+title: ${title}\n"
-           :unnarrowed t)))
-  (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "lit/${slug}"
-           :head "#+roam_key: ${ref}
-#+roam_tags: website
-#+title: ${title}
-#+date_created: %T
-#+date_updated: %T
-
-- source :: ${ref}"
-           :unnarrowed t))))
-
-(use-package! org-roam-sbl-show-broken-links
-  :after org-roam)
-
-(use-package! org-roam-server
-  :after org-roam
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-        org-roam-server-port 8081
-        org-roam-server-authenticate nil
-        org-roam-server-export-inline-images t
-        org-roam-server-serve-files nil
-        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
-        org-roam-server-default-exclude-filters (json-encode (list (list (cons 'id "journal") (cons 'parent "tags"))))
-        org-roam-server-network-poll t
-        org-roam-server-network-arrows nil
-        org-roam-server-network-label-truncate t
-        org-roam-server-network-label-truncate-length 60
-        org-roam-server-network-label-wrap-length 20))
 
 (after! org
   (setq org-beamer-theme "[progressbar=foot]metropolis"
