@@ -7,7 +7,8 @@
 (unpin! doom-themes)
 
 (package! org-roam
-  :recipe (:host github :repo "org-roam/org-roam" :branch "v2"))
+  :recipe (:host github :repo "org-roam/org-roam" :branch "v2")
+  :pin "f883c3270f4c069d75dc3aa17e0ef738f7c357d5")
 (package! edit-server)
 ;; (package! package-lint)
 (package! graphviz-dot-mode)
