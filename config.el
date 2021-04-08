@@ -216,26 +216,19 @@
 
   (org-roam-setup)
   (setq org-roam-capture-templates
-        '(("d" "default" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "${slug}"
-           :head "#+title: ${title}\n"
-           :immediate-finish t
-           :unnarrowed t)
-          ("p" "private" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "private/${slug}"
-           :head "#+title: ${title}\n"
+        '((:key "d"
+           :desc "default"
+           :body ""
+           :if-new (file+head "${slug}.org"
+                              "#+title: ${title}\n")
            :immediate-finish t
            :unnarrowed t)))
   (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "${slug}"
-           :head "#+roam_key: ${ref}
-#+roam_tags: website
-#+title: ${title}
-- source :: ${ref}"
+        '((:key "r"
+           :desc "ref"
+           :body "%?"
+           :if-new (file+head "${slug}.org"
+                              "#+title: ${title}\n")
            :unnarrowed t)))
   (add-to-list 'org-capture-templates `("c" "org-protocol-capture" entry (file+olp ,(expand-file-name "reading_and_writing_inbox.org" org-roam-directory) "The List")
                                         "* TO-READ [[%:link][%:description]] %^g"
@@ -252,12 +245,15 @@
                                                      (org-agenda-files '(,(expand-file-name "reading_and_writing_inbox.org" org-roam-directory))))))))
   (setq org-roam-dailies-directory "daily/")
   (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry
-           #'org-roam-capture--get-point
-           "* %?"
-           :file-name "daily/%<%Y-%m-%d>"
-           :head "#+title: %<%Y-%m-%d>\n\n")))
+        '((:key "d"
+           :desc "default"
+           :body "* %?"
+           :if-new (file+head "daily/%<%Y-%m-%d>.org"
+                              "#+title: %<%Y-%m-%d>\n"))))
   (set-company-backend! 'org-mode '(company-capf)))
+
+(use-package! org-roam-protocol
+  :after org-protocol)
 
 (defvar org-contacts-files '("~/sync/org/contacts.org"))
 
