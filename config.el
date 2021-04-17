@@ -306,7 +306,7 @@
 ;; +noter
 (after! org-noter
   (setq org-noter-always-create-frame t
-        org-noter-doc-split-fraction '(0.65 . 0.35)
+        org-noter-doc-split-fraction '(0.75 . 0.25)
         org-noter-separate-notes-from-heading t
         org-noter-default-heading-title "Page $p$"
         org-noter-auto-save-last-location t
