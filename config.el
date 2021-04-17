@@ -18,6 +18,7 @@
       ;; disable it by default.
       lsp-ui-sideline-enable nil
       lsp-enable-symbol-highlighting nil
+      +lsp-prompt-to-install-server 'quiet
 
       ;; More common use-case
       evil-ex-substitute-global t)
@@ -35,16 +36,28 @@
     '(org-roam-link :foreground "blue")
     '(org-roam-link-invalid :foreground "red")))
 
-(use-package! color-identifiers-mode
-  :hook prog-mode)
+;; (use-package! color-identifiers-mode
+;;   :hook prog-mode)
 
-;;
+;; Remove modeline in emacs-everywhere
+(remove-hook 'emacs-everywhere-init-hooks #'hide-mode-line-mode)
+
+(defadvice! center-emacs-everywhere-in-origin-window (frame window-info)
+  :override #'emacs-everywhere-set-frame-position
+  (cl-destructuring-bind (x y width height)
+      (emacs-everywhere-window-geometry window-info)
+    (set-frame-position frame
+                        (+ x (/ width 2) (- (/ width 2)))
+                        (+ y (/ height 2)))))
+
+
 ;;; UI
 
 ;; "monospace" means use the system default. However, the default is usually two
 ;; points larger than I'd like, so I specify size 12 here.
-(setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "JetBrainsMono" :size 13 :weight 'light)
+      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 14)
+      ivy-posframe-font (font-spec :family "JetBrainsMono" :size 16))
 
 ;; Prevents some cases of Emacs flickering
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
@@ -52,34 +65,30 @@
 ;;
 ;;; Keybinds
 
-(map!
- :n [tab] (cmds! (and (featurep! :editor fold)
-                      (save-excursion (end-of-line) (invisible-p (point))))
-                 #'+fold/toggle
-                 (fboundp 'evil-jump-item)
-                 #'evil-jump-item)
- :v [tab] (cmds! (and (bound-and-true-p yas-minor-mode)
-                      (or (eq evil-visual-selection 'line)
-                          (not (memq (char-after) (list ?\( ?\[ ?\{ ?\} ?\] ?\))))))
-                 #'yas-insert-snippet
-                 (fboundp 'evil-jump-item)
-                 #'evil-jump-item)
- (:leader
-  (:prefix "f"
-   :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
-   :desc "Browse dotfiles" :n "O" #'+emiller/browse-dotfiles)
-  (:prefix "i"
-   :desc "Insert date" :n "d" #'insert-todays-date)
-  (:prefix "o"
-   :desc "Calc" :n "c" #'calc
-   :desc "easy-hugo" :n "g" #'easy-hugo
-   :desc "APP: IRC" :n "i" #'=irc
-   ;; :desc "APP: notmuch" :n "m" #'=mu4e
-   ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
-   :desc "todo.org" :n "o" #'+emiller/visit-todo-org
-   :desc "projects" :n "p" #'+emiller/visit-projects-org
-   :desc "emms" :n "s" #'emms
-   :desc "APP: rss" :n "," #'=rss)))
+(map! (:after evil-org
+       :map evil-org-mode-map
+       :n "gk" (cmd! (if (org-on-heading-p)
+                         (org-backward-element)
+                       (evil-previous-visual-line)))
+       :n "gj" (cmd! (if (org-on-heading-p)
+                         (org-forward-element)
+                       (evil-next-visual-line))))
+      :leader
+      (:prefix "f"
+       :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
+       :desc "Browse dotfiles" :n "O" #'+emiller/browse-dotfiles)
+      (:prefix "i"
+       :desc "Insert date" :n "d" #'insert-todays-date)
+      (:prefix "o"
+       :desc "Calc" :n "c" #'calc
+       :desc "easy-hugo" :n "g" #'easy-hugo
+       :desc "APP: IRC" :n "i" #'=irc
+       ;; :desc "APP: notmuch" :n "m" #'=mu4e
+       ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
+       :desc "todo.org" :n "o" #'+emiller/visit-todo-org
+       :desc "projects" :n "p" #'+emiller/visit-projects-org
+       :desc "emms" :n "s" #'emms
+       :desc "APP: rss" :n "," #'=rss))
 
 ;;
 ;;; Modules
@@ -152,8 +161,8 @@
       ;; Don't restore the wconf after quitting magit, it's jarring
       magit-inhibit-save-previous-winconf t
       transient-values '((magit-commit "--gpg-sign=BD387FF7BC10AA9D")
-                         (magit-rebase "--autosquash" "--gpg-sign=BD387FF7BC10AA9D")
-                         (magit-pull "--rebase" "--gpg-sign=BD387FF7BC10AA9D")))
+                         (magit-rebase "--autosquash" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")
+                         (magit-pull "--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")))
 
 ;; Enable git gutter on tramp sessions
 (defun +version-control|git-gutter-maybe ()
