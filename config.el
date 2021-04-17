@@ -136,6 +136,8 @@
 ;;; :tools biblio
 (setq! +biblio-pdf-library-dir "~/sync/papers"
        +biblio-default-bibliography-files '("~/sync/reference/bibliography.bib"
+                                            "~/sync/reference/biochemistry.bib"
+                                            "~/sync/reference/genomics.bib"
                                             "~/sync/reference/molecular_biology.bib"
                                             "~/sync/reference/molecular_biology_project.bib"
                                             "~/sync/reference/books.bib")
