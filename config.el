@@ -70,9 +70,6 @@
    :desc "Browse dotfiles" :n "O" #'+emiller/browse-dotfiles)
   (:prefix "i"
    :desc "Insert date" :n "d" #'insert-todays-date)
-  (:prefix "n"
-   (:prefix "j"
-    :desc "New Date Entry" :n "n" #'org-journal-new-date-entry))
   (:prefix "o"
    :desc "Calc" :n "c" #'calc
    :desc "easy-hugo" :n "g" #'easy-hugo
