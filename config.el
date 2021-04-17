@@ -406,7 +406,9 @@
 
 (use-package! graphviz-dot-mode)
 (use-package! jest)
-(use-package! nextflow-mode)
+(use-package! nextflow-mode
+  :config
+  (set-docsets! 'nextflow-mode "Groovy"))
 (use-package! org-chef)
 (use-package! ox-awesomecv
   :init (require 'ox-awesomecv))
