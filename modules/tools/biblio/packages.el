@@ -9,4 +9,5 @@
 (when (featurep! :lang org)
   (package! org-ref :pin "120509c38929cc25d814e9a42092c44cb34ec34e"))
 (when (featurep! :lang org +roam)
-  (package! org-roam-bibtex))
+  (package! org-roam-bibtex
+        :recipe (:host github :repo "org-roam/org-roam-bibtex" :branch "org-roam-v2")))
