@@ -434,8 +434,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values
-   '((ssh-deploy-async-with-threads . 1
-                                    (ssh-deploy-on-explicity-save . t)
-                                    (ssh-deploy-async . 1)))))
+   '((ssh-deploy-async-with-threads . 1)
+     (ssh-deploy-on-explicity-save . t)
+     (ssh-deploy-async . 1))))
 
 (setq enable-local-variables :all)
