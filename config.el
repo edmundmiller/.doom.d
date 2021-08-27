@@ -340,10 +340,6 @@
 (use-package! academic-phrases)
 (use-package! ox-awesomecv
   :init (require 'ox-awesomecv))
-(use-package! bibtex-actions
-  :after embark
-  :config
-  (setf (alist-get 'bibtex embark-keymap-alist) 'bibtex-actions-map))
 
 ;;
 ;;; Custom Variables
