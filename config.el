@@ -225,7 +225,8 @@
 
 ;; +journal
 (after! org
-  (setq org-journal-dir (concat org-roam-directory "journal/")
+  (setq org-journal-dir (concat org-directory "journal/")
+        org-journal-file-type 'monthly
         org-journal-encrypt-journal t
         org-journal-file-format "%Y%m%d.org"))
 
