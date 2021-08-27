@@ -338,8 +338,6 @@
   (set-docsets! 'nextflow-mode "Groovy"))
 (use-package! org-chef)
 (use-package! academic-phrases)
-(use-package! ox-awesomecv
-  :init (require 'ox-awesomecv))
 
 ;;
 ;;; Custom Variables
