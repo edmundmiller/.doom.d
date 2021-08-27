@@ -138,7 +138,8 @@
         +noter
         +pandoc
         +pomodoro
-        +present)
+        +present
+        +roam2)
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more

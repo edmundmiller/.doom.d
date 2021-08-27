@@ -3,9 +3,6 @@
 ;; Private
 (unpin! doom-themes)
 
-(package! org-roam
-  :recipe (:host github :repo "org-roam/org-roam" :branch "v2")
-  :pin "eef1ed287349122e92d965318a0849f650490a36")
 (package! edit-server)
 ;; (package! package-lint)
 (package! graphviz-dot-mode)
