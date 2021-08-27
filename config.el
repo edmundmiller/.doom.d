@@ -135,7 +135,7 @@
                                             "~/sync/reference/molecular_biology.bib"
                                             "~/sync/reference/molecular_biology_project.bib"
                                             "~/sync/reference/books.bib")
-       +biblio-notes-path "~/sync/org/roam/bib/")
+       +biblio-notes-path "~/sync/org/roam/lit/")
 
 ;;; :tools direnv
 (setq direnv-always-show-summary nil)
