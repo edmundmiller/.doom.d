@@ -48,8 +48,8 @@ In case of directory the path must end with a slash."
   ;; Allow the user to set a template of their own via (setq). if the user does
   ;; not set one fall back to the +biblio variants which have a reasonable
   ;; fallback.
-  (defvar bibtex-completion-notes-template-multiple-files nil)
-   :config
+  (defvar bibtex-completion-notes-template-multiple-files nil
+   :config)
 
   (when (featurep! :completion ivy)
     (add-to-list 'ivy-re-builders-alist '(ivy-bibtex . ivy--regex-plus)))

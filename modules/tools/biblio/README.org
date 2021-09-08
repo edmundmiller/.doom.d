@@ -47,7 +47,10 @@ This module provides no flags.
 + ~:lang org +roam~
   + [[https://github.com/Zaeph/org-roam-bibtex][org-roam-bibtex]]
 ** Note about org-ref
-Although org-ref supports both ivy and helm, certain functionality e.g. the ability to drag-n-drop a pdf into a bib file in order to have org-ref automatically generate a new bibtex entry will pull in helm, as it is hard coded to support that
+Although org-ref supports both ivy and helm, certain functionality e.g. the ability to drag-n-drop a pdf into a bib file in order to have org-ref automatically generate a new bibtex entry will pull in helm, as it is hard coded to support that.
+
+For this reason many of the options are not enabled by default, if you wish to enable the other functions see: [[https://github.com/jkitchin/org-ref#some-other-useful-libraries-in-org-ref][org-ref additional libraries]]
+
 * Prerequisites
 There are no hard dependencies for this module.
 
