@@ -7,7 +7,7 @@
 (when (featurep! :completion helm)
   (package! helm-bibtex :pin "a0d32ab16748b7b0c43d6421f1b497b7caf8e590"))
 (when (featurep! :completion vertico)
-  (package! bibtex-actions :pin "6e3a194c3ab655693f8194be78542366755c58c9"))
+  (package! citar :pin "6e3a194c3ab655693f8194be78542366755c58c9"))
 (when (featurep! :lang org +ref)
   (package! org-ref :pin "0d988807301bee68b0483f6b461125c31edfbc2c"))
 (when (featurep! :lang org +roam2)
