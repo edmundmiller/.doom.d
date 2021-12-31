@@ -16,8 +16,12 @@
 (unpin! org-roam)
 (package! websocket)
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
+(package! org-transclusion)
 
 (package! speed-type)
+;; HACK
+(package! code-review :disable t)
+(package! nose :disable t)
 
 (provide 'packages)
 ;;; packages.el ends here
