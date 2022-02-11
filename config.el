@@ -42,6 +42,13 @@
       (:prefix "f"
        :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
        :desc "Browse dotfiles" :n "O" #'+emiller/browse-dotfiles)
+      (:prefix "n"
+       "b" #'org-roam-buffer-toggle
+       "d" #'org-roam-dailies-goto-today
+       "D" #'org-roam-dailies-goto-date
+       "i" #'org-roam-node-insert
+       "r" #'org-roam-node-find
+       "R" #'org-roam-capture)
       (:prefix "i"
        :desc "Insert date" :n "d" #'insert-todays-date)
       (:prefix "o"
@@ -171,22 +178,24 @@
 (add-to-list 'auto-mode-alist '("\\.\\(h?ledger\\|journal\\|j\\)$" . ledger-mode))
 
 ;;; :lang org
-(setq org-directory "~/sync/org/"
-      org-archive-location (concat org-directory "archive/%s::")
+(setq +org-roam-auto-backlinks-buffer t
+      org-directory "~/sync/org/"
       org-roam-directory (concat org-directory "roam/")
-      org-startup-folded 'overview
-      org-ellipsis " [...] "
-      org-export-with-toc nil
-      org-log-done 'time
-      org-attach-id-dir (concat org-roam-directory "data/")
-      ;; Fix org-id on SPC-l-s
-      ;; org-id-link-to-org-use-id 'use-existing
-      org-deadline-warning-days 5)
-
-(defvar org-contacts-files '("~/sync/org/contacts.org"))
+      org-roam-db-location (concat org-directory ".org-roam.db")
+      org-roam-dailies-directory "journal/"
+      org-archive-location (concat org-directory ".archive/%s::")
+      org-agenda-files (list "todo.org" "project/" "contact/" "topic/"))
 
 (after! org
-  (setq org-capture-templates
+  (setq org-startup-folded 'show2levels
+        org-ellipsis " [...] "
+        org-export-with-toc nil
+        org-log-done 'time
+        org-attach-id-dir (concat org-roam-directory "data/")
+        ;; Fix org-id on SPC-l-s
+        ;; org-id-link-to-org-use-id 'use-existing
+        org-deadline-warning-days 5
+        org-capture-templates
         (append
          ;; TODO generalize these with org-directory
          '(("a" "Appointment" entry (file  "~/sync/org/schedule.org")
@@ -198,7 +207,94 @@
             "* %a %^g\n %?\n %i" :immediate-finish t))
          org-capture-templates)))
 
+(after! org-roam
+  (setq org-roam-capture-templates
+        `(("n" "note" plain
+           ,(format "#+title: ${title}\n%%[%s/template/note.org]" org-roam-directory)
+           :target (file "note/%<%Y%m%d%H%M%S>-${slug}.org")
+           :unnarrowed t)
+          ("t" "topic" plain
+           ,(format "#+title: ${title}\n%%[%s/template/topic.org]" org-roam-directory)
+           :target (file "topic/%<%Y%m%d%H%M%S>-${slug}.org")
+           :unnarrowed t)
+          ("c" "contact" plain
+           ,(format "#+title: ${title}\n%%[%s/template/contact.org]" org-roam-directory)
+           :target (file "contact/%<%Y%m%d%H%M%S>-${slug}.org")
+           :unnarrowed t)
+          ("p" "project" plain
+           ,(format "#+title: ${title}\n%%[%s/template/project.org]" org-roam-directory)
+           :target (file "project/%<%Y%m%d>-${slug}.org")
+           :unnarrowed t)
+          ("i" "invoice" plain
+           ,(format "#+title: %%<%%Y%%m%%d>-${title}\n%%[%s/template/invoice.org]" org-roam-directory)
+           :target (file "invoice/%<%Y%m%d>-${slug}.org")
+           :unnarrowed t)
+          ("r" "ref" plain
+           ,(format "#+title: ${title}\n%%[%s/template/ref.org]" org-roam-directory)
+           :target (file "ref/%<%Y%m%d%H%M%S>-${slug}.org")
+           :unnarrowed t))
+        ;; Use human readable dates for dailies titles
+        org-roam-dailies-capture-templates
+        '(("d" "default" entry "* %?"
+           :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%B %d, %Y>\n\n")))))
 
+(after! org-tree-slide
+  ;; I use g{h,j,k} to traverse headings and TAB to toggle their visibility, and
+  ;; leave C-left/C-right to .  I'll do a lot of movement because my
+  ;; presentations tend not to be very linear.
+  (setq org-tree-slide-skip-outline-level 2))
+
+(after! org-roam
+  ;; List dailies and zettels separately in the backlinks buffer.
+  (advice-add #'org-roam-backlinks-section :override #'org-roam-grouped-backlinks-section)
+
+  ;; Offer completion for #tags and @areas separately from notes.
+  (add-to-list 'org-roam-completion-functions #'org-roam-complete-tag-at-point)
+
+  ;; Open in focused buffer, despite popups
+  (advice-add #'org-roam-node-visit :around #'+popup-save-a)
+
+  ;; Automatically update the slug in the filename when #+title: has changed.
+  (add-hook 'org-roam-find-file-hook #'org-roam-update-slug-on-save-h)
+
+  ;; Make the backlinks buffer easier to peruse by folding leaves by default.
+  (add-hook 'org-roam-buffer-postrender-functions #'magit-section-show-level-2)
+
+  (defadvice! org-roam-restore-insertion-order-for-tags-a (nodes)
+    "`org-roam-node-list' returns a list of `org-roam-node's whose tags property
+are arbitrarily sorted, due to the use of group_concat in the sqlite query used
+to generate it."
+    :filter-return #'org-roam-node-list
+    (mapcar (lambda (node)
+              (oset node tags
+                    (ignore-errors
+                      (split-string (cdr (assoc "ALLTAGS" (oref node properties)))
+                                    ":" t)))
+              node)
+            nodes))
+
+  (defadvice! org-roam-add-preamble-a (&rest _)
+    :after #'org-roam-buffer-set-header-line-format
+    (let ((node org-roam-buffer-current-node))
+      (insert
+       (format "%-10s %s\n" (propertize "ID:" 'face 'bold)
+               (org-roam-node-id node))
+       (format "%-10s %s\n" (propertize "Type:" 'face 'bold)
+               (or (org-roam-node-doom-type node) "-"))
+       (format "%-10s %s\n" (propertize "Tags:" 'face 'bold)
+               (if-let (tags (org-roam-node-tags node))
+                   (mapconcat (lambda (tag)
+                                (propertize (concat "#" tag) 'face 'org-tag))
+                              tags " ")
+                 "-"))
+       (format "%-10s %s\n" (propertize "Aliases:" 'face 'bold)
+               (if-let (aliases (org-roam-node-aliases node))
+                   (string-join aliases ", ")
+                 "-"))
+       ?\n))))
+
+
+(defvar org-contacts-files '("~/sync/org/contacts.org"))
 
 ;; To make `org-latex-preview` work
 (after! org
