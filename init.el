@@ -22,7 +22,7 @@
        ;;indent-guides
        ;;ligatures
        ;;minimap
-       modeline
+       (modeline +light)
        ;;nav-flash
        ;;neotree
        ophints
