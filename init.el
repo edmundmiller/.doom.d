@@ -22,8 +22,8 @@
        ;;indent-guides
        ;;ligatures
        ;;minimap
-       (modeline +light)
-       nav-flash
+       modeline
+       ;;nav-flash
        ;;neotree
        ophints
        (popup +defaults)
@@ -32,7 +32,7 @@
        tree-sitter
        ;;unicode
        vc-gutter
-       vi-tilde-fringe
+       ;;vi-tilde-fringe
        window-select
        workspaces
        zen
@@ -62,7 +62,7 @@
        eshell
        ;;shell
        ;;term
-       ;;vterm
+       vterm
 
        :checkers
        syntax
@@ -85,7 +85,7 @@
        ;;macos
        (magit +forge)
        make
-       pass
+       ;;pass
        pdf
        ;;prodigy
        rgb
@@ -99,8 +99,8 @@
        ;;assembly
        (beancount +lsp)
        ;;cc
-       clojure
-       common-lisp
+       ;;clojure
+       ;;common-lisp
        ;;coq
        ;;crystal
        ;;csharp
@@ -126,7 +126,7 @@
        (latex +cdlatex +ref)
        ;;lean
        ;;factor
-       ledger
+       ;;ledger
        (lua +fennel)
        markdown
        ;;nim
@@ -173,12 +173,12 @@
        ;;(wanderlust +gmail)
 
        :app
-       emms
+       ;;emms
        calendar
        everywhere
        irc
        (rss +org)
-       twitter
+       ;;twitter
        ereader
 
        :config
