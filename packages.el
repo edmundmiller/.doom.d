@@ -17,6 +17,7 @@
 (package! websocket)
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-transclusion)
+(package! org-roam-timestamps :recipe (:host github :repo "ThomasFKJorna/org-roam-timestamps"))
 
 (package! speed-type)
 ;; HACK
