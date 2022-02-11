@@ -1,51 +1,31 @@
 ;;; config-new.el -*- lexical-binding: t; -*-
 
 (setq user-mail-address "Edmund.A.Miller@gmail.com"
-      user-full-name "Edmund Miller"
+      user-full-name "Edmund Miller")
 
-      doom-scratch-initial-major-mode 'lisp-interaction-mode
-      doom-theme 'doom-one
-      treemacs-width 32
-
-      ;; Line numbers are pretty slow all around. The performance boost of
-      ;; disabling them outweighs the utility of always keeping them on.
-      display-line-numbers-type nil
-
-      ;; This used to be off by default
-      company-idle-delay nil
-
-      ;; lsp-ui-sideline is redundant with eldoc and much more invasive, so
-      ;; disable it by default.
-      lsp-ui-sideline-enable nil
-      lsp-enable-symbol-highlighting nil
-      +lsp-prompt-to-install-server 'quiet
-
-      ;; More common use-case
-      evil-ex-substitute-global t)
+;; When I bring up Doom's scratch buffer with SPC x, it's often to play with
+;; elisp or note something down (that isn't worth an entry in my notes). I can
+;; do both in `lisp-interaction-mode'.
+(setq doom-scratch-initial-major-mode 'lisp-interaction-mode)
 
 
-;; Remove modeline in emacs-everywhere
-(remove-hook 'emacs-everywhere-init-hooks #'hide-mode-line-mode)
-
-(defadvice! center-emacs-everywhere-in-origin-window (frame window-info)
-  :override #'emacs-everywhere-set-frame-position
-  (cl-destructuring-bind (x y width height)
-      (emacs-everywhere-window-geometry window-info)
-    (set-frame-position frame
-                        (+ x (/ width 2) (- (/ width 2)))
-                        (+ y (/ height 2)))))
-
-
+;;
 ;;; UI
 
 ;; "monospace" means use the system default. However, the default is usually two
 ;; points larger than I'd like, so I specify size 12 here.
-(setq doom-font (font-spec :family "JetBrainsMono" :size 13 :weight 'light)
-      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 14)
-      ivy-posframe-font (font-spec :family "JetBrainsMono" :size 16))
+
+(setq doom-theme 'doom-one
+      doom-font (font-spec :family "JetBrainsMono" :size 13 :weight 'light)
+      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 14))
+
+;; Line numbers are pretty slow all around. The performance boost of
+;; disabling them outweighs the utility of always keeping them on.
+(setq display-line-numbers-type nil)
 
 ;; Prevents some cases of Emacs flickering
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+
 
 ;;
 ;;; Keybinds
@@ -77,6 +57,12 @@
 
 ;;
 ;;; Modules
+;;;
+
+;;; :completion company
+;; This used to be off by default
+(after! company
+  (setq company-idle-delay nil))
 
 ;;; :completion ivy
 (after! ivy
@@ -113,6 +99,10 @@
   (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
   (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote))
 
+;;; :editor file-templates
+;;; TODO
+
+
 ;;; :emacs dired
 ;;Get rid of dired message when using "a"
 (put 'dired-find-alternate-file 'disabled nil)
@@ -139,6 +129,19 @@
 
 ;;; :tools direnv
 (setq direnv-always-show-summary nil)
+
+;;; :tools lsp
+;; Disable invasive lsp-mode features
+(after! lsp-mode
+  (setq lsp-enable-symbol-highlighting nil
+        ;; If an LSP server isn't present when I start a prog-mode buffer, you
+        ;; don't need to tell me. I know. On some systems I don't care to have a
+        ;; whole development environment for some ecosystems.
+        lsp-enable-server-download nil
+        lsp-enable-suggest-server-download nil))
+(after! lsp-ui
+  (setq lsp-ui-sideline-enable nil  ; no more useful than flycheck
+        lsp-ui-doc-enable nil))     ; redundant with K
 
 ;;; :tools magit
 (setq magit-repository-directories '(("~/src" . 3))
@@ -247,19 +250,26 @@
 
 ;; org-roam-ui
 (use-package! websocket
-    :after org-roam)
+  :after org-roam)
 
 (use-package! org-roam-ui
-    :after org-roam ;; or :after org
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+  :after org-roam ;; or :after org
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  ;;  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+(use-package! org-roam-timestamps
+  :after org-roam
+  :config
+  (setq org-roam-timestamps-parent-file t))
+
+;;; :lang python
 
 ;; org-transclusion
 (use-package! org-transclusion
@@ -317,6 +327,27 @@
 (use-package! mu4e-patch
   :hook (mu4e-view-mode . mu4e-patch-highlight))
 
+;;; :app everywhere
+(after! emacs-everywhere
+  ;; Easier to match with a bspwm rule:
+  ;;   bspc rule -a 'Emacs:emacs-everywhere' state=floating sticky=on
+  (setq emacs-everywhere-frame-name-format "emacs-anywhere")
+
+  ;; The modeline is not useful to me in the popup window. It looks much nicer
+  ;; to hide it.
+  (remove-hook 'emacs-everywhere-init-hooks #'hide-mode-line-mode)
+
+  ;; Semi-center it over the target window, rather than at the cursor position
+  ;; (which could be anywhere).
+  (defadvice! center-emacs-everywhere-in-origin-window (frame window-info)
+    :override #'emacs-everywhere-set-frame-position
+    (cl-destructuring-bind (x y width height)
+        (emacs-everywhere-window-geometry window-info)
+      (set-frame-position frame
+                          (+ x (/ width 2) (- (/ width 2)))
+                          (+ y (/ height 2))))))
+
+
 ;;; :app calendar
 (use-package! org-gcal
   :config
@@ -328,12 +359,12 @@
 ;;; :app irc
 (after! circe
   (set-irc-server! "chat.freenode.net"
-                   `(:tls t
-                     :port 6697
-                     :nick "emiller88"
-                     :sasl-username ,(+pass-get-user "irc/freenode.net")
-                     :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
-                     :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#guix" "#guile" "#home-manager" "#nixos" "#nixos-emacs" "#sway" "##rust" "#python" "#pine64"))))
+    `(:tls t
+      :port 6697
+      :nick "emiller88"
+      :sasl-username ,(+pass-get-user "irc/freenode.net")
+      :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
+      :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#guix" "#guile" "#home-manager" "#nixos" "#nixos-emacs" "#sway" "##rust" "#python" "#pine64"))))
 ;;; :app rss
 (after! elfeed-search
   (map! :map elfeed-search-mode-map
@@ -365,6 +396,7 @@
   (set-docsets! 'nextflow-mode "Groovy"))
 (use-package! org-chef)
 (use-package! academic-phrases)
+(use-package! code-review)
 
 ;;
 ;;; Custom Variables
