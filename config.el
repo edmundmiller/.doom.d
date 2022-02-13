@@ -42,13 +42,13 @@
       (:prefix "f"
        :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
        :desc "Browse dotfiles" :n "O" #'+emiller/browse-dotfiles)
-      (:prefix "n"
-       "b" #'org-roam-buffer-toggle
-       "d" #'org-roam-dailies-goto-today
-       "D" #'org-roam-dailies-goto-date
-       "i" #'org-roam-node-insert
-       "r" #'org-roam-node-find
-       "R" #'org-roam-capture)
+      ;; (:prefix "n"
+      ;;  "b" #'org-roam-buffer-toggle
+      ;;  "d" #'org-roam-dailies-goto-today
+      ;;  "D" #'org-roam-dailies-goto-date
+      ;;  "i" #'org-roam-node-insert
+      ;;  "r" #'org-roam-node-find
+      ;;  "R" #'org-roam-capture)
       (:prefix "i"
        :desc "Insert date" :n "d" #'insert-todays-date)
       (:prefix "o"
