@@ -1,5 +1,38 @@
 ;;; autoload/org-roam.el -*- lexical-binding: t; -*-
 
+(defvar org-roam-group-order
+  '(("Backlinks" t
+     (("thought" org-roam-backlinks-sort-by-date)
+      ("note"    org-roam-backlinks-sort-by-date)
+      ("journal" org-roam-backlinks-sort-by-date)))
+    ("Relevant items" t
+     (("secret")
+      ("topic")
+      ("project")
+      ("contact")
+      ("invoice" org-roam-backlinks-sort-by-date)))
+    ("Works" nil
+     (("works"   org-roam-backlinks-sort-by-date)))))
+
+(defvar org-roam-group-icons
+  '(("contact" . "🪪")
+    ("invoice" . "💵")
+    ("journal" . "📅")
+    ("note"    . "📑")
+    ("project" . "⚙")
+    ("secret"  . "🔒")
+    ("thought" . "💭")
+    ("topic"   . "🏷")
+    ("works"   . "✏")))
+
+(defvar org-roam--spacer (propertize " " 'face 'variable-pitch))
+
+;;;###autoload (autoload 'org-roam-node-doom-icon "lang/org/autoload/contrib-roam2" nil t)
+(cl-defmethod org-roam-node-doom-icon ((node org-roam-node))
+  "Return the directory relative to `org-roam-directory' as a note's \"type\"."
+  (cdr (assoc (org-roam-node-doom-type node)
+              org-roam-group-icons)))
+
 (defun org-roam-backlinks-sort-by-date (a b)
   "Sort backlinks by date (heuristic)."
   (string< (file-name-base (org-roam-node-file (org-roam-backlink-source-node b)))
@@ -16,44 +49,37 @@
                                     (butlast outline)
                                   outline)))
               (mapconcat #'org-link-display-format outline " > ")))
-           (title (concat (when outline
-                            (format "%s > "
-                                    (propertize outline 'font-lock-face 'org-roam-olp)))
-                          (propertize (org-roam-node-title source-node)
-                                      'font-lock-face 'org-roam-title)))
+           (file (org-roam-node-file source-node))
+           (icon (format "%s%s"
+                         (org-roam-node-doom-icon source-node)
+                         org-roam--spacer))
+           (title (concat icon
+                          (propertize (org-roam-node-title source-node) 'font-lock-face 'org-roam-title)
+                          (when outline
+                            (format " > %s" (propertize outline 'font-lock-face 'org-roam-olp)))))
            (tags (org-roam-node-doom-tags source-node))
-           (tags (if tags
-                     (mapconcat (lambda (tag)
-                                  (propertize (concat "#" tag) 'face 'shadow))
-                                tags " ")
-                   ""))
-           (window (get-buffer-window org-roam-buffer)))
+           (tags (mapconcat (lambda (tag)
+                              (propertize (concat "#" tag) 'face 'shadow))
+                            tags " ")))
       (magit-insert-heading
         (format (format "%%s %%%ds"
                         (- (window-total-width (get-buffer-window org-roam-buffer))
+                           (length icon)
                            (length title)
                            left-margin-width
                            right-margin-width
-                           5))  ; who doesn't love magic numbers?
+                           3))  ; who doesn't love magic numbers?
                 title
-                tags)))
-    (oset section node source-node)
-    (magit-insert-section section (org-roam-preview-section)
-      (insert (org-roam-fontify-like-in-org-mode
-               (org-roam-preview-get-contents (org-roam-node-file source-node) point))
-              "\n")
-      (oset section file (org-roam-node-file source-node))
-      (oset section point point)
-      (insert ?\n))))
-
-(defconst org-roam-group-order
-  '((nil       "🔗 Backlinks")
-    ("journal" "📅 Journal references" org-roam-backlinks-sort-by-date)
-    ("note"    "📓 Notes")
-    ("topic"   "📌 Topics")
-    ("project" "🛠 Projects")
-    ("contact" "🪪 Contacts")
-    ("invoice" "💷 Invoices" org-roam-backlinks-sort-by-date)))
+                (or tags "")))
+      (oset section node source-node)
+      (unless (string-suffix-p ".org.gpg" file)
+        (magit-insert-section section (org-roam-preview-section)
+          (insert (org-roam-fontify-like-in-org-mode
+                   (org-roam-preview-get-contents file point))
+                  "\n")
+          (oset section file file)
+          (oset section point point)
+          (insert ?\n))))))
 
 ;;;###autoload
 (defun org-roam-grouped-backlinks-section (node)
@@ -62,18 +88,25 @@
                  (lambda (backlink)
                    (org-roam-node-doom-type
                     (org-roam-backlink-source-node backlink)))
-                 (org-roam-backlinks-get node))))
-    (dolist (group org-roam-group-order)
-      (seq-let (key title sortfn) group
-        (when-let (backlinks (cdr (assoc key groups)))
-          (magit-insert-section (gensym "roam")
-            (magit-insert-heading (format "%s:" title))
+                 (org-roam-backlinks-get node)))
+        (heading (make-marker)))
+    (pcase-dolist (`(,title ,always-show ,group) org-roam-group-order)
+      (magit-insert-section (gensym "roam")
+        (set-marker heading (point))
+        (pcase-dolist (`(,key ,sortfn) group)
+          (let ((backlinks (cdr (assoc key groups))))
+            (when (and (or backlinks always-show)
+                       (marker-position heading))
+              (goto-char heading)
+              (magit-insert-heading (format "%s:" title))
+              (set-marker heading nil))
             (dolist (backlink (seq-sort (or sortfn #'org-roam-backlinks-sort) backlinks))
               (org-roam-node-insert-section-with-tags
-               :source-node (org-roam-backlink-source-node backlink)
-               :point (org-roam-backlink-point backlink)
-               :properties (org-roam-backlink-properties backlink)))
-            (insert ?\n)))))))
+                :source-node (org-roam-backlink-source-node backlink)
+                :point (org-roam-backlink-point backlink)
+                :properties (org-roam-backlink-properties backlink))))))
+      (set-marker heading nil)
+      (insert ?\n))))
 
 ;;;###autoload
 (defun org-roam-complete-tag-at-point ()
@@ -99,6 +132,51 @@
               (delete-char (- (length str)))
               (insert str))
             :exclusive 'no))))
+
+
+;;
+;;; Advice
+
+;;;###autoload
+(defun org-roam-restore-insertion-order-for-tags-a (nodes)
+  "`org-roam-node-list' returns a list of `org-roam-node's whose tags property
+are arbitrarily sorted, due to the use of group_concat in the sqlite query used
+to generate it."
+  (mapcar (lambda (node)
+            (oset node tags
+                  (ignore-errors
+                    (split-string (cdr (assoc "ALLTAGS" (oref node properties)))
+                                  ":" t)))
+            node)
+          nodes))
+
+;;;###autoload
+(defun org-roam-add-preamble-a (string)
+  (let ((node org-roam-buffer-current-node))
+    (insert
+     (format "%-10s %s\n" (propertize "ID:" 'face 'bold)
+             (org-roam-node-id node))
+     (format "%-10s %s\n" (propertize "Type:" 'face 'bold)
+             (if-let (type (org-roam-node-doom-type node))
+                 (format "%s%s%s" (org-roam-node-doom-icon node)
+                         org-roam--spacer
+                         (capitalize type))
+               "-"))
+     (format "%-10s %s\n" (propertize "Tags:" 'face 'bold)
+             (if-let (tags (org-roam-node-tags node))
+                 (mapconcat (lambda (tag)
+                              (propertize (concat "#" tag) 'face 'org-tag))
+                            tags " ")
+               "-"))
+     (format "%-10s %s\n" (propertize "Aliases:" 'face 'bold)
+             (if-let (aliases (org-roam-node-aliases node))
+                 (string-join aliases ", ")
+               "-"))
+     ?\n)))
+
+
+;;
+;;; Hooks
 
 (defvar org-roam-old-slug nil)
 ;;;###autoload
