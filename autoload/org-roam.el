@@ -4,20 +4,22 @@
   '(("Backlinks" t
      (("thought" org-roam-backlinks-sort-by-date)
       ("note"    org-roam-backlinks-sort-by-date)
-      ("journal" org-roam-backlinks-sort-by-date)))
+      ("journal" org-roam-backlinks-sort-by-date)
+      ("lab"     org-roam-backlinks-sort-by-date)
+      ("lit"     org-roam-backlinks-sort-by-date)))
     ("Relevant items" t
      (("secret")
       ("topic")
       ("project")
-      ("contact")
-      ("invoice" org-roam-backlinks-sort-by-date)))
+      ("people")))
     ("Works" nil
      (("works"   org-roam-backlinks-sort-by-date)))))
 
 (defvar org-roam-group-icons
-  '(("contact" . "🪪")
-    ("invoice" . "💵")
+  '(("people"  . "🪪")
     ("journal" . "📅")
+    ("lab"     . "🔬")
+    ("lit"     . "📖")
     ("note"    . "📑")
     ("project" . "⚙")
     ("secret"  . "🔒")
