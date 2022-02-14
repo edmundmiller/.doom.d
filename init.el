@@ -8,7 +8,7 @@
        (company +childframe)
        ;;helm
        ;;ido
-       ;; (ivy +prescient)
+       ;;(ivy +prescient)
        vertico
 
        :ui
@@ -76,11 +76,10 @@
        direnv
        docker
        editorconfig
-       ;; ein
+       ;;ein
        eval
        gist
        (lookup +docsets +dictionary)
-       ;; (lsp +eglot)
        lsp
        ;;macos
        (magit +forge)
@@ -169,7 +168,7 @@
 
        :email
        (mu4e +org +gmail)
-       ;; notmuch
+       ;;notmuch
        ;;(wanderlust +gmail)
 
        :app
