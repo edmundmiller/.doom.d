@@ -238,7 +238,8 @@
 
 (after! org-roam
   ;; List dailies and zettels separately in the backlinks buffer.
-  (advice-add #'org-roam-backlinks-section :override #'org-roam-grouped-backlinks-section)
+  ;; FIXME
+  ;; (advice-add #'org-roam-backlinks-section :override #'org-roam-grouped-backlinks-section)
 
   ;; Offer completion for #tags and @areas separately from notes.
   (add-to-list 'org-roam-completion-functions #'org-roam-complete-tag-at-point)
