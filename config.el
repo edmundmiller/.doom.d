@@ -217,17 +217,9 @@
            ,(format "#+title: ${title}\n%%[%s/template/topic.org]" org-roam-directory)
            :target (file "topic/%<%Y%m%d%H%M%S>-${slug}.org")
            :unnarrowed t)
-          ("c" "contact" plain
-           ,(format "#+title: ${title}\n%%[%s/template/contact.org]" org-roam-directory)
-           :target (file "contact/%<%Y%m%d%H%M%S>-${slug}.org")
-           :unnarrowed t)
           ("p" "project" plain
            ,(format "#+title: ${title}\n%%[%s/template/project.org]" org-roam-directory)
            :target (file "project/%<%Y%m%d>-${slug}.org")
-           :unnarrowed t)
-          ("i" "invoice" plain
-           ,(format "#+title: %%<%%Y%%m%%d>-${title}\n%%[%s/template/invoice.org]" org-roam-directory)
-           :target (file "invoice/%<%Y%m%d>-${slug}.org")
            :unnarrowed t)
           ("r" "ref" plain
            ,(format "#+title: ${title}\n%%[%s/template/ref.org]" org-roam-directory)
