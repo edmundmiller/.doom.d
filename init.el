@@ -150,13 +150,13 @@
         +lsp
         +pyright)
        ;;qt
-       ;;racket
+       racket
        rest
        ;;rst
        ;;(ruby +rails)
        (rust +lsp)
        ;;scala
-       (scheme +guile)
+       ;;(scheme +guile)
        sh
        ;;sml
        snakemake
