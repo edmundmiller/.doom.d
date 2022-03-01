@@ -46,7 +46,7 @@
        ;;lispy
        multiple-cursors
        ;;objed
-       (parinfer +rust)
+       parinfer
        rotate-text
        snippets
        ;;word-wrap
