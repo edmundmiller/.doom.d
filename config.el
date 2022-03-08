@@ -125,14 +125,14 @@
   (setq langtool-bin "languagetool-commandline"))
 
 ;;; :tools biblio
-(setq! +biblio-pdf-library-dir "~/sync/papers"
-       +biblio-default-bibliography-files '("~/sync/reference/bibliography.bib"
-                                            "~/sync/reference/biochemistry.bib"
-                                            "~/sync/reference/genomics.bib"
-                                            "~/sync/reference/molecular_biology.bib"
-                                            "~/sync/reference/molecular_biology_project.bib"
-                                            "~/sync/reference/books.bib")
-       +biblio-notes-path "~/sync/org/roam/lit/")
+(setq! citar-library-paths '("~/sync/papers/")
+       citar-bibliography '("~/sync/reference/bibliography.bib"
+                            "~/sync/reference/biochemistry.bib"
+                            "~/sync/reference/genomics.bib"
+                            "~/sync/reference/molecular_biology.bib"
+                            "~/sync/reference/molecular_biology_project.bib"
+                            "~/sync/reference/books.bib")
+       citar-notes-paths '("~/sync/org/roam/lit/"))
 
 ;;; :tools direnv
 (setq direnv-always-show-summary nil)

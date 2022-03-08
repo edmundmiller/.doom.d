@@ -1,14 +1,16 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; tools/biblio/packages.el
 
-(package! bibtex-completion :pin "a0d32ab16748b7b0c43d6421f1b497b7caf8e590")
 (when (featurep! :completion ivy)
-  (package! ivy-bibtex :pin "a0d32ab16748b7b0c43d6421f1b497b7caf8e590"))
+  (package! bibtex-completion :pin "db73156576ee3e4ea9d7fb06a20e3cc2c8225eaf")
+  (package! ivy-bibtex :pin "db73156576ee3e4ea9d7fb06a20e3cc2c8225eaf"))
 (when (featurep! :completion helm)
-  (package! helm-bibtex :pin "a0d32ab16748b7b0c43d6421f1b497b7caf8e590"))
+  (package! bibtex-completion :pin "db73156576ee3e4ea9d7fb06a20e3cc2c8225eaf")
+  (package! helm-bibtex :pin "db73156576ee3e4ea9d7fb06a20e3cc2c8225eaf"))
 (when (featurep! :completion vertico)
-  (package! citar :pin "6e3a194c3ab655693f8194be78542366755c58c9"))
-(when (featurep! :lang org +ref)
-  (package! org-ref :pin "0d988807301bee68b0483f6b461125c31edfbc2c"))
+  (package! citar :pin "79512aefdf11071b66908320aa346255dd349234"))
+
+(package! citeproc :pin "ba49516265fa24b138346c4918d39d19b4de8a62")
+
 (when (featurep! :lang org +roam2)
-  (package! org-roam-bibtex :pin "c13a05b2c855ba1516241d8a1de33bf2c689d6e4"))
+  (package! org-roam-bibtex :pin "3ac2445f431bc39aa0ca5abfc80e28c0c06f0738"))
