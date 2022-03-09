@@ -178,7 +178,7 @@
 (add-to-list 'auto-mode-alist '("\\.\\(h?ledger\\|journal\\|j\\)$" . ledger-mode))
 
 ;;; :lang org
-(setq +org-roam-auto-backlinks-buffer t
+(setq +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter
       org-directory "~/sync/org/"
       org-roam-directory (concat org-directory "roam/")
       org-roam-db-location (concat org-directory ".org-roam.db")
