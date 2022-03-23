@@ -148,6 +148,7 @@
        ;;purescript
        (python
         +lsp
+        +poetry
         +pyright)
        ;;qt
        racket
@@ -177,7 +178,7 @@
        everywhere
        irc
        (rss +org)
-       ;;twitter
+       twitter
        ereader
 
        :config
