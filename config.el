@@ -38,6 +38,19 @@
        :n "gj" (cmd! (if (org-on-heading-p)
                          (org-forward-element)
                        (evil-next-visual-line))))
+      (:after julia-mode
+       :localleader
+       :map julia-mode-map
+       :prefix ("e" . "eval")
+       :n "e" #'julia-repl-send-region-or-line
+       :n "b" #'julia-repl-send-buffer
+       :n "l" #'julia-repl-send-line
+       :prefix ("r" . "REPL")
+       :n "a" #'julia-repl-activate-parent
+       :n "c" #'julia-repl-cd
+       :n "d" #'julia-repl-doc
+       :n "m" #'julia-repl-macroexpand
+       :n "t" #'julia-repl-includet-buffer)
       :leader
       (:prefix "f"
        :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
