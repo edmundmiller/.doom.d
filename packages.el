@@ -23,7 +23,6 @@
 
 (package! speed-type)
 ;; HACK
-(package! code-review :disable t)
 (package! nose :disable t)
 
 (provide 'packages)
