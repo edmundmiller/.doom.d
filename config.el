@@ -505,6 +505,7 @@ to generate it."
 (use-package! org-chef)
 (use-package! academic-phrases)
 (use-package! code-review)
+(use-package! gh-notify)
 
 ;;
 ;;; Custom Variables
