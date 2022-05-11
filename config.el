@@ -197,7 +197,7 @@
       org-roam-db-location (concat org-directory ".org-roam.db")
       org-roam-dailies-directory "journal/"
       org-archive-location (concat org-directory ".archive/%s::")
-      org-agenda-files (list "todo.org" "projects.org" "element.org" "contacts.org" "topic/"))
+      org-agenda-files (list org-directory))
 
 (after! org
   (setq org-startup-folded 'show2levels
