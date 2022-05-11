@@ -12,7 +12,6 @@
 (package! mu4e-conversation)
 (package! mu4e-patch :recipe (:host github :repo "seanfarley/mu4e-patch"))
 (package! org-chef)
-(unpin! org-roam)
 (package! websocket)
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-transclusion)

@@ -60,14 +60,14 @@
   (defvar orb-preformat-keywords
     '("title" "url" "file" "author-or-editor" "keywords" "citekey" "pdf"))
   :hook (org-roam-mode . org-roam-bibtex-mode)
-  :custom
-  (orb-note-actions-interface (cond ((featurep! :completion ivy)  'ivy)
-                                    ((featurep! :completion helm) 'helm)
-                                    ((t                           'default))))
+  ;; :custom
+  ;; (orb-note-actions-interface (cond ((featurep! :completion ivy)  'ivy)
+  ;;                                   ((featurep! :completion helm) 'helm)
+  ;;                                   ((t                           'default))))
   :config
-  (setq orb-insert-interface (cond ((featurep! :completion ivy)  'ivy-bibtex)
-                                   ((featurep! :completion helm) 'helm-bibtex)
-                                   ((t                           'generic))))
+  ;; (setq orb-insert-interface (cond ((featurep! :completion ivy)  'ivy-bibtex)
+  ;;                                  ((featurep! :completion helm) 'helm-bibtex)
+  ;;                                  ((t                           'generic))))
   (setq orb-process-file-keyword t
         orb-file-field-extensions '("pdf"))
 
