@@ -19,6 +19,7 @@
 
 ;; Experimental
 (package! gh-notify)
+(unpin! pdf-tools)
 
 (package! speed-type)
 ;; HACK
