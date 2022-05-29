@@ -455,6 +455,9 @@
 (use-package! academic-phrases)
 (use-package! code-review)
 (use-package! gh-notify)
+(use-package! flycheck-vale
+  :init
+  (flycheck-vale-setup))
 
 ;;
 ;;; Custom Variables

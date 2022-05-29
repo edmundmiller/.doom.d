@@ -19,6 +19,7 @@
 
 ;; Experimental
 (package! gh-notify)
+(package! flycheck-vale)
 (unpin! pdf-tools)
 
 (package! speed-type)
