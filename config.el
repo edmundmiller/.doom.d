@@ -41,16 +41,21 @@
       (:after julia-mode
        :localleader
        :map julia-mode-map
+       :n "d" #'julia-snail-doc-lookup
        :prefix ("e" . "eval")
-       :n "e" #'julia-repl-send-region-or-line
+       ;; :n "e" #'julia-repl-send-region-or-line
+       :n "e" #'julia-snail-send-dwim
+       :n "f" #'julia-snail-send-buffer-file
+       :n "l" #'julia-snail-send-line
        :n "b" #'julia-repl-send-buffer
-       :n "l" #'julia-repl-send-line
+       ;; :n "l" #'julia-repl-send-line
        :prefix ("r" . "REPL")
        :n "a" #'julia-repl-activate-parent
        :n "c" #'julia-repl-cd
        :n "d" #'julia-repl-doc
        :n "m" #'julia-repl-macroexpand
-       :n "t" #'julia-repl-includet-buffer)
+       :n "t" #'julia-repl-includet-buffer
+       :n "r" #'julia-snail)
       :leader
       (:prefix "f"
        :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
@@ -433,6 +438,22 @@
 ;; Set max width
 (after! elfeed
   (setq elfeed-search-title-max-width 120))
+
+(use-package! elfeed-tube
+  ;; :straight (:host github :repo "karthink/elfeed-tube")
+  :after elfeed
+  :demand t
+  :config
+  ;; (setq elfeed-tube-auto-save-p nil) ;; t is auto-save (not default)
+  ;; (setq elfeed-tube-auto-fetch-p t) ;;  t is auto-fetch (default)
+  (elfeed-tube-setup)
+
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
 
 
 ;;
