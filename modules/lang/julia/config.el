@@ -101,4 +101,7 @@
   :config (eglot-jl-init))
 
 (use-package! julia-snail
-  :hook (julia-mode . julia-snail-mode))
+  :when (featurep! +snail)
+  :hook (julia-mode . julia-snail-mode)
+  :config
+  (set-popup-rule! "\\*julia" :ttl nil))

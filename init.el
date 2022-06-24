@@ -120,7 +120,7 @@
        (java +lsp)
        (javascript +lsp)
        (json +lsp)
-       (julia +lsp)
+       (julia +lsp +snail)
        ;;kotlin
        (latex +cdlatex +ref)
        ;;lean
