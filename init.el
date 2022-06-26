@@ -29,7 +29,6 @@
        (popup +defaults)
        ;;tabs
        ;;treemacs
-       tree-sitter
        ;;unicode
        vc-gutter
        ;;vi-tilde-fringe
@@ -91,6 +90,7 @@
        taskrunner
        ;;terraform
        ;;tmux
+       tree-sitter
        upload
 
        :lang
@@ -120,7 +120,7 @@
        (java +lsp)
        (javascript +lsp)
        (json +lsp)
-       (julia +lsp +snail)
+       (julia +lsp +snail +tree-sitter)
        ;;kotlin
        (latex +cdlatex +ref)
        ;;lean
