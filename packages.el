@@ -6,7 +6,7 @@
 (package! edit-server)
 ;; (package! package-lint)
 (package! graphviz-dot-mode)
-(package! jest)
+(package! jest :recipe (:local-repo "~/src/emacs/emacs-jest" :build (:not compile)))
 (package! nextflow-mode :recipe (:local-repo "~/src/emacs/nextflow-mode" :build (:not compile)))
 (package! academic-phrases)
 (package! mu4e-conversation)
