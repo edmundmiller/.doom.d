@@ -86,7 +86,7 @@
 :NOTER_PAGE:
 :END:\n\n"
                  :if-new (file+head "${citekey}.org" ":PROPERTIES:
-:ROAM_REFS: cite:${citekey}
+:ROAM_REFS: [cite:@${citekey}]
 :END:
 #+TITLE: ${title}\n")
                  :unnarrowed t)))
