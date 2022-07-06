@@ -21,6 +21,7 @@
 (package! gh-notify)
 (package! flycheck-vale)
 (unpin! pdf-tools)
+(package! ob-mermaid)
 
 (package! speed-type)
 ;; HACK
