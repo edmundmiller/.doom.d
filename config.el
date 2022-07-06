@@ -151,7 +151,11 @@
                             "~/sync/reference/molecular_biology_project.bib"
                             "~/sync/reference/viralintegration.bib"
                             "~/sync/reference/books.bib")
-       citar-notes-paths org-noter-notes-search-path)
+       citar-notes-paths '("~/sync/org/roam/lit"
+                           "~/sync/org/roam/lit/book"
+                           "~/sync/org/roam/lit/papers"
+                           "~/sync/org/roam/lit/papers/biology"
+                           "~/sync/org/roam/lit/biochemistry"))
 
 ;;; :tools direnv
 (setq direnv-always-show-summary nil)
@@ -297,13 +301,7 @@
         org-noter-separate-notes-from-heading t
         org-noter-default-heading-title "Page $p$"
         org-noter-auto-save-last-location t
-        org-noter-notes-search-path '("~/sync/org/roam/lit"
-                                      "~/sync/org/roam/lit/book"
-                                      "~/sync/org/roam/lit/papers"
-                                      "~/sync/org/roam/lit/papers/biology"
-                                      "~/sync/org/roam/lit/biochemistry")
-
-
+        org-noter-notes-search-path citar-notes-paths
         org-noter-separate-notes-from-heading t
         org-noter-doc-property-in-notes t))
 
