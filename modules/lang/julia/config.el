@@ -45,6 +45,7 @@
   :hook (julia-mode . julia-repl-mode)
   :hook (+julia-repl-start . +julia-override-repl-escape-char-h)
   :hook (+julia-repl-start . julia-repl-use-emacsclient)
+  :unless (featurep! +snail)
   :config
   (set-popup-rule! "^\\*julia.*\\*$" :ttl nil)
 
@@ -106,4 +107,19 @@
   :when (featurep! +snail)
   :hook (julia-mode . julia-snail-mode)
   :config
-  (set-popup-rule! "\\*julia" :ttl nil))
+  (setq julia-snail-popup-display-eval-results :command)
+  (setq julia-snail-multimedia-enable t)
+  (setq julia-snail-popup-display-face '(:background "grey10" :box (:line-width 1 :color "black")
+                                         ((class color) (background dark))))
+  (set-popup-rule! "^\\*julia.*\\*$" :ttl nil :select nil :quit nil)
+  (map! (:localleader
+         (:map (julia-snail-mode-map)
+          "'" #'julia-snail
+          "a" #'julia-snail-package-activate
+          "r" #'julia-snail-update-module-cache
+          "d" #'julia-snail-doc-lookup
+          (:prefix ("e" . "eval")
+           "b" #'julia-snail-send-buffer-file
+           "l" #'julia-snail-send-line
+           "r" #'julia-snail-send-region
+           "e" #'julia-snail-send-dwim)))))
