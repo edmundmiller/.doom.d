@@ -131,6 +131,7 @@
                             "~/sync/reference/genomics.bib"
                             "~/sync/reference/molecular_biology.bib"
                             "~/sync/reference/molecular_biology_project.bib"
+                            "~/sync/reference/nascent_pipeline.bib"
                             "~/sync/reference/viralintegration.bib"
                             "~/sync/reference/books.bib")
        citar-notes-paths '("~/sync/org/roam/lit"
