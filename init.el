@@ -76,7 +76,7 @@
        docker
        editorconfig
        ;;ein
-       eval
+       (eval +overlay)
        gist
        (lookup +docsets +dictionary)
        lsp
