@@ -461,10 +461,6 @@
 (use-package! flycheck-vale
   :init
   (flycheck-vale-setup))
-(use-package! ob-mermaid
-  :init
-  ;; yarn global add @mermaid-js/mermaid-cli
-  (setq ob-mermaid-cli-path "/home/emiller/.cache/npm/bin/mmdc"))
 
 ;;
 ;;; Custom Variables
