@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: coauthor
-# key: co-a
+# key: co
 # --
-Co-authored-by: ${1:sharad-s} <${2:sharadshekar@gmail.com}>
+Co-authored-by: ${1:sharad-s} <$1@users.noreply.github.com>
