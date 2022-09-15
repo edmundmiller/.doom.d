@@ -17,7 +17,7 @@
 
 
 (use-package! citar
-  :when (featurep! :completion vertico)
+  :when (modulep! :completion vertico)
   :no-require
   :config
   (setq org-cite-insert-processor 'citar
@@ -34,8 +34,8 @@
 ;;; Third-party
 
 (use-package! bibtex-completion
-  :when (or (featurep! :completion ivy)
-            (featurep! :completion helm))
+  :when (or (modulep! :completion ivy)
+            (modulep! :completion helm))
   :defer t
   :config
   (setq bibtex-completion-additional-search-fields '(keywords)
@@ -45,14 +45,14 @@
 
 
 (use-package! ivy-bibtex
-  :when (featurep! :completion ivy)
+  :when (modulep! :completion ivy)
   :defer t
   :config
   (add-to-list 'ivy-re-builders-alist '(ivy-bibtex . ivy--regex-plus)))
 
 
 (use-package! org-roam-bibtex
-  :when (featurep! :lang org +roam2)
+  :when (modulep! :lang org +roam2)
   :after org-roam
   :preface
   ;; if the user has not set a template mechanism set a reasonable one of them
@@ -61,8 +61,8 @@
     '("title" "url" "file" "author-or-editor" "keywords" "citekey" "pdf"))
   :hook (org-roam-mode . org-roam-bibtex-mode)
   ;; :custom
-  ;; (orb-note-actions-interface (cond ((featurep! :completion ivy)  'ivy)
-  ;;                                   ((featurep! :completion helm) 'helm)
+  ;; (orb-note-actions-interface (cond ((modulep! :completion ivy)  'ivy)
+  ;;                                   ((modulep! :completion helm) 'helm)
   ;;                                   ((t                           'default))))
   :config
   ;; (setq orb-insert-interface (cond ((featurep! :completion ivy)  'ivy-bibtex)
