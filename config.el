@@ -38,6 +38,11 @@
        :n "gj" (cmd! (if (org-on-heading-p)
                          (org-forward-element)
                        (evil-next-visual-line))))
+      :map org-mode-map
+      :localleader
+      (:prefix ("r" . "refile")
+       "r" #'org-refile-reverse
+       "R" #'org-refile) ; to all `org-refile-targets'
       :leader
       (:prefix "f"
        :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
