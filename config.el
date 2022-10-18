@@ -466,6 +466,7 @@
 (use-package! flycheck-vale
   :init
   (flycheck-vale-setup))
+(use-package! quarto-mode)
 
 ;;
 ;;; Custom Variables

@@ -21,6 +21,7 @@
 (package! gh-notify)
 (package! flycheck-vale)
 (unpin! pdf-tools)
+(package! quarto-mode)
 
 (package! speed-type)
 ;; HACK
