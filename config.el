@@ -416,7 +416,8 @@
         :n "r" #'elfeed-update))
 ;; Set max width
 (after! elfeed
-  (setq elfeed-search-title-max-width 120))
+  (setq elfeed-search-title-max-width 120
+        elfeed-search-filter "@1-week-ago--1-day-ago -youtube"))
 
 (use-package! elfeed-tube
   ;; :straight (:host github :repo "karthink/elfeed-tube")
