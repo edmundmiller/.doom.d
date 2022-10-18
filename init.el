@@ -160,7 +160,6 @@
        ;;(scheme +guile)
        sh
        ;;sml
-       snakemake
        solidity
        ;;swift
        ;;terra
@@ -174,7 +173,7 @@
 
        :app
        ;;emms
-       calendar
+       ;;calendar
        everywhere
        irc
        (rss +org)

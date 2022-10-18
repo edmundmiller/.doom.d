@@ -397,14 +397,6 @@
                           (+ y (/ height 2))))))
 
 
-;;; :app calendar
-(use-package! org-gcal
-  :config
-  (setq org-gcal-client-id "119671856150-j6j4b8hjm1k8d1v2ar39c2g1ifdv8iq9.apps.googleusercontent.com"
-        org-gcal-client-secret "KOa_aQ-SsyNkK_K4Y5ePk-k1"
-        ;; TODO Generalize
-        org-gcal-file-alist '(("Edmund.a.miller@gmail.com" .  "~/sync/org/schedule.org"))))
-
 ;;; :app irc
 (after! circe
   (set-irc-server! "chat.freenode.net"
