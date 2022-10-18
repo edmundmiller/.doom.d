@@ -322,14 +322,7 @@
 
 ;; org-transclusion
 (use-package! org-transclusion
-  :after org
-  :init)
-  ;; (map!
-  ;;  :leader
-  ;;  :prefix ("nrt" . "Org Transculsion")
-  ;;  :desc "Org Transclusion Mode" "t" #'org-transclusion-mode
-  ;;  :desc "Org Transclusion add" "y" #'org-transclusion-add
-  ;;  :desc "Org Transclusion make from link" "l" #'org-transclusion-make-from-link))
+  :after org)
 
 
 ;;; :lang rust
