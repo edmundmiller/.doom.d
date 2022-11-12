@@ -139,7 +139,7 @@
         +noter
         +pandoc
         +pomodoro
-        +present
+        +pretty
         +ref
         +roam2)
        ;;perl
