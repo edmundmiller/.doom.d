@@ -16,8 +16,8 @@
 ;; points larger than I'd like, so I specify size 12 here.
 
 (setq doom-theme 'doom-one
-      doom-font (font-spec :family "JetBrainsMono" :size 13 :weight 'light)
-      doom-variable-pitch-font (font-spec :family "Noto Serif" :size 14))
+      doom-font (font-spec :family "Comic Code Ligatures" :size 20)
+      doom-variable-pitch-font (font-spec :family "iA Writer Quattro S" :size 26))
 
 ;; Line numbers are pretty slow all around. The performance boost of
 ;; disabling them outweighs the utility of always keeping them on.
