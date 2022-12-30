@@ -162,7 +162,7 @@
        solidity
        ;;swift
        ;;terra
-       web
+       (web +lsp +tree-sitter)
        yaml
 
        :email
