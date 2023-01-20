@@ -211,7 +211,7 @@
          '(("a" "Appointment" entry (file  "~/sync/org/schedule.org")
             "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
            ("e" "Lab Entry" entry
-            (file+olp+datetree "~/sync/org/roam/lab/2022.org")
+            (file+olp+datetree "~/sync/org/roam/lab/2023.org")
             "* %?\n%i")
            ("l" "Link" entry (file+headline "~/sync/org/links.org" "Links")
             "* %a %^g\n %?\n %i" :immediate-finish t))
