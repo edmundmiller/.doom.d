@@ -142,7 +142,9 @@
                            "~/sync/org/roam/lit/book"
                            "~/sync/org/roam/lit/papers"
                            "~/sync/org/roam/lit/papers/biology"
-                           "~/sync/org/roam/lit/biochemistry"))
+                           "~/sync/org/roam/lit/biochemistry")
+       citar-org-roam-subdir "lit/stack")
+
 
 ;;; :tools direnv
 (setq direnv-always-show-summary nil)
