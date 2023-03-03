@@ -281,7 +281,9 @@
   (setq org-journal-dir (concat org-directory "journal/")
         org-journal-file-type 'monthly
         org-journal-encrypt-journal t
-        org-journal-file-format "%Y%m%d.org"))
+        org-journal-enable-cache t
+        org-journal-file-format "%Y%m%d.org")
+  (remove-hook 'calendar-today-visible-hook 'org-journal-mark-entries))
 
 ;; +noter
 (after! org-noter
