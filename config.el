@@ -440,6 +440,11 @@
   :init
   (flycheck-vale-setup))
 (use-package! quarto-mode)
+(use-package! webpaste
+  :config
+  (progn
+    (setq webpaste-provider-priority '("ix.io" "dpaste.org"))))
+
 (use-package! mastodon
   :init
   (setq mastodon-instance-url "https://genomic.social"

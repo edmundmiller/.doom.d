@@ -19,6 +19,7 @@
 (unpin! web-mode)
 
 ;; Experimental
+(package! webpaste)
 (package! mastodon)
 (package! gh-notify)
 (package! flycheck-vale)

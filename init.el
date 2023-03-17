@@ -77,7 +77,7 @@
        editorconfig
        ;;ein
        (eval +overlay)
-       gist
+       ;;gist
        (lookup +docsets +dictionary)
        lsp
        ;;macos
