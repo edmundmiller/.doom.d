@@ -440,6 +440,12 @@
   :init
   (flycheck-vale-setup))
 (use-package! quarto-mode)
+(use-package! mastodon
+  :init
+  (setq mastodon-instance-url "https://genomic.social"
+        mastodon-active-user "emiller")
+  :config
+  (mastodon-discover))
 
 ;;
 ;;; Custom Variables
