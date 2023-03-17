@@ -163,7 +163,7 @@
        ;;swift
        ;;terra
        (web +lsp +tree-sitter)
-       yaml
+       (yaml +lsp)
 
        :email
        (mu4e +org +gmail)
