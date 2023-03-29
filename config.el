@@ -57,7 +57,7 @@
        :desc "Insert date" :n "d" #'insert-todays-date)
       (:prefix "o"
        :desc "Calc" :n "c" #'calc
-       :desc "easy-hugo" :n "g" #'easy-hugo
+       :desc "ChatGPT" :n "g" #'chatgpt-shell
        :desc "APP: IRC" :n "i" #'=irc
        ;; :desc "APP: notmuch" :n "m" #'=mu4e
        ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
@@ -451,6 +451,10 @@
         mastodon-active-user "emiller")
   :config
   (mastodon-discover))
+
+(use-package! chatgpt-shell
+  :init
+  (setq chatgpt-shell-openai-key (auth-source-pick-first-password :host "openai.com")))
 
 ;;
 ;;; Custom Variables

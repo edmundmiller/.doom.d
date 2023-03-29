@@ -25,6 +25,7 @@
 (package! flycheck-vale)
 (unpin! pdf-tools)
 (package! quarto-mode)
+(package! chatgpt-shell :recipe (:host github :repo "xenodium/chatgpt-shell" :files ("*.el")))
 
 (package! speed-type)
 ;; HACK
