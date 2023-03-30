@@ -456,6 +456,17 @@
   :init
   (setq chatgpt-shell-openai-key (auth-source-pick-first-password :host "openai.com")))
 
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ;; accept completion from copilot and fallback to company
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word))
+  :config
+  (setq copilot-idle-delay 2))
+
 ;;
 ;;; Custom Variables
 (custom-set-variables
