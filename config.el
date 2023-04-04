@@ -454,7 +454,9 @@
 
 (use-package! chatgpt-shell
   :init
-  (setq chatgpt-shell-openai-key (auth-source-pick-first-password :host "openai.com")))
+  (setq! chatgpt-shell-openai-key
+         (lambda ()
+           (auth-source-pick-first-password :host "api.openai.com"))))
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
