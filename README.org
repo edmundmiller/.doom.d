@@ -1,0 +1,15 @@
+#+title: private/emiller88
+
+My custom module for [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+
+* Install
+
+#+begin_src bash
+git clone https://github.com/emiller88/doom-emacs-private ~/.config/doom
+#+end_src
+
+And use this `doom!` block in `~/.config/emacs/init.el`:
+
+#+begin_src emacs-lisp
+(doom! :config (private +xdg))
+#+end_src
