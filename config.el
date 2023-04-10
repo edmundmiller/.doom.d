@@ -190,13 +190,13 @@
 (add-to-list 'auto-mode-alist '("\\.\\(h?ledger\\|journal\\|j\\)$" . ledger-mode))
 
 ;;; :lang org
-(setq +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter
-      org-directory "~/sync/org/"
-      org-roam-directory (concat org-directory "roam/")
-      org-roam-db-location (concat org-directory ".org-roam.db")
-      org-roam-dailies-directory "journal/"
-      org-archive-location (concat org-directory ".archive/%s::")
-      org-agenda-files (list org-directory))
+(setq! +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter
+       org-directory "~/sync/org/"
+       org-roam-directory (concat org-directory "roam/")
+       org-roam-db-location (concat org-directory ".org-roam.db")
+       org-roam-dailies-directory "journal/"
+       org-archive-location (concat org-directory ".archive/%s::")
+       org-agenda-files (list org-directory))
 
 (after! org
   (setq org-startup-folded 'show2levels
