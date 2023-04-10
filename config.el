@@ -203,7 +203,6 @@
         org-ellipsis " [...] "
         org-export-with-toc nil
         org-log-done 'time
-        org-attach-id-dir (concat org-roam-directory "data/")
         ;; Fix org-id on SPC-l-s
         ;; org-id-link-to-org-use-id 'use-existing
         org-deadline-warning-days 5
