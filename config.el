@@ -26,6 +26,9 @@
 ;; Prevents some cases of Emacs flickering
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
+;; Save bookmarks in sync
+(setq! sync-dir "~/sync/"
+       bookmark-default-file (concat sync-dir ".local/" "bookmarks"))
 
 ;;
 ;;; Keybinds
