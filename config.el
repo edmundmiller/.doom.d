@@ -454,6 +454,7 @@
   :config
   (mastodon-discover))
 
+(use-package! conf-data-toml)
 (use-package! chatgpt-shell
   :init
   (setq! chatgpt-shell-openai-key
