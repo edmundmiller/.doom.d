@@ -25,7 +25,8 @@
 (package! flycheck-vale)
 (unpin! pdf-tools)
 (package! quarto-mode)
-(package! chatgpt-shell :recipe (:host github :repo "xenodium/chatgpt-shell" :files ("*.el")))
+(package! shell-maker :recipe (:host github :repo "xenodium/chatgpt-shell" :files ("shell-maker.el")))
+(package! chatgpt-shell :recipe (:host github :repo "xenodium/chatgpt-shell"))
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
