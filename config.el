@@ -454,7 +454,9 @@
   :config
   (mastodon-discover))
 
-(use-package! conf-data-toml)
+(use-package! conf-data-toml
+  :magic ("\\`data_config_version = [0-9]" . conf-data-toml-mode))
+
 (use-package! chatgpt-shell
   :init
   (setq! chatgpt-shell-openai-key
