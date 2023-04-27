@@ -34,6 +34,7 @@
 (package! speed-type)
 ;; HACK
 (package! nose :disable t)
+(package! closql :pin "0a7226331ff1f96142199915c0ac7940bac4afdd")
 
 (provide 'packages)
 ;;; packages.el ends here
