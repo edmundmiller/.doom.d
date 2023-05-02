@@ -31,6 +31,9 @@
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
+(package! elfeed-tube)
+(package! elfeed-tube-mpv)
+
 (package! speed-type)
 ;; HACK
 (package! nose :disable t)

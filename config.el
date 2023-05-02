@@ -416,6 +416,26 @@
 (after! elfeed
   (setq elfeed-search-title-max-width 120
         elfeed-search-filter "@1-week-ago--1-day-ago -youtube"))
+(use-package! elfeed-tube
+  :after elfeed
+  :init
+  (map! :map elfeed-show-mode-map
+        :localleader
+        :n "F" #'elfeed-tube-fetch
+        :map elfeed-search-mode-map
+        :localleader
+        :n "F" #'elfeed-tube-fetch)
+  :config
+  ;; (setq elfeed-tube-auto-save-p nil) ; default value
+  ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+  (elfeed-tube-setup))
+
+(use-package! elfeed-tube-mpv
+  :init
+  (map! :map elfeed-search-mode-map
+        :localleader
+        :n "f" #'elfeed-tube-mpv-follow-mode
+        :n "w" #'elfeed-tube-where))
 
 
 ;;
