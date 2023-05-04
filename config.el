@@ -415,6 +415,7 @@
 ;; Set max width
 (after! elfeed
   (setq elfeed-search-title-max-width 120
+        elfeed-goodies/feed-source-column-width 25
         elfeed-search-filter "@1-week-ago--1-day-ago -youtube"))
 (use-package! elfeed-tube
   :after elfeed
