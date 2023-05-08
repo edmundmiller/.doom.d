@@ -483,7 +483,11 @@
   (setq! chatgpt-shell-openai-key
          (lambda ()
            (auth-source-pick-first-password :host "api.openai.com"))
-         chatgpt-shell-chatgpt-streaming t))
+         chatgpt-shell-chatgpt-streaming t)
+  (setq! chatgpt-shell-default-prompts
+         (append
+          '("Rank these links in the order that I should read them:"
+            chatgpt-shell-default-prompts))))
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
