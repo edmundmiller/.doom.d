@@ -222,7 +222,13 @@
             "* %?\n%i")
            ("l" "Link" entry (file+headline "~/sync/org/links.org" "Links")
             "* %a %^g\n %?\n %i" :immediate-finish t))
-         org-capture-templates)))
+         org-capture-templates)
+        org-agenda-custom-commands
+        (append
+         '(("1" "Q1" tags-todo "+important+urgent")
+           ("2" "Q2" tags-todo "+important-urgent")
+           ("3" "Q3" tags-todo "-important+urgent")
+           ("4" "Q4" tags-todo "-important-urgent")))))
 
 (after! org-roam
   (setq org-roam-capture-templates
