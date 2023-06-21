@@ -194,6 +194,7 @@
 
 ;;; :lang nix
 (set-formatter! 'alejandra "alejandra --quiet" :modes '(nix-mode))
+(setq! lsp-nix-nil-formatter ["alejandra"])
 
 ;;; :lang org
 (setq! +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter

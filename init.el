@@ -129,7 +129,7 @@
        (lua +fennel)
        markdown
        ;;nim
-       nix
+       (nix +lsp)
        ;;ocaml
        (org
         +dragndrop
