@@ -26,8 +26,8 @@
 (unpin! pdf-tools)
 (package! quarto-mode)
 (package! conf-data-toml :recipe (:host github :repo "tecosaur/conf-data-toml"))
-(package! shell-maker :recipe (:host github :repo "xenodium/chatgpt-shell" :files ("shell-maker.el")))
-(package! chatgpt-shell :recipe (:host github :repo "xenodium/chatgpt-shell"))
+(package! chatgpt-shell)
+(package! ob-chatgpt-shell)
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 
