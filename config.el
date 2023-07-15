@@ -308,9 +308,7 @@
         org-noter-separate-notes-from-heading t
         org-noter-doc-property-in-notes t))
 
-(after! org
-  (setq org-beamer-theme "[progressbar=foot]metropolis"
-        org-beamer-frame-level 2))
+;; #+beamer_theme: [progressbar=foot]metropolis
 
 ;; org-roam-ui
 (use-package! websocket
