@@ -463,6 +463,7 @@
 (use-package! nextflow-mode
   :config
   (set-docsets! 'nextflow-mode "Groovy"))
+(use-package! snakemake-mode)
 (use-package! org-chef)
 (use-package! academic-phrases)
 (use-package! code-review)
