@@ -471,6 +471,10 @@
   :after ox)
 (use-package! snakemake-mode)
 (use-package! org-chef)
+(use-package! engrave-faces
+  :after ox-latex
+  :config
+  (setq org-latex-listings 'engraved))
 (use-package! academic-phrases)
 (use-package! code-review)
 (use-package! gh-notify)

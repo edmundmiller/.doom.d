@@ -20,6 +20,7 @@
 (unpin! web-mode)
 
 ;; Experimental
+(package! engrave-faces)
 (package! ox-chameleon :recipe (:host nil :repo "https://git.tecosaur.net/tec/ox-chameleon"))
 (package! webpaste)
 (package! mastodon)
