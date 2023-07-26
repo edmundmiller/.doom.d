@@ -138,7 +138,7 @@
                             "~/sync/reference/genomics.bib"
                             "~/sync/reference/molecular_biology.bib"
                             "~/sync/reference/molecular_biology_project.bib"
-                            "~/sync/reference/nascent_pipeline.bib"
+                            ;; "~/sync/reference/nascent_pipeline.bib"
                             "~/sync/reference/viralintegration.bib"
                             "~/sync/reference/books.bib")
        citar-notes-paths '("~/sync/org/roam/lit"
@@ -281,6 +281,9 @@
           ("" "capt-of" nil)
           ("" "hyperref" nil))))
 
+;; LaTeX Export
+;; org-latex-compilers = ("pdflatex" "xelatex" "lualatex"), which are the possible values for %latex
+(setq org-latex-pdf-process '("LC_ALL=en_US.UTF-8 latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
 
 ;; I like to cross things off my todo list
 (custom-set-faces! '(org-headline-done :strike-through t))
