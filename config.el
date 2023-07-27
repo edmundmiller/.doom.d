@@ -190,6 +190,9 @@
       ("^\\*cider-repl" :quit nil)
       ("^\\*cider-repl-history" :vslot 2 :ttl nil))))
 
+;;; :lang julia
+(set-formatter! 'JuliaFormatter "julia  -e 'using JuliaFormatter; format(".", verbose=true)'" :modes '(nix-mode))
+
 ;;; :lang ledger
 (add-to-list 'auto-mode-alist '("\\.\\(h?ledger\\|journal\\|j\\)$" . ledger-mode))
 
