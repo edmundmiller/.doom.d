@@ -33,6 +33,7 @@
 (package! ob-chatgpt-shell)
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+(package! pocket-reader)
 
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)

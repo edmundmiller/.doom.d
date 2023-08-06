@@ -497,6 +497,10 @@
   :config
   (mastodon-discover))
 
+(use-package! pocket-reader)
+  ;; :config
+  ;; (add-to-list 'evil-emacs-state-modes 'pocket-reader-mode))
+
 (use-package! conf-data-toml
   :magic ("\\`data_config_version = [0-9]" . conf-data-toml-mode))
 
