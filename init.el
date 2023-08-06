@@ -5,11 +5,12 @@
        ;;japanese
 
        :completion
-       (company +childframe)
+       ;;(company +childframe)
+       (corfu +orderless +icons +minibuffer)
        ;;helm
        ;;ido
        ;;(ivy +prescient)
-       vertico
+       (vertico +orderless +icons)
 
        :ui
        ;;deft
