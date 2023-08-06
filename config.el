@@ -462,6 +462,10 @@
   `(markdown-code-face :background ,(doom-darken 'bg 0.075))
   `(font-lock-variable-name-face :foreground ,(doom-lighten 'magenta 0.6)))
 
+;; spell
+(setq ispell-personal-dictionary
+      (expand-file-name "misc/ispell_personal" doom-private-dir))
+
 
 ;;
 ;;; Packages
