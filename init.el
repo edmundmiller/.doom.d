@@ -98,7 +98,7 @@
        :lang
        ;;agda
        ;;assembly
-       (beancount +lsp)
+       ;;(beancount +lsp)
        ;;cc
        ;;clojure
        ;;common-lisp
@@ -128,7 +128,7 @@
        ;;lean
        ;;factor
        ;;ledger
-       (lua +fennel)
+       ;;(lua +fennel)
        markdown
        ;;nim
        (nix +lsp)
@@ -152,7 +152,7 @@
         +poetry
         +pyright)
        ;;qt
-       racket
+       ;;racket
        rest
        ;;rst
        ;;(ruby +rails)
@@ -161,7 +161,7 @@
        ;;(scheme +guile)
        sh
        ;;sml
-       solidity
+       ;;solidity
        ;;swift
        ;;terra
        (web +lsp +tree-sitter)
