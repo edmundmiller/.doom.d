@@ -131,7 +131,7 @@
        ;;(lua +fennel)
        markdown
        ;;nim
-       (nix +lsp)
+       (nix +lsp +tree-sitter)
        ;;ocaml
        (org
         +dragndrop
