@@ -18,6 +18,7 @@
 (package! org-roam-timestamps :recipe (:host github :repo "ThomasFKJorna/org-roam-timestamps"))
 (package! snakemake-mode)
 (unpin! web-mode)
+(package! circadian)
 
 ;; Experimental
 (package! engrave-faces)
