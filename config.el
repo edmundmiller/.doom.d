@@ -216,7 +216,11 @@
        org-roam-db-location (concat org-directory ".org-roam.db")
        org-roam-dailies-directory "journal/"
        org-archive-location (concat org-directory ".archive/%s::")
-       org-agenda-files (list org-directory))
+       +org-capture-todo-file (concat org-directory "life/todo.org")
+       +org-capture-projects-file (concat org-directory "life/projects.org")
+       ;; Agenda
+       org-agenda-files (list (concat org-directory "life/"))
+       org-agenda-skip-additional-timestamps-same-entry t)
 
 (after! org
   (setq org-startup-folded 'show2levels
