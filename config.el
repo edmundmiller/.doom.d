@@ -25,7 +25,7 @@
   (setq calendar-latitude 32.9)
   (setq calendar-longitude -96.75)
   (setq circadian-themes '((:sunrise . doom-nord-light)
-                           (:sunset  . doom-one)))
+                           (:sunset  . doom-palenight)))
   (add-transient-hook! 'doom-init-ui-hook (circadian-setup)))
 
 ;; Line numbers are pretty slow all around. The performance boost of
