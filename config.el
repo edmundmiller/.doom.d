@@ -76,7 +76,8 @@
        :desc "todo.org" :n "o" #'+emiller/visit-todo-org
        :desc "projects" :n "p" #'+emiller/visit-projects-org
        :desc "emms" :n "s" #'emms
-       :desc "APP: rss" :n "," #'=rss))
+       :desc "APP: rss" :n "," #'=rss
+       :desc "Whisper" :n "w" #'run-whisper))
 
 ;;
 ;;; Modules
@@ -512,6 +513,15 @@
         mastodon-active-user "emiller")
   :config
   (mastodon-discover))
+
+(use-package! whisper
+  :config
+  (setq whisper-install-directory "/tmp/"
+        whisper-model "base"
+        whisper-language "en"
+        whisper-translate nil
+        whisper--ffmpeg-input-format "pulse"
+        whisper--ffmpeg-input-device "default"))
 
 (use-package! pocket-reader)
   ;; :config

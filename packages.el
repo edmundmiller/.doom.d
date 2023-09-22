@@ -21,6 +21,7 @@
 (package! circadian)
 
 ;; Experimental
+(package! whisper :recipe (:host github :repo "natrys/whisper.el" :files ("*.el")))
 (package! engrave-faces)
 (package! ox-chameleon :recipe (:host nil :repo "https://git.tecosaur.net/tec/ox-chameleon"))
 (package! webpaste)
