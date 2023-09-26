@@ -516,7 +516,7 @@
 
 (use-package! whisper
   :config
-  (setq whisper-install-directory "/tmp/"
+  (setq whisper-install-directory (concat doom-data-dir "whisper")
         whisper-model "base"
         whisper-language "en"
         whisper-translate nil
