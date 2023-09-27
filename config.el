@@ -77,7 +77,7 @@
        :desc "projects" :n "p" #'+emiller/visit-projects-org
        :desc "emms" :n "s" #'emms
        :desc "APP: rss" :n "," #'=rss
-       :desc "Whisper" :n "w" #'run-whisper))
+       :desc "Whisper" :n "w" #'whisper-run))
 
 ;;
 ;;; Modules
