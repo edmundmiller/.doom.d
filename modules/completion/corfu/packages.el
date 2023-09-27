@@ -8,6 +8,8 @@
   (package! orderless))
 
 (package! cape)
+(package! yasnippet-capf
+  :recipe (:host github :repo "elken/yasnippet-capf"))
 
 (package! popon
   :recipe (:type git :repo "https://codeberg.org/akib/emacs-popon"))

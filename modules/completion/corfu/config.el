@@ -3,12 +3,11 @@
 ;; Corfu completion module
 
 (defvar +corfu-global-capes
-  '(cape-yasnippet
-    :completion
+  '(:completion
     cape-dict)
   "A list of global capes to be available at all times.
-The key :completion is used to specify where completion candidates should be
-placed, otherwise they come first.")
+  The key :completion is used to specify where completion candidates should be
+  placed, otherwise they come first.")
 
 (defvar +corfu-capf-hosts
   '(lsp-completion-at-point
@@ -80,10 +79,14 @@ placed, otherwise they come first.")
       (apply #'consult-completion-in-region completion-in-region--data)))
 
   (map! :map corfu-map
-        "C-SPC"    #'corfu-insert-separator
-        "C-n"      #'corfu-next
-        "C-p"      #'corfu-previous
-        "M-m"      #'corfu-move-to-minibuffer
+        "C-SPC"     #'corfu-insert-separator
+        "C-n"       #'corfu-next
+        "TAB"       #'corfu-next
+        "<tab>"     #'corfu-next
+        "C-p"       #'corfu-previous
+        "S-TAB"     #'corfu-previous
+        "<backtab>" #'corfu-previous
+        "M-m"       #'corfu-move-to-minibuffer
         (:prefix "C-x"
                  "C-k"     #'cape-dict
                  "s"       #'cape-ispell
@@ -139,7 +142,7 @@ placed, otherwise they come first.")
           (keyword "kw" :icon "image-filter-center-focus" :face font-lock-keyword-face)
           (macro "mc" :icon "sigma" :face font-lock-keyword-face)
           (method "m" :icon "lambda" :face font-lock-function-name-face)
-          (module "{" :icon "view-module" :face font-lock-preprocessor-face)
+          (module "{" :icon "view-module" :face font-lock-preprocessor-face})
           (numeric "nu" :icon "numeric" :face font-lock-builtin-face)
           (operator "op" :icon "plus-circle-outline" :face font-lock-comment-delimiter-face)
           (param "pa" :icon "cog" :face default)
@@ -168,6 +171,7 @@ placed, otherwise they come first.")
   (when (modulep! :checkers spell)
     (add-to-list 'completion-at-point-functions #'cape-dict)
     (add-to-list 'completion-at-point-functions #'cape-ispell))
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf)
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-keyword t)
   (add-to-list 'completion-at-point-functions #'cape-dabbrev t))
