@@ -89,7 +89,6 @@
         "M-m"       #'corfu-move-to-minibuffer
         (:prefix "C-x"
                  "C-k"     #'cape-dict
-                 "s"       #'cape-ispell
                  "C-n"     #'cape-keyword
                  "C-f"     #'cape-file))
   (after! evil
@@ -142,7 +141,7 @@
           (keyword "kw" :icon "image-filter-center-focus" :face font-lock-keyword-face)
           (macro "mc" :icon "sigma" :face font-lock-keyword-face)
           (method "m" :icon "lambda" :face font-lock-function-name-face)
-          (module "{" :icon "view-module" :face font-lock-preprocessor-face})
+          (module "{" :icon "view-module" :face font-lock-preprocessor-face)
           (numeric "nu" :icon "numeric" :face font-lock-builtin-face)
           (operator "op" :icon "plus-circle-outline" :face font-lock-comment-delimiter-face)
           (param "pa" :icon "cog" :face default)
@@ -169,8 +168,7 @@
   (add-hook! 'latex-mode-hook (defun +corfu--latex-set-capfs ()
                                 (add-to-list 'completion-at-point-functions #'cape-tex)))
   (when (modulep! :checkers spell)
-    (add-to-list 'completion-at-point-functions #'cape-dict)
-    (add-to-list 'completion-at-point-functions #'cape-ispell))
+    (add-to-list 'completion-at-point-functions #'cape-dict))
   (add-to-list 'completion-at-point-functions #'yasnippet-capf)
   (add-to-list 'completion-at-point-functions #'cape-file)
   (add-to-list 'completion-at-point-functions #'cape-keyword t)
