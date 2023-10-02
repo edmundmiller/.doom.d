@@ -40,7 +40,6 @@
            :files ( "julia-formatter.el" ;; main script executed by Emacs
                     "formatter_service.jl" ;; script executed by Julia
                     "Manifest.toml" "Project.toml"))) ;; project files
-(package! pocket-reader)
 
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)
