@@ -1,4 +1,4 @@
-personal_ws-1.1 en 39
+personal_ws-1.1 en 41
 Hadamard
 JetBrains
 LaTeX
@@ -23,8 +23,11 @@ eigen
 eigenfunctions
 elisp
 emacs
+ernas
 fontification
 fullscreen
+grohmm
+inducible
 magit
 modeline
 msmtp
