@@ -178,7 +178,7 @@
        everywhere
        irc
        (rss +org)
-       twitter
+       ;;twitter
        ereader
 
        :config
