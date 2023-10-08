@@ -216,7 +216,7 @@
        org-roam-db-location (concat org-directory ".org-roam.db")
        org-roam-dailies-directory "journal/"
        org-archive-location (concat org-directory ".archive/%s::")
-       +org-capture-todo-file (concat org-directory "life/todo.org")
+       +org-capture-todo-file (concat org-directory "life/inbox.org")
        +org-capture-projects-file (concat org-directory "life/projects.org")
        ;; Agenda
        org-agenda-files (list (concat org-directory "life/"))

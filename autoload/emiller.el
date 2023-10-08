@@ -17,7 +17,7 @@
   "Edit todo.org"
   (interactive)
   (find-file
-   (expand-file-name +org-capture-todo-file org-directory)))
+   (expand-file-name "life/closed.org" org-directory)))
 
 ;;;###autoload
 (defun +emiller/visit-projects-org ()
