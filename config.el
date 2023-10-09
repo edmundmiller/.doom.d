@@ -203,6 +203,8 @@
 (use-package! julia-formatter
   :hook (julia-mode-hook . julia-formatter-mode))
 
+(add-to-list '+org-babel-mode-alist '(julia . julia-snail))
+
 ;;; :lang ledger
 (add-to-list 'auto-mode-alist '("\\.\\(h?ledger\\|journal\\|j\\)$" . ledger-mode))
 
