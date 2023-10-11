@@ -16,7 +16,7 @@
 ;; points larger than I'd like, so I specify size 12 here.
 
 (setq doom-theme 'doom-one
-      doom-font (font-spec :family "Comic Code Ligatures" :size 12)
+      doom-font (font-spec :family "JetBrainsMono" :size 12)
       doom-variable-pitch-font (font-spec :family "iA Writer Duospace" :size 16)
       doom-unicode-font (font-spec :family "JuliaMono"))
 
