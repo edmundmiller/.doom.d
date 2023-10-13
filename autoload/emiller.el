@@ -81,8 +81,8 @@ https://code.orgmode.org/bzg/org-mode/commit/13424336a6f30c50952d291e7a82906c121
   (interactive "P")
   (let ((entries (elfeed-search-selected)))
     (cl-loop for entry in entries
-       do (elfeed-untag entry 'unread)
-       when (elfeed-entry-link entry)
-       do (elfeed-v-mpv it))
+             do (elfeed-untag entry 'unread)
+             when (elfeed-entry-link entry)
+             do (elfeed-v-mpv it))
     (mapc #'elfeed-search-update-entry entries)
     (unless (use-region-p) (forward-line))))
