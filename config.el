@@ -180,9 +180,11 @@
       magit-save-repository-buffers nil
       ;; Don't restore the wconf after quitting magit, it's jarring
       magit-inhibit-save-previous-winconf t
-      transient-values '((magit-commit "--gpg-sign=BD387FF7BC10AA9D")
-                         (magit-rebase "--autosquash" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")
-                         (magit-pull "--rebase" "--autostash" "--gpg-sign=BD387FF7BC10AA9D")))
+      evil-collection-magit-want-horizontal-movement t
+      magit-openpgp-default-signing-key "BD387FF7BC10AA9D"
+      transient-values '((magit-rebase "--autosquash" "--autostash")
+                         (magit-pull "--rebase" "--autostash")
+                         (magit-revert "--autostash")))
 
 ;; Enable git gutter on tramp sessions
 (defun +version-control|git-gutter-maybe ()
@@ -215,11 +217,11 @@
 (setq! +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter
        org-directory "~/sync/org/"
        org-roam-directory (concat org-directory "roam/")
-       org-roam-db-location (concat org-directory ".org-roam.db")
+       org-roam-db-location (file-name-concat org-directory ".org-roam.db")
        org-roam-dailies-directory "journal/"
        org-archive-location (concat org-directory ".archive/%s::")
-       +org-capture-todo-file (concat org-directory "life/inbox.org")
-       +org-capture-projects-file (concat org-directory "life/projects.org")
+       +org-capture-todo-file (file-name-concat org-directory "life/inbox.org")
+       +org-capture-projects-file (file-name-concat org-directory "life/projects.org")
        ;; Agenda
        org-agenda-files (list (concat org-directory "life/"))
        org-agenda-skip-additional-timestamps-same-entry t)
