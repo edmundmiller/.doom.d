@@ -90,7 +90,7 @@
        ;;prodigy
        rgb
        taskrunner
-       ;;terraform
+       (terraform +lrp)
        ;;tmux
        tree-sitter
        upload
