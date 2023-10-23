@@ -79,6 +79,7 @@
       (apply #'consult-completion-in-region completion-in-region--data)))
 
   (map! :map corfu-map
+        "RET"       nil
         "C-SPC"     #'corfu-insert-separator
         "C-n"       #'corfu-next
         "TAB"       #'corfu-next
