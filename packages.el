@@ -19,6 +19,7 @@
 (package! snakemake-mode)
 (unpin! web-mode)
 (package! circadian)
+(unpin! org-journal)
 
 ;; Experimental
 (package! whisper :recipe (:host github :repo "natrys/whisper.el" :files ("*.el")))
