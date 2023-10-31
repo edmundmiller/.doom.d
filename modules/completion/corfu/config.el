@@ -36,7 +36,7 @@
   :custom
   (corfu-separator ?\s)
   (corfu-auto t)
-  (corfu-auto-delay 0.2)
+  (corfu-auto-delay 1)
   (corfu-preview-current nil) ;; Disable current candidate preview
   (corfu-on-exact-match nil)
   (corfu-quit-no-match 'separator)
