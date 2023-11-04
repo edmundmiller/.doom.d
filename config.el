@@ -215,7 +215,8 @@
        +org-capture-todo-file (file-name-concat org-directory "life/inbox.org")
        +org-capture-projects-file (file-name-concat org-directory "life/projects.org")
        ;; Agenda
-       org-agenda-files (list (concat org-directory "life/"))
+       org-agenda-files (append (directory-files-recursively (concat org-directory "life/") "\\`[^.].*\\.org\\'")
+                                (directory-files-recursively "~/src" "todo.org$"))
        org-agenda-skip-additional-timestamps-same-entry t)
 
 (after! org
