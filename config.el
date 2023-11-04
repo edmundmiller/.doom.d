@@ -549,6 +549,14 @@
   :config
   (setq copilot-idle-delay 2))
 
+(use-package! agenix
+  :mode ("\\.age\\'" . agenix-mode)
+  :config
+  (add-to-list 'agenix-key-files "~/.ssh/id_ed25519")
+  (add-to-list 'agenix-key-files "/etc/ssh/host_ed25519")
+  (dolist (file (doom-glob "~/.ssh/*/id_ed25519"))
+    (add-to-list 'agenix-key-files file)))
+
 ;;
 ;;; Custom Variables
 (custom-set-variables

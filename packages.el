@@ -21,6 +21,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! agenix :recipe (:host github :repo "t4ccer/agenix.el"))
 (package! whisper :recipe (:host github :repo "natrys/whisper.el" :files ("*.el")))
 (package! engrave-faces)
 (package! ox-chameleon :recipe (:host nil :repo "https://git.tecosaur.net/tec/ox-chameleon"))
