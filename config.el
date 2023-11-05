@@ -553,6 +553,7 @@
 (use-package! agenix
   :mode ("\\.age\\'" . agenix-mode)
   :config
+  (add-hook 'agenix-pre-mode-hook #'envrc-mode)
   (add-to-list 'agenix-key-files "~/.ssh/id_ed25519")
   (add-to-list 'agenix-key-files "/etc/ssh/host_ed25519")
   (dolist (file (doom-glob "~/.ssh/*/id_ed25519"))
