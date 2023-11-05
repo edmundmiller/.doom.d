@@ -541,11 +541,12 @@
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-              ;; accept completion from copilot and fallback to company
               ("<tab>" . 'copilot-accept-completion)
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word))
+              ("C-<tab>" . 'copilot-accept-completion-by-word)
+              ("M-n" . 'copilot-next-completion)
+              ("M-p" . 'copilot-previous-completion))
   :config
   (setq copilot-idle-delay 2))
 
