@@ -23,6 +23,8 @@
 ;; Experimental
 (unpin! evil-collection)
 (package! agenix :recipe (:host github :repo "t4ccer/agenix.el"))
+;; FIXME not working yet
+(package! ob-julia :recipe (:host github :repo "karthink/ob-julia"))
 (package! whisper :recipe (:host github :repo "natrys/whisper.el" :files ("*.el")))
 (package! engrave-faces)
 (package! ox-chameleon :recipe (:host nil :repo "https://git.tecosaur.net/tec/ox-chameleon"))
