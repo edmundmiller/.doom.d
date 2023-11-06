@@ -21,6 +21,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(unpin! evil-collection)
 (package! agenix :recipe (:host github :repo "t4ccer/agenix.el"))
 (package! whisper :recipe (:host github :repo "natrys/whisper.el" :files ("*.el")))
 (package! engrave-faces)
