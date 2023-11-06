@@ -351,12 +351,9 @@
   :config
   (setq org-roam-timestamps-parent-file t))
 
-;;; :lang python
-
 ;; org-transclusion
 (use-package! org-transclusion
   :after org)
-
 
 ;;; :lang rust
 (setq rustic-lsp-server 'rust-analyzer)
