@@ -159,7 +159,7 @@
        (rust +lsp)
        ;;scala
        ;;(scheme +guile)
-       sh
+       (sh +fish)
        ;;sml
        ;;solidity
        ;;swift
