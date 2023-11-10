@@ -587,6 +587,11 @@
 (after! (forge transient)
   (require 'consult-gh-embark)
   (require 'consult-gh-transient))
+
+(use-package! nushell-ts-mode)
+
+(use-package! nushell-ts-babel
+  :after nushell-ts-mode)
 ;;
 ;;; Custom Variables
 (custom-set-variables

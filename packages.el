@@ -21,6 +21,8 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! nushell-ts-mode :recipe (:host github :repo "herbertjones/nushell-ts-mode"))
+(package! nushell-ts-babel :recipe (:host github :repo "herbertjones/nushell-ts-babel"))
 (package! astro-ts-mode)
 (package! consult-gh :recipe (:host github :repo "armindarvish/consult-gh"))
 (unpin! evil-collection)
