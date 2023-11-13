@@ -571,6 +571,16 @@
         consult-gh-issues-maxnum 100 ;; set max number of issues to 100
         consult-gh-show-preview t)) ;; show previews
 
+(use-package! astro-ts-mode
+  ;; NOTE Run this on a new machine or if it errors
+  ;; :init
+  ;; (mapc #'treesit-install-language-grammar '(astro css tsx))
+  :config
+  (setq treesit-language-source-alist
+        '((astro "https://github.com/virchau13/tree-sitter-astro")
+          (css "https://github.com/tree-sitter/tree-sitter-css")
+          (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))))
+
 
 (after! (forge transient)
   (require 'consult-gh-embark)
