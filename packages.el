@@ -21,6 +21,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! consult-gh :recipe (:host github :repo "armindarvish/consult-gh"))
 (unpin! evil-collection)
 (package! agenix :recipe (:host github :repo "t4ccer/agenix.el"))
 ;; FIXME not working yet
