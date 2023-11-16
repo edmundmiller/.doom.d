@@ -21,6 +21,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! gptel)
 (package! nushell-ts-mode :recipe (:host github :repo "herbertjones/nushell-ts-mode"))
 (package! nushell-ts-babel :recipe (:host github :repo "herbertjones/nushell-ts-babel"))
 (package! astro-ts-mode)

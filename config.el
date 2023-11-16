@@ -592,6 +592,15 @@
 
 (use-package! nushell-ts-babel
   :after nushell-ts-mode)
+
+(use-package! gptel
+  :config
+  (setq! gptel-default-mode #'org-mode)
+  (gptel-make-ollama
+   "Ollama"                               ;Any name of your choosing
+   :host "localhost:11434"                ;Where it's running
+   :models '("mistral:latest")            ;Installed models
+   :stream t))                             ;Stream responses
 ;;
 ;;; Custom Variables
 (custom-set-variables
