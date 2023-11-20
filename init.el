@@ -53,7 +53,7 @@
        ;;word-wrap
 
        :emacs
-       dired
+       (dired +dirvish)
        electric
        ;;ibuffer
        undo
