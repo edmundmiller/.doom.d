@@ -67,7 +67,7 @@
 
        :checkers
        syntax
-       spell
+       (spell +enchant)
        grammar
 
        :tools

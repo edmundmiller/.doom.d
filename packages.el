@@ -36,7 +36,6 @@
 (package! webpaste)
 (package! mastodon)
 (package! gh-notify)
-(package! flycheck-vale)
 (unpin! pdf-tools)
 (package! quarto-mode)
 (package! conf-data-toml :recipe (:host github :repo "tecosaur/conf-data-toml"))
