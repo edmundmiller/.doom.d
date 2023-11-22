@@ -3,7 +3,6 @@
 ;; Private
 (unpin! doom-themes)
 
-(package! edit-server)
 ;; (package! package-lint)
 (package! graphviz-dot-mode)
 (package! jest :recipe (:local-repo "~/src/emacs/emacs-jest" :build (:not compile)))
@@ -11,13 +10,11 @@
 (package! academic-phrases)
 (package! mu4e-conversation)
 (package! mu4e-patch :recipe (:host github :repo "seanfarley/mu4e-patch"))
-(package! org-chef)
 (package! websocket)
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-transclusion)
 (package! org-roam-timestamps :recipe (:host github :repo "ThomasFKJorna/org-roam-timestamps"))
 (package! snakemake-mode)
-(unpin! web-mode)
 (unpin! org-journal)
 
 ;; Experimental
@@ -37,10 +34,7 @@
 (package! mastodon)
 (package! gh-notify)
 (unpin! pdf-tools)
-(package! quarto-mode)
 (package! conf-data-toml :recipe (:host github :repo "tecosaur/conf-data-toml"))
-(package! chatgpt-shell)
-(package! ob-chatgpt-shell)
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! julia-formatter
@@ -51,11 +45,6 @@
 
 (package! elfeed-tube)
 (package! elfeed-tube-mpv)
-
-(package! speed-type)
-;; HACK
-(package! nose :disable t)
-(package! closql :pin "0a7226331ff1f96142199915c0ac7940bac4afdd")
 
 (provide 'packages)
 ;;; packages.el ends here

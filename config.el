@@ -61,7 +61,7 @@
        :desc "Insert date" :n "d" #'insert-todays-date)
       (:prefix "o"
        :desc "Calc" :n "c" #'calc
-       :desc "ChatGPT" :n "g" #'chatgpt-shell
+       :desc "ChatGPT" :n "g" #'gptel
        :desc "APP: IRC" :n "i" #'=irc
        ;; :desc "APP: notmuch" :n "m" #'=mu4e
        ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
@@ -496,7 +496,6 @@
 (use-package! ox-chameleon
   :after ox)
 (use-package! snakemake-mode)
-(use-package! org-chef)
 (use-package! engrave-faces
   :after ox-latex
   :config
@@ -532,17 +531,6 @@
 (use-package! conf-data-toml
   :magic ("\\`data_config_version = [0-9]" . conf-data-toml-mode))
 
-(use-package! chatgpt-shell
-  :init
-  (setq! chatgpt-shell-openai-key
-         (lambda ()
-           (auth-source-pick-first-password :host "api.openai.com"))
-         chatgpt-shell-chatgpt-streaming t)
-  (setq! chatgpt-shell-default-prompts
-         (append
-          '("Rank these links in the order that I should read them:"
-            chatgpt-shell-default-prompts))))
-
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
@@ -577,7 +565,12 @@
   (setq consult-gh-default-clone-directory "~/src/")
   (setq consult-gh-repo-maxnum 30 ;; set max number of repos to 30
         consult-gh-issues-maxnum 100 ;; set max number of issues to 100
-        consult-gh-show-preview t)) ;; show previews
+        consult-gh-show-preview t) ;; show previews
+
+  (after! (forge transient)
+    (require 'consult-gh-embark)
+    (require 'consult-gh-transient)))
+
 
 (use-package! astro-ts-mode
   ;; NOTE Run this on a new machine or if it errors
@@ -590,10 +583,6 @@
           (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))))
 
 
-(after! (forge transient)
-  (require 'consult-gh-embark)
-  (require 'consult-gh-transient))
-
 (use-package! nushell-ts-mode)
 
 (use-package! nushell-ts-babel
@@ -602,6 +591,7 @@
 (use-package! gptel
   :config
   (setq! gptel-default-mode #'org-mode)
+  ;; gpt-4-1106-preview
   (gptel-make-ollama
    "Ollama"                               ;Any name of your choosing
    :host "localhost:11434"                ;Where it's running
