@@ -80,6 +80,15 @@
 (after! company
   (setq company-idle-delay nil))
 
+;;; :completion corfu
+(setq! orderless-component-separator #'orderless-escapable-split-on-space)
+
+;; +lsp
+(after! lsp-mode
+  (when (modulep! :completion corfu)
+    (setq lsp-completion-provider :none)
+    (add-hook 'lsp-mode-hook #'lsp-completion-mode)))
+
 ;;; :completion ivy
 (after! ivy
   ;; I prefer search matching to be ordered; it's more precise
