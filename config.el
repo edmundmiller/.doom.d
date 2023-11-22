@@ -493,6 +493,7 @@
 (use-package! nextflow-mode
   :config
   (set-docsets! 'nextflow-mode "Groovy"))
+(use-package! ob-duckdb)
 (use-package! ox-chameleon
   :after ox)
 (use-package! snakemake-mode)
