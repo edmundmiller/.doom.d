@@ -119,7 +119,7 @@
        ;;(haskell +dante)
        ;;hy
        ;;idris
-       (java +lsp)
+       (java +lsp +tree-sitter)
        (javascript +lsp)
        (json +lsp)
        (julia +lsp +snail +tree-sitter)
