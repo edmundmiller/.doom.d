@@ -610,7 +610,7 @@
    :host "localhost:11434"                ;Where it's running
    :models '("mistral:latest")            ;Installed models
    :stream t))                             ;Stream responses
-;;
+
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
