@@ -20,6 +20,8 @@
 
 ;; Experimental
 (package! gptel)
+(package! chatgpt-shell)
+(package! ob-chatgpt-shell)
 (package! nushell-ts-mode :recipe (:host github :repo "herbertjones/nushell-ts-mode"))
 (package! nushell-ts-babel :recipe (:host github :repo "herbertjones/nushell-ts-babel"))
 (package! astro-ts-mode)

@@ -61,7 +61,7 @@
        :desc "Insert date" :n "d" #'insert-todays-date)
       (:prefix "o"
        :desc "Calc" :n "c" #'calc
-       :desc "ChatGPT" :n "g" #'gptel
+       :desc "ChatGPT" :n "g" #'chatgpt-shell
        :desc "APP: IRC" :n "i" #'=irc
        ;; :desc "APP: notmuch" :n "m" #'=mu4e
        ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
@@ -528,6 +528,19 @@
         whisper-use-threads 12
         whisper--ffmpeg-input-format "pulse"
         whisper--ffmpeg-input-device "default"))
+
+(use-package! chatgpt-shell
+  :init
+  (setq! chatgpt-shell-openai-key
+         (lambda ()
+           (auth-source-pick-first-password :host "api.openai.com"))
+         chatgpt-shell-chatgpt-streaming t)
+  (setq! chatgpt-shell-default-prompts
+         (append
+          '("Rank these links in the order that I should read them:"
+            chatgpt-shell-default-prompts))
+         chatgpt-shell-model-versions
+         '("gpt-4-1106-preview" "gpt-3.5-turbo" "gpt-3.5-turbo-0613" "gpt-3.5-turbo-16k" "gpt-3.5-turbo-16k-0613" "gpt-4" "gpt-4-0613")))
 
 (use-package! conf-data-toml
   :magic ("\\`data_config_version = [0-9]" . conf-data-toml-mode))
