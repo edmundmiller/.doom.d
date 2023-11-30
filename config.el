@@ -523,11 +523,11 @@
   :config
   (setq whisper-install-directory (concat doom-data-dir "whisper")
         ;; TODO whisper-install-whispercpp nil
-        whisper-model "large"
+        whisper-model "medium"
         whisper-language "en"
         whisper-translate nil
         whisper-enable-speed-up nil ;; FIXME this just fails
-        whisper-use-threads 12
+        whisper-use-threads 8
         whisper--ffmpeg-input-format "pulse"
         whisper--ffmpeg-input-device "default"))
 
