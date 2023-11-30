@@ -1,15 +1,13 @@
-#+title: private/emiller88
+#+title: .doom.d
 
 My custom module for [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
+
+[[https://github.com/doomemacs/doomemacs/blob/986398504d09e585c7d1a8d73a6394024fe6f164/docs/getting_started.org#configure][Docs on getting started on your own config]] and [[https://discourse.doomemacs.org/t/example-user-configurations/38][Example user configurations]]!
 
 * Install
 
 #+begin_src bash
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 git clone https://github.com/emiller88/doom-emacs-private ~/.config/doom
-#+end_src
-
-And use this `doom!` block in `~/.config/emacs/init.el`:
-
-#+begin_src emacs-lisp
-(doom! :config (private +xdg))
+~/.config/emacs/bin/doom install
 #+end_src
