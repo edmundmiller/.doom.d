@@ -99,7 +99,7 @@
        ;;agda
        ;;assembly
        ;;(beancount +lsp)
-       ;;cc
+       (cc +lsp +tree-sitter)
        ;;clojure
        ;;common-lisp
        ;;coq
@@ -156,7 +156,7 @@
        rest
        ;;rst
        ;;(ruby +rails)
-       (rust +lsp)
+       (rust +lsp +tree-sitter)
        ;;scala
        ;;(scheme +guile)
        sh
