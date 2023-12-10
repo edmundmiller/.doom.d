@@ -385,14 +385,6 @@
                         (mu4e-compose-signature . "---\nEdmund Miller"))
                       t)
 
-  (set-email-account! "Eman"
-                      '((mu4e-sent-folder       . "/Eman/[Gmail]/Sent Mail")
-                        (mu4e-drafts-folder     . "/Eman/[Gmail]/Drafts")
-                        (mu4e-trash-folder      . "/Eman/[Gmail]/Trash")
-                        (mu4e-refile-folder     . "/Eman/[Gmail]/Archive")
-                        (mu4e-compose-signature . "---\nEdmund Miller"))
-                      t)
-
   (set-email-account! "UTD"
                       '((mu4e-sent-folder       . "/UTD/Sent")
                         (mu4e-drafts-folder     . "/UTD/Drafts")
