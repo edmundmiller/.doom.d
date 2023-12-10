@@ -323,9 +323,6 @@
         org-journal-file-format "%Y%m%d.org")
   (remove-hook 'calendar-today-visible-hook 'org-journal-mark-entries))
 
-;; https://emacs.stackexchange.com/a/78896
-(fset 'epg-wait-for-status 'ignore)
-
 ;; +noter
 (after! org-noter
   (setq org-noter-always-create-frame t
