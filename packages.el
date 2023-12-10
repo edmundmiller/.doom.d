@@ -19,6 +19,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! age)
 (unpin! apheleia)
 (package! gptel)
 (package! chatgpt-shell)

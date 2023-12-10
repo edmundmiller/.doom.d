@@ -603,6 +603,12 @@
    :models '("mistral:latest")            ;Installed models
    :stream t))                             ;Stream responses
 
+(use-package! age
+  :init
+  (age-program "rage")
+  :config
+  (age-file-enable))
+
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
