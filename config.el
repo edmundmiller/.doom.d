@@ -318,9 +318,9 @@
 (after! org
   (setq org-journal-dir (concat org-directory "journal/")
         org-journal-file-type 'monthly
-        org-journal-encrypt-journal t
+        org-journal-encrypt-journal nil
         org-journal-enable-cache t
-        org-journal-file-format "%Y%m%d.org")
+        org-journal-file-format "%Y%m%d.org.age")
   (remove-hook 'calendar-today-visible-hook 'org-journal-mark-entries))
 
 ;; +noter
@@ -605,8 +605,10 @@
 
 (use-package! age
   :init
-  (age-program "rage")
+  (setq! age-program "rage")
   :config
+  (setq! age-default-identity "~/.ssh/id_ed25519"
+         age-default-recipient "~/.ssh/id_ed25519.pub")
   (age-file-enable))
 
 ;;; Custom Variables
