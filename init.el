@@ -53,7 +53,7 @@
        ;;word-wrap
 
        :emacs
-       (dired +dirvish)
+       (dired +icons)
        electric
        ;;ibuffer
        undo
