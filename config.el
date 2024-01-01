@@ -611,6 +611,17 @@
          age-default-recipient "~/.ssh/id_ed25519.pub")
   (age-file-enable))
 
+(use-package! difftastic
+  :after magit
+  :bind (:map magit-blame-read-only-mode-map
+              ("D" . difftastic-magit-show)
+              ("S" . difftastic-magit-show))
+  :config
+  (eval-after-load 'magit-diff
+    '(transient-append-suffix 'magit-diff '(-1 -1)
+       [("D" "Difftastic diff (dwim)" difftastic-magit-diff)
+        ("S" "Difftastic show" difftastic-magit-show)])))
+
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

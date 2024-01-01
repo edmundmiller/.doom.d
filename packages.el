@@ -20,6 +20,7 @@
 
 ;; Experimental
 (package! age)
+(package! difftastic)
 (unpin! apheleia)
 (package! gptel)
 (package! chatgpt-shell)
