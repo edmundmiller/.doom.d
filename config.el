@@ -605,10 +605,12 @@
 
 (use-package! age
   :init
-  (setq! age-program "rage")
+  (setq! age-program "rage"
+         age-default-identity "~/.config/age/yubikey-identity.txt"
+         age-default-recipient
+         '("~/.config/age/yubikey-identity.pub"
+           "~/.ssh/id_ed25519.pub"))
   :config
-  (setq! age-default-identity "~/.ssh/id_ed25519"
-         age-default-recipient "~/.ssh/id_ed25519.pub")
   (age-file-enable))
 
 (use-package! difftastic
