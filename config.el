@@ -610,6 +610,8 @@
          age-default-recipient
          '("~/.config/age/yubikey-identity.pub"
            "~/.ssh/id_ed25519.pub"))
+
+  (push (file-name-concat doom-profile-state-dir "authinfo.age") auth-sources)
   :config
   (age-file-enable))
 
