@@ -626,6 +626,11 @@
        [("D" "Difftastic diff (dwim)" difftastic-magit-diff)
         ("S" "Difftastic show" difftastic-magit-show)])))
 
+(use-package! sqlformat
+  :after sql
+  :config (setq sqlformat-command 'sqlfluff)
+  :bind (:map sql-mode-map
+              ("C-c c f" . 'sqlformat)))
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
