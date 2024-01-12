@@ -173,6 +173,7 @@
        ;;(wanderlust +gmail)
 
        :app
+       ai
        ;;emms
        ;;calendar
        everywhere

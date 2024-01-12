@@ -23,9 +23,6 @@
 (package! age)
 (package! difftastic)
 (unpin! apheleia)
-(package! gptel)
-(package! chatgpt-shell)
-(package! ob-chatgpt-shell)
 (package! nushell-ts-mode :recipe (:host github :repo "herbertjones/nushell-ts-mode"))
 (package! nushell-ts-babel :recipe (:host github :repo "herbertjones/nushell-ts-babel"))
 (package! astro-ts-mode)
@@ -34,7 +31,6 @@
 (package! agenix :recipe (:host github :repo "t4ccer/agenix.el"))
 ;; FIXME not working yet
 (package! ob-julia :recipe (:host github :repo "karthink/ob-julia"))
-(package! whisper :recipe (:host github :repo "natrys/whisper.el" :files ("*.el")))
 (package! engrave-faces)
 (package! ox-chameleon :recipe (:host nil :repo "https://git.tecosaur.net/tec/ox-chameleon"))
 (package! webpaste)
@@ -42,8 +38,6 @@
 (package! gh-notify)
 (unpin! pdf-tools)
 (package! conf-data-toml :recipe (:host github :repo "tecosaur/conf-data-toml"))
-(package! copilot
-  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
 (package! julia-formatter
   :recipe (:host codeberg :repo "FelipeLema/julia-formatter.el"
            :files ( "julia-formatter.el" ;; main script executed by Emacs

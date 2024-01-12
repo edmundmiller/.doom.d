@@ -61,15 +61,13 @@
        :desc "Insert date" :n "d" #'insert-todays-date)
       (:prefix "o"
        :desc "Calc" :n "c" #'calc
-       :desc "ChatGPT" :n "g" #'chatgpt-shell
        :desc "APP: IRC" :n "i" #'=irc
        ;; :desc "APP: notmuch" :n "m" #'=mu4e
        ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
        :desc "todo.org" :n "o" #'+emiller/visit-todo-org
        :desc "projects" :n "p" #'+emiller/visit-projects-org
        :desc "emms" :n "s" #'emms
-       :desc "APP: rss" :n "," #'=rss
-       :desc "Whisper" :n "w" #'whisper-run))
+       :desc "APP: rss" :n "," #'=rss))
 
 ;;
 ;;; Modules
@@ -508,45 +506,9 @@
   :config
   (mastodon-discover))
 
-(use-package! whisper
-  :config
-  (setq whisper-install-directory (concat doom-data-dir "whisper")
-        ;; TODO whisper-install-whispercpp nil
-        whisper-model "medium"
-        whisper-language "en"
-        whisper-translate nil
-        whisper-enable-speed-up nil ;; FIXME this just fails
-        whisper-use-threads 8
-        whisper--ffmpeg-input-format "pulse"
-        whisper--ffmpeg-input-device "default"))
-
-(use-package! chatgpt-shell
-  :init
-  (setq! chatgpt-shell-openai-key
-         (lambda ()
-           (auth-source-pick-first-password :host "api.openai.com"))
-         chatgpt-shell-chatgpt-streaming t)
-  (setq! chatgpt-shell-default-prompts
-         (append
-          '("Rank these links in the order that I should read them:"
-            chatgpt-shell-default-prompts))
-         chatgpt-shell-model-versions
-         '("gpt-4-1106-preview" "gpt-3.5-turbo" "gpt-3.5-turbo-0613" "gpt-3.5-turbo-16k" "gpt-3.5-turbo-16k-0613" "gpt-4" "gpt-4-0613")))
-
 (use-package! conf-data-toml
   :magic ("\\`data_config_version = [0-9]" . conf-data-toml-mode))
 
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)
-              ("M-n" . 'copilot-next-completion)
-              ("M-p" . 'copilot-previous-completion))
-  :config
-  (setq copilot-idle-delay 2))
 
 (use-package! agenix
   :mode ("\\.age\\'" . agenix-mode)
@@ -592,16 +554,6 @@
 
 (use-package! nushell-ts-babel
   :after nushell-ts-mode)
-
-(use-package! gptel
-  :config
-  (setq! gptel-default-mode #'org-mode)
-  ;; gpt-4-1106-preview
-  (gptel-make-ollama
-   "Ollama"                               ;Any name of your choosing
-   :host "localhost:11434"                ;Where it's running
-   :models '("mistral:latest")            ;Installed models
-   :stream t))                             ;Stream responses
 
 (use-package! age
   :init
