@@ -37,17 +37,32 @@
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
+  :init
+  ;; accept completion from copilot and fallback to company
+  (defun my-tab ()
+    (interactive)
+    (or (copilot-accept-completion)
+        (corfu-complete)))
+
   :config
-  (setq copilot-idle-delay 1)
+  (map! :leader
+        (:prefix "y"
+         :desc "Copilot" :n "c" #'copilot-complete
+         :desc "Copilot Panel" :n "p" #'copilot-panel-complete)
+        (:map copilot-completion-map
+         :i "s-<tab>" #'copilot-accept-completion
+         :i "TAB" #'copilot-accept-completion-by-line
+         ;; :i "C-l" #'copilot-accept-completion-by-word
+         :i "C-," #'copilot-next-completion
+         :i "C-." 'copilot-previous-completion)
+        (:map corfu-map
+              "<tab>" #'my-tab
+              "TAB" #'my-tab
+              "C-l" #'copilot-accept-completion-by-word
+              "C-S-l"  #'copilot-accept-completion-by-line))
 
-  (map! (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)
-              ("M-n" . 'copilot-next-completion)
-              ("M-p" . 'copilot-previous-completion))))
-
+  (setq! copilot-idle-delay 1
+         copilot-indent-offset-warning-disable t))
 
 (use-package! whisper
   :config
