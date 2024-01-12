@@ -11,7 +11,11 @@
    "Ollama"                               ;Any name of your choosing
    :host "localhost:11434"                ;Where it's running
    :models '("mistral:latest")            ;Installed models
-   :stream t))                            ;Stream responses
+   :stream t)                            ;Stream responses
+  (gptel-make-gemini
+   "Gemini"
+   :key (lambda () (auth-source-pick-first-password :host "generativelanguage.googleapis.com"))
+   :stream t))
 
 (use-package! gptel-extensions
   :after gptel
