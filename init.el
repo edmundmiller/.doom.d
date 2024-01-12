@@ -50,7 +50,7 @@
        parinfer
        rotate-text
        snippets
-       ;;word-wrap
+       word-wrap
 
        :emacs
        (dired +icons)
