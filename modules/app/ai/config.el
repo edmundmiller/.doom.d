@@ -2,7 +2,10 @@
 
 (use-package! gptel
   :config
-  (setq! gptel-default-mode #'org-mode)
+  (setq! gptel-default-mode #'org-mode
+         gptel-api-key
+         (lambda ()
+           (auth-source-pick-first-password :host "api.openai.com")))
   ;; gpt-4-1106-preview
   (gptel-make-ollama
    "Ollama"                               ;Any name of your choosing
