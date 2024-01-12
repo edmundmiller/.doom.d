@@ -16,3 +16,6 @@ https://github.com/yqrashawn/yqdotfiles/blob/b1130ac2d99ca89978f6e124e832c4bb889
 https://github.com/martinbaillie/dotfiles/blob/c31b8aa815a940c45210c7ab9029141a8e6c6e93/config/emacs/config.org#L2007
 
 https://codeberg.org/bram85/kagi.el
+
+
+Look into https://github.com/emacs-openai/codegpt

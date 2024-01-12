@@ -10,6 +10,17 @@
    :models '("mistral:latest")            ;Installed models
    :stream t))                            ;Stream responses
 
+(use-package! gptel-extensions
+  :after gptel
+  :config
+  (map!
+   :leader
+   (:prefix "y"
+    :desc "gptel" :n "y" #'gptel-send
+    :desc "Send Buffer gptel" :n "b" #'gptel-ext-send-whole-buffer
+    :desc "Question Document" :n "q" #'gptel-ext-ask-document
+    :desc "Rewrite Region" :n "t" #'gptel-ext-rewrite-and-replace
+    :desc "Refactor Region" :n "r" #'gptel-ext-refactor)))
 
 (use-package! chatgpt-shell
   :init

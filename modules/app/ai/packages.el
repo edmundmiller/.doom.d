@@ -3,6 +3,7 @@
 
 
 (package! gptel)
+(package! gptel-extensions :recipe (:host github :repo "kamushadenes/gptel-extensions.el"))
 (package! chatgpt-shell)
 (package! ob-chatgpt-shell)
 
