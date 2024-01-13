@@ -15,7 +15,15 @@
   (gptel-make-gemini
    "Gemini"
    :key (lambda () (auth-source-pick-first-password :host "generativelanguage.googleapis.com"))
-   :stream t))
+   :stream t)
+  (map!
+   :leader
+   (:prefix "y"
+    :desc "gptel" :n "y" #'gptel
+    :desc "gptel Send" :n "y" #'gptel-send
+    :desc "gptel Menu" :n "Y" #'gptel-menu
+    :desc "gptel Topic" :n "t" #'gptel-set-topic)))
+
 
 (use-package! gptel-extensions
   :after gptel
@@ -23,10 +31,9 @@
   (map!
    :leader
    (:prefix "y"
-    :desc "gptel" :n "y" #'gptel-send
     :desc "Send Buffer gptel" :n "b" #'gptel-ext-send-whole-buffer
     :desc "Question Document" :n "q" #'gptel-ext-ask-document
-    :desc "Rewrite Region" :n "t" #'gptel-ext-rewrite-and-replace
+    :desc "Rewrite Region" :n "e" #'gptel-ext-rewrite-and-replace
     :desc "Refactor Region" :n "r" #'gptel-ext-refactor)))
 
 (use-package! chatgpt-shell
