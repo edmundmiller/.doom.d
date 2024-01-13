@@ -3,10 +3,8 @@
 (use-package! gptel
   :config
   (setq! gptel-default-mode #'org-mode
-         gptel-api-key
-         (lambda ()
-           (auth-source-pick-first-password :host "api.openai.com")))
   ;; gpt-4-1106-preview
+         gptel-api-key #'gptel-api-key-from-auth-source)
   (gptel-make-ollama
    "Ollama"                               ;Any name of your choosing
    :host "localhost:11434"                ;Where it's running
@@ -14,7 +12,7 @@
    :stream t)                            ;Stream responses
   (gptel-make-gemini
    "Gemini"
-   :key (lambda () (auth-source-pick-first-password :host "generativelanguage.googleapis.com"))
+   :key #'gptel-api-key-from-auth-source
    :stream t)
   (map!
    :leader
