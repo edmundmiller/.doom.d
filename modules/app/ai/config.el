@@ -3,7 +3,7 @@
 (use-package! gptel
   :config
   (setq! gptel-default-mode #'org-mode
-  ;; gpt-4-1106-preview
+         gptel-model "gpt-4-1106-preview"
          gptel-api-key #'gptel-api-key-from-auth-source)
   (gptel-make-ollama
    "Ollama"                               ;Any name of your choosing
