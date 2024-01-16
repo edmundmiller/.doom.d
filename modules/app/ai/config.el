@@ -2,9 +2,11 @@
 
 (use-package! gptel
   :config
-  (setq! gptel-default-mode #'org-mode
-         gptel-model "gpt-4-1106-preview"
-         gptel-api-key #'gptel-api-key-from-auth-source)
+  (setq! gptel-api-key #'gptel-api-key-from-auth-source
+         ;; FIXME https://github.com/karthink/gptel/issues/182
+         ;; gptel-default-mode #'org-mode
+         gptel-model "gpt-4-1106-preview")
+
   (gptel-make-ollama
    "Ollama"                               ;Any name of your choosing
    :host "localhost:11434"                ;Where it's running
