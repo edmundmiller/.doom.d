@@ -14,6 +14,9 @@
    "Gemini"
    :key #'gptel-api-key-from-auth-source
    :stream t)
+  (gptel-make-kagi
+   "Kagi"
+   :key #'gptel-api-key-from-auth-source)
   (map!
    :leader
    (:prefix "y"
