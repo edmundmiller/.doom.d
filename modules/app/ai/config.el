@@ -71,11 +71,7 @@
         (corfu-complete)))
 
   :config
-  (map! :leader
-        (:prefix "y"
-         :desc "Copilot" :n "c" #'copilot-complete
-         :desc "Copilot Panel" :n "p" #'copilot-panel-complete)
-        (:map copilot-completion-map
+  (map! (:map copilot-completion-map
          :i "s-<tab>" #'copilot-accept-completion
          :i "TAB" #'copilot-accept-completion-by-line
          ;; :i "C-l" #'copilot-accept-completion-by-word
@@ -85,7 +81,11 @@
               "<tab>" #'my-tab
               "TAB" #'my-tab
               "C-l" #'copilot-accept-completion-by-word
-              "C-S-l"  #'copilot-accept-completion-by-line))
+              "C-S-l"  #'copilot-accept-completion-by-line)
+        :leader
+        (:prefix "y"
+         :desc "Copilot" :n "c" #'copilot-complete
+         :desc "Copilot Panel" :n "p" #'copilot-panel-complete))
 
   (setq! copilot-idle-delay 1
          copilot-indent-offset-warning-disable t))
