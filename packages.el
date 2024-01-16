@@ -19,6 +19,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! tldr)
 (package! sqlformat)
 (package! age)
 (package! difftastic)
