@@ -6,7 +6,6 @@
          ;; FIXME https://github.com/karthink/gptel/issues/182
          ;; gptel-default-mode #'org-mode
          gptel-model "gpt-4-1106-preview")
-
   (gptel-make-ollama
    "Ollama"                               ;Any name of your choosing
    :host "localhost:11434"                ;Where it's running
@@ -36,7 +35,7 @@
    (:prefix "y"
     :desc "Send Buffer gptel" :n "b" #'gptel-ext-send-whole-buffer
     :desc "Question Document" :n "q" #'gptel-ext-ask-document
-    :desc "Rewrite Region" :n "e" #'gptel-ext-rewrite-and-replace
+    :desc "Rewrite Region" :n "R" #'gptel-ext-rewrite-and-replace
     :desc "Refactor Region" :n "r" #'gptel-ext-refactor)))
 
 (use-package! chatgpt-shell
