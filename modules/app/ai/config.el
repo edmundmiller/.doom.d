@@ -22,8 +22,8 @@
    :leader
    (:prefix "y"
     :desc "gptel" :n "y" #'gptel
-    :desc "gptel Send" :n "y" #'gptel-send
     :desc "gptel Menu" :n "Y" #'gptel-menu
+    :desc "gptel Send" :n "s" #'gptel-send
     :desc "gptel Topic" :n "t" #'gptel-set-topic)))
 
 
