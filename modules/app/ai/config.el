@@ -7,17 +7,17 @@
          ;; gptel-default-mode #'org-mode
          gptel-model "gpt-4-1106-preview")
   (gptel-make-ollama
-   "Ollama"                               ;Any name of your choosing
-   :host "localhost:11434"                ;Where it's running
-   :models '("mistral:latest")            ;Installed models
-   :stream t)                            ;Stream responses
+      "Ollama"                               ;Any name of your choosing
+    :host "localhost:11434"                ;Where it's running
+    :models '("mistral:latest")            ;Installed models
+    :stream t)                            ;Stream responses
   (gptel-make-gemini
-   "Gemini"
-   :key #'gptel-api-key-from-auth-source
-   :stream t)
+      "Gemini"
+    :key #'gptel-api-key-from-auth-source
+    :stream t)
   (gptel-make-kagi
-   "Kagi"
-   :key #'gptel-api-key-from-auth-source)
+      "Kagi"
+    :key #'gptel-api-key-from-auth-source)
   (map!
    :leader
    (:prefix "y"
