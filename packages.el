@@ -19,6 +19,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(unpin! parinfer-rust-mode)
 (package! tldr)
 (package! sqlformat)
 (package! age)
