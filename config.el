@@ -180,7 +180,7 @@
       ;; Don't restore the wconf after quitting magit, it's jarring
       magit-inhibit-save-previous-winconf t
       evil-collection-magit-want-horizontal-movement t
-      magit-openpgp-default-signing-key "BD387FF7BC10AA9D"
+      magit-openpgp-default-signing-key "~/.ssh/id_ed25519"
       transient-values '((magit-rebase "--autosquash" "--autostash")
                          (magit-pull "--rebase" "--autostash")
                          (magit-revert "--autostash")))
@@ -558,11 +558,12 @@
 (use-package! age
   :init
   (setq! age-program "rage"
-         age-default-identity "~/.config/age/yubikey-identity.txt"
+         age-default-identity
+         '("~/.ssh/id_ed25519"
+           "~/.config/age/yubikey-identity.txt")
          age-default-recipient
-         '("~/.config/age/yubikey-identity.pub"
-           "~/.ssh/id_ed25519.pub"))
-
+         '("~/.ssh/id_ed25519.pub"
+           "~/.config/age/yubikey-identity.pub"))
   (push (file-name-concat doom-profile-state-dir "authinfo.age") auth-sources)
   :config
   (age-file-enable))
