@@ -523,7 +523,7 @@
   :after consult
   :config
   ;;add your main GitHub account (replace "armindarvish" with your user or org)
-  (add-to-list 'consult-gh-default-orgs-list '("emiller88" "nf-core"))
+  (add-to-list 'consult-gh-default-orgs-list '("edmundmiller" "nf-core"))
 
   ;;use "gh org list" to get a list of all your organizations and adds them to default list
   (setq consult-gh-default-orgs-list (append consult-gh-default-orgs-list (remove "" (split-string (or (consult-gh--command-to-string "org" "list") "") "\n"))))

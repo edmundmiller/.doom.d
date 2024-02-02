@@ -8,6 +8,6 @@ My custom module for [[https://github.com/doomemacs/doomemacs][Doom Emacs]].
 
 #+begin_src bash
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-git clone https://github.com/emiller88/doom-emacs-private ~/.config/doom
+git clone https://github.com/edmundmiller/doom-emacs-private ~/.config/doom
 ~/.config/emacs/bin/doom install
 #+end_src
