@@ -590,6 +590,10 @@
   (setq tldr-directory-path (concat doom-etc-dir "tldr/")
         tldr-enabled-categories '("common" "linux")))
 
+(use-package! auth-source-1password
+  :config
+  (auth-source-1password-enable))
+
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
