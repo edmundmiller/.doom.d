@@ -68,7 +68,7 @@
        :checkers
        syntax
        spell
-       grammar
+       ;;grammar
 
        :tools
        ansible
