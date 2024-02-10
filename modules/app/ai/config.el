@@ -34,6 +34,9 @@
   (gptel-make-kagi
       "Kagi"
     :key #'gptel-api-key-from-auth-source)
+  ;; TODO
+  ;; (append (default . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
+  ;;         gptel-directives)
   (map!
    :leader
    (:prefix "y"
