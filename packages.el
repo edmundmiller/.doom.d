@@ -20,6 +20,8 @@
 
 ;; Experimental
 (unpin! parinfer-rust-mode)
+(package! just-mode)
+(package! justl)
 (package! auth-source-1password :recipe (:host github :repo "dlobraico/auth-source-1password"))
 (package! tldr)
 (package! sqlformat)

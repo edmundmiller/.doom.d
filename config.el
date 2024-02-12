@@ -594,6 +594,12 @@
   :config
   (auth-source-1password-enable))
 
+(use-package! just-mode)
+
+(use-package! justl
+  :config
+  (map! :n "e" 'justl-exec-recipe))
+
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
