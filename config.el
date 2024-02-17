@@ -511,6 +511,7 @@
 
 
 (use-package! agenix
+  :defer t
   :mode ("\\.age\\'" . agenix-mode)
   :config
   (add-hook 'agenix-pre-mode-hook #'envrc-mode)
