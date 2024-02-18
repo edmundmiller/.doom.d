@@ -492,7 +492,6 @@
   :config
   (setq org-latex-listings 'engraved))
 (use-package! academic-phrases)
-(use-package! code-review)
 (use-package! gh-notify)
 (use-package! webpaste
   :config
