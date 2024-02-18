@@ -83,7 +83,7 @@
        (lookup +docsets +dictionary)
        lsp
        ;;macos
-       (magit +forge)
+       magit
        make
        ;;pass
        pdf
