@@ -57,29 +57,6 @@
     :desc "Rewrite Region" :n "R" #'gptel-ext-rewrite-and-replace
     :desc "Refactor Region" :n "r" #'gptel-ext-refactor)))
 
-(use-package! chatgpt-shell
-  :init
-  (setq! chatgpt-shell-openai-key
-         (lambda ()
-           (auth-source-pick-first-password :host "api.openai.com"))
-         chatgpt-shell-chatgpt-streaming t)
-  (setq! chatgpt-shell-default-prompts
-         (append
-          '("Rank these links in the order that I should read them:"
-            chatgpt-shell-default-prompts))
-         chatgpt-shell-model-versions
-         '("gpt-4-1106-preview"
-           "gpt-3.5-turbo"
-           "gpt-3.5-turbo-0613"
-           "gpt-3.5-turbo-16k"
-           "gpt-3.5-turbo-16k-0613"
-           "gpt-4"
-           "gpt-4-0613"))
-  (map!
-   :leader
-   (:prefix "y" ;; y not?
-    :desc "ChatGPT" :n "g" #'chatgpt-shell)))
-
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
@@ -96,6 +73,7 @@
 
   (setq! copilot-idle-delay 1
          copilot-indent-offset-warning-disable t))
+
 
 (use-package! whisper
   :config
