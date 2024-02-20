@@ -598,6 +598,7 @@
 
 (use-package! auth-source-1password
   :config
+  (setq! auth-source-1password-vault "Private")
   (auth-source-1password-enable))
 
 (use-package! just-mode)
