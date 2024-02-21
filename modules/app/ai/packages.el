@@ -2,7 +2,8 @@
 ;;; app/ai/packages.el
 
 
-(package! gptel)
+(package! gptel
+  :recipe (:host github :repo "karthink/gptel" :branch "copilot" :files ("*.el")))
 (package! gptel-extensions :recipe (:host github :repo "kamushadenes/gptel-extensions.el"))
 
 (package! copilot
