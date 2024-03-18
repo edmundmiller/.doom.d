@@ -78,15 +78,15 @@
 
 (use-package! whisper
   :config
-  (setq whisper-install-directory (concat doom-data-dir "whisper")
-        ;; TODO whisper-install-whispercpp nil
-        whisper-model "medium"
-        whisper-language "en"
-        whisper-translate nil
-        whisper-enable-speed-up nil ;; FIXME this just fails
-        whisper-use-threads 8
-        whisper--ffmpeg-input-format "pulse"
-        whisper--ffmpeg-input-device "default")
+  (setq! whisper-install-directory (concat doom-data-dir "whisper")
+         whisper-model "large-v3"
+         whisper-language "en"
+         whisper-translate nil
+         whisper-enable-speed-up nil ;; FIXME this just fails
+         whisper-use-threads 16
+         whisper-quantize "q5_1"
+         whisper--ffmpeg-input-format "pulse"
+         whisper--ffmpeg-input-device "default")
   (map! :leader
         (:prefix "y"
          :desc "Whisper" :n "w" #'whisper-run
