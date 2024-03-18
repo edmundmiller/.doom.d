@@ -2,9 +2,10 @@
 
 (use-package! gptel
   :config
+  (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
   (setq! gptel-api-key #'gptel-api-key-from-auth-source
          ;; FIXME https://github.com/karthink/gptel/issues/182
-         ;; gptel-default-mode #'org-mode
+         gptel-default-mode #'org-mode
          gptel-model "gpt-4-1106-preview"
          ;; https://github.com/karthink/gptel/issues/184#issuecomment-1897697888
          gptel-directives
