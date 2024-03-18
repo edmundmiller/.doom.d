@@ -91,3 +91,5 @@
         (:prefix "y"
          :desc "Whisper" :n "w" #'whisper-run
          :desc "Whisper File" :n "W" #'whisper-file)))
+
+(use-package! gptscript-mode)

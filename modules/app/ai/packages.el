@@ -10,3 +10,5 @@
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el" "dist")))
 
 (package! whisper :recipe (:host github :repo "natrys/whisper.el" :files ("*.el")))
+
+(package! gptscript-mode :recipe (:host github :repo "emacs-openai/gptscript-mode"))
