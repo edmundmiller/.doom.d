@@ -42,6 +42,7 @@
    :leader
    (:prefix "y"
     :desc "gptel" :n "y" #'gptel
+    :desc "gptel abort" :n "a" #'gptel-abort
     :desc "gptel Menu" :n "Y" #'gptel-menu
     :desc "gptel copilot" :n "i" #'gptel-complete
     :desc "gptel Send" :n "s" #'gptel-send
