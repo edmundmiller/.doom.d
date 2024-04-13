@@ -14,3 +14,7 @@
 
 (use-package! astro-ts-mode
   :after treesit-auto)
+
+(use-package lsp-tailwindcss
+  :init
+  (setq lsp-tailwindcss-add-on-mode t))
