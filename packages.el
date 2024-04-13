@@ -30,8 +30,6 @@
 (unpin! apheleia)
 (package! nushell-ts-mode :recipe (:host github :repo "herbertjones/nushell-ts-mode"))
 (package! nushell-ts-babel :recipe (:host github :repo "herbertjones/nushell-ts-babel"))
-(package! treesit-auto)
-(package! astro-ts-mode)
 (package! consult-gh :recipe (:host github :repo "armindarvish/consult-gh"))
 (unpin! evil-collection)
 (package! agenix :recipe (:host github :repo "t4ccer/agenix.el"))
