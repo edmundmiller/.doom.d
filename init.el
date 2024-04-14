@@ -96,7 +96,7 @@
        upload
 
        :lang
-       astro
+       (astro +lsp)
        ;;agda
        ;;assembly
        ;;(beancount +lsp)

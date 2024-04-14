@@ -9,6 +9,9 @@
 
 (use-package! astro-ts-mode
   :after treesit-auto
+  :init
+  (when (modulep! +lsp)
+    (add-hook 'astro-ts-mode-hook #'lsp! 'append))
   :config
   (let ((astro-recipe (make-treesit-auto-recipe
                        :lang 'astro
@@ -23,6 +26,7 @@
     (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))
   :modes '(astro-ts-mode))
 
-(use-package lsp-tailwindcss
+(use-package! lsp-tailwindcss
+  :when (featurep! +lsp)
   :init
   (setq lsp-tailwindcss-add-on-mode t))

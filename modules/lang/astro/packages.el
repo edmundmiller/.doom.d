@@ -3,4 +3,7 @@
 
 (package! treesit-auto)
 (package! astro-ts-mode)
-(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
+
+(when (modulep! +lsp)
+  (package! lsp-tailwindcss
+    :recipe (:host github :repo "merrickluo/lsp-tailwindcss")))
