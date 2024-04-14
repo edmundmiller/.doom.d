@@ -18,6 +18,11 @@
                        :source-dir "src")))
     (add-to-list 'treesit-auto-recipe-list astro-recipe)))
 
+(set-formatter! 'prettier-astro
+  '("npx" "prettier" "--parser=astro"
+    (apheleia-formatters-indent "--use-tabs" "--tab-width" 'astro-ts-mode-indent-offset))
+  :modes '(astro-ts-mode))
+
 (use-package lsp-tailwindcss
   :init
   (setq lsp-tailwindcss-add-on-mode t))
