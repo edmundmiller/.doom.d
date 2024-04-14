@@ -81,7 +81,7 @@
        (eval +overlay)
        ;;gist
        (lookup +docsets +dictionary)
-       lsp
+       (lsp +peek)
        ;;macos
        magit
        make
