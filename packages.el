@@ -19,6 +19,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! org-modern)
 (unpin! parinfer-rust-mode)
 (package! just-mode)
 (package! justl)
