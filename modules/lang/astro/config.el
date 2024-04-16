@@ -27,6 +27,8 @@
   :modes '(astro-ts-mode))
 
 (use-package! lsp-tailwindcss
-  :when (featurep! +lsp)
+  :when (modulep! +lsp)
   :init
-  (setq lsp-tailwindcss-add-on-mode t))
+  (setq! lsp-tailwindcss-add-on-mode t)
+  :config
+  (add-to-list 'lsp-tailwindcss-major-modes 'astro-ts-mode))
