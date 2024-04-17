@@ -586,7 +586,9 @@
 
 (use-package! justl
   :config
-  (map! :n "e" 'justl-exec-recipe))
+  (map! :map justl-mode-map
+        :localleader
+        :n "e" 'justl-exec-recipe))
 
 (use-package! org-modern
   :hook (org-mode . org-modern-mode)
