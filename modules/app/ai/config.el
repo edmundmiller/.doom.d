@@ -85,8 +85,7 @@
          whisper-language "en"
          whisper-translate nil
          whisper-enable-speed-up nil ;; FIXME this just fails
-         whisper-use-threads 16
-         whisper-quantize "q5_1"
+         whisper-use-threads (/ (num-processors) 2)
          whisper--ffmpeg-input-format "pulse"
          whisper--ffmpeg-input-device "default")
   (map! :leader
