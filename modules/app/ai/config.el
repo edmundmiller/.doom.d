@@ -81,7 +81,8 @@
 (use-package! whisper
   :config
   (setq! whisper-install-directory (concat doom-data-dir "whisper")
-         whisper-model "large-v3"
+         ;; wget https://huggingface.co/distil-whisper/distil-large-v3-ggml/resolve/main/ggml-distil-large-v3.bin -P ./models
+         whisper-model "distil-large-v3"
          whisper-language "en"
          whisper-translate nil
          whisper-enable-speed-up nil ;; FIXME this just fails
