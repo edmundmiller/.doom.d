@@ -608,6 +608,10 @@
      ("KILL" :inverse-video t :inherit +org-todo-cancel)
      ("NO"   :inverse-video t :inherit +org-todo-cancel))))
 
+(use-package! lsp-bridge
+  :config
+  (setq lsp-bridge-enable-log nil)
+  (global-lsp-bridge-mode))
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
