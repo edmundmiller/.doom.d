@@ -15,7 +15,8 @@
 ;; "monospace" means use the system default. However, the default is usually two
 ;; points larger than I'd like, so I specify size 12 here.
 
-(setq doom-theme 'doom-palenight
+(setq doom-theme 'catppuccin
+      catppuccin-flavor 'macchiato ;; or 'latte, 'frappe, or 'mocha
       doom-font (font-spec :family "CommitMono" :size 13)
       doom-variable-pitch-font (font-spec :family "iA Writer Duospace" :size 16)
       doom-unicode-font (font-spec :family "JuliaMono"))
