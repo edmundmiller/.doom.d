@@ -453,14 +453,6 @@
   ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
   (elfeed-tube-setup))
 
-(use-package! elfeed-tube-mpv
-  :init
-  (map! :map elfeed-search-mode-map
-        :localleader
-        :n "f" #'elfeed-tube-mpv-follow-mode
-        :n "w" #'elfeed-tube-where))
-
-
 ;;
 ;;; Language customizations
 

@@ -51,7 +51,6 @@
                     "Manifest.toml" "Project.toml"))) ;; project files
 
 (package! elfeed-tube)
-(package! elfeed-tube-mpv)
 
 (provide 'packages)
 ;;; packages.el ends here
