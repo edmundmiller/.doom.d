@@ -130,7 +130,7 @@
        ;;factor
        ;;ledger
        ;;(lua +fennel)
-       markdown
+       (markdown +tree-sitter)
        ;;nim
        (nix +lsp +tree-sitter)
        ;;ocaml
