@@ -6,6 +6,10 @@
   (setq! gptel-api-key #'gptel-api-key-from-auth-source
          ;; FIXME https://github.com/karthink/gptel/issues/182
          gptel-default-mode #'org-mode
+         gptel-backend
+         (gptel-make-anthropic "Claude"
+           :stream t
+           :key #'gptel-api-key-from-auth-source)
          gptel-model "claude-3-opus-20240229"
          ;; https://github.com/karthink/gptel/issues/184#issuecomment-1897697888
          gptel-directives
@@ -34,9 +38,6 @@
     :stream t)
   (gptel-make-kagi
       "Kagi"
-    :key #'gptel-api-key-from-auth-source)
-  (gptel-make-anthropic "Claude"
-    :stream t
     :key #'gptel-api-key-from-auth-source)
   ;; TODO
   ;; (append (default . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
