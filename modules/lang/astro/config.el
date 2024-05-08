@@ -32,3 +32,8 @@
   (setq! lsp-tailwindcss-add-on-mode t)
   :config
   (add-to-list 'lsp-tailwindcss-major-modes 'astro-ts-mode))
+
+;; MDX Support
+(add-to-list 'auto-mode-alist '("\\.\\(mdx\\)$" . markdown-mode))
+(when (modulep! +lsp)
+  (add-hook 'markdown-mode-local-vars-hook #'lsp! 'append))
