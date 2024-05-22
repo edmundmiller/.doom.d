@@ -27,6 +27,8 @@
            (emacser . "You are an Emacs maven.  Reply only with the most appropriate built-in Emacs command for the task I specify.  Do NOT generate any additional description or explanation.")
            (explain . "Explain what this code does to a novice programmer.")))
 
+  (gptel-make-openai "GPT-4o"
+    :stream t)
   (gptel-make-ollama
       "Ollama"                               ;Any name of your choosing
     :host "localhost:11434"                ;Where it's running
