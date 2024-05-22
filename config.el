@@ -17,8 +17,8 @@
 
 (setq doom-theme 'catppuccin
       catppuccin-flavor 'macchiato ;; or 'latte, 'frappe, or 'mocha
-      doom-font (font-spec :family "CommitMono" :size 13)
-      doom-variable-pitch-font (font-spec :family "iA Writer Duospace" :size 16)
+      doom-font (font-spec :family "Monaspace Neon" :size 14)
+      doom-variable-pitch-font (font-spec :family "iA Writer Duospace" :size 14)
       doom-unicode-font (font-spec :family "JuliaMono"))
 
 ;; Line numbers are pretty slow all around. The performance boost of
