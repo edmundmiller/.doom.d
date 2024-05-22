@@ -8,7 +8,6 @@
   (global-treesit-auto-mode))
 
 (use-package! astro-ts-mode
-  :after treesit-auto
   :init
   (when (modulep! +lsp)
     (add-hook 'astro-ts-mode-hook #'lsp! 'append))
