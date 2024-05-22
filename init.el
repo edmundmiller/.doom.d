@@ -121,7 +121,7 @@
        ;;hy
        ;;idris
        (java +lsp +tree-sitter)
-       (javascript +lsp)
+       (javascript +lsp +tree-sitter)
        (json +lsp)
        (julia +lsp +snail +tree-sitter)
        ;;kotlin
