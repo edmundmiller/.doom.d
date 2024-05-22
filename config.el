@@ -60,6 +60,8 @@
       ;;  "R" #'org-roam-capture)
       (:prefix "i"
        :desc "Insert date" :n "d" #'insert-todays-date)
+      (:prefix "r"
+       :desc "Codespaces" :n "c" #'codespaces-connect)
       (:prefix "o"
        :desc "Calc" :n "c" #'calc
        :desc "APP: IRC" :n "i" #'=irc
@@ -471,6 +473,8 @@
 ;;
 ;;; Packages
 
+(use-package! codespaces
+  :config (codespaces-setup))
 (use-package! graphviz-dot-mode)
 (use-package! jest)
 (use-package! nextflow-mode

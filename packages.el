@@ -19,6 +19,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! codespaces)
 (package! catppuccin-theme)
 (package! org-modern)
 (unpin! parinfer-rust-mode)
