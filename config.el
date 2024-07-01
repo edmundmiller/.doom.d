@@ -483,7 +483,9 @@
 (use-package! ob-duckdb)
 (use-package! ox-chameleon
   :after ox)
-(use-package! snakemake-mode)
+(use-package! snakemake-mode
+  :config
+  (set-formatter! 'snakefmt '("snakefmt" "-") :modes '(snakemake-mode)))
 (use-package! engrave-faces
   :after ox-latex
   :config
