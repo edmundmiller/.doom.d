@@ -87,14 +87,18 @@
 (use-package! whisper
   :config
   (setq! whisper-install-directory (concat doom-data-dir "whisper")
+         whisper-install-whispercpp nil ;; Using nixpkgs
          ;; wget https://huggingface.co/distil-whisper/distil-large-v3-ggml/resolve/main/ggml-distil-large-v3.bin -P ./models
-         whisper-model "distil-large-v3"
+         whisper-model "distil-medium.en"
          whisper-language "en"
          whisper-translate nil
          whisper-enable-speed-up nil ;; FIXME this just fails
          whisper-use-threads (/ (num-processors) 2)
          whisper--ffmpeg-input-format "pulse"
          whisper--ffmpeg-input-device "default")
+
+  (advice-add 'whisper-command :override #'whisper--ctranslate2-command)
+
   (map! :leader
         (:prefix "y"
          :desc "Whisper" :n "w" #'whisper-run
