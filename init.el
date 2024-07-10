@@ -74,6 +74,7 @@
        ansible
        biblio
        ;;debugger
+       denote
        direnv
        docker
        editorconfig
