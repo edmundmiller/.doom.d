@@ -19,6 +19,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! outline-yaml :recipe (:host github :repo "jamescherti/outline-yaml.el"))
 (package! codespaces)
 (package! catppuccin-theme)
 (package! org-modern)

@@ -607,6 +607,11 @@
      ("KILL" :inverse-video t :inherit +org-todo-cancel)
      ("NO"   :inverse-video t :inherit +org-todo-cancel))))
 
+(use-package! outline-yaml
+  :hook
+  ((yaml-mode . outline-yaml-minor-mode)
+   (yaml-ts-mode . outline-yaml-minor-mode)))
+
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
