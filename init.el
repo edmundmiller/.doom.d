@@ -88,8 +88,6 @@
        ;;pass
        pdf
        ;;prodigy
-       rgb
-       taskrunner
        (terraform +lrp)
        ;;tmux
        tree-sitter
