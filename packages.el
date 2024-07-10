@@ -6,7 +6,6 @@
 ;; (package! package-lint)
 (package! graphviz-dot-mode)
 (package! jest :recipe (:local-repo "~/src/emacs/emacs-jest" :build (:not compile)))
-(package! nextflow-mode :recipe (:local-repo "~/src/emacs/nextflow-mode" :build (:not compile)))
 (package! ob-duckdb :recipe (:local-repo "~/src/emacs/ob-duckdb" :build (:not compile)))
 (package! academic-phrases)
 (package! mu4e-conversation)
@@ -15,7 +14,6 @@
 (package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! org-transclusion)
 (package! org-roam-timestamps :recipe (:host github :repo "ThomasFKJorna/org-roam-timestamps"))
-(package! snakemake-mode)
 (unpin! org-journal)
 
 ;; Experimental

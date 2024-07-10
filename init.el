@@ -97,6 +97,7 @@
        (astro +lsp)
        ;;agda
        ;;assembly
+       bioinfo
        ;;(beancount +lsp)
        (cc +lsp +tree-sitter)
        ;;clojure
