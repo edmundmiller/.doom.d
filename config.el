@@ -160,7 +160,14 @@
                            "~/sync/org/roam/lit/biochemistry")
        citar-org-roam-subdir "lit/stack")
 
-(set-formatter! 'bibtex-tidy '("npx" "bibtex-tidy" "--v2" "--quiet" "-") :modes '(bibtex-mode))
+(set-formatter! 'bibtex-tidy '("npx" "bibtex-tidy" "--v2" "--quiet" "-"
+                               ;; Opinions
+                               "--blank-lines"
+                               "--sort"
+                               "--duplicates"
+                               "--merge"
+                               "--tidy-comments"
+                               ) :modes '(bibtex-mode))
 
 ;;; :tools direnv
 (setq direnv-always-show-summary nil)
