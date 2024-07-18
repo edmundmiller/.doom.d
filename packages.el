@@ -20,7 +20,6 @@
 (package! outline-yaml :recipe (:host github :repo "jamescherti/outline-yaml.el"))
 (package! codespaces)
 (package! catppuccin-theme)
-(package! org-modern)
 (unpin! parinfer-rust-mode)
 (package! just-mode)
 (package! justl)
