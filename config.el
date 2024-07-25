@@ -18,7 +18,7 @@
 (setq doom-theme 'catppuccin
       catppuccin-flavor 'macchiato ;; or 'latte, 'frappe, or 'mocha
       doom-font (font-spec :family "JetBrains Mono" :size 14)
-      doom-variable-pitch-font (font-spec :family "iA Writer Duospace" :size 16)
+      doom-variable-pitch-font (font-spec :family "Comic Code Ligatures" :size 16)
       doom-unicode-font (font-spec :family "JuliaMono"))
 
 ;; Line numbers are pretty slow all around. The performance boost of
@@ -241,6 +241,7 @@
   (setq org-startup-folded 'show2levels
         org-ellipsis " [...] "
         org-export-with-toc nil
+        org-pomodoro-length 20
         org-log-done 'time
         ;; Fix org-id on SPC-l-s
         ;; org-id-link-to-org-use-id 'use-existing
