@@ -17,6 +17,7 @@
 (unpin! org-journal)
 
 ;; Experimental
+(package! org-nix-shell :recipe (:host github :repo "AntonHakansson/org-nix-shell"))
 (package! outline-yaml :recipe (:host github :repo "jamescherti/outline-yaml.el"))
 (package! codespaces)
 (package! catppuccin-theme)

@@ -481,6 +481,8 @@
 
 ;;
 ;;; Packages
+(use-package! org-nix-shell
+  :hook (org-mode . org-nix-shell-mode))
 
 (use-package! codespaces
   :config (codespaces-setup))
