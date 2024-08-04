@@ -222,6 +222,7 @@
 
 ;;; :lang nix
 (set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
+(set-formatter! 'nixfmt-rfc-style '("nixfmt" "--quiet") :modes '(nix-mode))
 
 ;;; :lang org
 (setq! +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter
