@@ -392,6 +392,9 @@
 (use-package! org-transclusion
   :after org)
 
+;;; :lang python
+(setq-hook! 'python-mode-hook +format-with 'ruff)
+
 ;;; :lang rust
 (setq rustic-lsp-server 'rust-analyzer)
 
