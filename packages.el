@@ -5,7 +5,8 @@
 
 ;; (package! package-lint)
 (package! graphviz-dot-mode)
-(package! jest :recipe (:local-repo "~/src/emacs/emacs-jest" :build (:not compile)))
+(package! jest :recipe (:host github :repo "edmundmiller/emacs-jest"))
+
 (package! ob-duckdb :recipe (:local-repo "~/src/emacs/ob-duckdb" :build (:not compile)))
 (package! academic-phrases)
 (package! mu4e-conversation)
