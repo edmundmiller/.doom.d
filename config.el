@@ -571,26 +571,9 @@
   (dolist (file (doom-glob "~/.ssh/*/id_ed25519"))
     (add-to-list 'agenix-key-files file)))
 
-(use-package! consult-gh
-  :after consult
-  :config
-  ;;add your main GitHub account (replace "armindarvish" with your user or org)
-  (add-to-list 'consult-gh-default-orgs-list '("edmundmiller" "nf-core"))
-
-  ;;use "gh org list" to get a list of all your organizations and adds them to default list
-  (setq consult-gh-default-orgs-list (append consult-gh-default-orgs-list (remove "" (split-string (or (consult-gh--command-to-string "org" "list") "") "\n"))))
-
-  ;; set the default folder for cloning repositories, By default Consult-GH will confirm this before cloning
-  (setq consult-gh-default-clone-directory "~/src/")
-  (setq consult-gh-repo-maxnum 30 ;; set max number of repos to 30
-        consult-gh-issues-maxnum 100 ;; set max number of issues to 100
-        consult-gh-show-preview t) ;; show previews
-
-  (after! (forge transient)
-    (require 'consult-gh-embark)
-    (require 'consult-gh-transient)))
 
 (use-package! nushell-ts-mode)
+
 
 (use-package! nushell-ts-babel
   :after nushell-ts-mode)
