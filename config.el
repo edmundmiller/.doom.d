@@ -293,12 +293,12 @@
            ,(format "#+title: ${title}\n%%[%s/template/ref.org]" org-roam-directory)
            :target (file "ref/%<%Y%m%d%H%M%S>-${slug}.org")
            :unnarrowed t)
-          ("w" "works" plain
-           ,(format "#+title: ${title}\n%%[%s/template/works.org]" org-roam-directory)
-           :target (file "works/%<%Y%m%d%H%M%S>-${slug}.org")
+          ("w" "weekly" plain
+           ,(format "#+title: ${title}\n%%[%s/template/weekly.org]" org-roam-directory)
+           :target (file "journal/weekly_review/%<%Y-%m-%d>.org.age")
            :unnarrowed t)
           ("s" "secret" plain "#+title: ${title}\n\n"
-           :target (file "secret/%<%Y%m%d%H%M%S>-${slug}.org.gpg")
+           :target (file "secret/%<%Y%m%d%H%M%S>-${slug}.org.age")
            :unnarrowed t))
         ;; Use human readable dates for dailies titles
         org-roam-dailies-capture-templates
