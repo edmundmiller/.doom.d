@@ -241,6 +241,7 @@
         org-export-with-toc nil
         org-pomodoro-length 20
         org-log-done 'time
+        org-agenda-start-with-log-mode t
         ;; Fix org-id on SPC-l-s
         ;; org-id-link-to-org-use-id 'use-existing
         org-deadline-warning-days 5
@@ -260,7 +261,17 @@
          '(("1" "Q1" tags-todo "+important+urgent")
            ("2" "Q2" tags-todo "+important-urgent")
            ("3" "Q3" tags-todo "-important+urgent")
-           ("4" "Q4" tags-todo "-important-urgent")))))
+           ("4" "Q4" tags-todo "-important-urgent")
+           ("w" "Weekly Review"
+            ((agenda ""
+                     ((org-agenda-overriding-header "Completed Tasks")
+                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
+                      (org-agenda-span 'week)))
+
+             (agenda ""
+                     ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
+                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                      (org-agenda-span 'week)))))))))
 
 
 (after! org-roam
