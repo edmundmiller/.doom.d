@@ -33,7 +33,7 @@
   (let ((transcription (buffer-substring (line-beginning-position)
                                          (line-end-position))))
     (gptel-request transcription
-      :system  "Reformat the following text. Clean up formatting, punctuation, spelling, and grammer, and split ideas into paragraphs. If there are very obvious cases of bullet point lists, format the output as a list")))
+      :system  "Reformat the following text. Don't output anything besides the text. Clean up formatting, punctuation, spelling, and grammer, and split ideas into paragraphs. If there are very obvious cases of bullet point lists, format the output as a list")))
 
 (add-hook 'whisper-after-insert-hook
           #'pipe-transcribed-audio-to-gptel)
