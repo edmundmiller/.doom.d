@@ -26,3 +26,14 @@
                   (skip-chars-forward " " (pos-eol))
                   (delete-region (pos-bol) (point)))
                 (forward-line 1)))))
+
+;;;###autoload
+(defun pipe-transcribed-audio-to-gptel ()
+  "Pipe whisper's transcription output into `gptel'."
+  (let ((transcription (buffer-substring (line-beginning-position)
+                                         (line-end-position))))
+    (gptel-request transcription
+      :system  "Reformat the following text. Clean up formatting, punctuation, spelling, and grammer, and split ideas into paragraphs. If there are very obvious cases of bullet point lists, format the output as a list")))
+
+(add-hook 'whisper-after-insert-hook
+          #'pipe-transcribed-audio-to-gptel)
