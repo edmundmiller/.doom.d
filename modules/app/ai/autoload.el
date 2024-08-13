@@ -13,3 +13,16 @@
     "--output_format" "txt"
     ,input-file))
 
+(add-hook 'whisper-after-transcription-hook
+          (lambda ()
+            (save-excursion
+              (goto-char (point-max))
+              (delete-line)
+              (goto-char (point-min))
+              (delete-line)
+              (while (not (eobp))
+                (goto-char (pos-bol))
+                (when (re-search-forward "\\]" (pos-eol) t 1)
+                  (skip-chars-forward " " (pos-eol))
+                  (delete-region (pos-bol) (point)))
+                (forward-line 1)))))
