@@ -1,6 +1,8 @@
 ;;; app/ai/config.el -*- lexical-binding: t; -*-
 
 (use-package! gptel
+  :bind (:map embark-url-map
+              ("=" . #'my/kagi-summarize))
   :config
   (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
   (setq! gptel-api-key #'gptel-api-key-from-auth-source
@@ -38,9 +40,10 @@
       "Gemini"
     :key #'gptel-api-key-from-auth-source
     :stream t)
-  (gptel-make-kagi
-      "Kagi"
-    :key #'gptel-api-key-from-auth-source)
+  (defvar gptel--kagi
+    (gptel-make-kagi
+        "Kagi"
+      :key #'gptel-api-key-from-auth-source))
   ;; TODO
   ;; (append (default . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
   ;;         gptel-directives)

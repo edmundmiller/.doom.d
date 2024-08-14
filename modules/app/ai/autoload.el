@@ -37,3 +37,27 @@
 
 (add-hook 'whisper-after-insert-hook
           #'pipe-transcribed-audio-to-gptel)
+
+;;;###autoload
+(defun my/kagi-summarize (url)
+  "Function that requests kagi for a url summary and shows it in a side-window"
+  (let ((gptel-backend gptel--kagi)
+        (gptel-model "summarize:agnes")) ;or summarize:cecil, summarize:daphne, summarize:muriel
+    (gptel-request
+        url
+      :callback
+      (lambda (response info)
+        (if response
+            (with-current-buffer (get-buffer-create "*Kagi Summary*")
+              (let ((inhibit-read-only t))
+                (erase-buffer)
+                (visual-line-mode 1)
+                (insert response)
+                (display-buffer
+                 (current-buffer)
+                 '((display-buffer-in-side-window
+                    display-buffer-at-bottom)
+                   (side . bottom))))
+              (special-mode 1))
+          (message "gptel-request failed with message: %s"
+                   (plist-get info :status)))))))
