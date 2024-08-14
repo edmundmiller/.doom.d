@@ -591,10 +591,10 @@
   (setq! age-program "rage"
          age-default-identity
          '("~/.ssh/id_ed25519"
-           "~/.config/age/yubikey-identity.txt")
+           "~/.secrets/journal.txt")
          age-default-recipient
          '("~/.ssh/id_ed25519.pub"
-           "~/.config/age/yubikey-identity.pub"))
+           "~/.secrets/journal_recipients.txt"))
   (push (file-name-concat doom-profile-state-dir "authinfo.age") auth-sources)
   :config
   (age-file-enable))
