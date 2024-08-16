@@ -131,6 +131,7 @@
        ;;ledger
        ;;(lua +fennel)
        (markdown +tree-sitter)
+       mermaid
        ;;nim
        (nix +lsp +tree-sitter)
        ;;ocaml
