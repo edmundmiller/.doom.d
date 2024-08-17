@@ -4,6 +4,7 @@
 
 (package! gptel)
 (package! gptel-extensions :recipe (:host github :repo "kamushadenes/gptel-extensions.el"))
+(package! gptel-quick :recipe (:host github :repo "karthink/gptel-quick"))
 
 (package! copilot
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el" "dist")))

@@ -1,6 +1,7 @@
 ;;; app/ai/config.el -*- lexical-binding: t; -*-
 
 (use-package! gptel
+  :after embark
   :bind (:map embark-url-map
               ("=" . #'my/kagi-summarize))
   :config
@@ -24,6 +25,7 @@
  ideas.
 
  Never apologize.  Ask questions when unsure.")
+           (editor . "Act as an expert editor with several years of experience. Please provide a bullet point list of errors in spelling, punctuation, and grammar. Provide some general thoughts on style and structure. Then, ask for any elaborations or ask me to get you to suggest further useful prompts.")
            (programmer . "You are a careful programmer.  Provide code and only code as output without any additional text, prompt or note.")
            (cliwhiz . "You are a command line helper.  Generate command line commands that do what is requested, without any additional description or explanation.  Generate ONLY the command, I will edit it myself before running.")
            (emacser . "You are an Emacs maven.  Reply only with the most appropriate built-in Emacs command for the task I specify.  Do NOT generate any additional description or explanation.")
@@ -68,6 +70,12 @@
     :desc "Question Document" :n "q" #'gptel-ext-ask-document
     :desc "Rewrite Region" :n "R" #'gptel-ext-rewrite-and-replace
     :desc "Refactor Region" :n "r" #'gptel-ext-refactor)))
+
+
+(use-package! gptel-quick
+  :after (gptel embark)
+  :bind (:map embark-general-map
+              ("?" . #'gptel-quick)))
 
 
 (use-package! copilot
