@@ -6,4 +6,5 @@
 
 (use-package! snakemake-mode
   :config
-  (set-formatter! 'snakefmt '("snakefmt" "-") :modes '(snakemake-mode)))
+  (after! snakemake-mode
+    (set-formatter! 'snakefmt '("snakefmt" "-") :modes '(snakemake-mode))))
