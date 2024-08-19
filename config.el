@@ -1,6 +1,6 @@
 ;;; config-new.el -*- lexical-binding: t; -*-
 
-(setq user-mail-address "Edmund.A.Miller@gmail.com"
+(setq user-mail-address "git@edmundmiller.dev"
       user-full-name "Edmund Miller")
 
 (setq doom-scratch-initial-major-mode 'org-mode)
