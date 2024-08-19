@@ -403,6 +403,14 @@
 ;;; :lang python
 (setq-hook! 'python-mode-hook +format-with 'ruff)
 
+
+;;; :lang R
+(set-formatter!
+  'styler
+  '("R" "-s" "--no-save" "--no-restore" "-e" "styler::style_text(readLines(file('stdin')))")
+  :modes '(ess-r-mode))
+
+
 ;;; :lang rust
 (setq rustic-lsp-server 'rust-analyzer)
 
