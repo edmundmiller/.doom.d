@@ -516,7 +516,7 @@
       (expand-file-name "misc/ispell_personal" doom-private-dir))
 
 ;; sql-mode
-(set-formatter! 'sqruff '("sqruff render" "--nocolor" "--templater raw" "--dialect duckdb") :modes '(sql-mode))
+(set-formatter! 'sqruff '("sqruff" "fix" "--force" "-") :modes '(sql-mode))
 
 
 ;;
