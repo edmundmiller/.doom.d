@@ -35,9 +35,6 @@
     (gptel-request transcription
       :system  "Reformat the following text. Don't output anything besides the text. Clean up formatting, punctuation, spelling, and grammer, and split ideas into paragraphs. If there are very obvious cases of bullet point lists, format the output as a list")))
 
-(add-hook 'whisper-after-insert-hook
-          #'pipe-transcribed-audio-to-gptel)
-
 ;;;###autoload
 (defun my/kagi-summarize (url)
   "Function that requests kagi for a url summary and shows it in a side-window"
