@@ -13,18 +13,18 @@
   (doom-project-browse (expand-file-name "~/.config/dotfiles")))
 
 ;;;###autoload
-(defun +emiller/visit-todo-org ()
-  "Edit todo.org"
+(defun +emiller/visit-inbox-org ()
+  "Edit inbox.org"
   (interactive)
   (find-file
-   (expand-file-name "life/closed.org" org-directory)))
+   (expand-file-name "roam/project/inbox.org" org-directory)))
 
 ;;;###autoload
-(defun +emiller/visit-projects-org ()
-  "Edit todo.org"
+(defun +emiller/visit-projects ()
+  "Visit roam projects"
   (interactive)
   (find-file
-   (expand-file-name +org-capture-projects-file org-directory)))
+   (expand-file-name "roam/project/" org-directory)))
 
 ;;;###autoload
 (defun ediff-init-files ()

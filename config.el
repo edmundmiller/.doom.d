@@ -64,8 +64,8 @@
        :desc "APP: IRC" :n "i" #'=irc
        ;; :desc "APP: notmuch" :n "m" #'=mu4e
        ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
-       :desc "todo.org" :n "o" #'+emiller/visit-todo-org
-       :desc "projects" :n "p" #'+emiller/visit-projects-org
+       :desc "inbox.org" :n "o" #'+emiller/visit-inbox-org
+       :desc "projects" :n "p" #'+emiller/visit-projects
        :desc "emms" :n "s" #'emms
        :desc "APP: rss" :n "," #'=rss))
 
@@ -228,11 +228,10 @@
        org-roam-db-location (file-name-concat org-directory ".org-roam.db")
        org-roam-dailies-directory "journal/"
        org-archive-location (concat org-directory ".archive/%s::")
-       +org-capture-todo-file (file-name-concat org-directory "life/inbox.org")
-       +org-capture-projects-file (file-name-concat org-directory "life/projects.org")
+       +org-capture-todo-file (file-name-concat org-directory "roam/project/inbox.org")
+       +org-capture-projects-file (file-name-concat org-directory "roam/project/projects.org")
        ;; Agenda
-       org-agenda-files (append (directory-files-recursively (concat org-directory "life/") "\\`[^.].*\\.org\\'")
-                                (directory-files-recursively "~/src" "todo.org$"))
+       org-agenda-files (list (concat org-directory "roam/project"))
        org-agenda-skip-additional-timestamps-same-entry t)
 
 (after! org
