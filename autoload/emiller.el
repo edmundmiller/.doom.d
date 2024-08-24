@@ -33,14 +33,6 @@
                (expand-file-name "init.example.el" user-emacs-directory)))
 
 ;;;###autoload
-(defun insert-todays-date (arg)
-  (interactive "P")
-  (insert (if arg
-              (format-time-string "%d-%m-%Y")
-            (format-time-string "%Y-%m-%d"))))
-(global-set-key (kbd "C-c d") 'insert-todays-date)
-
-;;;###autoload
 (defun +emiller/org-archive-done-tasks ()
   "Archive all done tasks."
   (interactive)
