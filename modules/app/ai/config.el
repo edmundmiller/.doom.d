@@ -6,6 +6,7 @@
               ("=" . #'my/kagi-summarize))
   :config
   (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
+  (add-hook 'gptel-post-response-functions 'gptel-end-of-response)
   (setq! gptel-api-key #'gptel-api-key-from-auth-source
          ;; FIXME https://github.com/karthink/gptel/issues/182
          gptel-default-mode #'org-mode
