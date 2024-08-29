@@ -257,9 +257,91 @@
             "* %a %^g\n %?\n %i" :immediate-finish t))
          org-capture-templates)))
 
+(use-package! org-modern
+  :when (modulep! :lang org +modern)
+  :hook (org-mode . global-org-modern-mode)
+  :custom
+  (org-modern-priority
+   `((?A . ,(propertize "⚑" 'face 'error))
+     (?B . ,(propertize "⬆" 'face 'warning))
+     (?C . ,(propertize "■" 'face 'success))))
+  :custom-face (org-modern-label ((t :inherit default :height 1.0))))
+
 ;; org-agenda
+(use-package! org-super-agenda
+  :after org-agenda
+  :commands (org-super-agenda-mode)
+  :init (advice-add #'org-super-agenda-mode :around #'doom-shut-up-a)
+  :config
+  (setq! org-super-agenda-groups
+         '(;; Each group has an implicit boolean OR operator between its selectors.
+           (:name " Overdue "  ; Optionally specify section name
+            :scheduled past
+            :order 2
+            :face 'error)
+
+           (:name "Personal "
+            :and(:file-path "Personal.p" :not (:tag "event"))
+            :order 3)
+
+           (:name "Family "
+            :and(:file-path "Family.s" :not (:tag "event"))
+            :order 3)
+
+           (:name "Teaching "
+            :and(:file-path "Teaching.p" :not (:tag "event"))
+            :order 3)
+
+           (:name "Gamedev "
+            :and(:file-path "Gamedev.s" :not (:tag "event"))
+            :order 3)
+
+           (:name "Youtube "
+            :and(:file-path "Producer.p" :not (:tag "event"))
+            :order 3)
+
+           (:name "Music "
+            :and(:file-path "Bard.p" :not (:tag "event"))
+            :order 3)
+
+           (:name "Storywriting "
+            :and(:file-path "Stories.s" :not (:tag "event"))
+            :order 3)
+
+           (:name "Writing "
+            :and(:file-path "Author.p" :not (:tag "event"))
+            :order 3)
+
+           (:name "Learning "
+            :and(:file-path "Knowledge.p" :not (:tag "event"))
+            :order 3)
+
+           (:name " Today "  ; Optionally specify section name
+            :time-grid t
+            :date today
+            :scheduled today
+            :order 1
+            :face 'warning))))
+
 (after! org
   (setq!
+   ;; https://librephoenix.com/2023-12-30-making-org-agenda-look-beautiful
+   ;; Only show two days of the agenda at a time
+   org-agenda-span 2
+   org-agenda-start-day "+0d"
+   ;; Hide duplicates of the same todo item
+   ;; If it has more than one of timestamp, scheduled,
+   ;; or deadline information
+   org-agenda-skip-timestamp-if-done t
+   org-agenda-skip-deadline-if-done t
+   org-agenda-skip-scheduled-if-done t
+   org-agenda-skip-scheduled-if-deadline-is-shown t
+   org-agenda-skip-timestamp-if-deadline-is-shown t
+   ;; Ricing org agenda
+   org-agenda-current-time-string ""
+   org-agenda-time-grid '((daily) () "" "")
+   ;; TODO Category Icons
+
    org-agenda-custom-commands
    (append
     '(("1" "Q1" tags-todo "+important+urgent")
@@ -405,7 +487,8 @@
   :after org)
 
 ;;; :lang python
-(setq-hook! 'python-mode-hook +format-with 'ruff)
+;; FIXME this breaks snakefmt
+;; (setq-hook! 'python-mode-hook +format-with 'ruff)
 
 
 ;;; :lang R
