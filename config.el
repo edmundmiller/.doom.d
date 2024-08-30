@@ -258,7 +258,7 @@
          org-capture-templates)))
 
 (use-package! org-modern
-  :when (modulep! :lang org +modern)
+  ;; TODO :when (modulep! :lang org +modern)
   :hook (org-mode . global-org-modern-mode)
   :custom
   (org-modern-priority
@@ -273,7 +273,9 @@
   :commands (org-super-agenda-mode)
   :init (advice-add #'org-super-agenda-mode :around #'doom-shut-up-a)
   :config
-  (setq! org-super-agenda-groups
+  (setq! org-super-agenda-mode t)
+  (setq! org-super-agenda-header-map evil-org-agenda-mode-map
+         org-super-agenda-groups
          '(;; Each group has an implicit boolean OR operator between its selectors.
            (:name " Overdue "  ; Optionally specify section name
             :scheduled past
