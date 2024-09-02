@@ -290,13 +290,28 @@
    org-agenda-time-grid '((daily) () "" ""))
   ;; TODO Category Icons
 
-  ;; https://systemcrafters.net/org-mode-productivity/custom-org-agenda-views/#weekly-review
   (setq! org-agenda-custom-commands
          (append
           '(("1" "Q1" tags-todo "+important+urgent")
             ("2" "Q2" tags-todo "+important-urgent")
             ("3" "Q3" tags-todo "-important+urgent")
             ("4" "Q4" tags-todo "-important-urgent")
+            ;; https://systemcrafters.net/org-mode-productivity/custom-org-agenda-views/#weekly-review
+            ("p" "Planning"
+             ((tags-todo "+@planning"
+                         ((org-agenda-overriding-header "Planning Tasks")))
+              (tags-todo "-{.*}"
+                         ((org-agenda-overriding-header "Untagged Tasks")))
+              ;; FIXME Remove hardcoded file
+              (todo ".*" ((org-agenda-files '("~/sync/org/roam/project/inbox.org"))
+                          (org-agenda-overriding-header "Unprocessed Inbox Items")))))
+
+            ("d" "Daily Agenda"
+             ((agenda "" ((org-agenda-span 'day)
+                          (org-deadline-warning-days 7)))
+              (tags-todo "+PRIORITY=\"A\""
+                         ((org-agenda-overriding-header "High Priority Tasks")))))
+
             ("w" "Weekly Review"
              ((agenda ""
                       ((org-agenda-overriding-header "Completed Tasks")
