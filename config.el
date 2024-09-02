@@ -240,6 +240,7 @@
         org-ellipsis " [...] "
         org-export-with-toc nil
         org-pomodoro-length 20
+        org-log-done 'time
         ;; Fix org-id on SPC-l-s
         ;; org-id-link-to-org-use-id 'use-existing
         org-deadline-warning-days 5
@@ -272,9 +273,6 @@
   :init (advice-add #'org-super-agenda-mode :around #'doom-shut-up-a)
   :config
   (setq!
-   ;; https://systemcrafters.net/org-mode-productivity/custom-org-agenda-views/#weekly-review
-   org-log-done 'time
-   org-agenda-start-with-log-mode t
    ;; https://librephoenix.com/2023-12-30-making-org-agenda-look-beautiful
    ;; Only show two days of the agenda at a time
    org-agenda-span 2
@@ -292,6 +290,7 @@
    org-agenda-time-grid '((daily) () "" ""))
   ;; TODO Category Icons
 
+  ;; https://systemcrafters.net/org-mode-productivity/custom-org-agenda-views/#weekly-review
   (setq! org-agenda-custom-commands
          (append
           '(("1" "Q1" tags-todo "+important+urgent")
@@ -301,11 +300,16 @@
             ("w" "Weekly Review"
              ((agenda ""
                       ((org-agenda-overriding-header "Completed Tasks")
+                       ;; (org-agenda-start-with-log-mode t)
+                       (org-agenda-log-mode-items '(closed))
+                       (org-agenda-show-log t)
                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
                        (org-agenda-span 'week)))
 
               (agenda ""
                       ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
+                       (org-agenda-log-mode-items '(clock))
+                       (org-agenda-show-log t)
                        (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
                        (org-agenda-span 'week))))))))
 
