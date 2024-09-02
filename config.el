@@ -273,6 +273,41 @@
   :commands (org-super-agenda-mode)
   :init (advice-add #'org-super-agenda-mode :around #'doom-shut-up-a)
   :config
+  (setq!
+   ;; https://librephoenix.com/2023-12-30-making-org-agenda-look-beautiful
+   ;; Only show two days of the agenda at a time
+   org-agenda-span 2
+   org-agenda-start-day "+0d"
+   ;; Hide duplicates of the same todo item
+   ;; If it has more than one of timestamp, scheduled,
+   ;; or deadline information
+   org-agenda-skip-timestamp-if-done t
+   org-agenda-skip-deadline-if-done t
+   org-agenda-skip-scheduled-if-done t
+   org-agenda-skip-scheduled-if-deadline-is-shown t
+   org-agenda-skip-timestamp-if-deadline-is-shown t
+   ;; Ricing org agenda
+   org-agenda-current-time-string ""
+   org-agenda-time-grid '((daily) () "" "")
+   ;; TODO Category Icons
+
+   org-agenda-custom-commands
+   (append
+    '(("1" "Q1" tags-todo "+important+urgent")
+      ("2" "Q2" tags-todo "+important-urgent")
+      ("3" "Q3" tags-todo "-important+urgent")
+      ("4" "Q4" tags-todo "-important-urgent")
+      ("w" "Weekly Review"
+       ((agenda ""
+                ((org-agenda-overriding-header "Completed Tasks")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
+                 (org-agenda-span 'week)))
+
+        (agenda ""
+                ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-span 'week))))))))
+
   (setq! org-super-agenda-mode t)
   (setq! org-super-agenda-header-map evil-org-agenda-mode-map
          org-super-agenda-groups
@@ -324,42 +359,6 @@
             :scheduled today
             :order 1
             :face 'warning))))
-
-(after! org
-  (setq!
-   ;; https://librephoenix.com/2023-12-30-making-org-agenda-look-beautiful
-   ;; Only show two days of the agenda at a time
-   org-agenda-span 2
-   org-agenda-start-day "+0d"
-   ;; Hide duplicates of the same todo item
-   ;; If it has more than one of timestamp, scheduled,
-   ;; or deadline information
-   org-agenda-skip-timestamp-if-done t
-   org-agenda-skip-deadline-if-done t
-   org-agenda-skip-scheduled-if-done t
-   org-agenda-skip-scheduled-if-deadline-is-shown t
-   org-agenda-skip-timestamp-if-deadline-is-shown t
-   ;; Ricing org agenda
-   org-agenda-current-time-string ""
-   org-agenda-time-grid '((daily) () "" "")
-   ;; TODO Category Icons
-
-   org-agenda-custom-commands
-   (append
-    '(("1" "Q1" tags-todo "+important+urgent")
-      ("2" "Q2" tags-todo "+important-urgent")
-      ("3" "Q3" tags-todo "-important+urgent")
-      ("4" "Q4" tags-todo "-important-urgent")
-      ("w" "Weekly Review"
-       ((agenda ""
-                ((org-agenda-overriding-header "Completed Tasks")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
-                 (org-agenda-span 'week)))
-
-        (agenda ""
-                ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-span 'week)))))))))
 
 
 (after! org-roam
