@@ -289,25 +289,25 @@
    org-agenda-skip-timestamp-if-deadline-is-shown t
    ;; Ricing org agenda
    org-agenda-current-time-string ""
-   org-agenda-time-grid '((daily) () "" "")
-   ;; TODO Category Icons
+   org-agenda-time-grid '((daily) () "" ""))
+  ;; TODO Category Icons
 
-   org-agenda-custom-commands
-   (append
-    '(("1" "Q1" tags-todo "+important+urgent")
-      ("2" "Q2" tags-todo "+important-urgent")
-      ("3" "Q3" tags-todo "-important+urgent")
-      ("4" "Q4" tags-todo "-important-urgent")
-      ("w" "Weekly Review"
-       ((agenda ""
-                ((org-agenda-overriding-header "Completed Tasks")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
-                 (org-agenda-span 'week)))
+  (setq! org-agenda-custom-commands
+         (append
+          '(("1" "Q1" tags-todo "+important+urgent")
+            ("2" "Q2" tags-todo "+important-urgent")
+            ("3" "Q3" tags-todo "-important+urgent")
+            ("4" "Q4" tags-todo "-important-urgent")
+            ("w" "Weekly Review"
+             ((agenda ""
+                      ((org-agenda-overriding-header "Completed Tasks")
+                       (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
+                       (org-agenda-span 'week)))
 
-        (agenda ""
-                ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-span 'week))))))))
+              (agenda ""
+                      ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
+                       (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                       (org-agenda-span 'week))))))))
 
   (setq! org-super-agenda-mode t)
   (setq! org-super-agenda-header-map evil-org-agenda-mode-map
