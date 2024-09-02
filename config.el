@@ -240,8 +240,6 @@
         org-ellipsis " [...] "
         org-export-with-toc nil
         org-pomodoro-length 20
-        org-log-done 'time
-        ;; org-agenda-start-with-log-mode t
         ;; Fix org-id on SPC-l-s
         ;; org-id-link-to-org-use-id 'use-existing
         org-deadline-warning-days 5
@@ -274,6 +272,9 @@
   :init (advice-add #'org-super-agenda-mode :around #'doom-shut-up-a)
   :config
   (setq!
+   ;; https://systemcrafters.net/org-mode-productivity/custom-org-agenda-views/#weekly-review
+   org-log-done 'time
+   org-agenda-start-with-log-mode t
    ;; https://librephoenix.com/2023-12-30-making-org-agenda-look-beautiful
    ;; Only show two days of the agenda at a time
    org-agenda-span 2
