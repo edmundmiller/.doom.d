@@ -337,40 +337,16 @@
             :order 2
             :face 'error)
 
-           (:name "Personal "
-            :and(:file-path "Personal.p" :not (:tag "event"))
-            :order 3)
-
            (:name "Family "
-            :and(:file-path "Family.s" :not (:tag "event"))
-            :order 3)
-
-           (:name "Teaching "
-            :and(:file-path "Teaching.p" :not (:tag "event"))
-            :order 3)
-
-           (:name "Gamedev "
-            :and(:file-path "Gamedev.s" :not (:tag "event"))
-            :order 3)
-
-           (:name "Youtube "
-            :and(:file-path "Producer.p" :not (:tag "event"))
-            :order 3)
-
-           (:name "Music "
-            :and(:file-path "Bard.p" :not (:tag "event"))
-            :order 3)
-
-           (:name "Storywriting "
-            :and(:file-path "Stories.s" :not (:tag "event"))
+            :and(:discard (:file-path "calendar-beorg"))
             :order 3)
 
            (:name "Writing "
-            :and(:file-path "Author.p" :not (:tag "event"))
+            :and(:discard (:file-path "calendar-beorg"))
             :order 3)
 
            (:name "Learning "
-            :and(:file-path "Knowledge.p" :not (:tag "event"))
+            :and(:discard (:file-path "calendar-beorg"))
             :order 3)
 
            (:name " Today "  ; Optionally specify section name
