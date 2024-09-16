@@ -83,7 +83,6 @@
        ;;gist
        (lookup +docsets +dictionary)
        (lsp +peek)
-       ;;macos
        magit
        make
        ;;pass
@@ -93,6 +92,9 @@
        ;;tmux
        tree-sitter
        upload
+
+       :os
+       (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
 
        :lang
        (astro +lsp)
