@@ -99,17 +99,21 @@
 (use-package! whisper
   :config
   (setq! whisper-install-directory (concat doom-data-dir "whisper")
-         whisper-install-whispercpp nil ;; Using nixpkgs
-         ;; wget https://huggingface.co/distil-whisper/distil-large-v3-ggml/resolve/main/ggml-distil-large-v3.bin -P ./models
-         whisper-model "distil-medium.en"
+         ;; whisper-install-whispercpp nil ;; Using nixpkgs
+         ;; wget https://huggingface.co/distil-whisper/distil-large-v3-ggml/resolve/main/ggml-distil-large-v3.bin -P ~/.config/emacs/.local/etc/whisper/whisper.cpp/models/
+         whisper-model "distil-large-v3"
          whisper-language "en"
          whisper-translate nil
          whisper-enable-speed-up nil ;; FIXME this just fails
-         whisper-use-threads (/ (num-processors) 2)
-         whisper--ffmpeg-input-format "pulse"
-         whisper--ffmpeg-input-device "default")
+         whisper-use-threads (/ (num-processors) 2))
+  ;; whisper--ffmpeg-input-format "pulse"
+  ;; whisper--ffmpeg-input-device "default")
+  (when (featurep :system 'macos)
+    (rk/select-default-audio-device "Macbook Pro Microphone")
+    (when rk/default-audio-device)
+    (setq whisper--ffmpeg-input-device (format ":%s" rk/default-audio-device)))
 
-  (advice-add 'whisper-command :override #'whisper--ctranslate2-command)
+  ;; (advice-add 'whisper-command :override #'whisper--ctranslate2-command)
 
   (map! :leader
         (:prefix "y"
