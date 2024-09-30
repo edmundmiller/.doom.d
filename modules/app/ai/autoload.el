@@ -72,7 +72,7 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
   (let ((transcription (buffer-substring (line-beginning-position)
                                          (line-end-position))))
     (gptel-request transcription
-      :system  "Reformat the following text. Don't output anything besides the text. Clean up formatting, punctuation, spelling, and grammer, and split ideas into paragraphs. If there are very obvious cases of bullet point lists, format the output as a list")))
+                   :system  "Reformat the following text. Don't output anything besides the text. Clean up formatting, punctuation, spelling, and grammer, and split ideas into paragraphs. If there are very obvious cases of bullet point lists, format the output as a list")))
 
 ;;;###autoload
 (defun my/kagi-summarize (url)
@@ -80,20 +80,27 @@ If `DEVICE-NAME' is provided, it will be used instead of prompting the user."
   (let ((gptel-backend gptel--kagi)
         (gptel-model "summarize:agnes")) ;or summarize:cecil, summarize:daphne, summarize:muriel
     (gptel-request
-        url
-      :callback
-      (lambda (response info)
-        (if response
-            (with-current-buffer (get-buffer-create "*Kagi Summary*")
-              (let ((inhibit-read-only t))
-                (erase-buffer)
-                (visual-line-mode 1)
-                (insert response)
-                (display-buffer
-                 (current-buffer)
-                 '((display-buffer-in-side-window
-                    display-buffer-at-bottom)
-                   (side . bottom))))
-              (special-mode 1))
-          (message "gptel-request failed with message: %s"
-                   (plist-get info :status)))))))
+     url
+     :callback
+     (lambda (response info)
+       (if response
+           (with-current-buffer (get-buffer-create "*Kagi Summary*")
+             (let ((inhibit-read-only t))
+               (erase-buffer)
+               (visual-line-mode 1)
+               (insert response)
+               (display-buffer
+                (current-buffer)
+                '((display-buffer-in-side-window
+                   display-buffer-at-bottom)
+                  (side . bottom))))
+             (special-mode 1))
+         (message "gptel-request failed with message: %s"
+                  (plist-get info :status)))))))
+
+;;;###autoload
+(defun read-file-contents (file-path)
+  "Read the contents of FILE-PATH and return it as a string."
+  (with-temp-buffer
+    (insert-file-contents file-path)
+    (buffer-string)))

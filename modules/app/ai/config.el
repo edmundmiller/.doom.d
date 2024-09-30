@@ -13,7 +13,7 @@
          gptel-backend (gptel-make-anthropic "Claude"
                          :stream t
                          :key #'gptel-api-key-from-auth-source)
-         gptel-model "claude-3-opus-20240229"
+         gptel-model "claude-3-5-sonnet-20240620"
          gptel-org-branching-context t
          ;; https://github.com/karthink/gptel/issues/184#issuecomment-1897697888
          gptel-directives
@@ -121,3 +121,8 @@
          :desc "Whisper File" :n "W" #'whisper-file)))
 
 (use-package! gptscript-mode)
+
+(use-package! elysium)
+;; Below are the default values
+;; (elysium-window-size 0.33) ; The elysium buffer will be 1/3 your screen
+;; (elysium-window-style 'vertical)) ; Can be customized to horizontal
