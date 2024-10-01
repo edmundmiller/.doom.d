@@ -1,9 +1,10 @@
 ;;; app/ai/config.el -*- lexical-binding: t; -*-
 
 (use-package! gptel
-  :after embark
-  :bind (:map embark-url-map
-              ("=" . #'my/kagi-summarize))
+  ;; FIXME
+  ;; :bind (after! embark
+  ;;         (:map embark-url-map
+  ;;               ("=" . #'my/kagi-summarize)))
   :config
   (add-hook 'gptel-post-stream-hook 'gptel-auto-scroll)
   (add-hook 'gptel-post-response-functions 'gptel-end-of-response)
@@ -122,7 +123,12 @@
 
 (use-package! gptscript-mode)
 
-(use-package! elysium)
-;; Below are the default values
-;; (elysium-window-size 0.33) ; The elysium buffer will be 1/3 your screen
-;; (elysium-window-style 'vertical)) ; Can be customized to horizontal
+(use-package! elysium
+  :after gptel
+  :config
+  (setq! elysium-window-size 0.25)
+
+  (map! :leader
+        (:prefix "y"
+         :desc "Elysium" :n "e" #'elysium-query
+         :desc "Toggle Elysium" :n "E" #'elysium-toggle-window)))
