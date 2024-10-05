@@ -1,6 +1,18 @@
 ;;; app/ai/autoload.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
+(defun whisper--mlx_whisper-command (input-file)
+  `("mlx_whisper"
+    ;; ,@(when whisper-use-threads (list "--threads" (number-to-string whisper-use-threads)))
+    "--task" ,(if whisper-translate "translate" "transcribe")
+    "--model" ,whisper-model
+    "--language" ,whisper-language
+    "--output-dir" "/tmp/"
+    "--output-format" "txt"
+    "--verbose" "False"
+    ,input-file))
+
+;;;###autoload
 (defun rk/get-ffmpeg-device ()
   "Gets the list of devices available to ffmpeg.
 The output of the ffmpeg command is pretty messy, e.g.
