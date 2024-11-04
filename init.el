@@ -100,7 +100,6 @@
        (astro +lsp)
        ;;agda
        ;;assembly
-       bioinfo
        ;;(beancount +lsp)
        (cc +lsp +tree-sitter)
        ;;clojure
@@ -134,6 +133,7 @@
        ;;(lua +fennel)
        (markdown +tree-sitter)
        mermaid
+       (nextflow +lsp)
        ;;nim
        (nix +lsp +tree-sitter)
        ;;ocaml
@@ -165,6 +165,7 @@
        ;;(scheme +guile)
        sh
        ;;sml
+       snakemake
        ;;solidity
        ;;swift
        ;;terra
