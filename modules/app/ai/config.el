@@ -14,7 +14,7 @@
          gptel-backend (gptel-make-anthropic "Claude"
                          :stream t
                          :key #'gptel-api-key-from-auth-source)
-         gptel-model "claude-3-5-sonnet-20240620"
+         gptel-model "claude-3-5-sonnet-latest"
          gptel-org-branching-context t
          ;; https://github.com/karthink/gptel/issues/184#issuecomment-1897697888
          gptel-directives
@@ -132,3 +132,9 @@
         (:prefix "y"
          :desc "Elysium" :n "e" #'elysium-query
          :desc "Toggle Elysium" :n "E" #'elysium-toggle-window)))
+
+
+(use-package! aider
+  :config
+  (setq aider-args '("--model" "anthropic/claude-3-5-sonnet-latest" "--no-auto-commits"))
+  (setenv "ANTHROPIC_API_KEY" "TODO"))

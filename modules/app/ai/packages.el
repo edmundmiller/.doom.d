@@ -14,3 +14,5 @@
 (package! gptscript-mode :recipe (:host github :repo "emacs-openai/gptscript-mode"))
 
 (package! elysium)
+
+(package! aider :recipe (:host github :repo "tninja/aider.el" :files ("*.el")))
