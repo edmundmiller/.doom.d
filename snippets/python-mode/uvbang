@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: UV Python Script
+# key: #!uv
+# condition: (= (point) 1)
+# --
+# contributor: Edmund (edmundmiller)
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "pandas",
+#     "${0:altair[all]}",
+# ]
+# ///
