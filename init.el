@@ -97,7 +97,7 @@
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
 
        :lang
-       (astro +lsp)
+       ;;(astro +lsp)
        ;;agda
        ;;assembly
        ;;(beancount +lsp)
@@ -169,7 +169,7 @@
        ;;solidity
        ;;swift
        ;;terra
-       typst
+       ;;typst
        (web +lsp +tree-sitter)
        (yaml +lsp)
 
