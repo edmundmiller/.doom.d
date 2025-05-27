@@ -715,7 +715,3 @@
      (ssh-deploy-async . 1))))
 
 (setq enable-local-variables :all)
-
-;; Activate this sorting in the agenda:
-(setq org-agenda-cmp-user-defined #'+emiller/org-urgency-cmp)
-(setq org-agenda-sorting-strategy '(user-defined-down))
