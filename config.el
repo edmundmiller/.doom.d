@@ -164,7 +164,9 @@
                                "--sort"
                                "--duplicates"
                                "--merge"
+                               "--no-strip-comments"
                                "--tidy-comments"
+                               "--generate-keys"
                                ) :modes '(bibtex-mode))
 
 ;;; :tools direnv
