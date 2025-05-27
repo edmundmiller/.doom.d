@@ -80,23 +80,6 @@
               ("?" . #'gptel-quick)))
 
 
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word))
-  :config
-  (map! :leader
-        (:prefix "y"
-         :desc "Copilot" :n "c" #'copilot-complete
-         :desc "Copilot Panel" :n "p" #'copilot-panel-complete))
-
-  (setq! copilot-idle-delay 1
-         copilot-indent-offset-warning-disable t))
-
-
 (use-package! whisper
   :config
   (setq! whisper-install-directory (concat doom-data-dir "whisper")
