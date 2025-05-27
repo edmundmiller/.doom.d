@@ -647,12 +647,6 @@
     (add-to-list 'agenix-key-files file)))
 
 
-(use-package! nushell-ts-mode)
-
-
-(use-package! nushell-ts-babel
-  :after nushell-ts-mode)
-
 (use-package! age
   :init
   (setq! age-program "rage"
