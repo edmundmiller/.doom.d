@@ -16,8 +16,7 @@
 (defun +emiller/visit-inbox-org ()
   "Edit inbox.org"
   (interactive)
-  (find-file
-   (expand-file-name "roam/project/inbox.org" org-directory)))
+  (find-file +org-capture-todo-file))
 
 ;;;###autoload
 (defun +emiller/visit-projects ()

@@ -20,7 +20,6 @@
 
 ;; Experimental
 (package! org-modern)
-(package! org-super-agenda)
 (package! org-nix-shell :recipe (:host github :repo "AntonHakansson/org-nix-shell"))
 (package! outline-yaml :recipe (:host github :repo "jamescherti/outline-yaml.el"))
 (package! codespaces)

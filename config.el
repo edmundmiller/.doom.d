@@ -233,9 +233,6 @@
        org-archive-location (concat org-directory ".archive/%s::")
        +org-capture-todo-file (file-name-concat org-directory "roam/project/inbox.org")
        +org-capture-projects-file (file-name-concat org-directory "roam/project/projects.org")
-       ;; Agenda
-       org-agenda-files (list (concat org-directory "roam/project"))
-       org-agenda-skip-additional-timestamps-same-entry t)
 
 (after! org
   (setq org-startup-folded 'show2levels
@@ -272,96 +269,6 @@
      (?B . ,(propertize "⬆" 'face 'warning))
      (?C . ,(propertize "■" 'face 'success))))
   :custom-face (org-modern-label ((t :inherit default :height 1.0))))
-
-;; org-agenda
-(use-package! org-super-agenda
-  :after org-agenda
-  :commands (org-super-agenda-mode)
-  :init (advice-add #'org-super-agenda-mode :around #'doom-shut-up-a)
-  :config
-  (setq!
-   ;; https://librephoenix.com/2023-12-30-making-org-agenda-look-beautiful
-   ;; Only show two days of the agenda at a time
-   org-agenda-span 2
-   org-agenda-start-day "+0d"
-   ;; Hide duplicates of the same todo item
-   ;; If it has more than one of timestamp, scheduled,
-   ;; or deadline information
-   org-agenda-skip-timestamp-if-done t
-   org-agenda-skip-deadline-if-done t
-   org-agenda-skip-scheduled-if-done t
-   org-agenda-skip-scheduled-if-deadline-is-shown t
-   org-agenda-skip-timestamp-if-deadline-is-shown t
-   ;; Ricing org agenda
-   org-agenda-current-time-string ""
-   org-agenda-time-grid '((daily) () "" ""))
-  ;; TODO Category Icons
-
-  (setq! org-agenda-custom-commands
-         (append
-          '(("1" "Q1" tags-todo "+important+urgent")
-            ("2" "Q2" tags-todo "+important-urgent")
-            ("3" "Q3" tags-todo "-important+urgent")
-            ("4" "Q4" tags-todo "-important-urgent")
-            ;; https://systemcrafters.net/org-mode-productivity/custom-org-agenda-views/#weekly-review
-            ("p" "Planning"
-             ((tags-todo "+@planning"
-                         ((org-agenda-overriding-header "Planning Tasks")))
-              (tags-todo "-{.*}"
-                         ((org-agenda-overriding-header "Untagged Tasks")))
-              ;; FIXME Remove hardcoded file
-              (todo ".*" ((org-agenda-files '("~/sync/org/roam/project/inbox.org"))
-                          (org-agenda-overriding-header "Unprocessed Inbox Items")))))
-
-            ("d" "Daily Agenda"
-             ((agenda "" ((org-agenda-span 'day)
-                          (org-deadline-warning-days 7)))
-              (tags-todo "+PRIORITY=\"A\""
-                         ((org-agenda-overriding-header "High Priority Tasks")))))
-
-            ("w" "Weekly Review"
-             ((agenda ""
-                      ((org-agenda-overriding-header "Completed Tasks")
-                       ;; (org-agenda-start-with-log-mode t)
-                       (org-agenda-log-mode-items '(closed))
-                       (org-agenda-show-log t)
-                       (org-agenda-skip-function '(org-agenda-skip-entry-if 'nottodo 'done))
-                       (org-agenda-span 'week)))
-
-              (agenda ""
-                      ((org-agenda-overriding-header "Unfinished Scheduled Tasks")
-                       (org-agenda-log-mode-items '(clock))
-                       (org-agenda-show-log t)
-                       (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                       (org-agenda-span 'week))))))))
-
-  (setq! org-super-agenda-mode t)
-  (setq! org-super-agenda-header-map evil-org-agenda-mode-map
-         org-super-agenda-groups
-         '(;; Each group has an implicit boolean OR operator between its selectors.
-           (:name " Overdue "  ; Optionally specify section name
-            :scheduled past
-            :order 2
-            :face 'error)
-
-           (:name "Family "
-            :and(:discard (:file-path "calendar-beorg"))
-            :order 3)
-
-           (:name "Writing "
-            :and(:discard (:file-path "calendar-beorg"))
-            :order 3)
-
-           (:name "Learning "
-            :and(:discard (:file-path "calendar-beorg"))
-            :order 3)
-
-           (:name " Today "  ; Optionally specify section name
-            :time-grid t
-            :date today
-            :scheduled today
-            :order 1
-            :face 'warning))))
 
 
 (after! org-roam
