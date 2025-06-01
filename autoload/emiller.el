@@ -26,6 +26,12 @@
   (find-file
    (expand-file-name "roam/project/" org-directory)))
 
+(defun +emiller/show-agenda ()
+  (let ((agenda-frame (make-frame-command)))
+    (select-frame agenda-frame)
+    (org-agenda-list)
+    (x-focus-frame agenda-frame)))
+
 ;;;###autoload
 (defun ediff-init-files ()
   (interactive)
