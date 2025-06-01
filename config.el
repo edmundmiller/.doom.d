@@ -703,6 +703,11 @@
   ((yaml-mode . outline-yaml-minor-mode)
    (yaml-ts-mode . outline-yaml-minor-mode)))
 
+(use-package! org-urgency
+  :after org
+  :hook
+  ((org-mode . org-urgency-mode)))
+
 ;;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
