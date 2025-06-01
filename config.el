@@ -226,13 +226,13 @@
 
 ;;; :lang org
 (setq! +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter
-       org-directory "~/sync/org/"
+       org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/"
        org-roam-directory (concat org-directory "roam/")
        org-roam-db-location (file-name-concat org-directory ".org-roam.db")
        org-roam-dailies-directory "journal/"
        org-archive-location (concat org-directory ".archive/%s::")
-       +org-capture-todo-file (file-name-concat org-directory "roam/project/inbox.org")
-       +org-capture-projects-file (file-name-concat org-directory "roam/project/projects.org")
+       +org-capture-todo-file (file-name-concat org-directory "inbox.org")
+       +org-capture-projects-file (file-name-concat org-directory "roam/project/projects.org"))
 
 (after! org
   (setq org-startup-folded 'show2levels
