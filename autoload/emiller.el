@@ -26,11 +26,43 @@
   (find-file
    (expand-file-name "roam/project/" org-directory)))
 
+;;;###autoload
 (defun +emiller/show-agenda ()
-  (let ((agenda-frame (make-frame-command)))
-    (select-frame agenda-frame)
-    (org-agenda-list)
-    (x-focus-frame agenda-frame)))
+  "Toggle org-agenda frame. If frame exists and is focused, close it.
+If frame exists but isn't focused, bring it to front.
+If frame doesn't exist, create a new one."
+  (let ((agenda-frame (+emiller/find-agenda-frame)))
+    (cond
+     ;; If agenda frame exists and is currently selected, close it
+     ((and agenda-frame (eq agenda-frame (selected-frame)))
+      (delete-frame agenda-frame))
+     ;; If agenda frame exists but isn't selected, focus it and refresh agenda
+     (agenda-frame
+      (select-frame agenda-frame)
+      (x-focus-frame agenda-frame)
+      ;; Refresh the agenda to make sure it's current
+      (when (get-buffer "*Org Agenda*")
+        (with-current-buffer "*Org Agenda*"
+          (org-agenda-redo))))
+     ;; If no agenda frame exists, create a new one
+     (t
+      (let ((new-frame (make-frame-command)))
+        (select-frame new-frame)
+        ;; Set a parameter to identify this as the agenda frame
+        (set-frame-parameter new-frame 'agenda-frame t)
+        ;; Set frame title for easy identification
+        (set-frame-parameter new-frame 'title "Org Agenda")
+        (org-agenda-list)
+        (x-focus-frame new-frame))))))
+
+;;;###autoload
+(defun +emiller/find-agenda-frame ()
+  "Find the frame designated as the agenda frame."
+  (catch 'found
+    (dolist (frame (frame-list))
+      (when (frame-parameter frame 'agenda-frame)
+        (throw 'found frame)))
+    nil))
 
 ;;;###autoload
 (defun ediff-init-files ()
