@@ -311,8 +311,8 @@
            :unnarrowed t))
         ;; Use human readable dates for dailies titles
         org-roam-dailies-capture-templates
-        `(("d" "default" plain ""
-           :target (file+head "%<%Y-%m-%d>.org" ,(format "%%[%s/template/daily-org]" doom-private-dir))))))
+        '(("d" "default" plain ""
+           :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d %A>\n\n%[~/.config/doom/template/daily-org]")))))
 
 (after! org-tree-slide
   ;; I use g{h,j,k} to traverse headings and TAB to toggle their visibility, and
