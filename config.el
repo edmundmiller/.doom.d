@@ -272,37 +272,38 @@
 
 
 (after! org-roam
+  ;; TODO https://gist.github.com/ashton314/1de93821d255412cdadfbcf98cd30cad
   (setq org-roam-capture-templates
         `(("n" "note" plain
-           ,(format "#+title: ${title}\n%%[%s/template/note-org]" org-roam-directory)
+           ,(format "#+title: ${title}\n%%[%s/template/note-org]" doom-private-dir)
            :target (file "note/%<%Y%m%d%H%M%S>-${slug}.org")
            :unnarrowed t)
           ("r" "thought" plain
-           ,(format "#+title: ${title}\n%%[%s/template/thought-org]" org-roam-directory)
+           ,(format "#+title: ${title}\n%%[%s/template/thought-org]" doom-private-dir)
            :target (file "thought/%<%Y%m%d%H%M%S>-${slug}.org")
            :unnarrowed t)
           ("t" "topic" plain
-           ,(format "#+title: ${title}\n%%[%s/template/topic-org]" org-roam-directory)
+           ,(format "#+title: ${title}\n%%[%s/template/topic-org]" doom-private-dir)
            :target (file "topic/%<%Y%m%d%H%M%S>-${slug}.org")
            :unnarrowed t)
           ("c" "contact" plain
-           ,(format "#+title: ${title}\n%%[%s/template/contact-org]" org-roam-directory)
+           ,(format "#+title: ${title}\n%%[%s/template/contact-org]" doom-private-dir)
            :target (file "contact/%<%Y%m%d%H%M%S>-${slug}.org")
            :unnarrowed t)
           ("p" "project" plain
-           ,(format "#+title: ${title}\n%%[%s/template/project-org]" org-roam-directory)
+           ,(format "#+title: ${title}\n%%[%s/template/project-org]" doom-private-dir)
            :target (file "project/%<%Y%m%d>-${slug}.org")
            :unnarrowed t)
           ("i" "invoice" plain
-           ,(format "#+title: %%<%%Y%%m%%d>-${title}\n%%[%s/template/invoice-org]" org-roam-directory)
+           ,(format "#+title: %%<%%Y%%m%%d>-${title}\n%%[%s/template/invoice-org]" doom-private-dir)
            :target (file "invoice/%<%Y%m%d>-${slug}.org")
            :unnarrowed t)
           ("f" "ref" plain
-           ,(format "#+title: ${title}\n%%[%s/template/ref-org]" org-roam-directory)
+           ,(format "#+title: ${title}\n%%[%s/template/ref-org]" doom-private-dir)
            :target (file "ref/%<%Y%m%d%H%M%S>-${slug}.org")
            :unnarrowed t)
           ("w" "weekly" plain
-           ,(format "#+title: ${title}\n%%[%s/template/weekly-org]" org-roam-directory)
+           ,(format "#+title: ${title}\n%%[%s/template/weekly-org]" doom-private-dir)
            :target (file "journal/weekly_review/%<%Y-%m-%d>.org.age")
            :unnarrowed t)
           ("s" "secret" plain "#+title: ${title}\n\n"
@@ -311,7 +312,7 @@
         ;; Use human readable dates for dailies titles
         org-roam-dailies-capture-templates
         `(("d" "default" plain ""
-           :target (file+head "%<%Y-%m-%d>.org" ,(format "%%[%s/template/daily-org]" org-roam-directory))))))
+           :target (file+head "%<%Y-%m-%d>.org" ,(format "%%[%s/template/daily-org]" doom-private-dir))))))
 
 (after! org-tree-slide
   ;; I use g{h,j,k} to traverse headings and TAB to toggle their visibility, and

@@ -1,0 +1,42 @@
+#+filetags: paid unpaid unsent
+
+- Opened   :: [%<%Y-%m-%d>]
+- Closed   ::
+- Due      ::
+- Project  :: %?
+- Contact  ::
+- Currency :: CAD
+
+* Details
+** Recipient
+
+** Sender
+{user-full-name} <{user-mail-address}>
+{address}
+
+* Items
+** <summary>
+:PROPERTIES:
+:AMOUNT:   0.00
+:QUANTITY: 12
+:UNIT:     mo
+:END:
+
+<description>
+
+* Adjustments
+** HST
+:PROPERTIES:
+:AMOUNT:   0%
+:END:
+
+* Payments
+# *** Paypal
+# :PROPERTIES:
+# :AMOUNT:   0.00
+# :DATE:     [2023-01-01]
+# :END:
+
+* Notes
+
+* Hidden notes
