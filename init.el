@@ -83,7 +83,7 @@
        ;;gist
        (lookup +docsets +dictionary)
        (lsp +peek)
-       magit
+       (magit +forge)
        make
        ;;pass
        pdf
