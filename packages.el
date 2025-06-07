@@ -9,6 +9,7 @@
 
 (package! ob-duckdb :recipe (:local-repo "~/src/emacs/ob-duckdb" :build (:not compile)))
 (package! org-urgency :recipe (:local-repo "~/src/emacs/org-urgency" :build (:not compile)))
+(package! org-motion :recipe (:local-repo "~/src/emacs/org-motion" :build (:not compile)))
 (package! academic-phrases)
 (package! mu4e-conversation)
 (package! mu4e-patch :recipe (:host github :repo "seanfarley/mu4e-patch"))

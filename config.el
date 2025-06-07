@@ -616,10 +616,12 @@
   ((yaml-mode . outline-yaml-minor-mode)
    (yaml-ts-mode . outline-yaml-minor-mode)))
 
-(use-package! org-urgency
-  :after org
-  :hook
-  ((org-mode . org-urgency-mode)))
+
+(use-package! org-motion
+  ;; :load-path "~/src/emacs/org-urgency"
+  :after org)
+;; :hook
+;; ((org-mode . org-urgency-mode)))
 
 ;;; Custom Variables
 (custom-set-variables
