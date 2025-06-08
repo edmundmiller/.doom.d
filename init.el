@@ -88,7 +88,7 @@
        ;;pass
        pdf
        ;;prodigy
-       (terraform +lrp)
+       (terraform +lsp)
        ;;tmux
        tree-sitter
        upload
