@@ -184,6 +184,7 @@
        ;;calendar
        everywhere
        irc
+       motion
        (rss +org)
        ;;twitter
        ereader
