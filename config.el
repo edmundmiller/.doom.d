@@ -67,7 +67,6 @@
        ;; :desc "dired-sidebar" :n "n" #'dired-sidebar-toggle-sidebar
        :desc "inbox.org" :n "o" #'+emiller/visit-inbox-org
        :desc "projects" :n "p" #'+emiller/visit-projects
-       :desc "emms" :n "s" #'emms
        :desc "APP: rss" :n "," #'=rss))
 
 ;;

@@ -179,13 +179,13 @@
        ;;(wanderlust +gmail)
 
        :app
-       ai
+       ;;ai
        ;;emms
        ;;calendar
        everywhere
-       irc
+       ;; irc
        motion
-       (rss +org)
+       ;; (rss +org)
        ;;twitter
        ereader
 
