@@ -14,9 +14,9 @@
 
 (setq doom-theme 'catppuccin
       catppuccin-flavor 'macchiato ;; or 'latte, 'frappe, or 'mocha
-      doom-font (font-spec :family "JetBrains Mono" :size 12)
+      doom-font (font-spec :family "JetBrains Mono" :size 14)
       doom-variable-pitch-font (font-spec :family "iA Writer Duo V" :size 16)
-      doom-unicode-font (font-spec :family "JuliaMono"))
+      doom-symbol-font (font-spec :family "JuliaMono"))
 
 ;; Line numbers are pretty slow all around. The performance boost of
 ;; disabling them outweighs the utility of always keeping them on.
