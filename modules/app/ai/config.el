@@ -12,8 +12,8 @@
          ;; FIXME https://github.com/karthink/gptel/issues/182
          gptel-default-mode #'org-mode
          gptel-backend (gptel-make-anthropic "Claude"
-                         :stream t
-                         :key #'gptel-api-key-from-auth-source)
+                                             :stream t
+                                             :key #'gptel-api-key-from-auth-source)
          gptel-model "claude-3-5-sonnet-latest"
          gptel-org-branching-context t
          ;; https://github.com/karthink/gptel/issues/184#issuecomment-1897697888
@@ -34,20 +34,20 @@
            (explain . "Explain what this code does to a novice programmer.")))
 
   (gptel-make-openai "GPT-4o"
-    :stream t)
+                     :stream t)
   (gptel-make-ollama
-      "Ollama"                               ;Any name of your choosing
-    :host "localhost:11434"                ;Where it's running
-    :models '("mistral:latest")            ;Installed models
-    :stream t)                            ;Stream responses
+   "Ollama"                               ;Any name of your choosing
+   :host "localhost:11434"                ;Where it's running
+   :models '("mistral:latest")            ;Installed models
+   :stream t)                            ;Stream responses
   (gptel-make-gemini
-      "Gemini"
-    :key #'gptel-api-key-from-auth-source
-    :stream t)
+   "Gemini"
+   :key #'gptel-api-key-from-auth-source
+   :stream t)
   (defvar gptel--kagi
     (gptel-make-kagi
-        "Kagi"
-      :key #'gptel-api-key-from-auth-source))
+     "Kagi"
+     :key #'gptel-api-key-from-auth-source))
   ;; TODO
   ;; (append (default . "You are a large language model living in Emacs and a helpful assistant. Respond concisely.")
   ;;         gptel-directives)
