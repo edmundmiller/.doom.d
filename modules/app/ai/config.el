@@ -117,6 +117,19 @@
          :desc "Toggle Elysium" :n "E" #'elysium-toggle-window)))
 
 
+;; (use-package! aidermacs
+;;   :config
+;;   (setq aidermacs-default-model "openrouter/anthropic/claude-3.5-sonnet:beta")
+;;                      ;; "--weak-model" "openrouter/anthropic/claude-3-5-haiku-20241022"))
+;;   (setenv "ANTHROPIC_API_KEY" "TODO")
+;;   (setenv "OPENROUTER_API_KEY" "TODO"))
+;;   (global-set-key (kbd "C-c a") 'aidermacs-transient-menu)
+;;   ; See the Configuration section below
+;;   ;; (setq aidermacs-auto-commits nil)
+;;   (setq aidermacs-use-architect-mode t)
+;;   ;; TODO (setq aidermacs-backend 'vterm)
+;; )
+
 (use-package! claude-code
   :bind-keymap
   ("C-c c" . claude-code-command-map)

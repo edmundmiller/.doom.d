@@ -12,6 +12,8 @@
 
 (package! elysium)
 
+(package! aidermacs :recipe (:host github :repo "MatthewZMD/aidermacs" :files ("*.el")))
+
 (package! claude-code :recipe (:host github
                                :repo "stevemolitor/claude-code.el"
                                :branch "main"
