@@ -12,4 +12,8 @@
 
 (package! elysium)
 
-(package! aider :recipe (:host github :repo "tninja/aider.el" :files ("*.el")))
+(package! claude-code :recipe (:host github
+                               :repo "stevemolitor/claude-code.el"
+                               :branch "main"
+                               :files ("*.el" (:exclude "demo.gif"))))
+

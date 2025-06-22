@@ -117,7 +117,8 @@
          :desc "Toggle Elysium" :n "E" #'elysium-toggle-window)))
 
 
-(use-package! aider
+(use-package! claude-code
+  :bind-keymap
+  ("C-c c" . claude-code-command-map)
   :config
-  (setq aider-args '("--model" "anthropic/claude-3-5-sonnet-latest" "--no-auto-commits"))
-  (setenv "ANTHROPIC_API_KEY" "TODO"))
+  (claude-code-mode))
