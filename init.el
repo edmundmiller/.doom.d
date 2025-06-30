@@ -169,7 +169,7 @@
        ;;solidity
        ;;swift
        ;;terra
-       ;;typst
+       typst
        (web +lsp +tree-sitter)
        (yaml +lsp)
 

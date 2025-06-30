@@ -1,0 +1,7 @@
+#+title: Typst
+
+* Installation
+
+[[https://codeberg.org/meow_king/typst-ts-mode/wiki/Installation.md][Official Wiki]]
+
+After enabling the mode run M-x ~typst-ts-mc-install-grammar~
