@@ -48,6 +48,12 @@
       (:prefix "f"
        :desc "Find file in dotfiles" :n "o" #'+emiller/find-in-dotfiles
        :desc "Browse dotfiles" :n "O" #'+emiller/browse-dotfiles)
+      (:prefix ("g" . "git")
+       (:prefix ("w" . "worktree")
+        :desc "Create worktree" :n "c" #'magit-worktree-checkout
+        :desc "Switch worktree" :n "w" #'magit-worktree-status
+        :desc "List worktrees" :n "l" #'magit-list-worktrees
+        :desc "Delete worktree" :n "d" #'magit-worktree-delete))
       (:prefix "n"
                "/" #'consult-org-agenda)
       ;;  "b" #'org-roam-buffer-toggle
@@ -469,12 +475,12 @@
 ;;; :app irc
 (after! circe
   (set-irc-server! "chat.freenode.net"
-    `(:tls t
-      :port 6697
-      :nick "emiller88"
-      :sasl-username ,(+pass-get-user "irc/freenode.net")
-      :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
-      :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#guix" "#guile" "#home-manager" "#nixos" "#nixos-emacs" "#sway" "##rust" "#python" "#pine64"))))
+                   `(:tls t
+                     :port 6697
+                     :nick "emiller88"
+                     :sasl-username ,(+pass-get-user "irc/freenode.net")
+                     :sasl-password (lambda (&rest _) (+pass-get-secret "irc/freenode.net"))
+                     :channels ("#bioinformatics" "#clojure" "#emacs" "#emacs-circe" "#guix" "#guile" "#home-manager" "#nixos" "#nixos-emacs" "#sway" "##rust" "#python" "#pine64"))))
 ;;; :app rss
 (after! elfeed-search
   (map! :map elfeed-search-mode-map
@@ -615,12 +621,6 @@
   ((yaml-mode . outline-yaml-minor-mode)
    (yaml-ts-mode . outline-yaml-minor-mode)))
 
-
-(use-package! org-motion
-  ;; :load-path "~/src/emacs/org-urgency"
-  :after org)
-;; :hook
-;; ((org-mode . org-urgency-mode)))
 
 ;;; Custom Variables
 (custom-set-variables
