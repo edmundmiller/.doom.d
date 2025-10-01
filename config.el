@@ -231,12 +231,12 @@
 
 ;;; :lang org
 (setq! +org-roam-auto-backlinks-buffer nil ;; This messes up org-noter
-       org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/"
+       org-directory "~/sync/org/"
        org-roam-directory (concat org-directory "roam/")
        org-roam-db-location (file-name-concat org-directory ".org-roam.db")
        org-roam-dailies-directory "journal/"
        org-archive-location (concat org-directory ".archive/%s::")
-       +org-capture-todo-file (file-name-concat org-directory "inbox.org")
+       +org-capture-todo-file (file-name-concat org-directory "beorg/inbox.org")
        +org-capture-projects-file (file-name-concat org-directory "roam/project/projects.org"))
 
 (after! org
@@ -251,16 +251,9 @@
         org-capture-templates
         (append
          ;; TODO generalize these with org-directory
-         '(("a" "Appointment" entry (file  "~/sync/org/schedule.org")
-            "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
-           ("e" "Lab Entry" entry
+         '(("e" "Lab Entry" entry
             (file+olp+datetree "~/sync/org/roam/lab/2024.org")
             "* %?\n%i")
-           ;; Complete Task Template - all Motion fields
-           ("m" "Complete Task" entry
-            (file+headline "motion_tasks.org" "Inbox")
-            "* TODO %^{Title}\n  DEADLINE: %^{Due Date}t\n  :PROPERTIES:\n  :CREATED: %U\n  :EFFORT: %^{Estimated Time|0:15|0:30|0:45|1:00|1:30|2:00|3:00|4:00|6:00|8:00}\n  :PRIORITY_LEVEL: %^{Priority|HIGH|MEDIUM|LOW|ASAP}\n  :DEADLINE_TYPE: %^{Deadline Type|HARD|SOFT}\n  :PROJECT: %^{Project|Nascent Writing|Final Oral Defense|Dissertation Writing|nf-core|Seqera|Periodic|Family|Personal}\n  :WORKSPACE: %^{Workspace|Functional Genomics|nf-core|Seqera|Periodic|Family|My Tasks (Private)}\n  :END:\n  \n  %^{Description}\n  \n  %i\n  %a"
-            :empty-lines 1)
            ("l" "Link" entry (file+headline "~/sync/org/links.org" "Links")
             "* %a %^g\n %?\n %i" :immediate-finish t))
          org-capture-templates)))
