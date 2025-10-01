@@ -5,6 +5,8 @@
   (when (modulep! +lsp)
     (add-hook 'nextflow-mode-hook #'lsp! 'append))
   :config
-  (when (modulep! +lsp)
-    (setq-hook! 'nextflow-mode +format-with 'lsp)
-    (setq! lsp-nextflow-formatting-harshil-alignment t)))
+  (set-formatter! 'nextflow-lint '("nextflow" "lint" "-format") :modes '(nextflow-mode))
+
+  ;; (when (modulep! +lsp)
+  ;;   (setq-hook! 'nextflow-mode +format-with 'lsp)
+  (setq! lsp-nextflow-formatting-harshil-alignment t)) ;;)
